@@ -11,3 +11,5 @@ After GitHub Pages is enabled for this repository with **Build and deployment â†
 Main entry point: `index.html`.
 
 Deployment workflow updated to enable GitHub Pages automatically.
+
+GitHub Pages source is configured to use GitHub Actions.
