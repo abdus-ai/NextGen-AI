@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "NextGen-main.zip"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ jobs:
           mkdir -p /tmp/nextgen-import
           unzip -q NextGen-main.zip -d /tmp/nextgen-import
           test -d /tmp/nextgen-import/NextGen-main
-          rsync -a /tmp/nextgen-import/NextGen-main/ ./
+          rsync -a --exclude='.github/' /tmp/nextgen-import/NextGen-main/ ./
           rm -rf NextGen-main.zip /tmp/nextgen-import
 
       - name: Commit imported project files
