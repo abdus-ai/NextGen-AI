@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextGen AI – Create Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;--bg:#07162d;--ink:#fff;--bd:rgba(124,151,183,.42);padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",Roboto,system-ui,sans-serif}
+.app{max-width:430px;margin:0 auto;padding-bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+svg{display:block}
+header{height:41px;display:flex;align-items:center;padding:0 10px 0 16px}
+.burger{width:16px;display:grid;gap:4px;margin-right:17px}
+.burger i{height:2px;background:#fff;border-radius:2px}
+.logo{height:35px;width:auto;display:block;margin-top:2px}
+.hr{margin-left:auto;display:flex;gap:12px}
+.ci{width:31px;height:31px;border-radius:50%;display:grid;place-items:center}
+.sr{border:1px solid #3a4a6a;background:#0b1531}
+.pf{padding:2px;background:linear-gradient(135deg,#22e5ff,#c026ff)}
+.pf div{width:100%;height:100%;border-radius:50%;background:#0b1531;display:grid;place-items:center}
+.ttl{display:flex;align-items:center;gap:8px;height:26px;padding-left:18px;margin-bottom:3px}
+.ttl h1{font-size:19.5px;font-weight:700;line-height:26px;background:linear-gradient(90deg,#22e5ff 0,#4fd1ff 50%,#d02cff 78%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{position:relative;margin:0 13px;height:204px;border-radius:17px;overflow:hidden;border:1px solid #3a4a7a;background-size:100% 100%;background-position:center}
+.hero>img.ph{position:absolute;left:0;top:0;width:100%;height:113px;object-fit:cover}
+.cur{position:absolute;left:202px;top:178px}
+.ov{position:absolute;left:16px;right:16px;top:113px;bottom:6px;border-radius:17px;border-top:1px solid #7a5cf0;background:rgba(12,14,36,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ov .l{position:absolute;left:8px;top:6px;display:flex;align-items:center;gap:3px;font-size:9px;font-weight:500;color:#e8ecf8}
+.ov .r{position:absolute;right:8px;top:7px;font-size:9.3px;font-weight:500;color:#9d8cff}
+.ov .th{position:absolute;left:8px;top:26px;width:48px;height:48px;border-radius:9px;border:1.5px solid #8e7bff;object-fit:cover}
+.ov .tx{position:absolute;left:64px;top:30px;font-size:13.5px;font-weight:600;line-height:20px}
+.ov .tx u{display:inline-block;width:2px;height:15px;background:#8e7bff;vertical-align:-2px;margin-left:1px;text-decoration:none}
+.ov .go{position:absolute;right:8px;top:34px;width:32px;height:32px;border-radius:50%;background:#6a5af0;display:grid;place-items:center}
+.sub{display:flex;align-items:center;margin:14px 12px 0 13px;gap:0}
+.sub p{flex:1;min-width:0;font-size:13.5px;line-height:18.6px;color:#e6ebf8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-right:6px}
+.try{flex:none;height:35px;width:81px;border-radius:18px;background:linear-gradient(110deg,#00D9F5 0%,#087BFF 34%,#633BFF 68%,#D52BFF 100%);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 2px 8px rgba(0,190,255,.16)}
+.mute{flex:none;width:38px;height:38px;margin-left:10px;border-radius:50%;border:1px solid #3a4a6a;display:grid;place-items:center}
+.list{margin-top:14px}
+.card{margin:0 12px 3px;height:51px;display:flex;align-items:center;padding-left:7px;border:1px solid #384a63;border-radius:11px;background:linear-gradient(180deg,#0c2039,#0a1d36);position:relative}
+.card::after{content:"";position:absolute;left:9px;bottom:3px;width:24px;height:2px;border-radius:2px;background:#fff}
+.it{height:54px;display:flex;align-items:center;padding-left:18.6px;position:relative}
+.it::after{content:"";position:absolute;left:98px;right:0;bottom:2px;height:1px;background:rgba(148,174,204,.16)}
+.card img,.it img{width:66px;height:37.6px;object-fit:cover;border-radius:8px;flex:none;margin-right:13px}
+.card img{width:65px;height:35.5px}
+.card>div{margin-top:-3px}
+.card b,.it b{display:block;font-size:14px;font-weight:700;line-height:18px}
+.card span,.it span{display:block;font-size:11.6px;line-height:17px;color:#d9e2f5;margin-top:1px}
+.comp{position:fixed;left:10px;right:10px;max-width:410px;margin:0 auto;bottom:calc(21px + env(safe-area-inset-bottom,0px));height:120px;border:1px solid rgba(143,171,202,.38);border-radius:19px;overflow:hidden;background:linear-gradient(180deg,#102440,#0d2039);box-shadow:0 0 1px rgba(127,184,255,.03);transition:height .22s ease,border-color .22s ease}
+.comp .ph{position:absolute;left:18px;top:11px;font-size:15px;line-height:21px;color:#aab4d0}
+.comp .expand{position:absolute;right:8px;top:7px;width:37px;height:37px;border:0;border-radius:50%;background:#303b52;border:1px solid rgba(190,210,235,.16);display:grid;place-items:center;color:#fff;cursor:pointer}.comp.expanded{height:190px}.comp.expanded .tb{position:absolute;left:0;right:0;top:75px;bottom:0;background:#07162d;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px;transition:top .22s ease}.comp.expanded .up{top:112px}.comp.expanded .rf{top:119px}
+.comp .rf{position:absolute;right:130px;top:52px}
+.comp .up{position:absolute;right:16px;top:46px;height:23px;width:96px;border:1px solid #3a4a6a;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:13px;font-weight:500}
+.tb{position:absolute;left:0;right:0;top:75px;bottom:0;background:#07162d;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px}
+.pl{height:31px;border:1px solid var(--bd);border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:#10223c}
+.p1{width:31px;flex:none;border-radius:50%}
+.p2{flex:1;justify-content:space-between;padding:0 12px 0 10px;min-width:0}
+.p3{width:90px;flex:none;gap:6px;font-size:13px}
+.snd{width:32px;height:32px;flex:none;border-radius:50%;background:linear-gradient(135deg,#d03cf0 10%,#8a5cf0 50%,#22c0e8);display:grid;place-items:center}
+
+/* NextGen floating Assistant + Create Project actions */
+.ng-fab-stack{position:fixed;right:max(14px,calc((100vw - 430px)/2 + 14px));bottom:calc(154px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ng-fab{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;text-decoration:none;color:#fff}
+.ng-fab-assistant{width:48px;height:48px;flex:none;border-radius:50%;background:linear-gradient(135deg,#00d9f5 0%,#087bff 36%,#673bff 68%,#e020d5 100%);border:0;box-shadow:0 3px 12px rgba(0,174,255,.18);overflow:hidden}
+.ng-fab-assistant .ng-mark{width:48px;height:48px;object-fit:contain;display:block;border:0;border-radius:50%;background:transparent}
+.ng-fab-assistant .ng-mark-fallback{width:48px;height:48px;display:block}
+.ng-fab-assistant .ng-mark-fallback[hidden]{display:none}
+.ng-fab-project{border-radius:15px;background:#159f65;border-color:rgba(255,255,255,.16)}
+.ng-fab:active{transform:scale(.96)}
+.ng-project-overlay{position:fixed;inset:0;z-index:60;background:rgba(2,8,22,.72);backdrop-filter:blur(5px);display:grid;place-items:center;padding:18px}
+.ng-project-overlay[hidden]{display:none!important}
+.ng-project-dialog{width:min(100%,430px);max-height:min(88dvh,720px);overflow:auto;border:1px solid rgba(126,163,199,.38);border-radius:20px;background:#0d2039;color:#f4f8ff;box-shadow:0 18px 60px rgba(0,0,0,.45);padding:20px}
+.ng-project-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.ng-project-head h2{font-size:20px;line-height:1.2;color:#f4f8ff}
+.ng-project-close{width:34px;height:34px;border:1px solid rgba(143,171,202,.25);border-radius:50%;background:#172c49;color:#fff;font-size:21px}
+.ng-project-field{display:grid;gap:6px;margin:12px 0}
+.ng-project-field label{font-size:12px;color:#b8cbe0;font-weight:600}
+.ng-project-field input,.ng-project-field select,.ng-project-field textarea{width:100%;min-height:43px;border:1px solid rgba(143,171,202,.34);border-radius:11px;background:#091a30;color:#fff;padding:10px 12px;font:14px Inter,system-ui,sans-serif;outline:none}
+.ng-project-field textarea{min-height:78px;resize:vertical}
+.ng-project-field input:focus,.ng-project-field select:focus,.ng-project-field textarea:focus{border-color:#55b8d8;box-shadow:0 0 0 2px rgba(85,184,216,.12)}
+.ng-project-save{width:100%;min-height:45px;margin-top:8px;border:0;border-radius:12px;background:linear-gradient(100deg,#19b9c8,#3978df 58%,#9658d7);color:white;font-weight:750}
+.ng-project-note{margin-top:10px;color:#92a9c1;font-size:10px;line-height:1.45}
+.ng-project-status{min-height:18px;margin-top:8px;color:#72e2b3;font-size:12px}
+.ng-project-recent{margin-top:17px;border-top:1px solid rgba(143,171,202,.17);padding-top:12px}
+.ng-project-recent h3{font-size:12px;color:#dce8f6;margin-bottom:8px}
+.ng-project-item{padding:8px 10px;margin-top:6px;border-radius:9px;background:#102844;font-size:12px}
+.ng-project-item small{display:block;color:#91a9c2;font-size:10px;margin-top:2px}
+@media(min-width:700px){.ng-fab-stack{right:max(22px,calc((100vw - 430px)/2 + 18px));bottom:calc(35px + env(safe-area-inset-bottom,0px))}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="burger"><i></i><i></i><i></i></div>
+  <img class="logo" alt="NextGen AI" src="logo.jpg">
+  <div class="hr">
+    <div class="ci sr"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg></div>
+    <div class="ci pf"><div><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg></div></div>
+  </div>
+</header>
+<div class="ttl">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#3fd7ff" stroke-width="1.8" stroke-linejoin="round"><path d="M10 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M19 3v4M17 5h4M19 16v4M17 18h4" stroke-linecap="round"/></svg>
+  <h1>Create Hub</h1>
+</div>
+<section class="hero" style="background-image:url(hero.jpg)">
+  <img class="ph" alt="" src="hero.jpg">
+  <svg class="cur" width="11" height="17" viewBox="0 0 11 17"><path d="M0 0v14l3.5-3.2 2.3 5.5 2-.9-2.3-5.4H10.5z" fill="#fff" stroke="#000" stroke-width=".8"/></svg>
+  <div class="ov">
+    <div class="l"><svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.2" fill="none" stroke="#8e7bff" stroke-width="1.3"/><path d="M4.8 3.7v4.6L8.4 6z" fill="#fff"/></svg>AI Video Editor</div>
+    <div class="r">Image to Video</div>
+    <img class="th" alt="" src="ovt.jpg">
+    <div class="tx">Make her wall<u></u></div>
+    <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></svg></div>
+  </div>
+</section>
+<div class="sub">
+  <p>Video with sound, from a few words. Free, Plus and Pro · 4K on...</p>
+  <div class="try">Try it <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg></div>
+  <div class="mute"><svg width="20" height="18" viewBox="0 0 28 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h5l7-6v18l-7-6H2zM19 9l7 7M26 9l-7 7"/></svg></div>
+</div>
+<div class="list">
+  <div class="it"><img alt="Text to Video" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=640&amp;q=85"><div><b>Text to Video</b><span>Generate Video from a Text Prompt</span></div></div>
+  <div class="it"><img alt="Video Extender" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=640&amp;q=85"><div><b>Video Extender</b><span>Make Your Video Longer with AI</span></div></div>
+  <div class="it"><img alt="Song generation studio" src="assets/text-to-song.webp"><div><b>Text to Song</b><span>Generate original songs from text prompts</span></div></div>
+  <div class="it"><img alt="Singer performing into a microphone" src="assets/text-to-music-video.webp"><div><b>Text to Music Video</b><span>Create professional music videos with AI</span></div></div>
+  <div class="it"><img alt="Dancers performing on stage" src="assets/text-to-dance-video.webp"><div><b>Text to Dance Video</b><span>Generate dance videos from text prompts</span></div></div>
+</div>
+</div>
+<div class="comp">
+  <div class="ph">Describe it or add an image</div>
+  <button class="expand" id="composerToggle" type="button" aria-label="Expand composer" aria-expanded="false"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3.5L8 8.5l5-5M3 16.5l5-5 5 5"/></svg></button>
+  <svg class="rf" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa6c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 3-6.2M4 3v5h5"/></svg>
+  <div class="up"><svg width="12" height="12" viewBox="0 0 16 16" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg>Upgrade</div>
+  <div class="tb">
+    <div class="pl p1"><svg width="16" height="16" viewBox="0 0 16 16" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></div>
+    <div class="pl p2">Quality<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></div>
+    <div class="pl p3">×1 Auto<svg width="16" height="14" viewBox="0 0 24 20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M2 5h8M16 5h6M2 15h4M12 15h10"/><circle cx="13" cy="5" r="2.6"/><circle cx="9" cy="15" r="2.6"/></svg></div>
+    <svg style="margin:0 2px" width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="1" width="7" height="11" rx="3.5" fill="#fff"/><path d="M1 9a6 6 0 0 0 12 0M7 15v4"/></svg>
+    <div class="snd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M5 11l7-7 7 7"/></svg></div>
+  </div>
+</div>
+
+<div class="ng-fab-stack" aria-label="Quick actions">
+  <a class="ng-fab ng-fab-assistant" href="ai-design/assistant.html" aria-label="Open NextGen AI Assistant" title="AI Assistant"><img class="ng-mark" src="/NextGen/ai-assistant-approved.webp" alt="NextGen AI Assistant" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><svg class="ng-mark-fallback" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><defs><linearGradient id="ngSparkGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00d9f5"/><stop offset=".36" stop-color="#087bff"/><stop offset=".68" stop-color="#673bff"/><stop offset="1" stop-color="#e020d5"/></linearGradient></defs><circle cx="50" cy="50" r="49" fill="url(#ngSparkGradient)"/><path d="M50 19 C54 37 63 46 82 50 C63 54 54 63 50 82 C46 63 37 54 18 50 C37 46 46 37 50 19Z" fill="#fff"/><path d="M72 12 C74 20 78 24 87 26 C78 28 74 32 72 41 C70 32 66 28 57 26 C66 24 70 20 72 12Z" fill="#fff"/></svg></a>
+  <button class="ng-fab ng-fab-project" id="ngOpenProject" type="button" aria-label="Create Project" title="Create Project">
+    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M12 10.5v6M9 13.5h6"/></svg>
+  </button>
+</div>
+<div class="ng-project-overlay" id="ngProjectModal" hidden>
+  <section class="ng-project-dialog" role="dialog" aria-modal="true" aria-labelledby="ngProjectTitle">
+    <div class="ng-project-head"><h2 id="ngProjectTitle">Create New Project</h2><button class="ng-project-close" id="ngCloseProject" type="button" aria-label="Close">×</button></div>
+    <form id="ngProjectForm">
+      <div class="ng-project-field"><label for="ngProjectName">Project Name</label><input id="ngProjectName" name="name" maxlength="80" placeholder="Enter project name" required></div>
+      <div class="ng-project-field"><label for="ngProjectType">Project Type</label><select id="ngProjectType" name="type" required><option value="">Select project type</option><option>AI Video</option><option>AI Image</option><option>AI Song</option><option>AI Music</option><option>AI Dance</option><option>Business / Other</option></select></div>
+      <div class="ng-project-field"><label for="ngProjectDescription">Description (optional)</label><textarea id="ngProjectDescription" name="description" maxlength="500" placeholder="What would you like to create?"></textarea></div>
+      <button class="ng-project-save" type="submit">＋ Create Project</button>
+      <div class="ng-project-status" id="ngProjectStatus" role="status" aria-live="polite"></div>
+    </form>
+    <p class="ng-project-note">Projects are saved as drafts on this device for now. Cloud sync will be available after the project database is connected.</p>
+    <div class="ng-project-recent"><h3>Recently Created Projects</h3><div id="ngProjectList"></div></div>
+  </section>
+</div>
+<script>const composer=document.querySelector('.comp');const composerToggle=document.getElementById('composerToggle');composerToggle.addEventListener('click',()=>{const expanded=composer.classList.toggle('expanded');composerToggle.setAttribute('aria-expanded',String(expanded));composerToggle.setAttribute('aria-label',expanded?'Collapse composer':'Expand composer');});</script>
+
+<script>
+(function(){
+  const modal=document.getElementById('ngProjectModal');
+  const open=document.getElementById('ngOpenProject');
+  const close=document.getElementById('ngCloseProject');
+  const form=document.getElementById('ngProjectForm');
+  const status=document.getElementById('ngProjectStatus');
+  const list=document.getElementById('ngProjectList');
+  const key='nextgen-project-drafts-v1';
+  if(!modal||!open||!close||!form||!list)return;
+  function readProjects(){try{const data=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(data)?data:[]}catch(e){return[]}}
+  function renderProjects(){
+    const projects=readProjects().slice(0,5);
+    list.textContent='';
+    if(!projects.length){const empty=document.createElement('div');empty.className='ng-project-note';empty.textContent='No projects created yet.';list.appendChild(empty);return}
+    projects.forEach(p=>{const item=document.createElement('div');item.className='ng-project-item';const name=document.createElement('strong');name.textContent=p.name;const meta=document.createElement('small');meta.textContent=p.type+' · '+new Date(p.createdAt).toLocaleString();item.append(name,meta);list.appendChild(item)});
+  }
+  function show(){modal.hidden=false;status.textContent='';renderProjects();document.getElementById('ngProjectName').focus()}
+  function hide(){modal.hidden=true;open.focus()}
+  open.addEventListener('click',show);close.addEventListener('click',hide);
+  modal.addEventListener('click',e=>{if(e.target===modal)hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)hide()});
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const data=new FormData(form);
+    const project={id:(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now()),name:String(data.get('name')||'').trim(),type:String(data.get('type')||''),description:String(data.get('description')||'').trim(),createdAt:new Date().toISOString()};
+    if(!project.name||!project.type){status.textContent='Please enter a project name and choose a type.';return}
+    try{const projects=readProjects();projects.unshift(project);localStorage.setItem(key,JSON.stringify(projects));form.reset();status.textContent='Project draft created on this device.';renderProjects()}
+    catch(err){status.textContent='Could not save on this device. Please check browser storage.'}
+  });
+  renderProjects();
+})();
+</script>
+</body>
+</html>

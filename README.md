@@ -1,3 +1,2 @@
-# NextGen AI
-
-Copied from the existing live NextGen repository as a separate project snapshot.
+# NextGen
+NextGen responsive automation dashboard for content creation, approval workflows, scheduling, and social media analytics.

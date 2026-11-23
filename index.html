@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextGen AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;--bg:#07162d;--ink:#fff;--bd:rgba(124,151,183,.58);padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%;overflow-y:auto;overscroll-behavior-y:auto;background:var(--bg)}body{height:calc(100dvh + 2px);min-height:calc(100dvh + 2px);overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:auto;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",Roboto,system-ui,sans-serif}
+.app{position:sticky;top:0;max-width:430px;height:100dvh;margin:0 auto;padding-bottom:calc(150px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow:hidden}
+svg{display:block}
+header{height:45px;min-height:45px;display:flex;align-items:center;padding:0 10px 0 16px}
+.burger{width:56px;height:56px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-right:12px;transform:none;border:2px solid #168cff;border-radius:50%;background:linear-gradient(145deg,#0b2348,#07162d);box-shadow:0 0 0 2px rgba(0,213,255,.12),0 0 14px rgba(0,132,255,.32);cursor:pointer}
+.burger i{display:block;width:29px;height:3px;background:#fff;border-radius:3px;box-shadow:0 0 6px rgba(67,211,255,.55)}
+.burger i:nth-child(2){width:19px;align-self:center}
+.brand-title{height:33px;width:205px;max-width:calc(100vw - 190px);display:flex;align-items:center;margin-top:2px;transform:translate(-6px,-1px);font-size:20px;line-height:1;font-weight:800;letter-spacing:-.45px;white-space:nowrap;text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-shadow:none}.brand-title span{display:inline-block;background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision;text-shadow:none;filter:none}
+.hr{margin-left:auto;display:flex;gap:12px}
+.ci{width:31px;height:31px;border-radius:50%;display:grid;place-items:center}
+.sr{border:1px solid #3a4a6a;background:#0b1531}
+.pf{padding:2px;background:linear-gradient(135deg,#22e5ff,#c026ff)}
+.pf div{width:100%;height:100%;border-radius:50%;background:#0b1531;display:grid;place-items:center}
+.hero{position:relative;margin:0 13px;height:204px;border-radius:17px;overflow:hidden;border:1px solid #3a4a7a;background-size:100% 100%;background-position:center}
+.hero>img.ph{position:absolute;left:0;top:0;width:100%;height:113px;object-fit:cover}
+.hero>video.motion16-demo-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#08152b;cursor:pointer}.hero>img.ph{display:block!important;z-index:0}.hero>img.ph[style*="display: none"]{display:none!important}.hero>video[hidden]{display:none!important}.hero>.ov{z-index:2}
+.cur{position:absolute;left:202px;top:178px}
+.ov{position:absolute;left:16px;right:16px;top:113px;bottom:6px;border-radius:17px;border-top:1px solid #7a5cf0;background:rgba(12,14,36,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ov .l{position:absolute;left:8px;top:6px;display:flex;align-items:center;gap:3px;font-size:9px;font-weight:500;color:#e8ecf8}
+.ov .r{position:absolute;right:8px;top:7px;font-size:9.3px;font-weight:500;color:#9d8cff}
+.ov .th{position:absolute;left:8px;top:26px;width:48px;height:48px;border-radius:9px;border:1.5px solid #8e7bff;object-fit:cover}
+.ov .tx{position:absolute;left:64px;top:30px;font-size:13.5px;font-weight:600;line-height:20px}
+.ov .tx u{display:inline-block;width:2px;height:15px;background:#8e7bff;vertical-align:-2px;margin-left:1px;text-decoration:none}
+.ov .go{position:absolute;right:8px;top:34px;width:32px;height:32px;border-radius:50%;background:#6a5af0;display:grid;place-items:center}
+.sub{display:flex;align-items:center;margin:6px 12px 0 13px;gap:0}
+.sub p{flex:1;min-width:0;font-size:13.5px;line-height:18.6px;color:#e6ebf8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-right:6px}
+.try{flex:none;height:35px;width:81px;border-radius:18px;background:linear-gradient(110deg,#00D9F5 0%,#087BFF 34%,#633BFF 68%,#D52BFF 100%);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 2px 8px rgba(0,190,255,.16)}
+.mute{flex:none;width:38px;height:38px;margin-left:10px;border-radius:50%;border:1px solid #3a4a6a;display:grid;place-items:center}
+.list{margin-top:14px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:8px}.list>*{flex-shrink:0}
+.card{margin:0 12px 2px;height:51px;display:flex;align-items:center;padding-left:7px;border:1px solid #384a63;border-radius:11px;background:linear-gradient(180deg,#0c2039,#0a1d36);position:relative}
+.card::after{content:"";position:absolute;left:9px;bottom:3px;width:24px;height:2px;border-radius:2px;background:#fff}
+.it{height:53px;display:flex;align-items:center;padding-left:18.6px;position:relative}
+.it::after{content:"";position:absolute;left:98px;right:0;bottom:2px;height:1px;background:rgba(148,174,204,.16)}
+.card img,.it img{width:66px;height:37.6px;object-fit:cover;border-radius:8px;flex:none;margin-right:13px}
+.thumb{width:66px;height:37.6px;border-radius:8px;flex:none;margin-right:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#142b50,#21164b);font-size:24px;border:1px solid #435a87}.thumb-photo{width:66px;height:37.6px;object-fit:cover;border-radius:8px;flex:none;margin-right:13px;border:1px solid rgba(124,151,183,.5)}
+.card img{width:65px;height:35.5px}
+.card>div{margin-top:-3px}
+.card b,.it b{display:block;font-size:14px;font-weight:700;line-height:18px}
+.card span,.it span{display:block;font-size:11.6px;line-height:17px;color:#d9e2f5;margin-top:1px}
+.comp{position:fixed;left:10px;right:10px;max-width:410px;margin:0 auto;bottom:calc(21px + env(safe-area-inset-bottom,0px));height:120px;border:1px solid rgba(143,171,202,.24);border-radius:19px;overflow:hidden;background:#0d2039;box-shadow:none;transition:height .22s ease,border-color .22s ease,transform .22s ease}
+.comp .ph{position:absolute;left:18px;top:11px;font-size:15px;line-height:21px;color:#aab4d0}
+.comp .expand{position:absolute;right:8px;top:7px;z-index:80;width:37px;height:37px;border:0;border-radius:50%;background:#303b52;border:1px solid rgba(190,210,235,.16);display:grid;place-items:center;color:#fff;cursor:pointer;pointer-events:auto}.comp.expanded{height:190px}.comp.expanded .tb{position:absolute;left:0;right:0;top:83px!important;bottom:0;background:transparent;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px;transition:top .22s ease}.comp.expanded .up{top:57px!important;right:8px!important;height:29px!important;width:108px!important;font-size:14px!important;border-radius:15px!important;}.comp.expanded .rf{top:12px!important;right:48px!important;width:24px!important;height:24px!important;z-index:9!important;}
+.comp .rf{position:absolute;right:130px;top:52px}
+.comp .up{position:absolute;right:16px;top:46px;height:23px;width:96px;border:1px solid #3a4a6a;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:13px;font-weight:500}
+.tb{position:absolute;left:0;right:0;top:75px;bottom:0;background:transparent;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px;transition:top .22s ease}
+.pl{height:31px;border:1px solid var(--bd);border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:#10223c}
+.p1{width:31px;flex:none;border-radius:50%}
+.p2{flex:1;justify-content:space-between;padding:0 12px 0 10px;min-width:0}
+.p3{width:90px;flex:none;gap:6px;font-size:13px}
+.snd{width:32px;height:32px;flex:none;border-radius:50%;background:linear-gradient(135deg,#d03cf0 10%,#8a5cf0 50%,#22c0e8);display:grid;place-items:center}
+
+/* NextGen floating Assistant + Create Project actions */
+.ng-fab-stack{position:fixed;right:max(14px,calc((100vw - 430px)/2 + 14px));bottom:calc(230px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ng-fab{width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;text-decoration:none;color:#fff}
+.ng-fab-assistant{width:44px;height:44px;flex:none;border-radius:50%;background:linear-gradient(135deg,#00d9f5 0%,#087bff 36%,#673bff 68%,#e020d5 100%);border:0;box-shadow:0 3px 12px rgba(0,174,255,.18);overflow:hidden}
+.ng-fab-assistant .ng-mark{width:44px;height:44px;object-fit:contain;display:block;border:0;border-radius:50%;background:transparent}
+.ng-fab-assistant .ng-mark-fallback{width:44px;height:44px;display:block}
+.ng-fab-assistant .ng-mark-fallback[hidden]{display:none}
+.ng-fab-project{border-radius:14px;background:linear-gradient(135deg,#00c9e8 0%,#1677f5 52%,#7545e8 100%);border-color:rgba(255,255,255,.18)}
+.ng-fab:active{transform:scale(.96)}
+.ng-project-overlay{position:fixed;inset:0;z-index:60;background:rgba(2,8,22,.72);backdrop-filter:blur(5px);display:grid;place-items:center;padding:18px}
+.ng-project-overlay[hidden]{display:none!important}
+.ng-project-dialog{width:min(100%,430px);max-height:min(88dvh,720px);overflow:auto;border:1px solid rgba(126,163,199,.38);border-radius:20px;background:#0d2039;color:#f4f8ff;box-shadow:0 18px 60px rgba(0,0,0,.45);padding:20px}
+.ng-project-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.ng-project-head h2{font-size:20px;line-height:1.2;color:#f4f8ff}
+.ng-project-close{width:34px;height:34px;border:1px solid rgba(143,171,202,.25);border-radius:50%;background:#172c49;color:#fff;font-size:21px}
+.ng-project-field{display:grid;gap:6px;margin:12px 0}
+.ng-project-field label{font-size:12px;color:#b8cbe0;font-weight:600}
+.ng-project-field input,.ng-project-field select,.ng-project-field textarea{width:100%;min-height:43px;border:1px solid rgba(143,171,202,.34);border-radius:11px;background:#091a30;color:#fff;padding:10px 12px;font:14px Inter,system-ui,sans-serif;outline:none}
+.ng-project-field textarea{min-height:78px;resize:vertical}
+.ng-project-field input:focus,.ng-project-field select:focus,.ng-project-field textarea:focus{border-color:#55b8d8;box-shadow:0 0 0 2px rgba(85,184,216,.12)}
+.ng-project-save{width:100%;min-height:45px;margin-top:8px;border:0;border-radius:12px;background:linear-gradient(100deg,#19b9c8,#3978df 58%,#9658d7);color:white;font-weight:750}
+.ng-project-note{margin-top:10px;color:#92a9c1;font-size:10px;line-height:1.45}
+.ng-project-status{min-height:18px;margin-top:8px;color:#72e2b3;font-size:12px}
+.ng-project-recent{margin-top:17px;border-top:1px solid rgba(143,171,202,.17);padding-top:12px}
+.ng-project-recent h3{font-size:12px;color:#dce8f6;margin-bottom:8px}
+.ng-project-item{padding:8px 10px;margin-top:6px;border-radius:9px;background:#102844;font-size:12px}
+.ng-project-item small{display:block;color:#91a9c2;font-size:10px;margin-top:2px}
+@media(min-width:700px){.ng-fab-stack{right:max(22px,calc((100vw - 430px)/2 + 18px));bottom:calc(230px + env(safe-area-inset-bottom,0px))}}
+
+
+/* Motion 16 reference interaction system — NextGen navy / cyan / blue / purple skin */
+.hero{height:204px;background:#081b33;transition:background .3s ease}
+.hero>img.ph{width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:opacity .35s ease;}
+.ov{z-index:2;top:auto;bottom:6px;height:86px;border:1px solid rgba(107,177,255,.48);border-top:1px solid rgba(34,218,250,.7);background:transparent;}
+.ov[hidden]{display:none!important}
+.ov .l{font-size:10px;gap:6px}.mini-play{width:13px;height:13px;border:1px solid #38d8ff;border-radius:50%;font-size:7px;display:grid;place-items:center;color:#fff}
+.ov .r{font-size:9px;color:#9c91ff}.ov .th{width:48px;height:48px;border-color:#46cfff}.ov .tx{right:48px;font-size:12px;line-height:16px;top:31px;max-height:38px;overflow:hidden}.typing-caret{display:inline-block;width:2px;height:13px;background:#33d9f7;margin-left:2px;vertical-align:-2px;animation:motion16Blink .8s steps(2,start) infinite}
+@keyframes motion16Blink{to{visibility:hidden}}
+.ov .go{background:linear-gradient(135deg,#00cfee,#246fff 55%,#a23cff);}
+.sub .try{border:0;cursor:pointer;background:linear-gradient(110deg,#00d9f5 0%,#087bff 34%,#633bff 68%,#d52bff 100%);box-shadow:0 2px 10px rgba(0,190,255,.18);}
+.sub .mute{background:rgba(9,23,48,.65);cursor:pointer}
+.it{width:100%;border:1px solid transparent;border-radius:10px;background:transparent;color:inherit;text-align:left;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;padding-right:8px}
+.it.is-active{background:linear-gradient(90deg,rgba(16,61,94,.78),rgba(22,31,72,.5));border-color:rgba(47,192,245,.36);box-shadow:inset 3px 0 0 #1ecdf3}
+.it:active{transform:scale(.99)}.it .feature-model{display:block;font-size:9px;line-height:12px;color:#7edcf5;margin-top:1px;letter-spacing:.1px}.it:not(.is-active) .feature-model{color:#91a8c6;opacity:.72}
+.comp{border-color:rgba(143,171,202,.26);box-shadow:0 0 0 1px rgba(57,123,190,.04);}
+.comp .ph{width:calc(100% - 68px);height:48px;resize:none;overflow:auto;border:0;outline:0;background:transparent;font:14px/21px Inter,system-ui,sans-serif;padding:0;color:#f4f8ff;z-index:2}
+.comp .ph::placeholder{color:#aab4d0;opacity:1}
+.comp.expanded{height:190px}.comp.expanded .ph{height:92px}.comp.expanded .tb{top:137px}.comp.expanded .up{top:112px}.comp.expanded .rf{top:119px}
+.comp .rf{position:absolute;right:118px;top:52px;width:22px;height:22px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer}
+.comp .up{cursor:pointer;color:#fff;background:rgba(13,32,57,.75)}
+.comp .tb{z-index:3}.comp .pl{color:#fff;min-width:0}.comp button,.comp select{cursor:pointer}
+/* Zero inner spacing between the ×1 Auto label and its pill border. */
+.comp .p3,.comp .image-settings-trigger{margin:0!important;padding:0!important;box-sizing:border-box!important;text-indent:0!important;}.comp .p2{font:700 12px Inter,system-ui,sans-serif;color:#fff;appearance:none;-webkit-appearance:none;padding:0 9px;background:#10223c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpath d='m5 9 7 7 7-7'/%3E%3C/svg%3E") no-repeat right 9px center;padding-right:27px}.comp .p2 option,.comp .p3 option{background:#0d2039;color:#fff}
+.comp .p3{appearance:none;-webkit-appearance:none;padding:0 7px;background:#10223c;color:#fff;font:700 12px Inter,system-ui,sans-serif;text-align:center}
+.motion16-mic{width:25px;height:32px;flex:none;border:0;background:transparent;display:grid;place-items:center}.motion16-attachment{position:absolute;left:18px;top:40px;max-width:210px;z-index:4;padding:4px 8px;border:1px solid rgba(74,196,239,.4);border-radius:8px;background:#102a46;color:#dff7ff;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.comp.expanded .motion16-attachment{top:92px}
+.motion16-notice{position:absolute;left:12px;right:12px;bottom:calc(100% + 8px);padding:8px 11px;border-radius:10px;background:#102a46;border:1px solid rgba(68,190,237,.4);color:#e8f8ff;font-size:11px;display:none;box-shadow:0 8px 22px rgba(0,0,0,.25)}.motion16-notice.show{display:block}
+.snd{border:0;cursor:pointer}.snd:active,.motion16-mic:active,.pl:active{transform:scale(.96)}
+@media(prefers-reduced-motion:reduce){.typing-caret{animation:none}.hero>img.ph,.it{transition:none}}
+/* NextGen compact composer bar: bottom-anchored single-row controls, prompt tap expands upward. */
+.comp:not(.expanded){height:46px!important;bottom:calc(21px + env(safe-area-inset-bottom,0px));}
+.comp:not(.expanded) .ph{top:10px!important;left:204px!important;width:calc(100% - 294px)!important;height:24px!important;min-height:24px!important;max-height:24px!important;padding:3px 3px!important;overflow:hidden!important;white-space:nowrap!important;resize:none!important;font-size:9px!important;line-height:16px!important;z-index:5!important;}
+.comp:not(.expanded) .expand{top:7px!important;right:7px!important;width:30px!important;height:30px!important;}
+.comp:not(.expanded) .tb{position:absolute!important;left:5px!important;right:42px!important;top:5px!important;bottom:auto!important;width:auto!important;height:36px!important;padding:0!important;gap:5px!important;z-index:6!important;display:flex!important;align-items:center!important;overflow:visible!important;}
+.comp:not(.expanded) .p1{width:32px!important;height:32px!important;flex:0 0 32px!important;font-size:20px!important;}
+.comp:not(.expanded) .p2{width:clamp(104px,34vw,132px)!important;min-width:0!important;max-width:132px!important;height:32px!important;flex:1 1 112px!important;font-size:12px!important;padding-left:8px!important;padding-right:20px!important;}.comp:not(.expanded) .image-settings-trigger{display:flex!important;visibility:visible!important;opacity:1!important;width:112px!important;min-width:112px!important;max-width:112px!important;height:32px!important;flex:0 0 112px!important;padding:0 7px!important;gap:3px!important;font-size:12px!important;}.comp:not(.expanded) .image-settings-trigger svg{display:block!important;visibility:visible!important;width:18px!important;height:18px!important;flex:0 0 18px!important;stroke:#fff!important;opacity:1!important;}
+.comp:not(.expanded) .p3,.comp:not(.expanded) .motion16-mic,.comp:not(.expanded) .snd,.comp:not(.expanded) .up,.comp:not(.expanded) .motion16-attachment{display:none!important;}
+.comp:not(.expanded) .rf{display:grid!important;position:absolute!important;right:48px!important;top:21px!important;width:20px!important;height:22px!important;z-index:7!important;}
+.comp:not(.expanded) .expand{z-index:8!important;}
+/* Final composer sizing and alignment: keep both modes bottom anchored. */
+.comp.expanded{height:140px!important;bottom:calc(9px + env(safe-area-inset-bottom,0px));}
+.comp.expanded .ph{top:16px!important;height:56px!important;min-height:56px!important;max-height:56px!important;font-size:15px!important;line-height:18px!important;}
+.comp.expanded .up{top:60px!important;right:4px!important;width:112px!important;height:29px!important;font-size:14px!important;white-space:nowrap!important;}
+.comp.expanded .rf{top:63px!important;right:124px!important;width:24px!important;height:24px!important;}
+/* Expanded composer refinement: lower prompt, slightly larger controls and clearer text. */
+.comp.expanded .ph{top:16px!important;left:18px!important;transform:none!important;margin:0!important;padding-top:0!important;font-size:15px!important;line-height:18px!important;}
+.comp.expanded .tb{gap:8px!important;}
+.comp.expanded .p1{width:38px!important;height:38px!important;flex:0 0 38px!important;}
+.comp.expanded .p2{height:38px!important;font-size:13px!important;padding-left:11px!important;padding-right:28px!important;}
+.comp.expanded .p3{height:38px!important;font-size:13px!important;}
+.comp.expanded .motion16-mic{width:29px!important;height:38px!important;}
+.comp.expanded .expand{width:40px!important;height:40px!important;}
+.comp.expanded .rf{width:26px!important;height:26px!important;}
+.comp.expanded .up{font-size:15px!important;}
+
+.comp:not(.expanded) .rf{top:12px!important;right:48px!important;width:20px!important;height:22px!important;}
+.comp:not(.expanded) .ph{font-size:12px!important;line-height:18px!important;}
+.comp:not(.expanded) .p2{font-size:11px!important;}
+.comp{transition:height .26s cubic-bezier(.2,.75,.25,1),bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+@media(max-width:380px){.comp:not(.expanded) .tb{width:170px!important}.comp:not(.expanded) .p2{width:132px!important;max-width:132px!important;flex-basis:132px!important}.comp:not(.expanded) .ph{left:182px!important;width:calc(100% - 270px)!important;}}
+
+/* Final alignment: undo sits on the same row immediately left of Upgrade. */
+.comp.expanded .rf{top:60px!important;right:124px!important;width:26px!important;height:26px!important;z-index:9!important;}
+
+/* Separate, independently clickable composer arrows: upper collapses, lower expands. */
+.comp .expand{overflow:hidden;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:stretch!important;padding:0!important;}
+.comp.expanded .expand{flex-direction:column-reverse!important;}
+.comp .expand .composer-arrow{flex:1 1 100%!important;width:100%;height:100%;min-height:0;margin:0;padding:0;border:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;}
+.comp .expand .composer-arrow:active{background:rgba(255,255,255,.12);}
+.comp .expand .composer-arrow{display:none!important;}
+.comp.expanded .expand .composer-collapse{display:flex!important;}
+.comp.expanded .expand .composer-expand{display:none!important;}
+.comp:not(.expanded) .expand .composer-collapse{display:none!important;}
+.comp:not(.expanded) .expand .composer-expand{display:flex!important;}
+
+
+
+
+/* When composer collapses to the bottom bar, let the feature list fill the space down to it. */
+.app:has(+ .comp:not(.expanded)){padding-bottom:calc(67px + env(safe-area-inset-bottom,0px))!important;}
+/* Dock the two floating actions immediately above the composer in both states. */
+body:has(.comp.expanded) .ng-fab-stack{bottom:calc(161px + env(safe-area-inset-bottom,0px))!important;transition:bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-inset-bottom,0px))!important;transition:bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+/* Keep composer typography consistent in compact and expanded modes. */
+.comp .ph{font-size:15px!important;line-height:18px!important;}
+.comp .p2,.comp .p3{font-size:13px!important;}
+.comp .up{font-size:15px!important;}
+
+.ng-model-trigger{display:flex!important;align-items:center!important;justify-content:center!important;cursor:default!important;color:#eef8ff!important;background:linear-gradient(135deg,#0d2744,#102c4a)!important;border:1px solid rgba(79,181,235,.38)!important;border-radius:22px!important;padding:0 12px!important}
+
+.ng-model-trigger{cursor:pointer!important;touch-action:manipulation!important;gap:8px!important}
+.ng-model-picker{position:fixed;left:max(16px,calc((100vw - 430px)/2 + 18px));right:max(16px,calc((100vw - 430px)/2 + 18px));bottom:calc(155px + env(safe-area-inset-bottom,0px));z-index:10020;padding:12px;border:1px solid rgba(68,190,255,.32);border-radius:20px;background:#0b1b33;box-shadow:0 12px 36px rgba(0,0,0,.48),0 0 18px rgba(0,174,255,.08);color:#f7faff}
+
+
+/* Critical override: remove the legacy fixed 155px bottom offset.
+   JavaScript sets the exact bottom coordinate from the model button. */
+.ng-model-picker{bottom:auto!important;top:auto!important}
+/* Anchor the popup directly above its own composer trigger, not to the viewport. */
+.ng-model-picker{bottom:auto!important;top:auto!important;max-height:var(--ng-picker-space,70dvh)!important}
+.ng-model-list-view{height:min(66dvh,var(--ng-picker-space,610px))!important;max-height:var(--ng-picker-space,610px)!important;min-height:220px!important}
+.ng-model-picker[hidden],.ng-model-detail[hidden]{display:none!important}
+.ng-model-picker-head{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 10px;font-size:15px}
+.ng-model-picker-head>div{display:flex;flex-direction:column;gap:3px}.ng-model-picker-head small{font-size:10px;color:#91abc4;font-weight:400}
+.ng-model-picker-head button{border:0;background:transparent;color:#fff;font-size:25px;padding:0 5px}
+.ng-model-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 8px}
+.ng-model-modes button{border:1px solid rgba(111,157,196,.3);border-radius:10px;background:#102744;color:#dcecff;padding:9px 7px;font-size:12px;font-weight:600}
+.ng-model-modes button.active{border-color:#27d7f4;background:linear-gradient(115deg,#087fc4,#245ee7 55%,#743ee8);color:#fff;box-shadow:0 0 0 1px rgba(57,219,255,.28) inset}
+.ng-model-row{width:100%;min-height:62px;display:flex;align-items:center;gap:12px;text-align:left;padding:9px 10px;border:1px solid rgba(111,157,196,.22);border-radius:12px;background:#102744;color:#fff;margin-top:6px;cursor:pointer}
+.ng-model-row[aria-expanded=true]{border-color:#27d7f4;background:#123653}
+.ng-model-kind-icon{width:28px;font-size:22px;text-align:center;color:#52dff5}
+.ng-model-row span:nth-child(2){display:flex;flex:1;flex-direction:column;gap:3px}
+.ng-model-row small{font-size:12px;color:#aebfd2}
+.ng-model-chevron{font-size:25px;color:#aaa}
+.ng-model-detail{padding:9px 3px 2px}
+.ng-model-status{font-size:11px;line-height:1.45;color:#a8bfd4;margin:4px 3px 2px}
+.ng-model-picker-note{font-size:10px;line-height:1.4;color:#8da7c0;padding:9px 4px 1px;margin:0}
+
+/* Reference-matched charcoal model selector. */
+.ng-model-picker{position:fixed!important;left:max(16px,calc((100vw - 430px)/2 + 16px))!important;right:max(16px,calc((100vw - 430px)/2 + 16px))!important;bottom:calc(155px + env(safe-area-inset-bottom,0px))!important;z-index:10020!important;padding:12px!important;border:1px solid #303030!important;border-radius:27px!important;background:#171717!important;box-shadow:0 10px 34px rgba(0,0,0,.58)!important;color:#f5f5f7!important;overflow:hidden!important}
+.ng-model-picker[hidden],.ng-model-list-view[hidden]{display:none!important}.ng-model-category-view{display:flex;flex-direction:column;gap:8px}.ng-model-category-view[hidden]{display:none!important}
+.ng-model-category-row{width:100%;min-height:90px;display:flex;align-items:center;gap:17px;padding:14px 15px;border:0;border-radius:21px;background:transparent;color:#f5f5f7;text-align:left;cursor:pointer}.ng-model-category-row:active{background:#292929}.ng-model-category-row:first-child{background:#2b2b2b;box-shadow:inset 4px 0 0 #8061f4}
+.ng-model-category-icon{width:43px;flex:0 0 43px;text-align:center;font-size:31px;color:#f2f2f4}.ng-model-category-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:6px}.ng-model-category-copy strong{font-size:23px;line-height:1.2;font-weight:650}.ng-model-category-copy small{display:flex;align-items:center;gap:10px;color:#a7a7b0;font-size:20px;line-height:1.2}.ng-provider-mini{font-size:24px;line-height:1;font-weight:700}.ng-model-category-chevron{font-size:38px;line-height:1;color:#bcbcc4;font-weight:300}
+.ng-model-list-view{height:min(69dvh,650px);display:flex;flex-direction:column;min-height:300px}.ng-model-list-heading{height:46px;flex:0 0 46px;display:flex;align-items:center;gap:12px;padding:0 5px 8px;color:#bcbcc5;font-size:17px}.ng-model-back{width:28px;height:30px;border:0;background:transparent;color:#bcbcc5;font-size:34px;line-height:1;display:grid;place-items:center;cursor:pointer}
+.ng-model-signin{height:62px;flex:0 0 62px;width:100%;display:flex;align-items:center;gap:17px;padding:0 17px;margin:0 0 4px;border:1px solid #303030;border-radius:17px;background:#242424;color:#f1f1f3;text-align:left;font-size:17px;cursor:pointer}.ng-lock{font-size:23px;color:#b9b9c2}
+.ng-model-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:0 0 5px;scrollbar-width:none}.ng-model-scroll::-webkit-scrollbar{display:none}
+.ng-model-option{width:100%;min-height:68px;display:flex;align-items:center;gap:12px;padding:9px 13px;border:0;border-radius:13px;background:transparent;color:#f0f0f2;text-align:left;cursor:pointer}.ng-model-option:active{background:#262626}.ng-model-option.is-selected{background:#292438}
+.ng-model-brand{width:27px;flex:0 0 27px;text-align:center;font-size:25px;font-weight:700;line-height:1}.ng-openai{color:#d8d8de}.ng-google{color:#4285f4}.ng-banana{font-size:22px}.ng-meta{color:#0878ff;font-size:29px}.ng-grok{color:#e9e9eb}.ng-qwen{color:#8a69ff}.ng-krea{color:#f1f1f3}.ng-flux{color:#ddd;font-size:28px}.ng-minimax{color:#f04b83;font-size:31px}
+.ng-model-option-name{flex:1;min-width:0;font-size:16px;line-height:1.25;color:#f1f1f3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ng-model-option-name small{display:inline-block;margin-left:5px;padding:3px 7px;border-radius:13px;background:#343438;color:#bfc0c8;font-size:10px;white-space:nowrap;vertical-align:1px}
+.ng-model-cost{flex:0 0 auto;color:#b6b5bf;font-size:14px;white-space:nowrap}.ng-model-cost.free{color:#36d66f;font-weight:600}.ng-model-check{display:none;color:#aa96ff;font-size:23px;font-weight:700}.ng-model-option.is-selected .ng-model-check{display:block}
+.ng-model-more{height:54px;flex:0 0 54px;margin-top:4px;border:1px solid #303030;border-radius:17px;background:#171717;color:#b9b9c2;font-size:15px;cursor:pointer}
+@media(max-width:380px){.ng-model-category-row{min-height:78px;padding:11px 10px;gap:12px}.ng-model-category-copy strong{font-size:21px}.ng-model-category-copy small{font-size:17px}.ng-model-list-view{height:min(68dvh,610px)}.ng-model-option{min-height:62px;padding:8px 9px;gap:9px}.ng-model-option-name{font-size:14px}.ng-model-cost{font-size:12px}.ng-model-signin{font-size:15px}}
+
+
+
+/* User dimensions: 125px popup, 60px cards, single active category */
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])){
+  height:125px!important;min-height:125px!important;max-height:125px!important;
+  background:linear-gradient(155deg,#0b1c35 0%,#08162b 100%)!important;
+  border:1.5px solid rgba(41,207,245,.48)!important;
+  box-shadow:0 14px 40px rgba(0,0,0,.58),0 0 22px rgba(0,183,255,.16)!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-view{
+  height:100%!important;display:flex!important;flex-direction:column!important;
+  justify-content:center!important;gap:2px!important;overflow:hidden!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row,
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row:nth-child(2){
+  flex:0 0 60px!important;height:60px!important;min-height:60px!important;max-height:60px!important;
+  width:100%!important;max-width:100%!important;margin:0!important;
+  padding:5px 12px!important;box-sizing:border-box!important;border-radius:22px!important;gap:10px!important;
+  background:linear-gradient(105deg,rgba(12,91,139,.42),rgba(19,42,76,.68))!important;
+  box-shadow:inset 3px 0 0 rgba(32,217,243,.5)!important;color:#f3fbff!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row.is-active{
+  background:linear-gradient(105deg,rgba(12,112,165,.72),rgba(25,55,100,.9))!important;
+  box-shadow:inset 4px 0 0 #20d9f3,0 0 13px rgba(0,183,255,.18)!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-icon{width:27px!important;flex:0 0 27px!important;font-size:21px!important;color:#dffaff!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy{gap:2px!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy strong{font-size:13px!important;line-height:1.05!important;color:#f3fbff!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy small{gap:6px!important;font-size:10px!important;line-height:1.05!important;color:#a8c3da!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-provider-mini{font-size:12px!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-chevron{font-size:27px!important;color:#bfeeff!important}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row:active{background:#17395c!important}
+@media(max-width:600px){
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])){
+    left:0!important;right:90px!important;transform:none!important;
+    width:auto!important;max-width:none!important;
+    height:125px!important;min-height:125px!important;max-height:125px!important;
+    padding:0!important;border-radius:24px!important;
+  }
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-view{
+    justify-content:center!important;gap:2px!important;height:100%!important;
+  }
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row,
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row:nth-child(2){
+    width:100%!important;max-width:100%!important;flex:0 0 60px!important;
+    height:60px!important;min-height:60px!important;max-height:60px!important;
+    margin:0!important;padding:5px 10px!important;border-radius:20px!important;gap:8px!important;
+  }
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-icon{width:24px!important;flex:0 0 24px!important;font-size:19px!important}
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy strong{font-size:13px!important}
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy small{font-size:10px!important;gap:5px!important}
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-provider-mini{font-size:11px!important}
+  .ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-chevron{font-size:24px!important}
+}
+/* NextGen AI composer selector: logo + brand label + stateful chevron */
+.ng-model-trigger{justify-content:space-between!important;gap:12px!important;padding:0 14px!important}
+.ng-selected-model{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;flex:1!important}
+.ng-nextgen-logo{display:block!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;max-width:32px!important;max-height:32px!important;flex:0 0 32px!important;object-fit:contain!important}
+#ng-model-selected-label{display:block!important;flex:0 1 auto!important;min-width:0!important;color:#fff!important;font-size:19px!important;font-weight:750!important;line-height:1.1!important;white-space:nowrap!important}
+.ng-model-trigger-chevron{display:block!important;width:25px!important;height:25px!important;flex:0 0 25px!important;stroke:#fff!important;fill:none!important;stroke-width:2.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;transition:transform .18s ease!important}
+.ng-model-trigger[aria-expanded="true"] .ng-model-trigger-chevron{transform:rotate(180deg)!important}
+
+
+/* Precise composer control sizing and alignment */
+.ng-model-trigger{position:relative!important;justify-content:flex-start!important;padding:0!important;overflow:hidden!important}
+.ng-model-trigger .ng-selected-model{position:absolute!important;left:2px!important;right:28px!important;top:0!important;bottom:0!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;flex:none!important;min-width:0!important;width:auto!important}
+.ng-model-trigger .ng-nextgen-logo{display:block!important;width:15px!important;height:15px!important;min-width:15px!important;min-height:15px!important;max-width:15px!important;max-height:15px!important;flex:0 0 15px!important;object-fit:contain!important}
+.ng-model-trigger #ng-model-selected-label{display:block!important;flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;font-size:13px!important;font-weight:750!important;color:#fff!important}
+.ng-model-trigger .ng-model-trigger-chevron{position:absolute!important;right:3px!important;top:50%!important;transform:translateY(-50%)!important;display:block!important;width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;flex:0 0 20px!important;margin:0!important;stroke-width:2!important}
+.ng-model-trigger[aria-expanded="true"] .ng-model-trigger-chevron{transform:translateY(-50%) rotate(180deg)!important}
+
+</style>
+<style id="ng-image-settings-style">
+.image-settings-trigger{white-space:nowrap;cursor:pointer;font:inherit;display:flex;align-items:center;justify-content:center;gap:3px;width:auto!important;min-width:132px;padding:0 14px;flex:0 0 auto;color:#fff!important}.image-settings-trigger svg{display:block!important;visibility:visible!important;flex:none;width:18px;height:18px;opacity:1;stroke:#fff!important}
+/* Match the reference: zero outer/inner element margins inside the settings pill. */
+.image-settings-trigger,.image-settings-trigger span,.image-settings-trigger svg{margin:0!important;}
+/* Keep Image Settings visible even when the composer is collapsed; other p3 controls stay hidden. */
+.comp:not(.expanded) .image-settings-trigger{display:flex!important;visibility:visible!important;opacity:1!important}
+.ng-image-settings-overlay[hidden]{display:none!important}
+.ng-image-settings-overlay{position:fixed;inset:0;z-index:9999;background:rgba(2,8,22,.78);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.ng-image-settings-sheet{width:min(100%,560px);max-height:min(82dvh,760px);overflow:auto;background:#0b1b33;color:#f4f8ff;border:1px solid rgba(68,190,255,.42);border-radius:22px;padding:17px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 18px 60px rgba(0,0,0,.55),0 0 22px rgba(0,174,255,.08);font-family:inherit}
+.ng-image-settings-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid rgba(83,178,225,.25);margin-bottom:15px}
+.ng-image-settings-head h2{font-size:17px;margin:0;font-weight:650}
+.ng-image-settings-head button{border:0;background:transparent;color:#bfc3cc;font-size:27px;line-height:1;padding:2px 7px}
+.ng-image-setting-label{display:flex;align-items:center;justify-content:space-between;color:#f0f0f3;font-size:13px;margin:14px 1px 9px}
+.ng-image-setting-label span+span{color:#8e929d;font-size:11px}
+.ng-image-shapes,.ng-image-sizes,.ng-image-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.ng-image-shapes button,.ng-image-sizes button,.ng-image-counts button{min-height:43px;border:1px solid rgba(111,157,196,.3);border-radius:9px;background:linear-gradient(180deg,#102744,#0b203a);color:#d5e6f8;font-size:12px;font-weight:600;padding:7px 5px}
+.ng-image-shapes button[aria-pressed=true],.ng-image-sizes button[aria-pressed=true],.ng-image-counts button[aria-pressed=true]{border-color:#27d7f4;background:linear-gradient(115deg,#087fc4 0%,#245ee7 48%,#743ee8 100%);color:#fff;box-shadow:0 0 0 1px rgba(57,219,255,.48) inset,0 0 12px rgba(0,174,255,.16)}
+.ng-image-shapes small{display:block;color:#c7c1ff;font-size:9px;margin-top:2px}
+.ng-image-extra-shape{display:none!important}
+.ng-image-shapes.show-all .ng-image-extra-shape{display:block!important}
+.ng-image-fewer{display:block;margin:9px auto 14px;border:1px solid rgba(68,190,255,.3);border-radius:18px;background:#102744;color:#c8eaff;padding:7px 15px;font-size:11px}
+.ng-image-sizes{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ng-image-counts{grid-template-columns:repeat(4,minmax(0,1fr))}.ng-image-counts button{min-height:48px}.ng-image-crown{display:inline-block;background:linear-gradient(135deg,#23e5ff,#438bff 55%,#d45cff);background-clip:text;-webkit-background-clip:text;color:transparent;font-size:17px;font-weight:900;line-height:1;margin-left:4px}.ng-image-credit-summary>div{align-items:center}
+.ng-image-credit-summary{margin-top:14px;background:#102744;border:1px solid rgba(68,190,255,.24);border-radius:12px;padding:12px}
+.ng-image-credit-summary>div{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:8px}
+.ng-image-credit-summary>div span{color:#aeb2bd}.ng-image-credit-summary strong{font-weight:650}
+.ng-image-credit-summary small{display:block;color:#9297a4;font-size:10px;line-height:1.45;margin-top:6px}
+.ng-image-settings-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
+.ng-image-settings-actions button{min-height:43px;border-radius:11px;border:1px solid rgba(111,157,196,.32);background:#102744;color:#eaf6ff;font-weight:650}
+.ng-image-settings-actions button:last-child{background:linear-gradient(110deg,#00c9e8 0%,#1677f5 52%,#7545e8 100%);border:0;color:#fff}
+@media(min-width:600px){.ng-image-settings-overlay{align-items:center}.ng-image-settings-sheet{max-height:85vh}}
+</style>
+
+<style id="ng-model-picker-final-dimensions">
+/* Final user-approved model category popup dimensions and position */
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])){
+  position:fixed!important;
+  left:12px!important;right:auto!important;transform:none!important;
+  width:320px!important;min-width:320px!important;max-width:320px!important;
+  height:120px!important;min-height:120px!important;max-height:120px!important;
+  box-sizing:border-box!important;padding:0!important;
+  overflow:visible!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) #ngModelCategoryView{
+  display:flex!important;flex-direction:column!important;justify-content:center!important;
+  align-items:center!important;justify-content:flex-start!important;gap:3px!important;
+  padding-top:5px!important;box-sizing:border-box!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  overflow:visible!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row,
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row:nth-child(2){
+  display:flex!important;flex:0 0 55px!important;
+  width:300px!important;min-width:300px!important;max-width:300px!important;
+  height:55px!important;min-height:55px!important;max-height:55px!important;
+  box-sizing:border-box!important;margin:0!important;padding:4px 6px!important;
+  gap:8px!important;border-radius:18px!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy strong{
+  font-size:14px!important;line-height:1.05!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-copy small{
+  font-size:10px!important;line-height:1.05!important;gap:5px!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-icon{
+  width:24px!important;flex:0 0 24px!important;font-size:19px!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-chevron{
+  font-size:24px!important;
+}
+
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row:not(.is-active){
+  background:rgba(255,255,255,.035)!important;
+  box-shadow:none!important;
+  color:#d7deea!important;
+}
+.ng-model-picker:has(#ngModelCategoryView:not([hidden])) .ng-model-category-row.is-active{
+  background:linear-gradient(105deg,rgba(12,112,165,.72),rgba(25,55,100,.9))!important;
+  box-shadow:inset 4px 0 0 #20d9f3,0 0 13px rgba(0,183,255,.18)!important;
+  color:#f3fbff!important;
+}
+
+/* Arrow direction is controlled by the glyph in setPickerArrow(). */
+
+/* NextGen model picker theme + compact spacing */
+.ng-model-picker{
+ background:linear-gradient(160deg,#071a33 0%,#0a2342 55%,#101b3d 100%)!important;
+ border:1px solid rgba(37,205,245,.42)!important;
+ box-shadow:0 12px 36px rgba(0,0,0,.52),0 0 20px rgba(0,190,255,.12)!important;
+ color:#f2f9ff!important;
+}
+.ng-model-category-view{gap:4px!important}
+.ng-model-category-row{
+ min-height:72px!important;
+ padding:10px 13px!important;
+ gap:13px!important;
+ border:1px solid rgba(77,160,207,.18)!important;
+ border-radius:16px!important;
+}
+.ng-model-category-row:first-child{
+ background:linear-gradient(110deg,rgba(12,112,165,.38),rgba(21,47,83,.72))!important;
+ box-shadow:inset 3px 0 0 #21d8f3!important;
+}
+.ng-model-category-copy{gap:3px!important}
+.ng-model-category-copy strong{line-height:1.1!important}
+.ng-model-category-copy small{line-height:1.1!important}
+.ng-model-list-view{min-height:200px!important}
+.ng-model-list-heading{
+ height:38px!important;flex-basis:38px!important;
+ padding:0 4px 4px!important;
+ color:#b9eaff!important;
+}
+.ng-model-option{
+ min-height:54px!important;
+ padding:6px 10px!important;
+ gap:9px!important;
+ border-radius:11px!important;
+}
+.ng-model-option.is-selected{
+ background:linear-gradient(105deg,rgba(12,112,165,.34),rgba(43,42,93,.72))!important;
+ box-shadow:inset 3px 0 0 #23d8f2!important;
+}
+.ng-model-option-name{line-height:1.15!important}
+.ng-model-cost{line-height:1.15!important}
+.ng-model-more{
+ position:relative!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ background:linear-gradient(110deg,#073b62 0%,#086da5 42%,#245ee7 76%,#6045c9 100%)!important;
+ border:1px solid rgba(48,216,255,.72)!important;
+ color:#f4fbff!important;
+ box-shadow:0 3px 14px rgba(0,174,255,.22),inset 0 1px 0 rgba(255,255,255,.14)!important;
+}
+.ng-model-more:active{
+ background:linear-gradient(110deg,#07517d 0%,#087db8 45%,#326df0 78%,#7658df 100%)!important;
+}
+.ng-model-more-arrow{
+ position:absolute!important;
+ right:18px!important;
+ top:50%!important;
+ transform:translateY(-58%)!important;
+ font-size:25px!important;
+ line-height:1!important;
+ font-weight:500!important;
+ color:#f4fbff!important;
+}
+</style>
+
+</head>
+<body>
+<div class="app">
+<header>
+  <button type="button" class="ng-home-hamburger" id="ng-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="ng-menu-drawer" style="appearance:none!important;-webkit-appearance:none!important;display:flex!important;flex:0 0 30px!important;width:30px!important;min-width:30px!important;max-width:30px!important;height:30px!important;min-height:30px!important;max-height:30px!important;aspect-ratio:1/1!important;box-sizing:border-box!important;overflow:hidden!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:5px!important;padding:0 0 0 7px!important;margin:0 20px 0 0!important;border:0!important;border-radius:50%!important;background:transparent!important;background-color:transparent!important;box-shadow:none!important;color:#fff!important;cursor:pointer!important"><span style="display:block!important;flex:0 0 20px!important;width:20px!important;min-width:20px!important;height:3px!important;min-height:3px!important;max-height:3px!important;border-radius:999px!important;background:#fff!important;box-shadow:0 0 3px rgba(56,189,248,.45)!important"></span><span style="display:block!important;flex:0 0 14px!important;width:14px!important;min-width:14px!important;height:3px!important;min-height:3px!important;max-height:3px!important;border-radius:999px!important;background:#fff!important;box-shadow:0 0 3px rgba(56,189,248,.45)!important"></span></button>
+  <div class="brand-title" role="heading" aria-level="1" aria-label="Creative Studio"><span>Creative Studio</span></div>
+  <div class="hr">
+    <div class="ci sr"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg></div>
+    <div class="ci pf"><div><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg></div></div>
+  </div>
+</header>
+<section class="hero" id="motion16Hero" style="background-image:none">
+  <img class="ph" id="motion16HeroImage" alt="Selected AI feature preview" src="https://images.pexels.com/videos/38715346/4k-forest-atomsphere-beautiful-cinematic-38715346.jpeg?auto=compress&dpr=1&h=750&w=1260">
+  <video class="ph motion16-demo-video" id="motion16HeroVideo" hidden muted playsinline webkit-playsinline preload="none" aria-hidden="true"></video>
+  <div class="ov" id="motion16Overlay">
+    <div class="l"><span class="mini-play">▶</span><span id="motion16Model">AI Video Editor</span></div>
+    <div class="r" id="motion16Mode">Picture to video</div>
+    <img class="th" id="motion16Thumb" alt="" src="https://images.pexels.com/videos/38715346/4k-forest-atomsphere-beautiful-cinematic-38715346.jpeg?auto=compress&dpr=1&h=750&w=1260">
+    <div class="tx" id="motion16PromptDemo">Make her walk through the forest with fireflies<span class="typing-caret"></span></div>
+    <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></svg></div>
+  </div>
+</section>
+<div class="sub">
+  <p id="motion16Caption">Video with sound, from a few words. Free, Plus and Pro · 4K on...</p>
+  <button class="try" id="motion16Try" type="button">Try it <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg></button>
+  <button class="mute" id="motion16Mute" type="button" aria-label="Mute preview" aria-pressed="false"><svg width="20" height="18" viewBox="0 0 28 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h5l7-6v18l-7-6H2zM19 9l7 7M26 9l-7 7"/></svg></button>
+</div>
+<div class="list" id="motion16FeatureList">
+  <button class="it is-active" type="button" data-feature="0" aria-pressed="true"><img alt="" src="https://images.pexels.com/videos/38715346/4k-forest-atomsphere-beautiful-cinematic-38715346.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>AI Video Editor</b><span>Edit videos with AI tools and effects</span><small class="feature-model">Video editing</small></div></button>
+  <button class="it" type="button" data-feature="1" aria-pressed="false"><img alt="" src="https://images.pexels.com/videos/5937263/at-the-beach-beach-beach-is-life-beach-island-5937263.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>Image to Video</b><span>Turn still images into animated videos</span><small class="feature-model">Photo animation</small></div></button>
+  <button class="it" type="button" data-feature="2" aria-pressed="false"><img alt="" src="https://images.pexels.com/videos/35257195/abstract-abstract-animation-abstract-background-animation-35257195.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>Text to Video</b><span>Generate Video from a Text Prompt</span><small class="feature-model">Text-based video creation</small></div></button>
+  <button class="it" type="button" data-feature="3" aria-pressed="false"><img alt="" src="https://images.pexels.com/videos/11901730/audi-machine-11901730.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>Video Extender</b><span>Make Your Video Longer with AI</span><small class="feature-model">Video extension</small></div></button>
+  <button class="it extra-feature" type="button" data-feature="4" aria-pressed="false"><img alt="" src="https://images.pexels.com/videos/4134975/pexels-photo-4134975.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>Text to Music</b><span>Create original music from text prompts</span></div></button>
+  <button class="it extra-feature" type="button" data-feature="5" aria-pressed="false"><img alt="" src="https://images.pexels.com/videos/12695730/pexels-photo-12695730.jpeg?auto=compress&dpr=1&h=750&w=1260"><div><b>Music to Video</b><span>Create videos that match your music</span></div></button>
+  <button class="it extra-feature" type="button" data-feature="6" aria-pressed="false"><img alt="Text 2 Dance thumbnail" src="./text-2-dance-thumbnail.jpg?v=20261123-4"><div><b>Text 2 Dance</b><span>Generate dance videos from text prompts</span></div></button>
+  <button class="it extra-feature" type="button" data-feature="7" aria-pressed="false"><img alt="Upscale 4K / 8K thumbnail" src="./upscale-4k-8k-thumbnail.jpg"><div><b>Upscale 4K / 8K</b><span>Enhance video quality up to 4K and 8K</span></div></button>
+</div>
+</div>
+<div class="comp expanded" id="motion16Composer">
+  <textarea class="ph" id="motion16Prompt" rows="2" maxlength="1500" placeholder="Describe it or add an image" aria-label="Describe your video"></textarea>
+  <div class="motion16-attachment" id="motion16Attachment" hidden></div>
+  <div class="expand" id="composerToggle" role="group" aria-label="Composer size controls"><button class="composer-arrow composer-collapse" id="composerCollapse" type="button" aria-label="Collapse composer" title="Collapse composer"><svg width="20" height="22" viewBox="0 0 24 28" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 5 6 6 6-6M6 23l6-6 6 6"/></svg></button><button class="composer-arrow composer-expand" id="composerExpand" type="button" aria-label="Expand composer" title="Expand composer"><svg width="18" height="22" viewBox="0 0 24 28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 10 6-6 6 6M6 18l6 6 6-6"/></svg></button></div>
+  <button class="rf" id="motion16Clear" type="button" aria-label="Clear prompt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa6c4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 3-6.2M4 3v5h5"/></svg></button>
+  <button class="up" id="motion16Upgrade" type="button">＋ Upgrade</button>
+  <input type="file" id="motion16File" accept="image/*,video/*" hidden>
+  <div class="tb">
+    <button class="pl p1" id="motion16Add" type="button" aria-label="Add image or video">＋</button>
+    <button class="pl p2 ng-model-trigger" id="motion16ModelSelect" type="button" aria-label="Open AI model selection" aria-haspopup="dialog" aria-expanded="false"><span class="ng-selected-model"><svg class="ng-nextgen-logo" viewBox="0 0 100 100" role="img" aria-label="NextGen AI logo"><defs><linearGradient id="ngLogoGradient" x1="8%" y1="5%" x2="90%" y2="95%"><stop offset="0" stop-color="#00e7ff"/><stop offset=".48" stop-color="#1454ff"/><stop offset="1" stop-color="#f000e8"/></linearGradient></defs><circle cx="50" cy="50" r="49" fill="url(#ngLogoGradient)"/><path d="M50 12 C53 37 63 47 88 50 C63 53 53 63 50 88 C47 63 37 53 12 50 C37 47 47 37 50 12Z" fill="#fff"/><path d="M72 22 C73.5 31 77 34.5 86 36 C77 37.5 73.5 41 72 50 C70.5 41 67 37.5 58 36 C67 34.5 70.5 31 72 22Z" fill="#fff"/></svg><span id="ng-model-selected-label">NextGen AI</span></span><svg class="ng-model-trigger-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
+    <button class="pl p3 image-settings-trigger" id="motion16ImageSettings" type="button" aria-label="Image settings: ×1 Auto" aria-haspopup="dialog" aria-controls="ng-image-settings-overlay"><span id="ng-image-settings-button-label">×1 Auto</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></button>
+    
+    <button class="snd" id="motion16Generate" type="button" aria-label="Generate"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M5 11l7-7 7 7"/></svg></button>
+  </div>
+  <div class="ng-model-picker" id="ngModelPicker" hidden role="dialog" aria-modal="true" aria-label="NextGen AI model selector">
+ <section class="ng-model-list-view" id="ngImageModelOptions" hidden aria-label="Image models">
+  <div class="ng-model-list-heading"><strong>Image</strong></div>
+  
+  <div class="ng-model-scroll"><button class="ng-model-option is-selected" type="button" data-model-kind="Image" data-model-name="Nano Banana 2.1" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana 2.1</span><span class="ng-model-cost free">Free daily</span><span class="ng-model-check">✓</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Nano Banana 2.1" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana 2.1</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Nano Banana 2" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana 2</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Nano Banana Pro" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana Pro</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Nano Banana 2 Lite" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana 2 Lite</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Nano Banana" data-model-cost="Free daily"><span class="ng-model-brand ng-banana"></span><span class="ng-model-option-name">Nano Banana</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Meta image" data-model-cost="Free daily"><span class="ng-model-brand ng-meta">∞</span><span class="ng-model-option-name">Meta image</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Grok Speed" data-model-cost="Free daily"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok Speed</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Grok Image 2.0" data-model-cost="Free daily"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok Image 2.0</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Qwen Image HD" data-model-cost="Free daily"><span class="ng-model-brand ng-qwen">✣</span><span class="ng-model-option-name">Qwen Image HD</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Qwen Image Edit 2511" data-model-cost="Free daily"><span class="ng-model-brand ng-qwen">✣</span><span class="ng-model-option-name">Qwen Image Edit 2511</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Krea 2 Turbo" data-model-cost="Free daily"><span class="ng-model-brand ng-krea">✿</span><span class="ng-model-option-name">Krea 2 Turbo</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Krea 2 Realism HD" data-model-cost="Free daily"><span class="ng-model-brand ng-krea">✿</span><span class="ng-model-option-name">Krea 2 Realism HD</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Flux 2 Klein" data-model-cost="Free daily"><span class="ng-model-brand ng-flux">△</span><span class="ng-model-option-name">Flux 2 Klein</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Flux 3 Klein" data-model-cost="Free daily"><span class="ng-model-brand ng-flux">△</span><span class="ng-model-option-name">Flux 3 Klein</span><span class="ng-model-cost free">Free daily</span></button></div><button type="button" class="ng-model-more" data-model-more><span>More Below</span><span class="ng-model-more-arrow" aria-hidden="true">⌄</span></button>
+ </section>
+ <section class="ng-model-list-view" id="ngVideoModelOptions" hidden aria-label="Video models">
+  <div class="ng-model-list-heading"><button type="button" class="ng-model-back" data-model-back>‹</button><strong>Video</strong></div>
+  
+  <div class="ng-model-scroll"><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Grok" data-model-cost="Plus"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok</span><span class="ng-model-cost">Plus</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Grok Lite" data-model-cost="Free daily"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok Lite</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option is-selected" type="button" data-model-kind="Video" data-model-name="Omni Flash" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Omni Flash</span><span class="ng-model-cost">Plus or 0.6★</span><span class="ng-model-check">✓</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="MiniMax HD" data-model-cost="Pro or 5★"><span class="ng-model-brand ng-minimax">∿</span><span class="ng-model-option-name">MiniMax HD</span><span class="ng-model-cost">Pro or 5★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Meta Video" data-model-cost="Free daily"><span class="ng-model-brand ng-meta">∞</span><span class="ng-model-option-name">Meta Video</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3 <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3.1" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3.1 <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3 Fast" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3 Fast <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button></div><button type="button" class="ng-model-more" data-model-more><span>More Below</span><span class="ng-model-more-arrow" aria-hidden="true">⌄</span></button>
+ </section>
+</div>
+  <div class="motion16-notice" id="motion16Notice" role="status" aria-live="polite"></div>
+</div>
+<div class="ng-image-settings-overlay" id="ng-image-settings-overlay" hidden>
+ <section class="ng-image-settings-sheet" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title">
+  <div class="ng-image-settings-head"><h2 id="ng-image-settings-title">Image Settings</h2><button type="button" id="ng-image-settings-close" aria-label="Close image settings">×</button></div>
+  <div class="ng-image-setting-label"><span>Shape</span><span id="ng-image-shape-current">Auto · 1:1</span></div>
+  <div class="ng-image-shapes" id="ng-image-shape-options">
+   <button type="button" data-shape="Auto" aria-pressed="true">Auto</button>
+   <button type="button" data-shape="1:1" aria-pressed="false">1:1</button><button type="button" data-shape="9:16" aria-pressed="false">9:16</button>
+   <button type="button" data-shape="16:9" aria-pressed="false">16:9</button><button type="button" data-shape="4:3" aria-pressed="false">4:3</button><button type="button" data-shape="3:4" aria-pressed="false">3:4</button>
+   <button class="ng-image-extra-shape" type="button" data-shape="4:5" aria-pressed="false">4:5</button>
+   <button class="ng-image-extra-shape" type="button" data-shape="21:9" aria-pressed="false">21:9</button>
+   <button class="ng-image-extra-shape" type="button" data-shape="5:4" aria-pressed="false">5:4</button>
+   <button class="ng-image-extra-shape" type="button" data-shape="9:21" aria-pressed="false">9:21</button>
+  </div>
+  <button type="button" class="ng-image-fewer" id="ng-image-shapes-toggle" aria-expanded="false">More shapes⌄</button>
+  <div class="ng-image-setting-label"><span>Size</span><span>Output resolution</span></div>
+  <div class="ng-image-sizes" id="ng-image-size-options"><button type="button" data-size="1K" aria-pressed="true">1K</button><button type="button" data-size="2K" aria-pressed="false">2K</button><button type="button" data-size="4K" aria-pressed="false">4K</button><button type="button" data-size="8K" aria-pressed="false">8K</button></div>
+  <div class="ng-image-setting-label"><span>Number of images</span><span>Up to ×4</span></div>
+  <div class="ng-image-counts" id="ng-image-count-options"><button type="button" data-count="1" aria-pressed="true">×1</button><button type="button" data-count="2" aria-pressed="false">×2 <span class="ng-image-crown" aria-label="Premium">✦</span></button><button type="button" data-count="3" aria-pressed="false">×3 <span class="ng-image-crown" aria-label="Premium">✦</span></button><button type="button" data-count="4" aria-pressed="false">×4 <span class="ng-image-crown" aria-label="Premium">✦</span></button></div>
+  <div class="ng-image-credit-summary"><div><span id="ng-image-total">1 image total</span><span>0 Stars left</span></div><div><strong>You’ll be charged</strong><strong id="ng-image-credit">0.5 Star (estimate)</strong></div><small>Estimate only. Provider pricing and wallet deduction are not connected yet; no Stars are deducted.</small></div>
+  <div class="ng-image-settings-actions"><button type="button" id="ng-image-settings-cancel">Cancel</button><button type="button" id="ng-image-settings-apply">Apply Settings</button></div>
+ </section>
+</div>
+
+<div class="ng-fab-stack" aria-label="Quick actions" style="z-index:70">
+  <a class="ng-fab ng-fab-assistant" href="./ai-design/assistant.html" aria-label="Open NextGen AI Assistant" title="AI Assistant" style="display:grid!important;visibility:visible!important;opacity:1!important;width:44px;height:44px;flex:none;position:relative;z-index:71">
+    <svg class="ng-mark-fallback" viewBox="0 0 100 100" width="44" height="44" style="display:block!important;visibility:visible!important;opacity:1!important;width:44px;height:44px" aria-hidden="true" focusable="false">
+      <defs><linearGradient id="ngSparkGradientLive99" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00d9f5"/><stop offset=".36" stop-color="#087bff"/><stop offset=".68" stop-color="#673bff"/><stop offset="1" stop-color="#e020d5"/></linearGradient></defs>
+      <circle cx="50" cy="50" r="49" fill="url(#ngSparkGradientLive99)"/>
+      <path d="M50 19 C54 37 63 46 82 50 C63 54 54 63 50 82 C46 63 37 54 18 50 C37 46 46 37 50 19Z" fill="#fff"/>
+      <path d="M72 12 C74 20 78 24 87 26 C78 28 74 32 72 41 C70 32 66 28 57 26 C66 24 70 20 72 12Z" fill="#fff"/>
+    </svg>
+  </a>
+  <a class="ng-fab ng-fab-project" href="creative-studio.html" aria-label="Create Project" title="Create Project">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><path d="M12 10.5v6M9 13.5h6"/></svg>
+  </a>
+</div>
+<div class="ng-project-overlay" id="ngProjectModal" hidden>
+  <section class="ng-project-dialog" role="dialog" aria-modal="true" aria-labelledby="ngProjectTitle">
+    <div class="ng-project-head"><h2 id="ngProjectTitle">Create New Project</h2><button class="ng-project-close" id="ngCloseProject" type="button" aria-label="Close">×</button></div>
+    <form id="ngProjectForm">
+      <div class="ng-project-field"><label for="ngProjectName">Project Name</label><input id="ngProjectName" name="name" maxlength="80" placeholder="Enter project name" required></div>
+      <div class="ng-project-field"><label for="ngProjectType">Project Type</label><select id="ngProjectType" name="type" required><option value="">Select project type</option><option>AI Video</option><option>AI Image</option><option>AI Song</option><option>AI Music</option><option>AI Dance</option><option>Business / Other</option></select></div>
+      <div class="ng-project-field"><label for="ngProjectDescription">Description (optional)</label><textarea id="ngProjectDescription" name="description" maxlength="500" placeholder="What would you like to create?"></textarea></div>
+      <button class="ng-project-save" type="submit">＋ Create Project</button>
+      <div class="ng-project-status" id="ngProjectStatus" role="status" aria-live="polite"></div>
+    </form>
+    <p class="ng-project-note">Projects are saved as drafts on this device for now. Cloud sync will be available after the project database is connected.</p>
+    <div class="ng-project-recent"><h3>Recently Created Projects</h3><div id="ngProjectList"></div></div>
+  </section>
+</div>
+<script>
+(()=>{'use strict';
+const data=[
+ {title:'AI Video Editor',model:'AI Video Editor',mode:'Picture to video',caption:'Video with sound, from a few words. Free, Plus and Pro · 4K on...',video:'https://videos.pexels.com/video-files/38715346/16447254_2560_1440_60fps.mp4',thumb:'https://images.pexels.com/videos/38715346/4k-forest-atomsphere-beautiful-cinematic-38715346.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'Make her walk through the forest with fireflies',overlay:true},
+ {title:'Image to Video',model:'Image to Video',mode:'Photo to video',caption:'Real people, real moments. From your photos.',video:'https://videos.pexels.com/video-files/5937263/5937263-uhd_3840_2160_25fps.mp4',thumb:'https://images.pexels.com/videos/5937263/at-the-beach-beach-beach-is-life-beach-island-5937263.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'She lowers the camera',overlay:true},
+ {title:'Text to Video',model:'Text to Video',mode:'Text to video',caption:'Cinematic scenes from a few words.',video:'https://videos.pexels.com/video-files/35257195/14936568_1920_1080_24fps.mp4',thumb:'https://images.pexels.com/videos/35257195/abstract-abstract-animation-abstract-background-animation-35257195.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'A cinematic scene with dramatic camera movement',overlay:false},
+ {title:'Video Extender',model:'Video Extender',mode:'Video editing',caption:'Extend your clip with a continuous moving-car road scene.',video:'https://videos.pexels.com/video-files/11901730/11901730-hd_1920_1080_25fps.mp4',thumb:'https://images.pexels.com/videos/11901730/audi-machine-11901730.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'Continue the scene smoothly',overlay:false},
+ {title:'Text to Music',model:'Text to Music',mode:'Music creation',caption:'Create original music from a simple text prompt.',video:'https://videos.pexels.com/video-files/4134975/4134975-hd_1920_1080_30fps.mp4',thumb:'https://images.pexels.com/videos/4134975/pexels-photo-4134975.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'Create an uplifting original music track',overlay:false},
+ {title:'Music to Video',model:'Music to Video',mode:'Music to video',caption:'Create a video experience from your music.',video:'https://videos.pexels.com/video-files/12695730/12695730-hd_1920_1080_24fps.mp4',thumb:'https://images.pexels.com/videos/12695730/pexels-photo-12695730.jpeg?auto=compress&dpr=1&h=750&w=1260',prompt:'Create a cinematic video that matches this music',overlay:false},
+ {title:'Text 2 Dance',model:'Text 2 Dance',mode:'Dance video',caption:'Turn an idea into a dance performance.',video:'./800077825_1795372866455651(1).mp4',thumb:'./text-2-dance-thumbnail.jpg?v=20261123-4',prompt:'Create a smooth energetic dance performance',overlay:false},
+ {title:'Upscale 4K / 8K',model:'Upscale 4K / 8K',mode:'Video enhancement',caption:'Enhance video resolution up to 4K or 8K where supported.',video:'https://videos.pexels.com/video-files/8051534/8051534-hd_1920_1080_30fps.mp4',thumb:'./upscale-4k-8k-thumbnail.jpg',prompt:'Upscale and enhance this video to 4K or 8K quality',overlay:false}
+];
+const $=id=>document.getElementById(id),hero=$('motion16HeroImage'),overlay=$('motion16Overlay'),list=$('motion16FeatureList'),caption=$('motion16Caption'),promptDemo=$('motion16PromptDemo'),composer=$('motion16Composer'),prompt=$('motion16Prompt'),notice=$('motion16Notice');
+let active=0,timer=null,noticeTimer=null,attachedFile=null;
+let selectedModels={Image:{name:'Nano Banana 2.1',cost:'Free daily'},Video:{name:'Omni Flash',cost:'Plus or 0.6★'}};
+
+function initModelPicker(){
+ const picker=$('ngModelPicker'),trigger=$('motion16ModelSelect');
+ if(!picker||!trigger||picker.dataset.ready==='true')return;
+ picker.dataset.ready='true';
+ function positionPicker(){
+  const rect=trigger.getBoundingClientRect();
+  const gap=8;
+  const available=Math.max(230,rect.top-gap-12);
+  picker.style.setProperty('bottom','auto','important');
+  picker.style.setProperty('top','auto','important');
+  picker.style.setProperty('--ng-picker-space',available+'px');
+  picker.style.setProperty('bottom',(window.innerHeight-rect.top+gap)+'px','important');
+ }
+ function showImageList(){
+  $('ngImageModelOptions').hidden=false;
+  $('ngVideoModelOptions').hidden=true;
+  positionPicker();
+ }
+ function setPickerArrow(isOpen){trigger.setAttribute('aria-expanded',String(isOpen));}
+ function openPicker(){showImageList();picker.hidden=false;positionPicker();setPickerArrow(true);}
+ function closePicker(){picker.hidden=true;setPickerArrow(false);}
+ function paint(){$('ngImageModelValue').textContent=selectedModels.Image.name;$('ngVideoModelValue').textContent=selectedModels.Video.name;$('ng-model-selected-label').textContent='NextGen AI';}
+ trigger.addEventListener('click',()=>{if(picker.hidden)openPicker();else closePicker();});
+ picker.querySelectorAll('[data-model-kind][data-model-name]').forEach(button=>button.addEventListener('click',()=>{
+  const kind=button.dataset.modelKind;selectedModels[kind]={name:button.dataset.modelName,cost:button.dataset.modelCost||''};
+  picker.querySelectorAll('[data-model-kind="'+kind+'"][data-model-name]').forEach(row=>{row.classList.toggle('is-selected',row===button);const check=row.querySelector('.ng-model-check');if(check)check.remove();if(row===button){const mark=document.createElement('span');mark.className='ng-model-check';mark.textContent='✓';row.appendChild(mark);}});
+  paint();closePicker();
+ }));
+ picker.querySelectorAll('[data-model-signin]').forEach(button=>button.addEventListener('click',()=>inform('Sign in to view additional models.')));
+ picker.querySelectorAll('[data-model-more]').forEach(button=>button.addEventListener('click',()=>{const scroller=button.previousElementSibling;scroller.scrollBy({top:Math.max(220,scroller.clientHeight*.72),behavior:'smooth'});}));
+ document.addEventListener('click',event=>{if(!picker.hidden&&!picker.contains(event.target)&&!trigger.contains(event.target))closePicker();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!picker.hidden)closePicker();});
+ window.addEventListener('resize',()=>{if(!picker.hidden)positionPicker();},{passive:true});
+ window.addEventListener('scroll',()=>{if(!picker.hidden)positionPicker();},{passive:true,capture:true});
+ paint();
+}
+function inform(msg){notice.textContent=msg;notice.classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>notice.classList.remove('show'),3200)}
+function selectFeature(index,manual=false){
+ const item=data[index];if(!item)return;active=index;
+ const demoVideo=$('motion16HeroVideo');
+ const heroImage=$('motion16HeroImage');
+ demoVideo.pause();
+ demoVideo.onerror=null;
+ demoVideo.oncanplay=null;
+ demoVideo.removeAttribute('src');
+ demoVideo.load();
+ demoVideo.hidden=true;
+ heroImage.src=item.thumb;
+ heroImage.alt=item.title+' preview';
+ heroImage.style.display='block';
+ if(item.imageMode){
+   demoVideo.removeAttribute('poster');
+ }else{
+   demoVideo.poster=item.thumb;
+   demoVideo.muted=true;
+   demoVideo.loop=true;
+   demoVideo.playsInline=true;
+   demoVideo.preload='auto';
+   demoVideo.oncanplay=()=>{
+     demoVideo.hidden=false;
+     heroImage.style.display='none';
+     demoVideo.play().catch(()=>{demoVideo.hidden=true;heroImage.style.display='block';});
+   };
+   demoVideo.onerror=()=>{
+     demoVideo.hidden=true;
+     heroImage.style.display='block';
+     inform('Demo video could not load. Showing matching thumbnail instead.');
+   };
+   demoVideo.src=item.video;
+   demoVideo.load();
+ }
+ const imageSettings=$('motion16ImageSettings');
+ // Keep the image settings button visible in the composer for every feature.
+ if(imageSettings){
+  imageSettings.hidden=false;
+  imageSettings.style.setProperty('display','flex','important');
+  imageSettings.removeAttribute('aria-hidden');
+ }
+ $('motion16Model').textContent=item.model;$('motion16Mode').textContent=item.mode;$('motion16Thumb').src=item.thumb;
+ $('motion16Thumb').loading='eager';$('motion16Thumb').decoding='async';
+ caption.textContent=item.caption;
+ overlay.hidden=!item.overlay;promptDemo.innerHTML=item.prompt+'<span class="typing-caret"></span>';
+ list.querySelectorAll('[data-feature]').forEach(btn=>{const on=Number(btn.dataset.feature)===index;btn.classList.toggle('is-active',on);btn.setAttribute('aria-pressed',String(on));const image=btn.querySelector('img');if(image)image.src=data[Number(btn.dataset.feature)].thumb});
+ if(manual)resetAutoplay();
+}
+function resetAutoplay(){clearInterval(timer);if(document.hidden)return;timer=window.setInterval(()=>{if(!document.hidden)selectFeature((active+1)%data.length,false)},6000)}
+list.addEventListener('click',e=>{const btn=e.target.closest('[data-feature]');if(btn)selectFeature(Number(btn.dataset.feature),true)});
+function setComposerExpanded(expanded){composer.classList.toggle('expanded',expanded);}
+$('motion16Try').addEventListener('click',()=>{const selectedFeature=data[active];if(selectedFeature)window.location.href='./ai-studio.html?feature='+encodeURIComponent(selectedFeature.title);});
+const demoVideo=$('motion16HeroVideo');
+function syncDemoSoundButton(){const muted=demoVideo.muted;$('motion16Mute').setAttribute('aria-pressed',String(muted));$('motion16Mute').setAttribute('aria-label',muted?'Unmute preview':'Mute preview');$('motion16Mute').innerHTML=muted?'<svg width="20" height="18" viewBox="0 0 28 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h5l7-6v18l-7-6H2zM19 9l7 7M26 9l-7 7"/></svg>':'<svg width="20" height="18" viewBox="0 0 28 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9h5l7-6v18l-7-6H2zM18 8a6 6 0 0 1 0 8M20 4a11 11 0 0 1 0 16"/></svg>'}
+$('motion16Mute').addEventListener('click',async()=>{demoVideo.muted=!demoVideo.muted;try{await demoVideo.play()}catch(e){}syncDemoSoundButton();inform(demoVideo.muted?'Preview sound muted.':'Preview sound enabled.');});
+demoVideo.addEventListener('click',async()=>{if(demoVideo.paused){try{await demoVideo.play()}catch(e){inform('Preview could not play. Check your connection.')}}else demoVideo.pause()});
+demoVideo.addEventListener('error',()=>inform('Demo video could not load. Check your internet connection.'));
+demoVideo.play().catch(()=>{});
+syncDemoSoundButton();
+$('composerCollapse').addEventListener('click',()=>setComposerExpanded(false));$('composerExpand').addEventListener('click',()=>setComposerExpanded(true));
+prompt.addEventListener('click',()=>{if(!composer.classList.contains('expanded')){setComposerExpanded(true);prompt.focus();}});
+$('motion16Add').addEventListener('click',()=>$('motion16File').click());
+$('motion16File').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;attachedFile=f;$('motion16Attachment').hidden=false;$('motion16Attachment').textContent='＋ '+f.name;inform('Reference attached: '+f.name);});
+$('motion16Clear').addEventListener('click',()=>{prompt.value='';$('motion16File').value='';attachedFile=null;$('motion16Attachment').hidden=true;$('motion16Attachment').textContent='';prompt.focus()});
+// Provider/model selection is intentionally hidden from the customer UI. The backend router owns model choice.
+$('motion16Upgrade').addEventListener('click',()=>inform('Subscription plans are available from the NextGen account menu.'));
+
+$('motion16Generate').addEventListener('click',()=>{if(!prompt.value.trim()&&!attachedFile){inform('Write a prompt or add an image/video first.');prompt.focus();return}inform(active===8?'Image settings are prepared. Connect an approved image provider and verified credit rates to enable generation. No credits were used.':'Your prompt is ready. Connect an approved AI video provider to enable real generation.');});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInterval(timer);else resetAutoplay()});
+initModelPicker();selectFeature(0,false);resetAutoplay();
+})();
+</script>
+
+<script>
+(function(){
+  const modal=document.getElementById('ngProjectModal');
+  const open=document.getElementById('ngOpenProject');
+  const close=document.getElementById('ngCloseProject');
+  const form=document.getElementById('ngProjectForm');
+  const status=document.getElementById('ngProjectStatus');
+  const list=document.getElementById('ngProjectList');
+  const key='nextgen-project-drafts-v1';
+  if(!modal||!open||!close||!form||!list)return;
+  function readProjects(){try{const data=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(data)?data:[]}catch(e){return[]}}
+  function renderProjects(){
+    const projects=readProjects().slice(0,5);
+    list.textContent='';
+    if(!projects.length){const empty=document.createElement('div');empty.className='ng-project-note';empty.textContent='No projects created yet.';list.appendChild(empty);return}
+    projects.forEach(p=>{const item=document.createElement('div');item.className='ng-project-item';const name=document.createElement('strong');name.textContent=p.name;const meta=document.createElement('small');meta.textContent=p.type+' · '+new Date(p.createdAt).toLocaleString();item.append(name,meta);list.appendChild(item)});
+  }
+  function show(){modal.hidden=false;status.textContent='';renderProjects();document.getElementById('ngProjectName').focus()}
+  function hide(){modal.hidden=true;open.focus()}
+  open.addEventListener('click',show);close.addEventListener('click',hide);
+  modal.addEventListener('click',e=>{if(e.target===modal)hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)hide()});
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const data=new FormData(form);
+    const project={id:(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now()),name:String(data.get('name')||'').trim(),type:String(data.get('type')||''),description:String(data.get('description')||'').trim(),createdAt:new Date().toISOString()};
+    if(!project.name||!project.type){status.textContent='Please enter a project name and choose a type.';return}
+    try{const projects=readProjects();projects.unshift(project);localStorage.setItem(key,JSON.stringify(projects));form.reset();status.textContent='Project draft created on this device.';renderProjects()}
+    catch(err){status.textContent='Could not save on this device. Please check browser storage.'}
+  });
+  renderProjects();
+})();
+</script>
+<link rel="stylesheet" href="./hamburger-home.css?v=20261120-chevron-textmatch1"><script src="./hamburger-menu.js?v=20261120-chevron-even-gap1" defer></script>
+<script id="ng-image-settings-controller">
+(function(){
+ const overlay=document.getElementById('ng-image-settings-overlay');
+ const open=document.getElementById('motion16ImageSettings');
+ const close=document.getElementById('ng-image-settings-close');
+ const cancel=document.getElementById('ng-image-settings-cancel');
+ const apply=document.getElementById('ng-image-settings-apply');
+ const toggle=document.getElementById('ng-image-shapes-toggle');
+ const shapeLabel=document.getElementById('ng-image-shape-current');
+ const total=document.getElementById('ng-image-total');
+ const credit=document.getElementById('ng-image-credit');
+ if(!overlay||!open)return;
+ let selected={shape:'Auto',size:'1K',count:1},draft={...selected};
+ const groups=[['#ng-image-shape-options','data-shape','shape'],['#ng-image-size-options','data-size','size'],['#ng-image-count-options','data-count','count']];
+ function mark(selector,attr,value){document.querySelectorAll(selector+' ['+attr+']').forEach(b=>b.setAttribute('aria-pressed',String(b.getAttribute(attr)===String(value))))}
+ function paint(){
+  groups.forEach(([selector,attr,key])=>mark(selector,attr,draft[key]));
+  shapeLabel.textContent=draft.shape+(draft.shape==='Auto'?' · 1:1':'');
+  total.textContent=draft.count+' image'+(draft.count===1?'':'s')+' total';
+  credit.textContent=(0.5*draft.count).toFixed(1)+' Star'+(draft.count===1?'':'s')+' (estimate)';
+ }
+ function show(){draft={...selected};paint();overlay.hidden=false;overlay.removeAttribute('hidden');document.body.style.overflow='hidden';close.focus()}
+ function hide(){overlay.hidden=true;document.body.style.overflow='';open.focus()}
+ open.addEventListener('click',show);close.addEventListener('click',hide);cancel.addEventListener('click',hide);
+ overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden)hide()});
+ groups.forEach(([selector,attr,key])=>document.querySelectorAll(selector+' ['+attr+']').forEach(button=>button.addEventListener('click',()=>{draft[key]=key==='count'?Number(button.getAttribute(attr)):button.getAttribute(attr);paint()})));
+ toggle.addEventListener('click',()=>{const grid=document.getElementById('ng-image-shape-options');const expanded=grid.classList.toggle('show-all');toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Fewer shapes⌃':'More shapes⌄'});
+ apply.addEventListener('click',()=>{
+  selected={...draft};
+  const buttonLabel=document.getElementById('ng-image-settings-button-label');
+  if(buttonLabel)buttonLabel.textContent='×'+selected.count+' Auto';
+  open.setAttribute('aria-label','Image settings: ×'+selected.count+' Auto, '+selected.size+', '+selected.shape);
+  paint();hide();
+ });
+ paint();
+})();
+</script>
+</body>
+</html>

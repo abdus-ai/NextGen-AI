@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06152b">
+<title>NextGen – Privacy Settings</title>
+<style>
+:root{color-scheme:dark;--bg:#06152b;--panel:#0a2342;--line:#174c83;--cyan:#25caff;--text:#f3f8ff;--muted:#a9bfd8}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+body{min-height:100vh;display:flex;flex-direction:column}
+header{height:70px;min-height:70px;flex:0 0 70px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:0 58px;background:#050d2b;border-bottom:1px solid #1b2c52}
+.back{position:absolute;left:22px;top:50%;transform:translateY(-50%);width:38px;height:42px;display:grid;place-items:center;border:0;border-radius:0;background:transparent;color:#fff;text-decoration:none;font-size:0;line-height:1}
+.back svg{display:block;width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.subpage-header strong{display:block;margin:0;text-align:center;color:#fff;font-size:28px;font-weight:800;line-height:1.15;letter-spacing:0;text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000}
+.brand{font-size:18px;font-weight:750;letter-spacing:.3px}
+.brand small{display:block;margin-top:1px;color:var(--cyan);font-size:9px;font-weight:500;letter-spacing:.2px}
+main{width:min(720px,100%);margin:0 auto;padding:24px 16px;flex:1}
+h1{margin:0 0 8px;font-size:23px}
+.lead{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.55}
+.panel{padding:17px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.panel h2{margin:0 0 8px;font-size:16px}
+.panel p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.danger{margin-top:16px;border-color:#8d3547;background:#241528}
+.danger h2{color:#ff9aa9}
+.delete-btn{margin-top:14px;padding:11px 15px;border:1px solid #ff657d;border-radius:9px;background:#451b2a;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+.delete-note{margin-top:10px!important;font-size:12px!important}
+footer{padding:13px 12px 15px;text-align:center;border-top:1px solid var(--line);color:#a9bfd8;font-size:11px;line-height:1.7}
+footer strong{display:block;color:var(--cyan);font-size:10px;letter-spacing:.2px}
+@media(min-width:600px){main{padding-top:34px}}
+</style>
+<style id="ng-subpage-fixed-header-v2">
+html,body{height:100%;overflow:hidden!important}
+body{height:100dvh!important;min-height:0!important;display:flex!important;flex-direction:column!important}
+.subpage-header{height:70px!important;min-height:70px!important;flex:0 0 70px!important;position:sticky!important;top:0!important;z-index:20!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;padding:0 58px!important;background:#050d2b!important;border-bottom:1px solid #1b2c52!important}
+.subpage-header strong{display:block!important;margin:0!important;text-align:center!important;font-size:28px!important;font-weight:800!important;letter-spacing:0!important;color:#fff!important;line-height:1.15!important;text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000!important}
+.subpage-header .back{position:absolute!important;left:22px!important;top:50%!important;transform:translateY(-50%)!important;width:38px!important;height:42px!important;border:0!important;border-radius:0!important;background:transparent!important;color:#fff!important;font-size:0!important}
+.subpage-header .back svg{display:block!important;width:30px!important;height:30px!important;fill:none!important;stroke:currentColor!important;stroke-width:3!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+main{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important}
+</style>
+<style id="ng-unified-subpage-header-v1">
+html,body.ng-unified-subpage{display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important}
+body.ng-unified-subpage{margin:0!important;padding:0 0 env(safe-area-inset-bottom,0px)!important}
+body.ng-unified-subpage .app{display:block!important;width:100%!important;max-width:430px!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0 auto!important;overflow:visible!important;position:relative!important}
+body.ng-unified-subpage>header,body.ng-unified-subpage .app>header.subpage-header{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;top:auto!important;left:auto!important;right:auto!important;z-index:100!important;width:100%!important;height:70px!important;min-height:70px!important;max-height:70px!important;box-sizing:border-box!important;align-items:center!important;justify-content:center!important;gap:0!important;padding:0 58px!important;margin:0!important;background:#050d2b!important;border:0!important;border-bottom:1px solid #1b2c52!important;border-radius:0!important;box-shadow:none!important;color:#fff!important}
+body.ng-unified-subpage>header::before,body.ng-unified-subpage>header::after,body.ng-unified-subpage .app>header.subpage-header::before,body.ng-unified-subpage .app>header.subpage-header::after{display:none!important;content:none!important}
+body.ng-unified-subpage .ng-subpage-back{display:grid!important;visibility:visible!important;opacity:1!important;position:absolute!important;left:22px!important;top:50%!important;transform:translateY(-50%)!important;place-items:center!important;width:38px!important;height:44px!important;min-width:38px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#fff!important;text-decoration:none!important;font-size:0!important}
+body.ng-unified-subpage .ng-subpage-back svg{display:block!important;width:30px!important;height:30px!important;fill:none!important;stroke:currentColor!important;stroke-width:3!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body.ng-unified-subpage .ng-subpage-title{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:max-content!important;max-width:calc(100% - 112px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;margin:0!important;padding:0!important;text-align:center!important;color:#fff!important;font-size:28px!important;font-weight:800!important;line-height:1.15!important;letter-spacing:0!important;text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000!important}
+body.ng-unified-subpage main,body.ng-unified-subpage .app>main{display:block!important;width:100%!important;max-width:720px!important;height:auto!important;min-height:0!important;max-height:none!important;flex:none!important;margin:0 auto!important;padding:24px 16px!important;overflow:visible!important;overscroll-behavior-y:auto!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch!important}
+body.ng-unified-subpage footer,body.ng-unified-subpage nav.ng-bottom-nav,body.ng-unified-subpage .app>nav{display:none!important}
+@media(max-width:480px){body.ng-unified-subpage .ng-subpage-title{font-size:23px!important}body.ng-unified-subpage .ng-subpage-back{left:14px!important}}
+/* Higher-specificity override for the shared viewport lock on subpages. */
+html body.ng-unified-subpage:has(> .app){
+  display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important;
+}
+html body.ng-unified-subpage .app{
+  display:block!important;width:100%!important;max-width:430px!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  margin:0 auto!important;overflow:visible!important;position:relative!important;
+}
+html body.ng-unified-subpage .app>main{
+  display:block!important;flex:none!important;width:100%!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;touch-action:pan-y!important;overscroll-behavior-y:auto!important;
+}
+html body.ng-unified-subpage .ng-subpage-title{
+  font-size:30px!important;font-weight:900!important;letter-spacing:.1px!important;
+}
+@media(max-width:480px){html body.ng-unified-subpage .ng-subpage-title{font-size:25px!important;font-weight:900!important}}
+</style>
+<style id="ng-subpage-final-layout-fix">
+/* Override the shared app viewport lock only on secondary pages. */
+html body.ng-unified-subpage:has(> .app){
+ display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+ overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important;
+}
+html body.ng-unified-subpage .app{
+ display:block!important;position:relative!important;width:100%!important;max-width:430px!important;
+ height:auto!important;min-height:0!important;max-height:none!important;margin:0 auto!important;overflow:visible!important;
+}
+html body.ng-unified-subpage .app>header.subpage-header{
+ display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;
+ width:100%!important;height:70px!important;min-height:70px!important;max-height:70px!important;
+ align-items:center!important;justify-content:center!important;overflow:visible!important;
+}
+html body.ng-unified-subpage .app>header.subpage-header .ng-subpage-back,
+html body.ng-unified-subpage .app>header.subpage-header .ng-subpage-title{
+ display:grid!important;visibility:visible!important;opacity:1!important;
+}
+html body.ng-unified-subpage .app>header.subpage-header .ng-subpage-title{
+ display:block!important;position:absolute!important;left:50%!important;top:50%!important;
+ transform:translate(-50%,-50%)!important;width:max-content!important;max-width:calc(100% - 112px)!important;
+ color:#fff!important;font-size:25px!important;font-weight:900!important;line-height:1.15!important;
+ text-align:center!important;white-space:nowrap!important;text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000!important;
+}
+html body.ng-unified-subpage .app>main{
+ display:block!important;position:relative!important;flex:none!important;width:100%!important;max-width:720px!important;
+ height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;
+ touch-action:pan-y!important;overscroll-behavior-y:auto!important;-webkit-overflow-scrolling:touch!important;
+}
+html body.ng-unified-subpage footer,html body.ng-unified-subpage nav.ng-bottom-nav,html body.ng-unified-subpage .app>nav{display:none!important}
+</style>
+<style id="ng-subpage-header-outside-app-v1">
+html body.ng-unified-subpage{display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important}
+html body.ng-unified-subpage>header.subpage-header{
+ display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:1000!important;
+ width:100%!important;height:70px!important;min-height:70px!important;max-height:70px!important;box-sizing:border-box!important;
+ align-items:center!important;justify-content:center!important;margin:0!important;padding:0 58px!important;
+ background:#050d2b!important;border:0!important;border-bottom:1px solid #1b2c52!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;
+}
+html body.ng-unified-subpage>header.subpage-header .ng-subpage-back{
+ display:grid!important;visibility:visible!important;opacity:1!important;position:absolute!important;left:18px!important;top:50%!important;transform:translateY(-50%)!important;
+ place-items:center!important;width:40px!important;height:44px!important;min-width:40px!important;margin:0!important;padding:0!important;
+ color:#fff!important;background:transparent!important;border:0!important;text-decoration:none!important;font-size:0!important;
+}
+html body.ng-unified-subpage>header.subpage-header .ng-subpage-back svg{display:block!important;width:30px!important;height:30px!important;fill:none!important;stroke:#fff!important;stroke-width:3!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+html body.ng-unified-subpage>header.subpage-header .ng-subpage-title{
+ display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;
+ width:max-content!important;max-width:calc(100% - 112px)!important;margin:0!important;padding:0!important;
+ color:#fff!important;font-size:25px!important;font-weight:900!important;line-height:1.15!important;text-align:center!important;white-space:nowrap!important;
+ text-shadow:2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000!important;
+}
+html body.ng-unified-subpage .app{display:block!important;width:100%!important;max-width:430px!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0 auto!important;overflow:visible!important}
+html body.ng-unified-subpage .app>main{display:block!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important;-webkit-overflow-scrolling:touch!important}
+@media(max-width:480px){html body.ng-unified-subpage>header.subpage-header .ng-subpage-title{font-size:24px!important}html body.ng-unified-subpage>header.subpage-header .ng-subpage-back{left:12px!important}}
+</style>
+<style id="ng-universal-bottom-footer-v1">html body .ng-shared-footer{display:flex!important;visibility:visible!important;position:static!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;flex:0 0 auto!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;margin:24px 0 0!important;padding:16px 12px calc(16px + env(safe-area-inset-bottom,0px))!important;border:0!important;border-top:1px solid #263b59!important;border-radius:0!important;background:#050d2b!important;color:#c3d2ee!important;text-align:center!important;white-space:normal!important;line-height:1.35!important;overflow:visible!important}html body .ng-shared-footer .ng-copyright{display:block!important;flex:none!important;width:100%!important;min-width:0!important;margin:0!important;padding:0!important;text-align:center!important;white-space:normal!important;color:#c3d2ee!important;font-size:clamp(12px,3.2vw,16px)!important;font-weight:400!important;line-height:1.4!important}html body .ng-shared-footer .ng-credit{display:block!important;flex:none!important;width:100%!important;margin:0!important;padding:0!important;text-align:center!important;white-space:normal!important;color:#fff!important;font-size:clamp(13px,3.4vw,16px)!important;font-weight:800!important;line-height:1.35!important}html body.ng-unified-subpage>.ng-shared-footer,html body.ng-unified-subpage .app>.ng-shared-footer{display:flex!important;visibility:visible!important}</style>
+</head>
+<body class="ng-unified-subpage"><header class="subpage-header"><a class="ng-subpage-back" href="./settings.html?open=settings-privacy" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></a><strong class="ng-subpage-title">Privacy Settings</strong></header>
+
+<main>
+
+<p class="lead">Manage your privacy preferences in one place.</p>
+<section class="panel" aria-labelledby="privacy-status">
+<h2 id="privacy-status">Privacy controls</h2>
+<p>Privacy controls are not connected yet. No account privacy, data-sharing, or security settings have been changed by adding this page. These controls will be added only after their behavior and permissions are defined.</p>
+</section>
+
+<a class="panel mobile-number-link" href="./mobile-number-update.html" style="display:flex;align-items:center;gap:12px;margin-top:16px;color:inherit;text-decoration:none">
+  <span aria-hidden="true" style="width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;color:var(--cyan);font-size:20px">☎</span>
+  <span style="min-width:0;flex:1"><strong style="display:block;color:var(--text);font-size:15px">Mobile Number Update</strong><small style="display:block;margin-top:4px;color:var(--muted);font-size:12px">Link and verify your mobile number</small></span>
+  <span aria-hidden="true" style="color:var(--cyan);font-size:24px">›</span>
+</a>
+<section class="panel danger" aria-labelledby="delete-account-heading">
+<h2 id="delete-account-heading">Delete Profile/Account</h2>
+<p>Use this option to begin a profile or account deletion request. Account deletion is not connected yet, so this control will not delete your profile or any data.</p>
+<button class="delete-btn" type="button" id="delete-account-btn">Delete Profile/Account</button>
+<p class="delete-note" id="delete-account-status" role="status" aria-live="polite"></p>
+</section>
+<footer class="ng-shared-footer"><span class="ng-copyright">©2026 NextGen. All Rights Reserved. Smart Automation. Smarter Growth.</span><span class="ng-credit">Powered by ABDUS SATTAR</span></footer>
+</main>
+<script>
+document.getElementById("delete-account-btn").addEventListener("click",function(){
+  const confirmed=window.confirm("Account deletion is not available yet. No profile or account data will be deleted. Continue to view this notice?");
+  if(confirmed){document.getElementById("delete-account-status").textContent="Account deletion is not connected yet. No changes have been made and no data has been deleted."}
+});
+</script>
+
+\n<script src="./nextgen-pull-refresh.js?v=20261106-global-custom-v4" defer></script>\n
+<script src="./nextgen-navigation.js?v=20261110-global-back-v1" defer></script>
+</body>
+</html>

@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextGen AI – Creative Studio</title>
+<link rel="stylesheet" href="./nextgen-shared.css?v=header-stable-20261103-v1">
+<style>
+:root{color-scheme:dark;--studio-bg:#080b18;--studio-panel:#141827;--studio-panel2:#1b2032;--studio-line:#303951;--studio-purple:#8668ff;--studio-cyan:#35d8ff}
+html,body{margin:0;min-height:100%;background:var(--studio-bg);color:#f5f7ff;font-family:Inter,system-ui,Arial,sans-serif}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
+.studio{max-width:1180px;margin:auto;padding:0 14px 28px}
+.studio-head{height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--studio-line);background:#090d1d}
+.studio-brand{display:flex;align-items:center;gap:9px;color:white;font-weight:800;font-size:18px}
+.studio-mark{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#20d9ff,#875cff 60%,#db4cff);font-weight:900;color:#071020}
+.studio-account{font-size:12px;color:#aeb8d0;border:1px solid var(--studio-line);border-radius:99px;padding:7px 11px}
+.studio-nav{display:flex;gap:7px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.studio-nav button,.chip{flex:none;border:1px solid var(--studio-line);border-radius:99px;padding:9px 15px;background:#12182a;color:#c7d0e6;font-weight:650}
+.studio-nav button.active{background:#eeeaff;color:#17132c;border-color:#eeeaff}
+.studio-hero{padding:20px 0 16px}
+.studio-hero h1{font-size:clamp(24px,5vw,34px);margin:0 0 6px;color:#fff}
+.studio-hero p{margin:0;color:#9da9c4;font-size:14px}
+.studio-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr);gap:14px;align-items:start}
+.panel{background:linear-gradient(145deg,#171d2e,#101626);border:1px solid var(--studio-line);border-radius:20px;padding:16px;min-width:0}
+.panel h2{margin:0 0 13px;color:#f5f5ff;font-size:18px}
+.mode-tabs{display:flex;gap:7px;margin-bottom:14px}
+.mode-tabs button{flex:1;border:1px solid #3a4260;border-radius:12px;background:#111729;color:#c6cce0;padding:11px 8px;font-weight:700}
+.mode-tabs button.active{background:#7659ed;color:#fff;border-color:#927cff}
+.field{display:grid;gap:7px;margin:12px 0}
+.field label{font-size:12px;font-weight:700;color:#aeb8d0}
+.field textarea,.field input,.field select{width:100%;min-height:44px;border:1px solid #39435c;border-radius:12px;background:#0b1120;color:#f6f7ff;padding:11px 12px;font:inherit}
+.field textarea{min-height:104px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.upload{display:flex;align-items:center;justify-content:center;gap:10px;min-height:88px;border:1.5px dashed #566080;border-radius:14px;background:#10172a;color:#c9d3e9;text-align:center;padding:12px}
+.upload input{display:none}
+.upload strong{color:#fff}
+.file-preview{display:flex;align-items:center;gap:10px;margin-top:8px;color:#b9c6dc;font-size:12px;overflow-wrap:anywhere}
+.file-preview img,.file-preview video{width:74px;height:58px;object-fit:cover;border-radius:9px;background:#080d19}
+.primary{width:100%;min-height:48px;border:0;border-radius:14px;background:linear-gradient(100deg,#6651df,#9466ff);color:white;font-weight:800;font-size:15px}
+.secondary{border:1px solid #414b67;border-radius:12px;background:#171f33;color:#e1e7f5;padding:10px 12px;font-weight:650}
+.notice{margin-top:12px;padding:11px 12px;border-radius:12px;background:#29233c;border:1px solid #514078;color:#cfc6f7;font-size:12px;line-height:1.5}
+.model-list{display:grid;gap:8px}
+.model{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px;border:1px solid #303951;border-radius:13px;background:#101626}
+.model b{font-size:13px;color:#f3f5ff}
+.model small{display:block;color:#9ba8c3;font-size:11px;margin-top:3px}
+.model em{font-style:normal;color:#a995ff;font-size:11px}
+.section{margin-top:16px}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.tool{padding:13px;border:1px solid #303951;border-radius:14px;background:#101626}
+.tool b{display:block;font-size:13px;color:#f3f5ff}
+.tool span{display:block;font-size:11px;color:#9ba8c3;margin-top:4px;line-height:1.45}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.gallery-tile{aspect-ratio:1/1;border:1px dashed #424d69;border-radius:13px;background:linear-gradient(145deg,#182039,#0d1322);display:grid;place-items:center;text-align:center;padding:9px;color:#8794b1;font-size:11px}
+.hidden{display:none!important}
+.status-line{display:flex;justify-content:space-between;gap:8px;color:#aeb8d0;font-size:12px;padding:9px 0;border-bottom:1px solid #293149}
+.status-line strong{color:#f1f3ff}
+.bottom-note{margin:22px 0 0;text-align:center;color:#7885a3;font-size:11px;line-height:1.6}
+@media(max-width:760px){.studio-grid{grid-template-columns:1fr}.studio{padding:0 11px 24px}.studio-head{height:48px}.studio-hero{padding-top:17px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<style id="creative-studio-enhancements-v2">
+.studio-nav{scroll-behavior:smooth;position:sticky;top:0;z-index:4;background:#080b18}
+.studio-nav button{white-space:nowrap}
+#prompt-starters .secondary{text-align:left;font-size:11px;min-height:40px}
+.field summary{list-style:none}
+.field summary::-webkit-details-marker{display:none}
+#file-preview video,#edit-preview video{max-width:100%;height:auto;max-height:220px}
+#file-preview img{object-fit:contain;background:#080d19}
+.studio-nav button:focus-visible,.secondary:focus-visible{outline:2px solid var(--studio-cyan);outline-offset:2px}
+@media(max-width:420px){.tool-grid{grid-template-columns:1fr 1fr}.two{gap:7px}.panel{padding:13px}}
+</style>
+<style id="ng-projects-list-v2">
+/* Projects list inspired by the supplied mobile reference; preserve the NextGen navy theme. */
+#view-gallery>.panel{padding:16px 14px 20px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.ng-projects-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px}
+.ng-projects-heading h2{margin:0 0 4px!important;font-size:22px!important;color:#f6f8ff}
+.ng-projects-heading p{margin:0;color:#9da9c4;font-size:12px}
+.ng-project-count{color:#9eb1d0;font-size:11px;white-space:nowrap;border:1px solid #34425e;border-radius:99px;padding:7px 10px}
+#ng-gallery-status{font-size:11px!important;padding:7px 10px!important;margin:0 0 14px!important;opacity:.82}
+.ng-project-list{display:grid;gap:16px}
+.ng-project-row{display:grid;grid-template-columns:minmax(118px,47%) minmax(0,1fr) 30px;align-items:center;column-gap:13px;row-gap:8px;min-width:0;padding:0 0 3px}
+.ng-project-thumb{display:block;width:100%;height:auto;aspect-ratio:1.72/1;object-fit:contain;border-radius:15px;background:#303030}
+.ng-project-info{min-width:0;display:grid;gap:3px;align-content:center}
+.ng-project-title{font-size:16px;font-weight:700;color:#f5f6fb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ng-project-meta{font-size:13px;color:#b5b8c1;line-height:1.42;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ng-project-menu{width:30px;height:44px;border:0;background:transparent;color:#f5f6fb;font-size:27px;line-height:1;border-radius:9px;padding:0}
+.ng-project-menu:focus-visible,.ng-project-actions a:focus-visible,.ng-project-actions button:focus-visible{outline:2px solid #35d8ff;outline-offset:2px}
+.ng-project-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;padding:0 0 12px 0;border-bottom:1px solid rgba(130,155,195,.2)}
+.ng-project-actions[hidden]{display:none}
+.ng-project-actions a,.ng-project-actions button{font-size:12px}
+@media(max-width:380px){.ng-project-row{grid-template-columns:minmax(104px,44%) minmax(0,1fr) 26px;column-gap:9px}.ng-project-title{font-size:14px}.ng-project-meta{font-size:11px}.ng-project-menu{width:26px}}
+</style>
+<style id="ng-video-adaptive-preview-v1">
+.ng-video-preview-stage{width:100%;min-height:120px;max-height:70vh;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid #34425e;border-radius:14px;background:#050914;padding:10px;box-sizing:border-box}
+.ng-video-preview-stage video{display:block;width:auto;height:auto;max-width:100%;max-height:calc(70vh - 20px);object-fit:contain;background:#000;border-radius:8px}
+#ng-video-result .secondary{min-height:46px;padding:10px 12px;border:1px solid #414b67;border-radius:12px;background:#171f33;color:#e1e7f5;font:650 13px Inter,system-ui,sans-serif}
+#video-custom-dimensions{margin-top:8px}
+#video-custom-dimensions .field{margin:0}
+@media(max-width:700px){.ng-video-preview-stage{max-height:62vh}.ng-video-preview-stage video{max-height:calc(62vh - 20px)}}
+</style>
+
+<style id="creative-studio-compare-history-v3">
+.history-item{padding:13px;border:1px solid #303951;border-radius:14px;background:#101626}
+.history-item p{margin:7px 0;color:#dce4f5;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.history-meta{color:#94a2bd;font-size:11px;display:flex;flex-wrap:wrap;gap:8px}
+.history-item button{margin-top:10px}
+</style>
+<style id="creative-studio-reference-layout">
+:root{--studio-bg:#020d20}
+body{background:#020d20}
+.studio{max-width:1500px;padding:0 0 28px}
+.studio-head-reference{height:120px;padding:0 44px;justify-content:flex-start;gap:28px;border-bottom:4px solid transparent;border-image:linear-gradient(90deg,#00eaff,#246dff,#cf36ff) 1;background:#020d20}
+.studio-back{color:#fff;text-decoration:none;font-size:64px;line-height:1;font-weight:300;width:58px;display:flex;align-items:center}
+.studio-head-reference h1{font-size:clamp(30px,4.5vw,64px);font-weight:800;letter-spacing:-1.8px;background:linear-gradient(100deg,#00e9f2 0%,#288cff 48%,#cf3cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+.studio-home{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;padding:50px 4.4% 60px}
+.studio-card{min-width:0;min-height:235px;border:6px solid #00e5ee;border-radius:46px;background:linear-gradient(145deg,rgba(0,218,236,.18),rgba(0,57,100,.28) 65%,rgba(0,10,30,.75));box-shadow:0 0 12px rgba(0,231,255,.65),inset 0 0 26px rgba(0,216,255,.14);color:#f7f8ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:800 clamp(22px,3.1vw,46px)/1.15 Inter,system-ui,sans-serif;text-align:center;padding:18px 10px;cursor:pointer}
+.studio-card .studio-icon{width:90px;height:90px;display:grid;place-items:center}
+.studio-card svg{width:100%;height:100%;fill:none;stroke:#f4f5ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.studio-card .sun{fill:#ffc400;stroke:#ffc400}
+.card-video{border-color:#168fff;box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16);background:linear-gradient(145deg,rgba(0,112,255,.19),rgba(0,20,64,.75))}
+.card-video svg,.card-image-video svg{stroke:#e6b8ff}
+.card-image-video,.card-more{border-color:#c03cff;box-shadow:0 0 12px rgba(205,52,255,.75),inset 0 0 26px rgba(180,38,255,.16);background:linear-gradient(145deg,rgba(137,37,255,.22),rgba(26,7,64,.78))}
+.card-text-video{border-color:#00e5ee}
+.card-audio{border-color:#168fff;background:linear-gradient(145deg,rgba(0,100,255,.22),rgba(0,10,55,.8));box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16)}
+.card-audio svg{stroke:url(#audio-gradient);stroke-width:7}
+.studio-workspace{padding:0 4.4%}
+.studio-workspace-top{display:flex;align-items:center;gap:18px;margin:10px 0}
+.studio-workspace-top h2{font-size:clamp(22px,3vw,34px);margin:0}
+.studio-workspace-subtitle{color:#9da9c4;margin:0 0 15px}
+.studio-workspace .studio-nav{display:none}
+@media(max-width:700px){
+ .studio-head-reference{height:82px;padding:0 18px;gap:15px;border-bottom-width:3px}
+ .studio-back{font-size:48px;width:38px}
+ .studio-head-reference h1{font-size:clamp(27px,7vw,40px);letter-spacing:-.8px}
+ .studio-home{gap:14px;padding:26px 14px 36px}
+ .studio-card{min-height:158px;border-width:4px;border-radius:27px;gap:9px;font-size:clamp(15px,4.1vw,23px);padding:13px 7px}
+ .studio-card .studio-icon{width:58px;height:58px}
+ .studio-workspace{padding:0 13px}
+}
+@media(max-width:360px){.studio-home{gap:10px;padding-left:10px;padding-right:10px}.studio-card{min-height:140px;border-radius:22px;font-size:14px}}
+</style>
+<style id="create-project-reference-page-v2">
+.studio-head-reference{height:112px;padding:0 3.2%;gap:24px;justify-content:flex-start;border-bottom:5px solid transparent;border-image:linear-gradient(90deg,#00eaff,#246dff,#d52fff) 1}
+.studio-head-reference h1{font-size:clamp(34px,5vw,64px);color:#fff;background:none;-webkit-text-fill-color:#fff;letter-spacing:-1.4px;flex:1}
+.studio-back{font-size:64px;width:56px;flex:none}
+.studio-search-button{width:76px;height:76px;border:4px solid #52648f;border-radius:50%;background:rgba(8,19,44,.9);display:grid;place-items:center;flex:none;box-shadow:0 0 12px rgba(110,137,255,.25)}
+.studio-search-button svg{width:43px;height:43px;fill:none;stroke:#fff;stroke-width:2.7;stroke-linecap:round}
+.studio-search{position:absolute;right:3%;top:118px;z-index:10;width:min(360px,90%);height:48px;border:1px solid #17dff5;border-radius:14px;background:#07172e;color:#fff;padding:0 14px;font:inherit;box-shadow:0 0 14px rgba(0,222,255,.3)}
+.studio-home{padding:34px 3.3% 0;gap:22px 24px}
+.studio-card{min-height:218px;border-width:6px;border-radius:42px;gap:10px;font-size:clamp(22px,3vw,42px)}
+.studio-card .studio-icon{width:88px;height:88px}
+.studio-gallery{padding:36px 3.8% 50px}
+.studio-gallery h2{font-size:clamp(34px,4vw,58px);font-weight:800;line-height:1.1;color:#fff;margin:0 0 30px;padding:0 4px 15px;border-bottom:5px solid transparent;border-image:linear-gradient(90deg,#00eaff,#287bff,#d52fff) 1}
+.studio-gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px}
+.studio-gallery-grid .studio-card{min-height:205px}
+.gallery-photo{border-color:#00e5ee}
+.gallery-video{border-color:#168fff;background:linear-gradient(145deg,rgba(0,112,255,.19),rgba(0,20,64,.75));box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16)}
+.gallery-audio{border-color:#c03cff;background:linear-gradient(145deg,rgba(137,37,255,.22),rgba(26,7,64,.78));box-shadow:0 0 12px rgba(205,52,255,.75),inset 0 0 26px rgba(180,38,255,.16)}
+.gallery-text{border-color:#00e5ee}
+.studio-gallery-grid .studio-card svg{stroke:#f4f5ff}
+@media(max-width:700px){
+ .studio-head-reference{height:72px;padding:0 13px;gap:12px;border-bottom-width:3px}
+ .studio-back{font-size:48px;width:34px}
+ .studio-head-reference h1{font-size:clamp(25px,7vw,36px);letter-spacing:-.8px}
+ .studio-search-button{width:48px;height:48px;border-width:2px}
+ .studio-search-button svg{width:27px;height:27px}
+ .studio-search{top:77px;right:12px}
+ .studio-home{padding:24px 12px 0;gap:13px 12px}
+ .studio-card{min-height:150px;border-width:4px;border-radius:25px;gap:8px;font-size:clamp(15px,4vw,21px);padding:12px 6px}
+ .studio-card .studio-icon{width:58px;height:58px}
+ .studio-gallery{padding:28px 13px 38px}
+ .studio-gallery h2{font-size:34px;margin-bottom:20px;padding-bottom:10px;border-bottom-width:3px}
+ .studio-gallery-grid{gap:13px 12px}
+ .studio-gallery-grid .studio-card{min-height:145px}
+}
+@media(max-width:360px){.studio-card{min-height:135px;font-size:14px;border-radius:21px}.studio-gallery-grid .studio-card{min-height:132px}}
+</style>
+<style id="create-project-reference-exact-sizing-v3">
+/* Match the supplied 1024px reference proportions at every viewport width. */
+.studio-head-reference,.studio-search-button,.studio-card,.studio-gallery-grid .studio-card{box-sizing:border-box!important}
+.studio-head-reference{height:10.9vw!important;min-height:0!important;padding:0 3.2vw!important;gap:2.5vw!important;border-bottom-width:.5vw!important}
+.studio-head-reference h1{font-size:6.25vw!important;letter-spacing:-.14vw!important}
+.studio-back{font-size:6.3vw!important;width:5.5vw!important}
+.studio-search-button{width:8vw!important;height:8vw!important;border-width:.38vw!important}
+.studio-search-button svg{width:4.5vw!important;height:4.5vw!important}
+.studio-search{top:11.5vw!important;right:3vw!important;height:5vw!important}
+.studio-home{padding:3.5vw 3.3vw 0!important;gap:2.25vw 2.35vw!important}
+.studio-card{height:21vw!important;min-height:0!important;padding:1.4vw .9vw!important;border-width:.58vw!important;border-radius:4.5vw!important;gap:1vw!important;font-size:3.95vw!important;line-height:1.12!important}
+.studio-card .studio-icon{width:8.8vw!important;height:8.8vw!important;flex:none}
+.studio-card svg{stroke-width:4.8!important}
+.card-audio svg{stroke:url(#audio-gradient)!important;stroke-width:7!important}
+.studio-gallery{padding:4.2vw 3.8vw 4.8vw!important}
+.studio-gallery h2{font-size:5.6vw!important;line-height:1.1!important;margin:0 0 3.6vw!important;padding:0 .4vw 1.2vw!important;border-bottom-width:.5vw!important}
+.studio-gallery-grid{gap:2.25vw 2.35vw!important}
+.studio-gallery-grid .studio-card{height:21vw!important;min-height:0!important}
+@media(max-width:700px){
+ .studio-head-reference{height:10.9vw!important;padding:0 3.2vw!important;gap:2.5vw!important;border-bottom-width:.5vw!important}
+ .studio-head-reference h1{font-size:6.25vw!important;letter-spacing:-.14vw!important}
+ .studio-back{font-size:6.3vw!important;width:5.5vw!important}
+ .studio-search-button{width:8vw!important;height:8vw!important;border-width:.38vw!important}
+ .studio-search-button svg{width:4.5vw!important;height:4.5vw!important}
+ .studio-search{top:11.5vw!important;right:3vw!important;height:5vw!important}
+ .studio-home{padding:3.5vw 3.3vw 0!important;gap:2.25vw 2.35vw!important}
+ .studio-card{height:21vw!important;min-height:0!important;padding:1.4vw .9vw!important;border-width:.58vw!important;border-radius:4.5vw!important;gap:1vw!important;font-size:3.95vw!important;line-height:1.12!important}
+ .studio-card .studio-icon{width:8.8vw!important;height:8.8vw!important}
+ .studio-gallery{padding:4.2vw 3.8vw 4.8vw!important}
+ .studio-gallery h2{font-size:5.6vw!important;margin:0 0 3.6vw!important;padding:0 .4vw 1.2vw!important;border-bottom-width:.5vw!important}
+ .studio-gallery-grid{gap:2.25vw 2.35vw!important}
+ .studio-gallery-grid .studio-card{height:21vw!important;min-height:0!important}
+}
+</style>
+<style id="remove-search-button-border-v1">
+.studio-search-button{
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  outline:0!important;
+}
+</style>
+<style id="search-icon-no-circle-final">
+#studio-search-button.studio-search-button,
+.studio-head-reference #studio-search-button{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  border:0!important;
+  border-color:transparent!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  outline:none!important;
+}
+#studio-search-button.studio-search-button:focus,
+#studio-search-button.studio-search-button:focus-visible,
+#studio-search-button.studio-search-button:active{
+  border:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="creative-studio-main-workspace-reference-v1">
+/* Creative Studio landing page: clean white theme with NextGen logo-gradient accents. */
+html,body{background:#ffffff!important;color:#17324d!important}
+.studio{max-width:1180px!important;margin:5px auto!important;padding:0 12px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:18px;background:#ffffff;box-shadow:0 2px 12px rgba(20,54,86,.07)}
+.reference-project-card,.reference-gallery-section{display:block;flex:none}
+.studio-reference-hidden{display:none!important}
+.studio-home-reference{display:flex!important;flex-direction:column;gap:200px;padding:10px 0 12px!important}
+.reference-intro{margin:0 0 10px!important}
+.reference-project-heading-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.reference-gallery-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex:none;padding:7px 13px;border:1px solid rgba(55,215,255,.55);border-radius:10px;background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f);color:#69e8ff;font:700 13px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 0 12px rgba(0,194,255,.14)}
+.reference-gallery-button:focus-visible{outline:2px solid #69e8ff;outline-offset:3px}
+.reference-eyebrow{display:inline-block;width:max-content;max-width:100%;padding:4px 10px;border:0;border-radius:8px;background:#d9f1ff;color:#16a34a;font-size:14px;font-weight:800;line-height:1.15;box-shadow:none;letter-spacing:0;text-shadow:none}
+.reference-intro p{margin:7px 0 0!important;color:#60758a!important;font-size:clamp(12px,1.5vw,16px)!important;letter-spacing:.35px}
+.reference-studio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px;row-gap:10px}
+.reference-gallery-section{margin-top:0!important}
+.reference-gallery-title{display:inline-block;width:max-content;max-width:100%;margin:0 0 8px;padding:4px 10px;border:0;border-radius:8px;background:#d9f1ff;color:#16a34a;font-size:14px;font-weight:800;line-height:1.15;letter-spacing:0}
+.reference-studio-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important;color:#17324d;text-align:left;cursor:pointer;font:inherit}
+.reference-studio-card img{display:block;width:100%;height:clamp(110px,28vw,325px);aspect-ratio:16/9;object-fit:cover;border:0!important;border-radius:14px;background:#0b203a}
+.reference-card-title{display:block;margin:6px 2px 0;color:#17324d;font-size:clamp(16px,2vw,23px);font-weight:750;line-height:1.18;letter-spacing:-.25px}
+.reference-card-description{display:block;margin:2px 2px 0;color:#60758a;font-size:clamp(11px,1.3vw,14px);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reference-studio-card:focus-visible{outline:2px solid #22d9f5;outline-offset:3px}
+@media(max-width:700px){
+ .studio{margin:5px 12px 12px!important;padding:0 0 12px!important}
+ .studio-home-reference{padding:9px 0 9px!important}
+ .reference-intro{margin-bottom:8px!important}
+ .reference-eyebrow{padding:4px 10px;font-size:14px}
+ .reference-intro p{margin-top:5px!important;font-size:11px!important}
+ .reference-studio-grid{column-gap:12px;row-gap:8px}
+ .studio-home-reference{gap:200px}
+ .reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:14px}
+ .reference-gallery-section{margin-top:0!important}
+ .reference-gallery-title{font-size:14px;padding:4px 10px;margin-bottom:7px}
+ .reference-studio-card{padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important}
+ .reference-studio-card img{height:clamp(88px,calc((100vw - 33px)*.28125),220px);border-radius:11px;aspect-ratio:16/9}
+ .reference-card-title{margin:5px 1px 0;font-size:clamp(14px,4vw,18px);letter-spacing:-.2px}
+ .reference-card-description{margin:2px 1px 0;font-size:11px}
+}
+@media(max-width:360px){
+ .studio{padding-left:8px!important;padding-right:8px!important}
+ .reference-studio-grid{column-gap:12px;row-gap:7px}
+ .reference-studio-card img{height:clamp(82px,calc((100vw - 30px)*.28125),180px);border-radius:8px}
+ .reference-card-title{font-size:13px}
+ .reference-card-description{font-size:10px}
+}
+</style>
+
+<style id="nextgen-create-project-theme-preview-v1">
+/* Preview-only landing-page theme update. Existing cards, images, order, grid and Gallery remain unchanged. */
+html,body{background:#061329!important;color:#f4f8ff!important}
+.studio{background:transparent!important}
+#studio-home .reference-project-card,
+#studio-home .reference-gallery-section{
+  background:linear-gradient(145deg,#0b1d38 0%,#09172e 58%,#101a3b 100%)!important;
+  border:1px solid rgba(66,190,255,.48)!important;
+  box-shadow:0 0 0 1px rgba(0,207,255,.08),0 0 18px rgba(0,139,255,.12),inset 0 0 22px rgba(25,100,190,.08)!important;
+}
+#studio-home .reference-eyebrow,
+#studio-home .reference-gallery-title{
+  background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f)!important;
+  border:1px solid rgba(55,215,255,.55)!important;
+  color:#69e8ff!important;
+  box-shadow:0 0 12px rgba(0,194,255,.14)!important;
+}
+#studio-home .reference-project-heading{
+  margin:8px 0 0!important;
+  color:#fff!important;
+  font-size:clamp(22px,5.3vw,36px)!important;
+  line-height:1.12!important;
+  font-weight:800!important;
+  letter-spacing:-.7px!important;
+  text-shadow:0 0 16px rgba(0,170,255,.18);
+}
+#studio-home .reference-intro p{color:#a9c9e8!important}
+#studio-home .reference-card-title{color:#f4f8ff!important}
+#studio-home .reference-card-description{color:#a9c2df!important}
+#studio-home .reference-studio-card img{box-shadow:0 3px 12px rgba(0,0,0,.25)}
+</style>
+
+<style id="nextgen-card-border-ratio-refinement-v1">
+/* Subtle borders and consistent 16:9 media cards; preserve layout, content and imagery. */
+#studio-home .reference-project-card,
+#studio-home .reference-gallery-section{
+  border:1px solid rgba(150,190,225,.14)!important;
+  box-shadow:0 2px 10px rgba(0,0,0,.10)!important;
+}
+#studio-home .reference-eyebrow,
+#studio-home .reference-gallery-title{
+  border:1px solid rgba(90,205,240,.16)!important;
+  box-shadow:none!important;
+}
+#studio-home .reference-studio-card img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:16/9!important;
+  object-fit:cover!important;
+  border:1px solid rgba(150,190,225,.12)!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-studio-card img{height:auto!important;aspect-ratio:16/9!important;border-radius:10px!important}
+}
+</style>
+<style id="nextgen-card-outline-light-v1">
+/* Light, understated outline on each creation and gallery card. */
+#studio-home .reference-studio-card{
+  box-sizing:border-box!important;
+  border:1px solid rgba(170,205,235,.18)!important;
+  border-radius:13px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#studio-home .reference-studio-card img{
+  border:0!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-studio-card{border-radius:11px!important}
+  #studio-home .reference-studio-card img{border-radius:8px!important}
+}
+</style>
+
+<style id="nextgen-feature-creation-heading-v1">
+/* Feature-specific creation page heading; keep the Home/preview page untouched. */
+#studio-workspace .studio-workspace-top{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin:10px 0 8px}
+#studio-home-back.secondary{width:38px;height:38px;min-width:38px;padding:0;border:0!important;border-radius:50%;background:transparent!important;color:#f4f8ff!important;font-size:30px;font-weight:400;line-height:1;display:grid;place-items:center;box-shadow:none!important}
+#studio-home-back.secondary:focus-visible{outline:2px solid #35d8ff;outline-offset:2px}
+#view-title{font-size:clamp(25px,6.5vw,36px)!important;font-weight:800!important;letter-spacing:-.7px!important;line-height:1.12!important;background:linear-gradient(100deg,#00e9f2 0%,#288cff 48%,#cf3cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent}
+#view-subtitle{color:#b7c9e2!important;font-size:14px;line-height:1.5}
+</style>
+
+
+<style id="nextgen-ai-studio-reference-header-v2">
+/* Shared reference header used across every AI Studio workspace view. */
+#studio-workspace .studio-reference-header{position:relative;margin:0 0 18px;padding:12px 14px 15px;border:1px solid rgba(65,170,230,.26);border-radius:18px;background:linear-gradient(145deg,#0b1d38 0%,#07162d 62%,#111a3a 100%);box-shadow:0 5px 18px rgba(0,0,0,.14),inset 0 0 22px rgba(25,100,190,.07)}
+#studio-workspace .studio-reference-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+#studio-workspace .studio-reference-badge{display:inline-flex;align-items:center;min-height:38px;padding:5px 14px;border:1px solid rgba(55,215,255,.38);border-radius:12px;background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f);color:#69e8ff;font-size:clamp(18px,4vw,24px);font-weight:800;letter-spacing:-.3px;box-shadow:0 0 12px rgba(0,194,255,.12)}
+#studio-home-back.studio-close-button{display:grid;place-items:center;width:46px;height:46px;min-width:46px;padding:0;border:2px solid rgba(67,155,230,.5)!important;border-radius:13px;background:#0b1d38!important;color:#f7fbff!important;font-size:38px;font-weight:500;line-height:1;box-shadow:0 0 12px rgba(0,144,255,.12)!important}
+/* Light, subtle outline for the AI Studio close control. */
+#studio-home-back.studio-close-button{border:1px solid rgba(67,155,230,.28)!important;box-shadow:none!important}
+
+#studio-home-back.studio-close-button:focus-visible,#studio-gallery-open:focus-visible{outline:2px solid #35d8ff;outline-offset:3px}
+#studio-workspace .studio-reference-titleline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#studio-workspace #view-title{margin:0!important;flex:1;min-width:0;font-size:clamp(30px,7vw,48px)!important;font-weight:800!important;letter-spacing:-1.1px!important;line-height:1.12!important;color:#f7f9ff!important;background:none!important;-webkit-text-fill-color:#f7f9ff!important}
+#studio-gallery-open.studio-gallery-action{flex:none;min-height:44px;padding:8px 18px;border:1px solid rgba(55,215,255,.55);border-radius:13px;background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f);color:#69e8ff;font:800 16px Inter,system-ui,sans-serif;box-shadow:0 0 12px rgba(0,194,255,.14)}
+#studio-workspace .studio-workspace-subtitle{margin:13px 0 0!important;color:#a9c9e8!important;font-size:clamp(13px,3.6vw,17px)!important;line-height:1.5!important;text-transform:uppercase;letter-spacing:.45px}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-header{padding:10px 11px 13px;border-radius:15px}
+ #studio-workspace .studio-reference-topline{margin-bottom:13px}
+ #studio-home-back.studio-close-button{width:42px;height:42px;min-width:42px}
+ #studio-workspace #view-title{font-size:clamp(27px,7vw,36px)!important;letter-spacing:-.7px!important}
+ #studio-gallery-open.studio-gallery-action{min-height:40px;padding:7px 13px;font-size:14px}
+}
+</style>
+
+
+<style id="nextgen-ai-studio-header-compact-text-v1">
+/* Compact typography across every AI Studio header without changing the layout theme. */
+#studio-workspace .studio-reference-badge{font-size:16px!important;min-height:32px!important;padding:4px 11px!important}
+#studio-home-back.studio-close-button{width:40px!important;height:40px!important;min-width:40px!important;font-size:32px!important}
+#studio-workspace #view-title{font-size:clamp(23px,5.8vw,30px)!important;letter-spacing:-.55px!important;line-height:1.15!important}
+#studio-gallery-open.studio-gallery-action{min-height:36px!important;padding:6px 12px!important;font-size:13px!important}
+#studio-workspace .studio-workspace-subtitle{font-size:12px!important;line-height:1.45!important;letter-spacing:.25px!important;margin-top:10px!important}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-header{padding:9px 10px 11px!important}
+ #studio-workspace .studio-reference-topline{margin-bottom:10px!important}
+ #studio-home-back.studio-close-button{width:36px!important;height:36px!important;min-width:36px!important;font-size:29px!important}
+ #studio-workspace #view-title{font-size:clamp(22px,5.7vw,25px)!important;letter-spacing:-.4px!important}
+ #studio-gallery-open.studio-gallery-action{min-height:34px!important;padding:5px 10px!important;font-size:12px!important}
+ #studio-workspace .studio-workspace-subtitle{font-size:11px!important}
+}
+</style>
+
+
+<style id="nextgen-ai-studio-header-extra-compact-v1">
+/* Further reduce all shared AI Studio header typography for compact mobile viewing. */
+#studio-workspace .studio-reference-badge{font-size:14px!important;min-height:29px!important;padding:3px 9px!important}
+#studio-workspace #view-title{font-size:clamp(19px,5vw,25px)!important;letter-spacing:-.35px!important;line-height:1.15!important}
+#studio-gallery-open.studio-gallery-action{min-height:31px!important;padding:4px 9px!important;font-size:11px!important}
+#studio-workspace .studio-workspace-subtitle{font-size:10px!important;line-height:1.4!important;letter-spacing:.15px!important;margin-top:8px!important}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-header{padding:8px 9px 10px!important}
+ #studio-workspace .studio-reference-topline{margin-bottom:9px!important}
+ #studio-home-back.studio-close-button{width:34px!important;height:34px!important;min-width:34px!important;font-size:27px!important}
+ #studio-workspace #view-title{font-size:clamp(18px,4.8vw,21px)!important;letter-spacing:-.25px!important}
+ #studio-gallery-open.studio-gallery-action{min-height:29px!important;padding:4px 8px!important;font-size:10px!important}
+ #studio-workspace .studio-workspace-subtitle{font-size:9px!important}
+}
+</style>
+
+
+<style id="nextgen-ai-studio-header-micro-v1">
+/* Slight additional size reduction across all AI Studio workspace headers. */
+#studio-workspace .studio-reference-badge{font-size:13px!important;min-height:27px!important;padding:3px 8px!important}
+#studio-workspace #view-title{font-size:clamp(17px,4.5vw,22px)!important;letter-spacing:-.25px!important;line-height:1.16!important}
+#studio-gallery-open.studio-gallery-action{min-height:28px!important;padding:4px 8px!important;font-size:10px!important}
+#studio-workspace .studio-workspace-subtitle{font-size:9px!important;line-height:1.35!important;letter-spacing:.1px!important;margin-top:7px!important}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-header{padding:7px 8px 9px!important}
+ #studio-workspace .studio-reference-topline{margin-bottom:8px!important}
+ #studio-home-back.studio-close-button{width:32px!important;height:32px!important;min-width:32px!important;font-size:25px!important}
+ #studio-workspace #view-title{font-size:clamp(16px,4.2vw,19px)!important;letter-spacing:-.2px!important}
+ #studio-gallery-open.studio-gallery-action{min-height:27px!important;padding:3px 7px!important;font-size:9px!important}
+ #studio-workspace .studio-workspace-subtitle{font-size:8px!important}
+}
+</style>
+
+
+<style id="nextgen-close-button-square-fix-v1">
+/* Keep the AI Studio close control compact and square on every screen. */
+#studio-workspace #studio-home-back.studio-close-button{
+  box-sizing:border-box!important;
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 32px!important;
+  width:32px!important;
+  height:32px!important;
+  min-width:32px!important;
+  min-height:32px!important;
+  max-width:32px!important;
+  max-height:32px!important;
+  aspect-ratio:1 / 1!important;
+  padding:0!important;
+  font-size:24px!important;
+  line-height:1!important;
+  overflow:hidden!important;
+}
+
+<style id="nextgen-ai-studio-header-align-panel-v1">
+/* Align the AI Studio header's outer edges with the Creation Setup panel. */
+#studio-workspace .studio-reference-header{
+  width:calc(100% + 8.8%);
+  margin-left:-4.4%;
+  margin-right:-4.4%;
+  box-sizing:border-box;
+}
+@media(max-width:700px){
+  #studio-workspace .studio-reference-header{
+    width:calc(100% + 26px);
+    margin-left:-13px;
+    margin-right:-13px;
+  }
+}
+</style>
+
+<style id="nextgen-ai-studio-title-match-creation-setup-v1">
+/* Match the feature title typography to the Creation Setup panel heading. */
+#studio-workspace #view-title{
+  font-size:18px!important;
+  line-height:1.25!important;
+  letter-spacing:0!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-compact-page-spacing-v1">
+/* Reduce vertical spacing throughout AI Studio workspace without changing its design. */
+#studio-workspace .panel{padding:13px!important}
+#studio-workspace .panel h2{margin-bottom:9px!important;line-height:1.2!important}
+#studio-workspace .field{gap:5px!important;margin:8px 0!important}
+#studio-workspace .field label{line-height:1.2!important}
+#studio-workspace .field textarea,
+#studio-workspace .field input,
+#studio-workspace .field select{line-height:1.3!important;padding-top:9px!important;padding-bottom:9px!important}
+#studio-workspace .section{margin-top:12px!important}
+#studio-workspace .two{row-gap:7px!important}
+#studio-workspace .notice{margin-top:9px!important;padding:9px 10px!important;line-height:1.4!important}
+#studio-workspace .model-list{gap:6px!important}
+#studio-workspace .model{padding:9px!important}
+#studio-workspace .tool-grid,
+#studio-workspace .gallery-grid{row-gap:7px!important}
+#studio-workspace .status-line{padding:7px 0!important;line-height:1.35!important}
+</style>
+
+<style id="nextgen-ai-studio-requested-header-text-sizes-v1">
+/* Apply only the four requested AI Studio header text-size changes. */
+#studio-workspace .studio-reference-badge{font-size:14px!important}
+#studio-workspace #view-title{font-size:clamp(17px,4.5vw,20px)!important}
+#studio-gallery-open.studio-gallery-action{font-size:13px!important}
+#studio-workspace .studio-workspace-subtitle{font-size:11px!important}
+@media(max-width:420px){
+  #studio-workspace #view-title{font-size:clamp(17px,4.5vw,20px)!important}
+  #studio-gallery-open.studio-gallery-action{font-size:13px!important}
+  #studio-workspace .studio-workspace-subtitle{font-size:11px!important}
+}
+</style>
+
+<style id="nextgen-ai-studio-brand-theme-text-colors-v1">
+/* Brand color for feature title; NextGen navy/cyan theme for badge and Gallery label. */
+#studio-workspace #view-title{
+  background:linear-gradient(100deg,#00d9ff 0%,#253dff 55%,#a300ff 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+#studio-workspace .studio-reference-badge{color:#27c4ff!important}
+#studio-gallery-open.studio-gallery-action{color:#27c4ff!important}
+</style>
+
+<style id="nextgen-exact-logo-palette-v2">
+/* Match the supplied NextGen logo palette: cyan, electric blue, violet and magenta. */
+#studio-workspace #view-title{
+  background:linear-gradient(105deg,#00eaff 0%,#087cff 38%,#352cff 62%,#ed16e8 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+#studio-workspace .studio-reference-badge,
+#studio-gallery-open.studio-gallery-action{
+  background:linear-gradient(105deg,#073b62 0%,#123d83 48%,#38206f 72%,#66206f 100%)!important;
+  color:#65eaff!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-tryit-button-style-v1">
+/* Match AI Studio and Gallery pills to the Home Page Try it button treatment. */
+#studio-workspace .studio-reference-badge,
+#studio-gallery-open.studio-gallery-action{
+  border:0!important;
+  border-radius:18px!important;
+  background:linear-gradient(110deg,#00d9f5 0%,#087bff 34%,#633bff 68%,#d52bff 100%)!important;
+  color:#fff!important;
+  box-shadow:0 2px 10px rgba(0,190,255,.18)!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-requested-text-sizes-v2">
+/* Only the three explicitly requested header text sizes. */
+#studio-workspace .studio-reference-badge{font-size:14px!important}
+#studio-workspace #view-title{font-size:clamp(18px,4.8vw,20px)!important}
+#studio-gallery-open.studio-gallery-action{font-size:15px!important}
+@media(max-width:420px){
+  #studio-workspace #view-title{font-size:clamp(18px,4.8vw,20px)!important}
+}
+</style>
+
+<style id="nextgen-ai-studio-title-creative-studio-gradient-v1">
+/* Match the Text to Video headline to the Creative Studio brand gradient shown in the reference. */
+#studio-workspace #view-title{
+  background:linear-gradient(100deg,#00dff2 0%,#087cff 42%,#3435f5 68%,#b02be9 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-title-gradient-enforced-v2">
+/* Enforce the Creative Studio headline gradient on the live feature title. */
+#studio-workspace .studio-reference-header .studio-reference-titleline h2#view-title{
+  background-image:linear-gradient(100deg,#00dff2 0%,#087cff 42%,#3435f5 68%,#b02be9 100%)!important;
+  background-color:transparent!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-feature-title-gradient-final">
+/* Force the supplied Creative Studio logo gradient on the actual feature headline only. */
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title{
+  background:linear-gradient(100deg,#00dff2 0%,#087cff 42%,#3435f5 68%,#b02be9 100%)!important;
+  background-image:linear-gradient(100deg,#00dff2 0%,#087cff 42%,#3435f5 68%,#b02be9 100%)!important;
+  background-color:transparent!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-feature-title-white-final">
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title{
+  background:none!important;
+  background-image:none!important;
+  background-color:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-gradient-span-match-home-v1">
+/* Use the same inner-span gradient technique as the Creative Studio header. */
+#studio-workspace #view-title .ng-title-gradient{
+  display:inline-block!important;
+  background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  -webkit-font-smoothing:antialiased;
+  text-shadow:0 0 1px rgba(255,255,255,.95),0 0 5px rgba(255,255,255,.42)!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-full-brand-design-v1">
+/* Full NextGen brand treatment for every AI Studio workspace page only. */
+#studio-workspace{
+  --ng-cyan:#00eaff;
+  --ng-blue:#087cff;
+  --ng-violet:#7428f5;
+  --ng-magenta:#e51bdc;
+  --ng-line:rgba(58,164,235,.34);
+  background:
+    radial-gradient(ellipse at 8% 0%,rgba(0,210,255,.10),transparent 34%),
+    radial-gradient(ellipse at 95% 12%,rgba(190,35,235,.10),transparent 32%),
+    linear-gradient(160deg,#071326 0%,#080d20 52%,#100d27 100%);
+  border-radius:20px;
+  padding:14px;
+}
+#studio-workspace .panel,
+#studio-workspace .tool,
+#studio-workspace .model,
+#studio-workspace .history-item,
+#studio-workspace .gallery-tile{
+  background:linear-gradient(145deg,rgba(13,35,62,.96),rgba(12,19,43,.98))!important;
+  border:1px solid var(--ng-line)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 18px rgba(0,0,0,.12)!important;
+}
+#studio-workspace .panel h2,
+#studio-workspace .tool b,
+#studio-workspace .model b{color:#f5fbff!important}
+#studio-workspace .field label,
+#studio-workspace .model em{color:#75dfff!important}
+#studio-workspace .field textarea,
+#studio-workspace .field input,
+#studio-workspace .field select{
+  background:rgba(5,15,34,.94)!important;
+  border:1px solid rgba(48,155,225,.42)!important;
+  color:#f5fbff!important;
+  box-shadow:inset 0 1px 5px rgba(0,0,0,.18)!important;
+}
+#studio-workspace .field textarea:focus,
+#studio-workspace .field input:focus,
+#studio-workspace .field select:focus{
+  outline:1px solid #00dfff!important;
+  border-color:#00dfff!important;
+  box-shadow:0 0 0 3px rgba(0,223,255,.12)!important;
+}
+#studio-workspace .primary,
+#studio-workspace button.primary{
+  background:linear-gradient(110deg,#00d9f5 0%,#087bff 34%,#633bff 68%,#d52bff 100%)!important;
+  color:#fff!important;border:0!important;
+  box-shadow:0 3px 14px rgba(0,160,255,.2)!important;
+}
+#studio-workspace .secondary,
+#studio-workspace .mode-tabs button,
+#studio-workspace .chip,
+#studio-workspace .studio-nav button{
+  background:linear-gradient(145deg,#102b4d,#171b43)!important;
+  color:#dff8ff!important;
+  border:1px solid rgba(55,177,238,.38)!important;
+}
+#studio-workspace .mode-tabs button.active,
+#studio-workspace .studio-nav button.active{
+  background:linear-gradient(110deg,#00d9f5 0%,#087bff 40%,#633bff 75%,#d52bff 100%)!important;
+  color:#fff!important;border-color:transparent!important;
+  box-shadow:0 2px 12px rgba(0,170,255,.2)!important;
+}
+#studio-workspace .upload{
+  background:linear-gradient(145deg,rgba(8,39,68,.82),rgba(20,20,55,.82))!important;
+  border-color:rgba(0,205,255,.55)!important;color:#d9f7ff!important;
+}
+#studio-workspace .upload strong,
+#studio-workspace .status-line strong{color:#fff!important}
+#studio-workspace .notice{
+  background:linear-gradient(110deg,rgba(0,122,170,.16),rgba(107,42,170,.16))!important;
+  border:1px solid rgba(90,165,235,.38)!important;color:#d9eaff!important;
+}
+#studio-workspace .status-line{border-bottom-color:rgba(69,154,215,.22)!important}
+#studio-workspace .gallery-tile{color:#a9d9f2!important}
+#studio-workspace .studio-workspace-subtitle{color:#b8d9f2!important}
+#studio-workspace .bottom-note{color:#91a8c8!important}
+@media(max-width:700px){
+  #studio-workspace{padding:10px}
+}
+</style>
+</style>
+
+<style id="nextgen-ai-studio-title-sharp-gradient-fix-v1">
+/* Final correction: keep the actual headline crisp and in the NextGen logo gradient. */
+html body #studio-workspace .studio-reference-header .studio-reference-titleline h2#view-title{
+  background:transparent!important;
+  background-image:none!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html body #studio-workspace .studio-reference-header .studio-reference-titleline h2#view-title > .ng-title-gradient{
+  display:inline-block!important;
+  background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  text-shadow:none!important;
+  filter:none!important;
+  opacity:1!important;
+}
+</style>
+
+
+
+<style id="nextgen-ai-studio-remove-page-borders-v1">
+/* Remove only the outer page-frame borders across every AI Studio workspace view.
+   Keep borders on controls, thumbnails, project rows, and internal content cards. */
+#studio-workspace .studio-reference-header{
+  border:0!important;
+  box-shadow:none!important;
+}
+#studio-workspace .view > .panel,
+#studio-workspace .view > .studio-grid > .panel{
+  border:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-remove-all-view-panel-borders-v2">
+/* Remove page/container outlines throughout every AI Studio view, not just the title header.
+   Preserve borders on interactive controls, uploads, buttons, and media preview frames. */
+#studio-workspace .studio-reference-header,
+#studio-workspace .view .panel,
+#studio-workspace .view .tool,
+#studio-workspace .view .model,
+#studio-workspace .view .history-item,
+#studio-workspace .view .gallery-tile{
+  border:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-page-border-removal-corrected-v3">
+/* The feature views are siblings of #studio-workspace, not its children.
+   Remove the visible outer frames from each page's main content panels. */
+body .view > .panel,
+body .view > .studio-grid > .panel,
+body .view > .ng-feature-routing,
+body .view .ng-feature-routing{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-full-page-borderless-v4">
+/* Remove the outer frames of every AI Studio feature section, including injected setup panels. */
+html body .studio section.view .panel,
+html body .studio section.view .ng-feature-routing,
+html body .studio section.view .studio-grid > .panel,
+html body .studio #studio-workspace .studio-reference-header{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-ai-studio-fixed-feature-header-v1">
+/* Keep the AI Studio feature header pinned while the selected creation page scrolls below it. */
+#studio-workspace{
+  height:150px!important;
+  min-height:150px!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border-radius:0!important;
+}
+#studio-workspace .studio-reference-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  z-index:1000!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:700px){
+  #studio-workspace{height:150px!important;min-height:150px!important}
+  #studio-workspace .studio-reference-header{
+    left:0!important;
+    right:0!important;
+  }
+}
+</style>
+
+
+<style id="nextgen-ai-studio-zero-page-margin-v1">
+/* Make the AI Studio page itself flush with all viewport edges.
+   This does not alter text spacing, header styling, or inner component padding. */
+html,body{margin:0!important}
+.studio{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+</style>
+
+
+<style id="nextgen-ai-studio-header-text-side-margin-v1">
+/* Add a small side margin to header text only; keep buttons and header layout untouched. */
+#studio-workspace .studio-reference-badge,
+#studio-workspace .studio-reference-titleline #view-title,
+#studio-workspace .studio-workspace-subtitle{
+  margin-left:4px!important;
+  margin-right:4px!important;
+}
+</style>
+
+
+<style id="nextgen-ai-studio-final-requested-typography-v1">
+/* Final requested AI Studio header typography; no layout, colors, or feature content changed. */
+#studio-workspace .studio-reference-badge{
+  font-size:28px!important;
+  line-height:1.1!important;
+}
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  font-size:28px!important;
+  line-height:1.1!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  font-size:16px!important;
+  line-height:1.1!important;
+}
+#studio-workspace #view-title{
+  font-size:18px!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+#studio-workspace .studio-workspace-subtitle{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+#studio-gallery-open.studio-gallery-action{
+  font-size:14px!important;
+}
+#studio-home-back.studio-close-button{
+  font-size:24px!important;
+}
+</style>
+
+</head>
+<body>
+<div class="studio">
+<header class="studio-head studio-head-reference studio-reference-hidden">
+  <a class="studio-back" href="./index.html" aria-label="Back">‹</a>
+  <h1>Create Project</h1>
+  <button type="button" class="studio-search-button" id="studio-search-button" aria-label="Search features" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"/><path d="m16 16 5 5"/></svg></button>
+  <input id="studio-search" class="studio-search" type="search" placeholder="Search features or projects" aria-label="Search features or projects" hidden>
+</header>
+<section class="studio-workspace" id="studio-workspace">
+  <div class="studio-reference-header">
+    <div class="studio-reference-topline">
+      <span class="studio-reference-badge">NextGen Studio</span>
+      <button type="button" id="studio-home-back" class="studio-close-button" aria-label="Close AI Studio" title="Close">×</button>
+    </div>
+    <div class="studio-reference-titleline">
+      <h2 id="view-title"><span class="ng-title-gradient" style="background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;text-shadow:0 0 1px rgba(255,255,255,.95),0 0 5px rgba(255,255,255,.42);">AI Studio</span></h2>
+      <a href="./gallery.html" id="studio-gallery-open" class="studio-gallery-action" aria-label="Open Projects">Projects</a>
+    </div>
+    <p id="view-subtitle" class="studio-workspace-subtitle">Explore image and video creation in one workspace.</p>
+  </div>
+  <nav class="studio-nav hidden" aria-label="Creative Studio navigation">
+  <button class="active" data-view="discover">Discover</button>
+  <button data-view="imagine">Imagine</button>
+  <a class="secondary" href="./gallery.html">Projects</a>
+  <button data-view="history">History</button>
+  <button data-view="tools">Video Tools</button>
+  <button data-view="plans">Plans</button>
+  <button data-view="status">Status</button>
+</nav>
+</section>
+<section id="view-discover" class="view hidden">
+ <div class="studio-grid">
+  <div class="panel">
+   <div class="mode-tabs"><button class="active" data-mode="video">▣ Video</button><button data-mode="image">▧ Image</button></div>
+   
+   <div class="field"><label>REFERENCE IMAGE / VIDEO / AUDIO</label><label class="upload" for="reference-file"><span>＋</span><span><strong>Choose a file</strong><br>Photo, video or audio reference</span></label><input id="reference-file" type="file" accept="image/*,video/*,audio/*"><div id="file-preview" class="file-preview"></div></div>
+   <div class="field"><label>DESCRIBE YOUR CREATION</label><textarea id="main-prompt" maxlength="3000" placeholder="Describe the scene, movement, camera, lighting, style and sound..."></textarea><div style="display:flex;justify-content:space-between;color:#8491ae;font-size:11px"><span>Be specific about subject, motion and camera.</span><span id="prompt-count">0 / 3000</span></div></div>
+   <div class="field"><label>QUICK PROMPT STARTERS</label><div class="tool-grid" id="prompt-starters"><button type="button" class="secondary" data-prompt="cinematic portrait, natural skin texture, soft cinematic lighting, subtle camera movement">Cinematic portrait</button><button type="button" class="secondary" data-prompt="dynamic dance performance, full body visible, smooth coordinated motion, energetic camera">AI Dance</button><button type="button" class="secondary" data-prompt="product showcase, elegant studio lighting, slow orbit camera, premium commercial look">Product showcase</button><button type="button" class="secondary" data-prompt="beautiful landscape, atmospheric light, gentle camera push-in, realistic details">Landscape</button></div></div>
+   <div class="two">
+    <div class="field"><label>QUALITY</label><select><option>Auto</option><option>Fast</option><option>Balanced</option><option>High Quality</option><option>Ultra HD / 4K (if supported)</option></select></div>
+    <div class="field"><label>ASPECT RATIO / OUTPUT SHAPE</label><select id="video-aspect-select"><option value="9:16">9:16 · Vertical</option><option value="16:9" selected>16:9 · Landscape</option><option value="1:1">1:1 · Square</option><option value="4:5">4:5 · Portrait</option><option value="4:3">4:3</option><option value="3:4">3:4</option><option value="21:9">21:9 · Ultra-wide</option><option value="custom">Custom Width × Height</option></select><div id="video-custom-dimensions" class="two hidden"><div class="field"><label for="video-custom-width">WIDTH (PX)</label><input id="video-custom-width" type="number" min="1" max="16384" inputmode="numeric" placeholder="e.g. 1920"></div><div class="field"><label for="video-custom-height">HEIGHT (PX)</label><input id="video-custom-height" type="number" min="1" max="16384" inputmode="numeric" placeholder="e.g. 1080"></div></div><small id="video-output-dimensions-note" style="color:#9ba8c3">Selected output shape: 16:9. Final dimensions depend on provider support.</small></div>
+   </div>
+   <div class="two">
+    <div class="field"><label>DURATION</label><select><option>Auto</option><option>5 seconds</option><option>8 seconds</option><option>10 seconds</option><option>15 seconds</option></select></div>
+    
+   </div>
+   <details class="field" style="border:1px solid #303951;border-radius:13px;padding:11px"><summary style="color:#dce4f5;font-size:13px;font-weight:700;cursor:pointer">Advanced generation settings</summary><div class="field"><label>NEGATIVE PROMPT</label><textarea id="negative-prompt" placeholder="Things to avoid (optional)"></textarea></div><div class="two"><div class="field"><label>OUTPUT COUNT</label><select id="output-count"><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div class="field"><label>REFERENCE STRENGTH</label><select><option>Balanced</option><option>Low</option><option>High</option><option>Maximum</option></select></div></div><div class="two"><div class="field"><label>CHARACTER IDENTITY</label><select><option>Preserve when supported</option><option>Standard</option><option>Not applicable</option></select></div><div class="field"><label>AUDIO</label><select><option>Auto if supported</option><option>Generate sound</option><option>Mute</option></select></div></div></details>
+   <div class="field"><label>VIDEO CREDIT ESTIMATE</label><div id="video-credit-estimate" class="notice" aria-live="polite">Unavailable — verified provider rates and the Credit Wallet are not connected. No estimated credits will be invented.</div></div>
+   <div class="field"><label>GENERATION QUEUE</label><div id="generation-summary" class="status-line"><span>Ready to configure</span><strong>Not submitted</strong></div></div>
+   <section id="ng-video-result" class="panel hidden" aria-labelledby="ng-video-result-title" style="margin-top:14px"><h2 id="ng-video-result-title">Generated Video Preview</h2><p style="color:#9da9c4;font-size:13px;margin:-5px 0 12px">Preview automatically fits the actual video dimensions. Original aspect ratio is preserved.</p><label class="upload" for="ng-video-result-file"><span>＋</span><span><strong>Select completed video</strong><br>Use a generated MP4/MOV file to preview and download</span></label><input id="ng-video-result-file" type="file" accept="video/*" hidden><div id="ng-video-result-meta" class="status-line" aria-live="polite"><span>No completed video selected</span><strong>Waiting</strong></div><div id="ng-video-preview-stage" class="ng-video-preview-stage hidden"><video id="ng-video-preview-player" controls playsinline preload="metadata"></video></div><div class="two" style="margin-top:12px"><button type="button" id="ng-video-save-gallery" class="secondary hidden" style="min-height:46px">＋ Save to Projects</button><a id="ng-video-download" class="secondary hidden" download style="display:flex;align-items:center;justify-content:center;text-decoration:none">↓ Download Video</a><a class="secondary" href="./ai-studio.html?feature=AI%20Video%20Editor" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Open AI Video Editor (Optional)</a></div></section>
+   <button class="primary" id="generate-btn">✦ Prepare Generation</button>
+   <div class="notice" id="studio-notice">Prototype only: this screen does not send files to an AI provider or spend credits. Provider APIs, account permissions, pricing and generation jobs must be connected and tested before activation.</div>
+  </div>
+ </div>
+</section>
+<section id="view-imagine" class="view hidden">\n <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
+ <div class="studio-grid">
+  <div class="panel">
+   <h2>AI Image Studio</h2>
+   <div class="field"><label>IMAGE MODEL</label><select><option>Auto Select</option><option>Qwen Image</option><option>Flux</option><option>Nano Banana · reference</option><option>Krea · reference</option></select></div>
+   <div class="field"><label>PROMPT</label><textarea id="image-prompt" maxlength="3000" placeholder="Describe the image you want to create..."></textarea></div>
+   <div class="field"><label>STYLE PRESET</label><select><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option></select></div>
+   <div class="field"><label>REFERENCE IMAGE / EDIT SOURCE</label><label class="upload" for="image-file">＋ <span><strong>Upload image</strong><br>Use as reference or edit source</span></label><input id="image-file" type="file" accept="image/*"></div>
+   <div class="two"><div class="field"><label>ASPECT</label><select id="image-aspect-select"><option>Auto</option><option>1:1</option><option>16:9</option><option>4:3</option><option>9:16</option><option>3:4</option><option>3:2</option><option>2:3</option><option>5:4</option><option>4:5</option><option>21:9</option><option>1:4</option><option>4:1</option><option>1:8</option><option>8:1</option></select></div><div class="field"><label>OUTPUTS</label><select id="image-output-count-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></div></div>
+   <div class="field"><label>IMAGE CREDIT ESTIMATE</label><div id="image-credit-estimate" class="notice" aria-live="polite">Unavailable — verified provider rates and the Credit Wallet are not connected. No estimated credits will be invented.</div></div>
+   <div class="field"><div id="image-generation-summary" class="status-line" aria-live="polite"><span>Ready to configure</span><strong>Not submitted</strong></div></div>
+   <button class="primary" id="image-generate-btn" type="button">Prepare Image Generation</button>
+   <div class="notice" id="image-generation-notice">Prototype only: image generation is blocked until provider connection, verified credit rates and account authorization are active. No credits will be deducted.</div>
+  </div>
+  <aside class="panel"><h2>Image Workspace</h2><div class="tool-grid"><div class="tool"><b>Text to Image</b><span>Create from a written prompt</span></div><div class="tool"><b>Image Edit</b><span>Change selected parts by prompt</span></div><div class="tool"><b>Upscale</b><span>Increase resolution when supported</span></div><div class="tool"><b>Compare</b><span>Compare provider outputs side by side</span></div></div></aside>
+ </div>
+</section>
+<div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
+<div class="ng-image-settings-head"><h3 id="ng-image-settings-title">Image Settings</h3><button type="button" class="ng-image-settings-close" id="ng-image-settings-close" aria-label="Close settings">×</button></div>
+<div class="ng-image-setting-label"><span>Shape</span><span id="ng-image-shape-current">Auto · 1:1</span></div>
+<div class="ng-image-shapes" id="ng-image-shape-options">
+<button class="ng-image-choice" data-shape="Auto" aria-pressed="true">Auto<small>1:1 default</small></button><button class="ng-image-choice" data-shape="16:9" aria-pressed="false">16:9</button><button class="ng-image-choice" data-shape="4:3" aria-pressed="false">4:3</button>
+<button class="ng-image-choice" data-shape="1:1" aria-pressed="false">1:1</button><button class="ng-image-choice" data-shape="3:4" aria-pressed="false">3:4</button><button class="ng-image-choice" data-shape="9:16" aria-pressed="false">9:16</button>
+<button class="ng-image-choice" data-shape="3:2" aria-pressed="false">3:2</button><button class="ng-image-choice" data-shape="2:3" aria-pressed="false">2:3</button><button class="ng-image-choice" data-shape="5:4" aria-pressed="false">5:4</button>
+<button class="ng-image-choice" data-shape="4:5" aria-pressed="false">4:5</button><button class="ng-image-choice" data-shape="21:9" aria-pressed="false">21:9</button><button class="ng-image-choice" data-shape="1:4" aria-pressed="false">1:4</button>
+<button class="ng-image-choice" data-shape="4:1" aria-pressed="false">4:1</button><button class="ng-image-choice" data-shape="1:8" aria-pressed="false">1:8</button><button class="ng-image-choice" data-shape="8:1" aria-pressed="false">8:1</button></div>
+<div class="ng-image-setting-label"><span>Size</span><span>Output resolution</span></div><div class="ng-image-sizes" id="ng-image-size-options"><button class="ng-image-choice" data-size="1K" aria-pressed="true">1K</button><button class="ng-image-choice" data-size="2K" aria-pressed="false">2K</button><button class="ng-image-choice" data-size="4K" aria-pressed="false">4K</button><button class="ng-image-choice" data-size="8K" aria-pressed="false">8K</button></div>
+<div class="ng-image-setting-label"><span>Number of images</span><span>Choose output count</span></div><div class="ng-image-counts" id="ng-image-count-options"><button class="ng-image-choice" data-count="1" aria-pressed="true">×1</button><button class="ng-image-choice" data-count="2" aria-pressed="false">×2</button><button class="ng-image-choice" data-count="3" aria-pressed="false">×3</button><button class="ng-image-choice" data-count="4" aria-pressed="false">×4</button><button class="ng-image-choice" data-count="5" aria-pressed="false">×5</button><button class="ng-image-choice" data-count="6" aria-pressed="false">×6</button><button class="ng-image-choice" data-count="8" aria-pressed="false">×8</button></div>
+<div class="ng-image-credit-note">Credit usage will depend on the selected resolution (1K / 2K / 4K / 8K) and number of images. The exact credit total must be shown for review before generation, and credits must not be deducted until the user confirms. Rates will be configured from verified provider costs.</div>
+<div class="ng-image-settings-actions"><button type="button" class="secondary" id="ng-image-settings-cancel">Cancel</button><button type="button" class="primary" id="ng-image-settings-apply">Apply Settings</button></div></div></div>
+<section id="view-gallery" class="view hidden">
+ <div class="panel">
+  <div class="ng-projects-heading"><div><h2>Projects</h2><p>All your saved creations in one place.</p></div><span class="ng-project-count" id="ng-project-count">0 Projects</span></div>
+  <div id="ng-gallery-status" class="notice" aria-live="polite">Your Projects are stored on this device.</div>
+  <div id="ng-gallery-items" class="ng-project-list" style="margin-top:12px"></div>
+ </div>
+</section>
+<section id="view-tools" class="view hidden">
+ <div class="panel"><h2>Video Editing Tools</h2><div class="tool-grid">
+  <div class="tool"><b>Extend Video</b><span>Continue an existing clip with a supported model</span></div>
+  <div class="tool"><b>Join Clips</b><span>Combine selected clips into one video</span></div>
+  <div class="tool"><b>Video Upscale</b><span>Enhance resolution where provider allows</span></div>
+  <div class="tool"><b>Video-to-Video</b><span>Use an uploaded video as transformation input</span></div>
+  <div class="tool"><b>Audio & Sound</b><span>Generate or process sound where supported</span></div>
+  <div class="tool"><b>Download & Export</b><span>Export completed files in available formats</span></div>
+ </div><div class="field"><label>UPLOAD VIDEO FOR EDITING</label><label class="upload" for="edit-video">＋ <span><strong>Select original video</strong><br>MP4, MOV or supported video</span></label><input id="edit-video" type="file" accept="video/*"><div id="edit-preview" class="file-preview"></div></div>
+ <div class="two"><div class="field"><label>EDIT ACTION</label><select><option>Auto detect</option><option>Extend clip</option><option>Restyle video</option><option>Upscale video</option><option>Join clips</option></select></div><div class="field"><label>EXPORT FORMAT</label><select><option>MP4 · Auto</option><option>MP4 · H.264</option><option>WebM</option></select></div></div><div class="notice">Original video import is shown as a design control only. File processing, editing and exports need backend implementation.</div></div>
+</section>
+<section id="view-plans" class="view hidden">
+ <div class="panel"><h2>Plans & Credits</h2><p style="color:#aeb8d0;font-size:13px">Pricing is intentionally not finalized in this Creative Studio prototype. Review the separate reference page for the Motion16-style plan design.</p><p style="margin-top:12px"><a href="./subscription-package.html">Open Plans reference page →</a></p></div>
+</section>
+<section id="view-history" class="view hidden">
+ <div class="panel">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><h2>Generation History</h2><button type="button" class="secondary" id="clear-history">Clear prepared history</button></div>
+  <p style="color:#9da9c4;font-size:13px;margin:0 0 14px">This prototype records only locally prepared prompt settings in this browser. No generated media or provider jobs are stored.</p>
+  <div id="history-list" class="model-list"><div class="notice">No prepared generations yet.</div></div>
+ </div>
+</section>
+<section id="view-status" class="view hidden">
+ <div class="panel"><h2>System & Provider Status</h2><div class="status-line"><span>Creative Studio UI</span><strong>Prototype available</strong></div><div class="status-line"><span>AI Router</span><strong>Integration pending</strong></div><div class="status-line"><span>Image providers</span><strong>Not connected</strong></div><div class="status-line"><span>Video providers</span><strong>Not connected</strong></div><div class="status-line"><span>Gallery storage</span><strong>Not connected</strong></div><div class="status-line"><span>Credit billing</span><strong>Not activated</strong></div></div>
+</section>
+<p class="bottom-note">©2026 NextGen. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
+</div>
+<script>
+(function(){
+ const nav=[...document.querySelectorAll('[data-view]')];
+ const views=['discover','imagine','gallery','history','tools','plans','status'];
+ const home=document.getElementById('studio-home'),workspace=document.getElementById('studio-workspace');
+ const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project files.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
+ function show(key){if(home)home.classList.add('hidden');if(workspace)workspace.classList.remove('hidden');views.forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==key));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===key));document.querySelector('#view-title .ng-title-gradient').textContent='AI Studio';document.getElementById('view-subtitle').textContent=titles[key][1];}
+ nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+
+ document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{show(card.dataset.studioView);if(card.dataset.modeChoice){document.querySelector('[data-mode=video]')?.click();}}));
+ document.getElementById('studio-home-back')?.addEventListener('click',()=>{if(document.referrer&&new URL(document.referrer).host===location.host)history.back();else location.href='./creative-studio.html';});
+ // Open the default creation workspace on first load; all other views remain user-selectable.
+ show('discover');
+ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));}));
+ function attach(inputId,previewId){const input=document.getElementById(inputId),preview=document.getElementById(previewId);if(!input||!preview)return;input.addEventListener('change',()=>{preview.innerHTML='';const f=input.files&&input.files[0];if(!f)return;const u=URL.createObjectURL(f);const el=document.createElement(f.type.startsWith('video/')?'video':f.type.startsWith('image/')?'img':'div');if(el.tagName==='VIDEO'){el.src=u;el.controls=true;}else if(el.tagName==='IMG'){el.src=u;}else{el.textContent='Audio file selected';}preview.append(el);const label=document.createElement('span');label.textContent=f.name+' · '+Math.round(f.size/1024)+' KB';preview.append(label);});}
+ attach('reference-file','file-preview');attach('edit-video','edit-preview');
+ // Generation is handled by the validation and preparation flow below.
+})();
+</script>
+
+<script id="ng-video-adaptive-preview-script-v1">
+(function(){
+ const aspect=document.getElementById('video-aspect-select');
+ const custom=document.getElementById('video-custom-dimensions');
+ const width=document.getElementById('video-custom-width');
+ const height=document.getElementById('video-custom-height');
+ const note=document.getElementById('video-output-dimensions-note');
+ function updateShape(){
+  if(!aspect)return;
+  const isCustom=aspect.value==='custom';
+  if(custom)custom.classList.toggle('hidden',!isCustom);
+  if(note){
+   if(isCustom){const w=Number(width?.value),h=Number(height?.value);note.textContent=w>0&&h>0?'Custom output shape: '+w+' × '+h+' px ('+(w/h).toFixed(3)+':1). Provider support must be confirmed.':'Enter the exact width and height you want before generation.';}
+   else note.textContent='Selected output shape: '+aspect.value+'. Final dimensions depend on provider support.';
+  }
+ }
+ [aspect,width,height].forEach(el=>el?.addEventListener('input',updateShape));
+ aspect?.addEventListener('change',updateShape);updateShape();
+ const input=document.getElementById('ng-video-result-file');
+ const stage=document.getElementById('ng-video-preview-stage');
+ const player=document.getElementById('ng-video-preview-player');
+ const meta=document.getElementById('ng-video-result-meta');
+ const download=document.getElementById('ng-video-download');
+ let activeUrl='';
+ input?.addEventListener('change',()=>{
+  const file=input.files?.[0];if(!file)return;
+  if(activeUrl)URL.revokeObjectURL(activeUrl);
+  activeUrl=URL.createObjectURL(file);player.src=activeUrl;stage.classList.remove('hidden');
+  download.href=activeUrl;download.download=file.name||'nextgen-generated-video.mp4';download.classList.remove('hidden');
+  meta.innerHTML='<span>'+file.name.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))+'</span><strong>Reading dimensions…</strong>';
+ });
+ player?.addEventListener('loadedmetadata',()=>{
+  const w=player.videoWidth,h=player.videoHeight;
+  if(meta)meta.innerHTML='<span>Actual video: '+w+' × '+h+' px · Ratio '+(w/h).toFixed(3)+':1</span><strong>Fit preview ready</strong>';
+  player.style.aspectRatio=w+' / '+h;
+ });
+ player?.addEventListener('error',()=>{if(meta)meta.innerHTML='<span>Could not read this video file</span><strong>Preview unavailable</strong>';});
+ const generate=document.getElementById('generate-btn');
+ generate?.addEventListener('click',()=>{
+  const result=document.getElementById('ng-video-result');
+  if(result)result.classList.remove('hidden');
+  const fileInput=document.getElementById('ng-video-result-file');
+  const customShape=aspect?.value==='custom';
+  if(customShape&&(!(Number(width?.value)>0)||!(Number(height?.value)>0))){
+   note.textContent='Please enter valid custom width and height before preparing generation.';
+  }
+ });
+})();
+</script>
+<script id="ng-video-gallery-local-store-v1">
+(function(){
+ const DB='nextgen-ai-gallery-v1',STORE='media';let dbPromise;
+ const status=document.getElementById('ng-gallery-status');
+ const host=document.getElementById('ng-gallery-items');
+ const saveBtn=document.getElementById('ng-video-save-gallery');
+ const input=document.getElementById('ng-video-result-file');
+ const player=document.getElementById('ng-video-preview-player');
+ const openDB=()=>dbPromise||(dbPromise=new Promise((resolve,reject)=>{const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE)){const s=db.createObjectStore(STORE,{keyPath:'id'});s.createIndex('createdAt','createdAt');}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);}));
+ async function tx(mode,work){const db=await openDB();return new Promise((resolve,reject)=>{const t=db.transaction(STORE,mode),s=t.objectStore(STORE);let result;try{result=work(s);}catch(e){reject(e);return;}t.oncomplete=()=>resolve(result?.result??result);t.onerror=()=>reject(t.error);t.onabort=()=>reject(t.error);});}
+ function esc(v){return String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+ async function render(){if(!host)return;try{const rows=await tx('readonly',s=>s.getAll());host.innerHTML='';const count=document.getElementById('ng-project-count');if(count)count.textContent=rows.length+' Project'+(rows.length===1?'':'s');if(!rows.length){host.innerHTML='<div class="gallery-tile" style="grid-column:1/-1;aspect-ratio:auto;min-height:120px">No Projects yet. Save a completed video from Preview to see it here.</div>';return;}rows.sort((a,b)=>b.createdAt-a.createdAt).forEach((item,index)=>{const row=document.createElement('article');row.className='ng-project-row';const video=document.createElement('video');const videoUrl=URL.createObjectURL(item.blob);video.className='ng-project-thumb';video.src=videoUrl;video.muted=true;video.playsInline=true;video.preload='auto';video.setAttribute('aria-label','Preview '+item.name);video.addEventListener('loadeddata',()=>{try{if(video.duration>0)video.currentTime=Math.min(.12,video.duration/10);}catch(e){}},{once:true});const info=document.createElement('div');info.className='ng-project-info';const title=document.createElement('div');title.className='ng-project-title';title.textContent=item.title||item.name||'Untitled';const duration=document.createElement('div');duration.className='ng-project-meta';const secs=Number(item.duration)||0;const mm=String(Math.floor(secs/60)).padStart(2,'0'),ss=String(Math.floor(secs%60)).padStart(2,'0');const mb=(Number(item.size)||item.blob?.size||0)/1048576;duration.textContent=(secs?mm+':'+ss+' · ':'')+mb.toFixed(1)+' MB';const date=document.createElement('div');date.className='ng-project-meta';date.textContent=index===0?'Recently opened':(item.createdAt?new Date(item.createdAt).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}):'Saved project');info.append(title,duration,date);const menu=document.createElement('button');menu.type='button';menu.className='ng-project-menu';menu.textContent='⋮';menu.setAttribute('aria-label','Project actions for '+title.textContent);const actions=document.createElement('div');actions.className='ng-project-actions';actions.hidden=true;const dl=document.createElement('a');dl.className='secondary';dl.textContent='Download';dl.href=URL.createObjectURL(item.blob);dl.download=item.name||'nextgen-project.mp4';dl.style.textDecoration='none';const del=document.createElement('button');del.className='secondary';del.type='button';del.textContent='Delete Project';del.addEventListener('click',async()=>{if(!confirm('Delete this project from this device?'))return;await tx('readwrite',s=>s.delete(item.id));render();});menu.addEventListener('click',()=>{actions.hidden=!actions.hidden;});actions.append(dl,del);row.append(video,info,menu,actions);host.append(row);});}catch(e){if(status)status.textContent='Project storage could not be opened in this browser: '+(e?.message||'unknown error');}}
+ saveBtn?.addEventListener('click',async()=>{const file=input?.files?.[0];if(!file){if(status)status.textContent='Select a completed video first.';return;}if(!file.type.startsWith('video/')){if(status)status.textContent='Please select a video file.';return;}try{const width=player?.videoWidth||0,height=player?.videoHeight||0;const duration=Number(player?.duration)||0;await tx('readwrite',s=>s.put({id:crypto.randomUUID(),name:file.name,title:file.name.replace(/\\.[^.]+$/,''),blob:file,width,height,duration,size:file.size,createdAt:Date.now(),type:file.type}));if(status)status.textContent='Saved to this device’s NextGen AI Projects.';await render();}catch(e){if(status)status.textContent='Could not save this video. Browser storage may be full: '+(e?.message||'unknown error');}});
+ input?.addEventListener('change',()=>{if(saveBtn)saveBtn.classList.toggle('hidden',!input.files?.[0]);});
+ document.querySelector('[data-view="gallery"]')?.addEventListener('click',render);
+ render();
+})();
+</script>
+
+<script id="creative-studio-interactions-v2">
+(function(){
+ const prompt=document.getElementById('main-prompt'),count=document.getElementById('prompt-count');
+ if(prompt&&count){const update=()=>count.textContent=prompt.value.length+' / 3000';prompt.addEventListener('input',update);update();}
+ document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>{if(prompt){prompt.value=b.dataset.prompt;prompt.dispatchEvent(new Event('input'));prompt.focus();}}));
+ const modeButtons=[...document.querySelectorAll('[data-mode]')];
+
+ const summary=document.getElementById('generation-summary');
+ const btn=document.getElementById('generate-btn');
+ if(btn)btn.addEventListener('click',()=>{
+  const p=prompt?prompt.value.trim():'';
+  const file=document.getElementById('reference-file');
+  if(!p){alert('Please add a prompt before preparing your generation.');return;}
+  if(summary){summary.innerHTML='<span>Configuration prepared · '+(file&&file.files[0]?'Reference attached':'No reference file')+'</span><strong>Awaiting provider connection</strong>';}
+  const notice=document.getElementById('studio-notice');
+  if(notice)notice.textContent='Your prompt and settings are ready for review. Generation is not connected yet; no file was uploaded to a provider and no credits were used.';
+  alert('Your generation setup is prepared. AI provider connection is still pending; nothing has been generated or charged.');
+ });
+ const imageBtn=document.getElementById('image-generate-btn');
+ if(imageBtn)imageBtn.addEventListener('click',()=>{
+  const field=document.getElementById('image-prompt');const p=field?field.value.trim():'';
+  const status=document.getElementById('image-generation-summary');const notice=document.getElementById('image-generation-notice');
+  if(!p){if(status)status.innerHTML='<span>Prompt required</span><strong>Not submitted</strong>';if(notice)notice.textContent='Add an image prompt before preparing the request.';return;}
+  if(status)status.innerHTML='<span>Configuration saved for review · '+(document.getElementById('image-file')?.files?.[0]?'Reference selected':'No reference image')+'</span><strong>Provider not connected</strong>';
+  if(notice)notice.textContent='Image settings are ready for review, but generation cannot start until a provider, verified credit quote and Credit Wallet authorization are connected. No file was sent and no credits were used.';
+ });
+ const fileInputs=[...document.querySelectorAll('input[type=file]')];
+ fileInputs.forEach(input=>input.addEventListener('change',()=>{
+  const f=input.files&&input.files[0];if(!f)return;
+  const max=200*1024*1024;
+  if(f.size>max){alert('Please choose a file smaller than 200 MB for this prototype.');input.value='';return;}
+ }));
+})();
+</script>
+
+<script id="creative-studio-compare-history-script-v3">
+(function(){
+
+ const KEY='nextgen_creative_studio_prepared_history_v1';
+ function readHistory(){try{return JSON.parse(localStorage.getItem(KEY)||'[]').filter(x=>x&&typeof x.prompt==='string').slice(0,30);}catch(e){return [];}}
+ function saveHistory(items){try{localStorage.setItem(KEY,JSON.stringify(items.slice(0,30)));}catch(e){}}
+ function renderHistory(){
+  const host=document.getElementById('history-list');if(!host)return;
+  const items=readHistory();host.innerHTML='';
+  if(!items.length){host.innerHTML='<div class="notice">No prepared generations yet. Prepare a prompt in Discover to see it here.</div>';return;}
+  items.forEach(item=>{
+   const card=document.createElement('article');card.className='history-item';
+   const meta=document.createElement('div');meta.className='history-meta';
+   [item.mode,item.model,item.when].forEach(v=>{const span=document.createElement('span');span.textContent=v||'';meta.append(span);});
+   const p=document.createElement('p');p.textContent=item.prompt;
+   const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent='Load prompt';
+   b.addEventListener('click',()=>{const field=document.getElementById('main-prompt');if(field)field.value=item.prompt;document.querySelector('[data-view=discover]')?.click();});
+   card.append(meta,p,b);host.append(card);
+  });
+ }
+ const generate=document.getElementById('generate-btn');
+ if(generate)generate.addEventListener('click',()=>{
+  const field=document.getElementById('main-prompt');const prompt=field?field.value.trim():'';
+  if(!prompt)return;
+  const engine=document.querySelector('.ng-engine-mode');
+   const mode=engine&&engine.value==='manual'?'Manual Tool Selection':'Auto Model Selection';
+   const manualTool=document.querySelector('.ng-feature-routing:not([hidden]) .ng-manual-tool');
+   const model=manualTool&&mode==='Manual Tool Selection'?manualTool.value:'Auto Select';
+   const items=readHistory();items.unshift({prompt,mode,model,when:new Date().toLocaleString()});saveHistory(items);renderHistory();
+ });
+ const clear=document.getElementById('clear-history');if(clear)clear.addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(e){}renderHistory();});
+ const historyNav=document.querySelector('[data-view=history]');if(historyNav)historyNav.addEventListener('click',renderHistory);
+ renderHistory();
+})();
+</script>
+<script id="create-project-search-v1">
+(function(){
+ const button=document.getElementById('studio-search-button'),search=document.getElementById('studio-search');
+ if(!button||!search)return;
+ button.addEventListener('click',()=>{
+  const open=search.hidden;search.hidden=!open;button.setAttribute('aria-expanded',String(open));
+  if(open)search.focus();else{search.value='';filter('');}
+ });
+ function filter(value){
+  const q=value.trim().toLowerCase();
+  document.querySelectorAll('#studio-home .studio-card,.studio-gallery-grid .studio-card').forEach(card=>{
+   const label=(card.innerText||'').toLowerCase();card.hidden=!!q&&!label.includes(q);
+  });
+ }
+ search.addEventListener('input',()=>filter(search.value));
+})();
+</script>
+<script id="nextgen-image-settings-v2">(function(){
+const overlay=document.getElementById('ng-image-settings-overlay');
+const open=document.getElementById('ng-image-settings-open');
+const close=document.getElementById('ng-image-settings-close');
+const cancel=document.getElementById('ng-image-settings-cancel');
+const apply=document.getElementById('ng-image-settings-apply');
+const summary=document.getElementById('ng-image-settings-summary');
+const shapeText=document.getElementById('ng-image-shape-current');
+const aspectSelect=document.getElementById('image-aspect-select');
+const countSelect=document.getElementById('image-output-count-select');
+const generationSummary=document.getElementById('image-generation-summary');
+if(!overlay||!open||!summary)return;
+let settings={shape:aspectSelect?.value||'Auto',size:'1K',count:countSelect?.value||'1'};
+let draft={...settings};
+function setPressed(group,attr,value){
+ document.querySelectorAll(group+' ['+attr+']').forEach(button=>button.setAttribute('aria-pressed',String(button.getAttribute(attr)===value)));
+}
+function syncControls(){
+ if(aspectSelect){aspectSelect.value=settings.shape;aspectSelect.dispatchEvent(new Event('change',{bubbles:true}));}
+ if(countSelect){countSelect.value=settings.count;countSelect.dispatchEvent(new Event('change',{bubbles:true}));}
+}
+function render(){
+ summary.textContent=settings.shape+' · '+settings.size+' · ×'+settings.count;
+ shapeText.textContent=settings.shape+(settings.shape==='Auto'?' · 1:1':'');
+ setPressed('#ng-image-shape-options','data-shape',settings.shape);
+ setPressed('#ng-image-size-options','data-size',settings.size);
+ setPressed('#ng-image-count-options','data-count',settings.count);
+ syncControls();
+}
+function show(){
+ draft={...settings};
+ setPressed('#ng-image-shape-options','data-shape',draft.shape);
+ setPressed('#ng-image-size-options','data-size',draft.size);
+ setPressed('#ng-image-count-options','data-count',draft.count);
+ overlay.classList.remove('hidden');
+ document.body.style.overflow='hidden';
+ close?.focus();
+}
+function hide(){
+ overlay.classList.add('hidden');
+ document.body.style.overflow='';
+ open.focus();
+}
+open.addEventListener('click',show);
+close?.addEventListener('click',hide);
+cancel?.addEventListener('click',hide);
+overlay.addEventListener('click',event=>{if(event.target===overlay)hide();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!overlay.classList.contains('hidden'))hide();});
+document.querySelectorAll('#ng-image-shape-options [data-shape]').forEach(button=>button.addEventListener('click',()=>{
+ draft.shape=button.dataset.shape;
+ setPressed('#ng-image-shape-options','data-shape',draft.shape);
+ shapeText.textContent=draft.shape+(draft.shape==='Auto'?' · 1:1':'');
+}));
+document.querySelectorAll('#ng-image-size-options [data-size]').forEach(button=>button.addEventListener('click',()=>{
+ draft.size=button.dataset.size;
+ setPressed('#ng-image-size-options','data-size',draft.size);
+}));
+document.querySelectorAll('#ng-image-count-options [data-count]').forEach(button=>button.addEventListener('click',()=>{
+ draft.count=button.dataset.count;
+ setPressed('#ng-image-count-options','data-count',draft.count);
+}));
+apply?.addEventListener('click',()=>{
+ settings={...draft};
+ render();
+ if(generationSummary)generationSummary.innerHTML='<span>Settings applied</span><strong>'+settings.shape+' · '+settings.size+' · ×'+settings.count+'</strong>';
+ hide();
+});
+render();
+})();</script>
+<script id="nextgen-feature-auto-tool-routing-v1">
+(function(){
+ const featureTools={
+  'Image Generate':['Text to Image','Image Editing','Image Enhancement','Background Removal','Image Upscaling'],
+  'Video Generate':['Text to Video','Cinematic Video','Short Video / Reels','Long-form Video','AI Dance Video'],
+  'Image to Video':['Image Animation','Character Motion','Camera Motion','Cinematic Image to Video'],
+  'Text to Video':['Prompt to Video','Story to Video','Scene-by-Scene Video','Cinematic Text to Video'],
+  'Text to Videos':['Prompt to Video','Story to Video','Scene-by-Scene Video','Cinematic Text to Video'],
+  'Audio / Music Generate':['Text to Music','Song Generation','Instrumental Music','Voice Generation','Sound Effects'],
+  'AI Video Editor':['AI Video Editing','Timeline Editing','Effects & Transitions','Auto Captions'],
+  'Image to Video':['Image Animation','Character Motion','Camera Motion','Cinematic Image to Video'],
+  'Text to Video':['Prompt to Video','Story to Video','Scene-by-Scene Video','Cinematic Text to Video'],
+  'Video Extender':['Video Extension','Continue Scene','Extend Duration'],
+  'Text to Music':['Text to Music','Song Generation','Instrumental Music','Sound Effects'],
+  'Music to Video':['Music Visualization','Audio Reactive Video','Music Video Creation'],
+  'Text to Dance':['Text to Dance','AI Dance Video','Dance Motion Generation'],
+  'Text 2 Dance':['Text to Dance','AI Dance Video','Dance Motion Generation'],
+  'Upscale 4K / 8K':['Video Upscaling','4K Enhancement','8K Enhancement'],
+  'More Features':['Video Editing','Video Extension','Video Upscaling','Clip Joining','Subtitle & Caption Tools']
+ };
+ let activeFeature='Video Generate';
+ function setFeature(feature){
+  activeFeature=featureTools[feature]?feature:'Video Generate';
+  document.querySelectorAll('[data-ng-feature-title]').forEach(el=>el.textContent=activeFeature);
+  const select=document.getElementById('ng-manual-tool');
+  if(select){select.innerHTML='';featureTools[activeFeature].forEach(tool=>{const option=document.createElement('option');option.value=tool;option.textContent=tool;select.append(option);});}
+  document.querySelectorAll('[data-ng-feature-context]').forEach(el=>el.textContent='Feature selected: '+activeFeature);
+ }
+ function addPanel(viewId){
+  const view=document.getElementById(viewId);if(!view||view.querySelector('.ng-feature-routing'))return;
+  const panel=document.createElement('div');panel.className='panel ng-feature-routing';panel.style.marginBottom='14px';
+  panel.innerHTML='<h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong data-ng-feature-title style="font-size:15px;color:#fff">Video Generate</strong></div><div class="field"><label>AI ENGINE</label><select class="ng-engine-mode"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Tool Selection</option></select></div><div class="field ng-manual-wrap" hidden><label>CHOOSE TOOL</label><select class="ng-manual-tool"></select></div><small data-ng-feature-context style="color:#9ba8c3">Feature selected: Video Generate. Provider and model details are managed privately by NextGen AI.</small>';
+  view.insertBefore(panel,view.firstChild);
+  const engine=panel.querySelector('.ng-engine-mode'),wrap=panel.querySelector('.ng-manual-wrap'),toolSelect=panel.querySelector('.ng-manual-tool');
+  engine.addEventListener('change',()=>{wrap.hidden=engine.value!=='manual';});
+  panel._setFeature=function(feature){panel.querySelector('[data-ng-feature-title]').textContent=feature;panel.querySelector('[data-ng-feature-context]').textContent='Feature selected: '+feature+'. Provider and model details are managed privately by NextGen AI.';toolSelect.innerHTML='';(featureTools[feature]||featureTools['More Features']).forEach(tool=>{const o=document.createElement('option');o.value=tool;o.textContent=tool;toolSelect.append(o);});};
+  panel._setFeature(activeFeature);
+ }
+ addPanel('view-discover');addPanel('view-imagine');addPanel('view-tools');
+ document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{
+  const label=card.innerText.trim().replace(/\s+/g,' ');
+  const feature=label==='Photos'?'Image Generate':label==='Videos'?'Video Generate':label==='Audio / Music'?'Audio / Music Generate':label==='Text History'?'More Features':label;
+  setFeature(feature);
+  document.querySelectorAll('.ng-feature-routing').forEach(panel=>panel._setFeature&&panel._setFeature(activeFeature));
+ }));
+
+ 
+ setFeature(activeFeature);
+ const featureParam=new URLSearchParams(window.location.search).get('feature');
+ if(featureParam!==null){
+  const homeFeatureNames=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text 2 Dance','Upscale 4K / 8K'];
+  const homeFeatureIndex=/^\d+$/.test(featureParam)?Number(featureParam):-1;
+  const selectedFeature=homeFeatureIndex>=0&&homeFeatureIndex<homeFeatureNames.length?homeFeatureNames[homeFeatureIndex]:featureParam;
+  if(featureTools[selectedFeature]){
+   setFeature(selectedFeature);
+   document.querySelectorAll('.ng-feature-routing').forEach(panel=>panel._setFeature&&panel._setFeature(activeFeature));
+   const targetView=selectedFeature==='Image Generate'?'imagine':(['Text to Music','Upscale 4K / 8K'].includes(selectedFeature)?'tools':'discover');
+   document.getElementById('studio-workspace')?.classList.remove('hidden');
+   document.querySelectorAll('.view').forEach(view=>view.classList.toggle('hidden',view.id!=='view-'+targetView));
+   document.querySelectorAll('[data-view]').forEach(button=>button.classList.toggle('active',button.dataset.view===targetView));
+   const pageTitle=document.getElementById('view-title');if(pageTitle){let titleSpan=pageTitle.querySelector('.ng-title-gradient');if(!titleSpan){titleSpan=document.createElement('span');titleSpan.className='ng-title-gradient';pageTitle.replaceChildren(titleSpan);}titleSpan.setAttribute('style','background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;text-shadow:0 0 1px rgba(255,255,255,.95),0 0 5px rgba(255,255,255,.42);');titleSpan.textContent='AI Studio';}
+  }
+ }
+})();
+</script>
+<script id="nextgen-create-project-to-ai-studio-v1">
+(function(){
+ document.querySelectorAll('.reference-studio-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+   const title=card.querySelector('.reference-card-title')?.textContent?.trim();
+   if(title) window.location.href='./ai-studio.html?feature='+encodeURIComponent(title);
+  });
+ });
+})();
+</script>
+
+<script id="nextgen-dynamic-feature-heading-v1">
+(function(){
+ const params=new URLSearchParams(location.search);
+ const raw=params.get('feature');
+ const names=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text 2 Dance','Upscale 4K / 8K'];
+ const feature=raw!==null&&/^\d+$/.test(raw)?(names[Number(raw)]||'AI Studio'):(raw||'AI Studio');
+ const descriptions={
+  'AI Video Editor':'Edit videos with AI tools and effects.',
+  'Image to Video':'Turn a still image into an animated video.',
+  'Text to Video':'Generate high-quality videos from a text prompt using AI.',
+   'Text to Videos':'Create videos from text prompts using AI.',
+  'Video Extender':'Make your video longer with AI.',
+  'Text to Music':'Create original music from a text prompt.',
+  'Text 2 Dance':'Generate dance videos from text prompts.',
+  'Music to Video':'Create videos that match your music.',
+  'Text to Dance':'Generate dance videos from text.',
+  'Upscale 4K / 8K':'Enhance video quality to 4K or 8K where supported.',
+  'Image Generate':'Create images from a text prompt.'
+ };
+ const title=document.getElementById('view-title');
+ const back=document.getElementById('studio-home-back');
+ const subtitle=document.getElementById('view-subtitle');
+ function applyTitle(){
+  if(title){let titleSpan=title.querySelector('.ng-title-gradient');if(!titleSpan){titleSpan=document.createElement('span');titleSpan.className='ng-title-gradient';title.replaceChildren(titleSpan);}titleSpan.setAttribute('style','background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;display:inline-block;text-shadow:0 0 1px rgba(255,255,255,.95),0 0 5px rgba(255,255,255,.42);');titleSpan.textContent=feature;}
+  if(back){back.textContent='×';back.setAttribute('aria-label','Close AI Studio');back.setAttribute('title','Close');back.classList.add('studio-close-button');}
+  if(subtitle&&descriptions[feature])subtitle.textContent=descriptions[feature];
+ }
+ applyTitle();
+ document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',applyTitle));
+})();
+</script>
+
+
+
+
+
+<style id="ng-ai-studio-all-page-panel-borders-final">
+/* All feature pages are siblings of #studio-workspace.
+   Remove the visible outlines on every full-size content panel, including
+   the dynamically inserted Creation Setup panel. Do not touch form controls. */
+body .studio ~ .view .panel,
+body .studio .view .panel,
+body .view .panel,
+body .view .ng-feature-routing,
+body .view .studio-grid > .panel,
+body .view .panel.ng-feature-routing {
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style>
+
+<script id="nextgen-ai-studio-full-page-borderless-runtime-v4">
+(function(){
+ function clearOuterBorders(){
+  document.querySelectorAll('.studio section.view .panel,.studio section.view .ng-feature-routing,.studio #studio-workspace .studio-reference-header').forEach(function(el){
+   el.style.setProperty('border','0','important');
+   el.style.setProperty('outline','0','important');
+   el.style.setProperty('box-shadow','none','important');
+  });
+ }
+ clearOuterBorders();
+ var root=document.querySelector('.studio');
+ if(root&&window.MutationObserver)new MutationObserver(clearOuterBorders).observe(root,{childList:true,subtree:true});
+})();
+</script>
+
+<style id="nextgen-text-to-video-header-bottom-gap-fix-v1">
+/* Text to Video only: set the flow space below the unchanged fixed header to target a 20px visual gap. */
+@media(max-width:700px){
+  html body #studio-workspace.ng-text-to-video-view{
+    height:97px!important;
+    min-height:97px!important;
+  }
+}
+</style>
+
+<style id="nextgen-text-to-video-mobile-fields-stack-v1">
+/* Text to Video mobile only: stack paired generation settings so controls keep natural height. */
+@media(max-width:700px){
+  .studio:has(#studio-workspace.ng-text-to-video-view) #view-discover .two{
+    grid-template-columns:minmax(0,1fr)!important;
+    align-items:start!important;
+  }
+  .studio:has(#studio-workspace.ng-text-to-video-view) #view-discover .two > .field{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
+</style>
+
+<style id="nextgen-feature-workspace-routing-fix-v1">
+@media(max-width:700px){
+  #view-tools .studio-grid,#view-tools .two{grid-template-columns:minmax(0,1fr)!important}
+}
+</style>
+<script id="nextgen-feature-workspace-routing-fix-v1">
+(function(){
+ const params=new URLSearchParams(location.search);
+ const rawFeature=params.get('feature');
+ if(!rawFeature)return;
+ const numericFeatureNames=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text 2 Dance','Upscale 4K / 8K'];
+ const feature=/^\d+$/.test(rawFeature)?(numericFeatureNames[Number(rawFeature)]||rawFeature):rawFeature;
+ const title=document.querySelector('#view-title .ng-title-gradient');
+ const subtitle=document.getElementById('view-subtitle');
+ const views=[...document.querySelectorAll('.view')];
+ const discover=document.getElementById('view-discover');
+ const tools=document.getElementById('view-tools');
+ const imagine=document.getElementById('view-imagine');
+ const workspace=document.getElementById('studio-workspace');
+ const desc={
+  'AI Video Editor':'Edit and refine an existing video with AI tools.',
+  'Image to Video':'Turn a still image into an animated video.',
+  'Text to Video':'Generate high-quality videos from a text prompt using AI.',
+  'Text to Videos':'Create videos from text prompts using AI.',
+  'Video Extender':'Extend an existing video with AI.',
+  'Text to Music':'Create original music from a text prompt.',
+  'Text 2 Dance':'Generate dance videos from text prompts.',
+  'Music to Video':'Create a video that follows your music.',
+  'More Features':'Explore additional creative tools.'
+ };
+ if(title)title.textContent=feature;
+ if(subtitle&&desc[feature])subtitle.textContent=desc[feature];
+ if(workspace)workspace.classList.remove('hidden');
+ const showView=id=>views.forEach(v=>v.classList.toggle('hidden',v.id!==id));
+ if(feature==='Image Generate'){showView('view-imagine');return;}
+ if(feature==='AI Video Editor'){
+  showView('view-tools');
+  const panel=tools?.querySelector('.panel');
+  if(panel){
+   const h=panel.querySelector('h2');if(h)h.textContent='AI Video Editor';
+   const uploadLabel=panel.querySelector('label.upload');
+   if(uploadLabel){uploadLabel.innerHTML='＋ <span><strong>Select video to edit</strong><br>Upload an MP4, MOV or supported video</span>';}
+   const editLabel=panel.querySelector('label[for="edit-video"]');
+   if(editLabel)editLabel.textContent='SOURCE VIDEO';
+   const notice=panel.querySelector('.notice');
+   if(notice)notice.textContent='Editing controls are a prototype. Video processing and export require the AI Video Editor provider workflow to be connected.';
+  }
+  return;
+ }
+ if(feature==='Text to Music'){
+  showView('view-tools');
+  if(tools){
+   tools.innerHTML='<div class="panel"><h2>Music Creation Setup</h2><div class="field"><label>DESCRIBE YOUR MUSIC</label><textarea id="ng-music-prompt" maxlength="3000" placeholder="Describe the style, mood, instruments, tempo and vocals..."></textarea></div><div class="two"><div class="field"><label>GENRE</label><select id="ng-music-genre"><option>Auto</option><option>Pop</option><option>Electronic</option><option>Classical</option><option>Hip-Hop</option><option>Rock</option><option>Ambient</option><option>Folk</option></select></div><div class="field"><label>MOOD</label><select id="ng-music-mood"><option>Auto</option><option>Happy</option><option>Calm</option><option>Emotional</option><option>Epic</option><option>Dark</option><option>Energetic</option></select></div></div><div class="field"><label>VOCALS</label><select id="ng-music-vocals"><option>Auto</option><option>Instrumental</option><option>With vocals</option><option>Female voice</option><option>Male voice</option></select></div><div class="field"><label>REFERENCE AUDIO (OPTIONAL)</label><label class="upload" for="ng-music-reference"><span>＋</span><span><strong>Choose audio</strong><br>MP3, WAV or supported audio</span></label><input id="ng-music-reference" type="file" accept="audio/*"><div id="ng-music-reference-name" class="file-preview"></div></div><div class="field"><label>DURATION</label><select id="ng-music-duration"><option>Auto</option><option>30 seconds</option><option>60 seconds</option><option>90 seconds</option><option>120 seconds</option></select></div><div class="field"><label>GENERATION STATUS</label><div class="status-line"><span>Ready to configure</span><strong>Not submitted</strong></div></div><button type="button" class="primary" disabled aria-disabled="true">Music Generation — Provider Not Connected</button><div class="notice">Prototype only. Music generation is not active until an authorized provider and verified credit rates are connected.</div></div>';
+   const file=tools.querySelector('#ng-music-reference'),name=tools.querySelector('#ng-music-reference-name');
+   file?.addEventListener('change',()=>{if(name)name.textContent=file.files?.[0]?.name||'';});
+  }
+  return;
+ }
+ if(feature==='More Features'){
+  showView('view-tools');
+  if(tools){
+   const panel=tools.querySelector('.panel');
+   if(panel){
+    const h=panel.querySelector('h2');if(h)h.textContent='More Features';
+    const upload=panel.querySelector('label[for="edit-video"]');
+    if(upload)upload.innerHTML='＋ <span><strong>Choose a source file</strong><br>Select media for a supported additional tool</span>';
+    const notice=panel.querySelector('.notice');
+    if(notice)notice.textContent='Additional tools are shown as a prototype catalogue. Processing and exports are not active until their providers are connected.';
+   }
+  }
+  return;
+ }
+ showView('view-discover');
+ const file=document.getElementById('reference-file');
+ const upload=document.querySelector('label[for="reference-file"]');
+ const label=discover?.querySelector('.field label[for="reference-file"]');
+ const promptLabel=discover?.querySelector('label[for="main-prompt"]')||discover?.querySelector('#main-prompt')?.previousElementSibling;
+ const prompt=document.getElementById('main-prompt');
+ const modes=[...document.querySelectorAll('[data-mode]')];
+ if(feature==='Video Extender'){
+  if(file)file.accept='video/*';
+  if(upload)upload.innerHTML='<span>＋</span><span><strong>Choose existing video</strong><br>Upload the clip you want to extend</span>';
+  if(label)label.textContent='VIDEO TO EXTEND';
+  if(promptLabel)promptLabel.textContent='HOW SHOULD THE VIDEO CONTINUE?';
+  if(prompt)prompt.placeholder='Describe how the scene should continue, including motion, setting and visual continuity...';
+  const starter=discover?.querySelector('#prompt-starters');if(starter)starter.closest('.field')?.classList.add('hidden');
+ }
+ if(feature==='Music to Video'){
+  if(file)file.accept='audio/*';
+  if(upload)upload.innerHTML='<span>＋</span><span><strong>Choose music or audio</strong><br>Upload MP3, WAV or supported audio</span>';
+  if(label)label.textContent='MUSIC / AUDIO INPUT';
+  if(promptLabel)promptLabel.textContent='DESCRIBE YOUR MUSIC VIDEO';
+  if(prompt)prompt.placeholder='Describe the visuals, scenes, style and motion that should match your music...';
+  const starter=discover?.querySelector('#prompt-starters');if(starter)starter.closest('.field')?.classList.add('hidden');
+  modes.forEach(b=>{b.classList.toggle('active',b.dataset.mode==='video');});
+ }
+})();
+</script>
+<script id="nextgen-feature-name-only-header-v1">
+(function(){
+ const names=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text 2 Dance','Upscale 4K / 8K'];
+ function apply(){
+  const raw=new URLSearchParams(location.search).get('feature');
+  if(raw===null)return;
+  const isNumeric=/^\d+$/.test(raw);
+  const feature=isNumeric?(names[Number(raw)]||'AI Studio'):raw;
+  if(isNumeric&&feature!=='AI Studio'){
+   const url=new URL(location.href);
+   url.searchParams.set('feature',feature);
+   history.replaceState(null,'',url.pathname+url.search+url.hash);
+  }
+  const title=document.querySelector('#view-title .ng-title-gradient');
+  if(title)title.textContent=feature;
+  const selected=document.querySelector('[data-ng-feature-title]');
+  if(selected)selected.textContent=feature;
+  const context=document.querySelector('[data-ng-feature-context]');
+  if(context)context.textContent='Feature selected: '+feature+'. Provider and model details are managed privately by NextGen AI.';
+  const subtitle=document.getElementById('view-subtitle');
+  const descriptions={'AI Video Editor':'Edit and refine an existing video with AI tools.','Image to Video':'Turn a still image into an animated video.','Text to Video':'Generate high-quality videos from a text prompt using AI.','Video Extender':'Extend an existing video with AI.','Text to Music':'Create original music from a text prompt.','Music to Video':'Create a video that follows your music.','Text 2 Dance':'Generate dance videos from text prompts.','Upscale 4K / 8K':'Enhance video quality to 4K or 8K where supported.'};
+  if(subtitle&&descriptions[feature])subtitle.textContent=descriptions[feature];
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);
+ else apply();
+ window.addEventListener('pageshow',apply);
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+<style id="nextgen-studio-header-text-size-v2">
+/* Slightly enlarge only the requested header text; keep layout and spacing unchanged. */
+#studio-workspace .studio-reference-badge{font-size:18px!important}
+#studio-workspace #view-title{font-size:clamp(25px,6.1vw,28px)!important}
+#studio-workspace .studio-workspace-subtitle{font-size:13px!important}
+#studio-gallery-open.studio-gallery-action{font-size:14px!important}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-badge{font-size:17px!important}
+ #studio-workspace #view-title{font-size:25px!important}
+ #studio-workspace .studio-workspace-subtitle{font-size:12px!important}
+ #studio-gallery-open.studio-gallery-action{font-size:13px!important}
+}
+</style>
+
+
+<style id="nextgen-studio-badge-no-background-title-white-v1">
+/* Remove the badge background from NextGen Studio and make the feature headline white. */
+#studio-workspace .studio-reference-badge{
+  background:none!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#ffffff!important;
+}
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title,
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title > .ng-title-gradient{
+  background:none!important;
+  background-image:none!important;
+  background-color:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
+</style>
+
+
+<style id="nextgen-studio-brand-text-colors-corrected-v2">
+/* NextGen wordmark remains multicolour; Studio is green. Feature headline is solid white. */
+#studio-workspace .studio-reference-badge{
+  background:none!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#ffffff!important;
+}
+#studio-workspace .studio-reference-badge .ng-nextgen-word{
+  background:linear-gradient(100deg,#00eaff 0%,#087cff 42%,#3435f5 68%,#ed16e8 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  color:#39e879!important;
+  -webkit-text-fill-color:#39e879!important;
+}
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title,
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title > .ng-title-gradient{
+  background:none!important;
+  background-image:none!important;
+  background-color:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
+</style>
+<script id="nextgen-studio-badge-wordmark-correct-v2">
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-nextgen-word">NextGen</span>&nbsp;<span class="ng-studio-word">Studio</span>';}})();
+</script>
+
+
+<style id="nextgen-wordmark-reference-color-v3">
+#studio-workspace .studio-reference-badge .ng-next-word{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  background:none!important;
+  background-image:none!important;
+}
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  background:linear-gradient(105deg,#00eaff 0%,#00bfff 35%,#087cff 62%,#352cff 78%,#ed16e8 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  color:#39e879!important;
+  -webkit-text-fill-color:#39e879!important;
+}
+</style>
+<script id="nextgen-wordmark-reference-color-script-v3">
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span>&nbsp;<span class="ng-studio-word">Studio</span>';}})();
+</script>
+
+
+<style id="nextgen-studio-wordmark-text-size-v4">
+/* Increase only the NextGen Studio wordmark text size; preserve its colors and layout. */
+#studio-workspace .studio-reference-badge{
+  font-size:22px!important;
+  line-height:1.15!important;
+}
+@media(max-width:420px){
+  #studio-workspace .studio-reference-badge{
+    font-size:20px!important;
+  }
+}
+</style>
+
+
+<style id="nextgen-studio-wordmark-reference-style-v5">
+#studio-workspace .studio-reference-badge .ng-studio-main{
+  color:#28108f!important;
+  -webkit-text-fill-color:#28108f!important;
+  background:none!important;
+  background-image:none!important;
+  font-weight:900!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-o{
+  color:#ed174c!important;
+  -webkit-text-fill-color:#ed174c!important;
+  font-weight:900!important;
+}
+</style>
+<script id="nextgen-studio-wordmark-reference-script-v5">
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span>&nbsp;<span class="ng-studio-main">Studi</span><span class="ng-studio-o">o</span>';}})();
+</script>
+
+
+<style id="nextgen-studio-wordmark-size-30px-v6">
+#studio-workspace .studio-reference-badge{
+  font-size:30px!important;
+  line-height:1.1!important;
+}
+@media(max-width:420px){
+  #studio-workspace .studio-reference-badge{
+    font-size:30px!important;
+  }
+}
+</style>
+
+
+<style id="nextgen-studio-brand-individual-sizes-v5">
+#studio-workspace .studio-reference-badge{
+  font-size:22px!important;
+}
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  font-size:25px!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  font-size:22px!important;
+}
+@media(max-width:420px){
+  #studio-workspace .studio-reference-badge .ng-next-word,
+  #studio-workspace .studio-reference-badge .ng-gen-word{font-size:25px!important}
+  #studio-workspace .studio-reference-badge .ng-studio-word{font-size:22px!important}
+}
+</style>
+
+
+<style id="nextgen-wordmark-position-studio-white-bg-v6">
+/* Nudge only the NextGen word left; give only Studio a white background. */
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  position:relative!important;
+  left:-4px!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  display:inline-block!important;
+  background:#ffffff!important;
+  color:#159447!important;
+  -webkit-text-fill-color:#159447!important;
+  padding:2px 6px!important;
+  border-radius:4px!important;
+  line-height:1.15!important;
+  vertical-align:middle!important;
+}
+</style>
+
+
+<style id="nextgen-text-to-video-headline-solid-white-v1">
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title,
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title > .ng-title-gradient{
+  background:none!important;
+  background-image:none!important;
+  background-color:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
+</style>
+
+
+<style id="nextgen-wordmark-left-shift-5px-v7">
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  left:-5px!important;
+}
+</style>
+
+
+<style id="nextgen-studio-wordmark-reference-style-v5">
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  display:inline-block!important;
+  padding:0 5px!important;
+  border-radius:3px!important;
+  background:#ffffff!important;
+  color:#241080!important;
+  -webkit-text-fill-color:#241080!important;
+  font-size:22px!important;
+  line-height:1.15!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word .ng-studio-o{
+  color:#ed174c!important;
+  -webkit-text-fill-color:#ed174c!important;
+}
+</style>
+<script id="nextgen-studio-wordmark-reference-style-script-v5">
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){const next=badge.querySelector('.ng-next-word');const gen=badge.querySelector('.ng-gen-word');badge.innerHTML=(next?next.outerHTML:'<span class="ng-next-word">Next</span>')+(gen?gen.outerHTML:'<span class="ng-gen-word">Gen</span>')+'&nbsp;<span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span>';}})();
+</script>
+
+
+<style id="nextgen-studio-wordmark-separate-sizes-v6">
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word{
+  font-size:25px!important;
+  line-height:1.15!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  font-size:22px!important;
+  line-height:1.15!important;
+}
+</style>
+
+
+<style id="nextgen-studio-wordmark-left-shift-v1">
+/* Shift only the NextGen Studio wordmark slightly to the left. */
+#studio-workspace .studio-reference-badge{
+  transform:translateX(-8px)!important;
+}
+</style>
+
+
+<style id="nextgen-studio-wordmark-left-shift-v2">
+#studio-workspace .studio-reference-badge{
+  transform:translateX(-6px)!important;
+}
+</style>
+
+
+<style id="nextgen-wordmark-exact-font-sizes-v7">
+html body #studio-workspace .studio-reference-header .studio-reference-topline .studio-reference-badge .ng-next-word,
+html body #studio-workspace .studio-reference-header .studio-reference-topline .studio-reference-badge .ng-gen-word{
+  font-size:25px!important;
+  line-height:1.15!important;
+}
+html body #studio-workspace .studio-reference-header .studio-reference-topline .studio-reference-badge .ng-studio-word,
+html body #studio-workspace .studio-reference-header .studio-reference-topline .studio-reference-badge .ng-studio-word .ng-studio-o{
+  font-size:20px!important;
+  line-height:1.15!important;
+}
+</style>
+
+
+<style id="nextgen-studio-wordmark-left-shift-v3">
+#studio-workspace .studio-reference-badge{
+  transform:translateX(-5px)!important;
+}
+</style>
+
+
+<script id="nextgen-wordmark-force-visible-sizes-v8">
+(function(){
+  function applyWordmarkSizes(){
+    const badge=document.querySelector('#studio-workspace .studio-reference-badge');
+    if(!badge)return;
+    let next=badge.querySelector('.ng-next-word');
+    let gen=badge.querySelector('.ng-gen-word');
+    let studio=badge.querySelector('.ng-studio-word');
+    if(!next||!gen||!studio){
+      badge.innerHTML='<span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span>&nbsp;<span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span>';
+      next=badge.querySelector('.ng-next-word');
+      gen=badge.querySelector('.ng-gen-word');
+      studio=badge.querySelector('.ng-studio-word');
+    }
+    [next,gen].forEach(el=>{
+      el.style.setProperty('font-size','28px','important');
+      el.style.setProperty('line-height','1.15','important');
+      el.style.setProperty('display','inline-block','important');
+    });
+    [studio,studio.querySelector('.ng-studio-o')].filter(Boolean).forEach(el=>{
+      el.style.setProperty('font-size','14px','important');
+      el.style.setProperty('line-height','1.15','important');
+      el.style.setProperty('display','inline-block','important');
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyWordmarkSizes);
+  else applyWordmarkSizes();
+  window.addEventListener('pageshow',applyWordmarkSizes);
+})();
+</script>
+
+
+<style id="nextgen-studio-wordmark-refinement-v9">
+/* Nudge the complete wordmark slightly downward; refine the Studio label. */
+#studio-workspace .studio-reference-badge{
+  transform:translate(-5px,2px)!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word,
+#studio-workspace .studio-reference-badge .ng-studio-word .ng-studio-o{
+  font-size:18px!important;
+  line-height:1.2!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  padding:0.5px 5px!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  border-radius:6px!important;
+  background:linear-gradient(180deg,#ffffff 0%,#edf3ff 100%)!important;
+  color:#241080!important;
+  -webkit-text-fill-color:#241080!important;
+  box-shadow:0 2px 7px rgba(0,0,0,.22)!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word .ng-studio-o{
+  color:#ed174c!important;
+  -webkit-text-fill-color:#ed174c!important;
+}
+</style>
+
+
+<style id="nextgen-wordmark-gap-and-size-v10">
+#studio-workspace .studio-reference-badge .ng-studio-word{
+  margin-left:-7px!important;
+  padding:0px 5px!important;
+  font-size:14px!important;
+  position:relative!important;
+  top:0.5px!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-word .ng-studio-o{
+  font-size:14px!important;
+}
+</style>
+
+
+<style id="nextgen-text-to-video-heading-and-controls-v1">
+/* Requested typography refinements; leave the existing layout and other features unchanged. */
+#studio-workspace #studio-gallery-open.studio-gallery-action{
+  font-size:15px!important;
+  transform:translateX(-3px)!important;
+}
+#studio-workspace #view-subtitle.studio-workspace-subtitle{
+  font-size:11px!important;
+}
+#studio-workspace.ng-text-to-video-view #view-title{
+  background:none!important;
+  -webkit-background-clip:initial!important;
+  background-clip:initial!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+}
+</style>
+<script id="nextgen-text-to-video-heading-white-v1">
+(function(){
+  function apply(){
+    const workspace=document.getElementById('studio-workspace');
+    if(!workspace)return;
+    const feature=new URLSearchParams(location.search).get('feature');
+    workspace.classList.toggle('ng-text-to-video-view',feature==='Text to Video');
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);
+  else apply();
+  window.addEventListener('pageshow',apply);
+})();
+</script>
+
+
+<style id="nextgen-text-to-video-inner-title-force-white-v2">
+/* The feature title is rendered inside .ng-title-gradient with inline gradient styles.
+   Override the inner span itself so Text to Video displays in solid white. */
+html body #studio-workspace.ng-text-to-video-view .studio-reference-header .studio-reference-titleline h2#view-title > span.ng-title-gradient{
+  background:none!important;
+  background-image:none!important;
+  background-color:transparent!important;
+  -webkit-background-clip:initial!important;
+  background-clip:initial!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+</style>
+
+
+<style id="nextgen-text-to-video-fresh-elegant-v1">
+/* Fresh & Elegant: teal-to-emerald title treatment on the Text to Video feature only. */
+html body #studio-workspace.ng-text-to-video-view .studio-reference-header .studio-reference-titleline h2#view-title > span.ng-title-gradient{
+  background:linear-gradient(100deg,#48E5C0 0%,#20C997 52%,#8BE9D0 100%)!important;
+  background-image:linear-gradient(100deg,#48E5C0 0%,#20C997 52%,#8BE9D0 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  text-shadow:0 0 8px rgba(72,229,192,.18)!important;
+  filter:none!important;
+}
+</style>
+
+<!-- nextgen-ai-studio-live-final-typography-v2: final override placed after every legacy header override -->
+<style id="nextgen-ai-studio-live-final-typography-v2">
+html body #studio-workspace .studio-reference-badge,
+html body #studio-workspace .studio-reference-badge .ng-next-word,
+html body #studio-workspace .studio-reference-badge .ng-gen-word{
+  font-size:28px!important;
+  line-height:1.1!important;
+}
+html body #studio-workspace .studio-reference-badge .ng-studio-word,
+html body #studio-workspace .studio-reference-badge .ng-studio-o{
+  font-size:16px!important;
+  line-height:1.1!important;
+}
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title,
+html body #studio-workspace .studio-reference-header .studio-reference-titleline #view-title > .ng-title-gradient{
+  font-size:18px!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+html body #studio-workspace #view-subtitle.studio-workspace-subtitle{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+html body #studio-workspace #studio-gallery-open.studio-gallery-action{
+  font-size:14px!important;
+}
+html body #studio-workspace #studio-home-back.studio-close-button{
+  font-size:24px!important;
+}
+
+html body #studio-workspace.ng-text-to-video-view #view-subtitle.studio-workspace-subtitle{font-size:11px!important;}
+</style>
+<script id="nextgen-ai-studio-live-final-typography-v2-apply">
+(function(){
+  function applyFinalHeaderTypography(){
+    const root=document.getElementById('studio-workspace');
+    if(!root)return;
+    const badge=root.querySelector('.studio-reference-badge');
+    if(badge){
+      badge.style.setProperty('font-size','28px','important');
+      badge.querySelectorAll('.ng-next-word,.ng-gen-word').forEach(el=>{
+        el.style.setProperty('font-size','28px','important');
+        el.style.setProperty('line-height','1.1','important');
+      });
+      badge.querySelectorAll('.ng-studio-word,.ng-studio-o').forEach(el=>{
+        el.style.setProperty('font-size','16px','important');
+        el.style.setProperty('line-height','1.1','important');
+      });
+    }
+    const title=root.querySelector('#view-title');
+    if(title){
+      title.style.setProperty('font-size','18px','important');
+      title.style.setProperty('line-height','1.2','important');
+      const inner=title.querySelector('.ng-title-gradient');
+      if(inner){
+        inner.style.setProperty('font-size','18px','important');
+        inner.style.setProperty('line-height','1.2','important');
+      }
+    }
+    const subtitle=root.querySelector('#view-subtitle');
+    if(subtitle)subtitle.style.setProperty('font-size',root.classList.contains('ng-text-to-video-view')?'11px':'12px','important');
+    const projects=root.querySelector('#studio-gallery-open');
+    if(projects)projects.style.setProperty('font-size','14px','important');
+    const close=root.querySelector('#studio-home-back');
+    if(close)close.style.setProperty('font-size','24px','important');
+  }
+  applyFinalHeaderTypography();
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',applyFinalHeaderTypography,{once:true});
+  }else{
+    applyFinalHeaderTypography();
+  }
+  window.addEventListener('pageshow',applyFinalHeaderTypography);
+})();
+</script>
+
+
+
+<style id="nextgen-ai-studio-all-features-mobile-settings-stack-v1">
+/* All AI Studio feature pages: stack paired creation settings on mobile. */
+@media(max-width:700px){
+  body #view-discover .studio-grid .two{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    align-items:start!important;
+  }
+  body #view-discover .studio-grid .two > .field{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+  }
+  body #view-discover .studio-grid .two > .field select,
+  body #view-discover .studio-grid .two > .field input{
+    box-sizing:border-box!important;
+    width:100%!important;
+    min-height:44px!important;
+  }
+}
+</style>

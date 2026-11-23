@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextGen AI – Creative Studio</title>
+<link rel="stylesheet" href="./nextgen-shared.css?v=header-stable-20261103-v1">
+<style>
+:root{color-scheme:dark;--studio-bg:#080b18;--studio-panel:#141827;--studio-panel2:#1b2032;--studio-line:#303951;--studio-purple:#8668ff;--studio-cyan:#35d8ff}
+html,body{margin:0;min-height:100%;background:var(--studio-bg);color:#f5f7ff;font-family:Inter,system-ui,Arial,sans-serif}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
+.studio{max-width:1180px;margin:auto;padding:0 14px 28px}
+.studio-head{height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--studio-line);background:#090d1d}
+.studio-brand{display:flex;align-items:center;gap:9px;color:white;font-weight:800;font-size:18px}
+.studio-mark{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#20d9ff,#875cff 60%,#db4cff);font-weight:900;color:#071020}
+.studio-account{font-size:12px;color:#aeb8d0;border:1px solid var(--studio-line);border-radius:99px;padding:7px 11px}
+.studio-nav{display:flex;gap:7px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.studio-nav button,.chip{flex:none;border:1px solid var(--studio-line);border-radius:99px;padding:9px 15px;background:#12182a;color:#c7d0e6;font-weight:650}
+.studio-nav button.active{background:#eeeaff;color:#17132c;border-color:#eeeaff}
+.studio-hero{padding:20px 0 16px}
+.studio-hero h1{font-size:clamp(24px,5vw,34px);margin:0 0 6px;color:#fff}
+.studio-hero p{margin:0;color:#9da9c4;font-size:14px}
+.studio-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr);gap:14px;align-items:start}
+.panel{background:linear-gradient(145deg,#171d2e,#101626);border:1px solid var(--studio-line);border-radius:20px;padding:16px;min-width:0}
+.panel h2{margin:0 0 13px;color:#f5f5ff;font-size:18px}
+.mode-tabs{display:flex;gap:7px;margin-bottom:14px}
+.mode-tabs button{flex:1;border:1px solid #3a4260;border-radius:12px;background:#111729;color:#c6cce0;padding:11px 8px;font-weight:700}
+.mode-tabs button.active{background:#7659ed;color:#fff;border-color:#927cff}
+.field{display:grid;gap:7px;margin:12px 0}
+.field label{font-size:12px;font-weight:700;color:#aeb8d0}
+.field textarea,.field input,.field select{width:100%;min-height:44px;border:1px solid #39435c;border-radius:12px;background:#0b1120;color:#f6f7ff;padding:11px 12px;font:inherit}
+.field textarea{min-height:104px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.upload{display:flex;align-items:center;justify-content:center;gap:10px;min-height:88px;border:1.5px dashed #566080;border-radius:14px;background:#10172a;color:#c9d3e9;text-align:center;padding:12px}
+.upload input{display:none}
+.upload strong{color:#fff}
+.file-preview{display:flex;align-items:center;gap:10px;margin-top:8px;color:#b9c6dc;font-size:12px;overflow-wrap:anywhere}
+.file-preview img,.file-preview video{width:74px;height:58px;object-fit:cover;border-radius:9px;background:#080d19}
+.primary{width:100%;min-height:48px;border:0;border-radius:14px;background:linear-gradient(100deg,#6651df,#9466ff);color:white;font-weight:800;font-size:15px}
+.secondary{border:1px solid #414b67;border-radius:12px;background:#171f33;color:#e1e7f5;padding:10px 12px;font-weight:650}
+.notice{margin-top:12px;padding:11px 12px;border-radius:12px;background:#29233c;border:1px solid #514078;color:#cfc6f7;font-size:12px;line-height:1.5}
+.model-list{display:grid;gap:8px}
+.model{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px;border:1px solid #303951;border-radius:13px;background:#101626}
+.model b{font-size:13px;color:#f3f5ff}
+.model small{display:block;color:#9ba8c3;font-size:11px;margin-top:3px}
+.model em{font-style:normal;color:#a995ff;font-size:11px}
+.section{margin-top:16px}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.tool{padding:13px;border:1px solid #303951;border-radius:14px;background:#101626}
+.tool b{display:block;font-size:13px;color:#f3f5ff}
+.tool span{display:block;font-size:11px;color:#9ba8c3;margin-top:4px;line-height:1.45}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.gallery-tile{aspect-ratio:1/1;border:1px dashed #424d69;border-radius:13px;background:linear-gradient(145deg,#182039,#0d1322);display:grid;place-items:center;text-align:center;padding:9px;color:#8794b1;font-size:11px}
+.hidden{display:none!important}
+.status-line{display:flex;justify-content:space-between;gap:8px;color:#aeb8d0;font-size:12px;padding:9px 0;border-bottom:1px solid #293149}
+.status-line strong{color:#f1f3ff}
+.bottom-note{margin:22px 0 0;text-align:center;color:#7885a3;font-size:11px;line-height:1.6}
+@media(max-width:760px){.studio-grid{grid-template-columns:1fr}.studio{padding:0 11px 24px}.studio-head{height:48px}.studio-hero{padding-top:17px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+
+<style id="creative-studio-enhancements-v2">
+.studio-nav{scroll-behavior:smooth;position:sticky;top:0;z-index:4;background:#080b18}
+.studio-nav button{white-space:nowrap}
+#prompt-starters .secondary{text-align:left;font-size:11px;min-height:40px}
+.field summary{list-style:none}
+.field summary::-webkit-details-marker{display:none}
+#file-preview video,#edit-preview video{max-width:100%;height:auto;max-height:220px}
+#file-preview img{object-fit:contain;background:#080d19}
+.studio-nav button:focus-visible,.secondary:focus-visible{outline:2px solid var(--studio-cyan);outline-offset:2px}
+@media(max-width:420px){.tool-grid{grid-template-columns:1fr 1fr}.two{gap:7px}.panel{padding:13px}}
+</style>
+
+<style id="creative-studio-compare-history-v3">
+#compare-models .tool{display:flex;align-items:flex-start;gap:8px;cursor:pointer}
+#compare-models .tool input{accent-color:#927cff;flex:none;margin:2px 0 0}
+#compare-models .tool b{display:inline;color:#f3f5ff}
+#compare-models .tool span{margin-left:23px}
+.history-item{padding:13px;border:1px solid #303951;border-radius:14px;background:#101626}
+.history-item p{margin:7px 0;color:#dce4f5;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.history-meta{color:#94a2bd;font-size:11px;display:flex;flex-wrap:wrap;gap:8px}
+.history-item button{margin-top:10px}
+</style>
+<style id="creative-studio-reference-layout">
+:root{--studio-bg:#020d20}
+body{background:#020d20}
+.studio{max-width:1500px;padding:0 0 28px}
+.studio-head-reference{height:120px;padding:0 44px;justify-content:flex-start;gap:28px;border-bottom:4px solid transparent;border-image:linear-gradient(90deg,#00eaff,#246dff,#cf36ff) 1;background:#020d20}
+.studio-back{color:#fff;text-decoration:none;font-size:64px;line-height:1;font-weight:300;width:58px;display:flex;align-items:center}
+.studio-head-reference h1{font-size:clamp(30px,4.5vw,64px);font-weight:800;letter-spacing:-1.8px;background:linear-gradient(100deg,#00e9f2 0%,#288cff 48%,#cf3cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+.studio-home{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;padding:50px 4.4% 60px}
+.studio-card{min-width:0;min-height:235px;border:6px solid #00e5ee;border-radius:46px;background:linear-gradient(145deg,rgba(0,218,236,.18),rgba(0,57,100,.28) 65%,rgba(0,10,30,.75));box-shadow:0 0 12px rgba(0,231,255,.65),inset 0 0 26px rgba(0,216,255,.14);color:#f7f8ff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:800 clamp(22px,3.1vw,46px)/1.15 Inter,system-ui,sans-serif;text-align:center;padding:18px 10px;cursor:pointer}
+.studio-card .studio-icon{width:90px;height:90px;display:grid;place-items:center}
+.studio-card svg{width:100%;height:100%;fill:none;stroke:#f4f5ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.studio-card .sun{fill:#ffc400;stroke:#ffc400}
+.card-video{border-color:#168fff;box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16);background:linear-gradient(145deg,rgba(0,112,255,.19),rgba(0,20,64,.75))}
+.card-video svg,.card-image-video svg{stroke:#e6b8ff}
+.card-image-video,.card-more{border-color:#c03cff;box-shadow:0 0 12px rgba(205,52,255,.75),inset 0 0 26px rgba(180,38,255,.16);background:linear-gradient(145deg,rgba(137,37,255,.22),rgba(26,7,64,.78))}
+.card-text-video{border-color:#00e5ee}
+.card-audio{border-color:#168fff;background:linear-gradient(145deg,rgba(0,100,255,.22),rgba(0,10,55,.8));box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16)}
+.card-audio svg{stroke:url(#audio-gradient);stroke-width:7}
+.studio-workspace{padding:0 4.4%}
+.studio-workspace-top{display:flex;align-items:center;gap:18px;margin:10px 0}
+.studio-workspace-top h2{font-size:clamp(22px,3vw,34px);margin:0}
+.studio-workspace-subtitle{color:#9da9c4;margin:0 0 15px}
+.studio-workspace .studio-nav{display:none}
+@media(max-width:700px){
+ .studio-head-reference{height:82px;padding:0 18px;gap:15px;border-bottom-width:3px}
+ .studio-back{font-size:48px;width:38px}
+ .studio-head-reference h1{font-size:clamp(27px,7vw,40px);letter-spacing:-.8px}
+ .studio-home{gap:14px;padding:26px 14px 36px}
+ .studio-card{min-height:158px;border-width:4px;border-radius:27px;gap:9px;font-size:clamp(15px,4.1vw,23px);padding:13px 7px}
+ .studio-card .studio-icon{width:58px;height:58px}
+ .studio-workspace{padding:0 13px}
+}
+@media(max-width:360px){.studio-home{gap:10px;padding-left:10px;padding-right:10px}.studio-card{min-height:140px;border-radius:22px;font-size:14px}}
+</style>
+<style id="create-project-reference-page-v2">
+.studio-head-reference{height:112px;padding:0 3.2%;gap:24px;justify-content:flex-start;border-bottom:5px solid transparent;border-image:linear-gradient(90deg,#00eaff,#246dff,#d52fff) 1}
+.studio-head-reference h1{font-size:clamp(34px,5vw,64px);color:#fff;background:none;-webkit-text-fill-color:#fff;letter-spacing:-1.4px;flex:1}
+.studio-back{font-size:64px;width:56px;flex:none}
+.studio-search-button{width:76px;height:76px;border:4px solid #52648f;border-radius:50%;background:rgba(8,19,44,.9);display:grid;place-items:center;flex:none;box-shadow:0 0 12px rgba(110,137,255,.25)}
+.studio-search-button svg{width:43px;height:43px;fill:none;stroke:#fff;stroke-width:2.7;stroke-linecap:round}
+.studio-search{position:absolute;right:3%;top:118px;z-index:10;width:min(360px,90%);height:48px;border:1px solid #17dff5;border-radius:14px;background:#07172e;color:#fff;padding:0 14px;font:inherit;box-shadow:0 0 14px rgba(0,222,255,.3)}
+.studio-home{padding:34px 3.3% 0;gap:22px 24px}
+.studio-card{min-height:218px;border-width:6px;border-radius:42px;gap:10px;font-size:clamp(22px,3vw,42px)}
+.studio-card .studio-icon{width:88px;height:88px}
+.studio-gallery{padding:36px 3.8% 50px}
+.studio-gallery h2{font-size:clamp(34px,4vw,58px);font-weight:800;line-height:1.1;color:#fff;margin:0 0 30px;padding:0 4px 15px;border-bottom:5px solid transparent;border-image:linear-gradient(90deg,#00eaff,#287bff,#d52fff) 1}
+.studio-gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 24px}
+.studio-gallery-grid .studio-card{min-height:205px}
+.gallery-photo{border-color:#00e5ee}
+.gallery-video{border-color:#168fff;background:linear-gradient(145deg,rgba(0,112,255,.19),rgba(0,20,64,.75));box-shadow:0 0 12px rgba(0,133,255,.7),inset 0 0 26px rgba(0,108,255,.16)}
+.gallery-audio{border-color:#c03cff;background:linear-gradient(145deg,rgba(137,37,255,.22),rgba(26,7,64,.78));box-shadow:0 0 12px rgba(205,52,255,.75),inset 0 0 26px rgba(180,38,255,.16)}
+.gallery-text{border-color:#00e5ee}
+.studio-gallery-grid .studio-card svg{stroke:#f4f5ff}
+@media(max-width:700px){
+ .studio-head-reference{height:72px;padding:0 13px;gap:12px;border-bottom-width:3px}
+ .studio-back{font-size:48px;width:34px}
+ .studio-head-reference h1{font-size:clamp(25px,7vw,36px);letter-spacing:-.8px}
+ .studio-search-button{width:48px;height:48px;border-width:2px}
+ .studio-search-button svg{width:27px;height:27px}
+ .studio-search{top:77px;right:12px}
+ .studio-home{padding:24px 12px 0;gap:13px 12px}
+ .studio-card{min-height:150px;border-width:4px;border-radius:25px;gap:8px;font-size:clamp(15px,4vw,21px);padding:12px 6px}
+ .studio-card .studio-icon{width:58px;height:58px}
+ .studio-gallery{padding:28px 13px 38px}
+ .studio-gallery h2{font-size:34px;margin-bottom:20px;padding-bottom:10px;border-bottom-width:3px}
+ .studio-gallery-grid{gap:13px 12px}
+ .studio-gallery-grid .studio-card{min-height:145px}
+}
+@media(max-width:360px){.studio-card{min-height:135px;font-size:14px;border-radius:21px}.studio-gallery-grid .studio-card{min-height:132px}}
+</style>
+<style id="create-project-reference-exact-sizing-v3">
+/* Match the supplied 1024px reference proportions at every viewport width. */
+.studio-head-reference,.studio-search-button,.studio-card,.studio-gallery-grid .studio-card{box-sizing:border-box!important}
+.studio-head-reference{height:10.9vw!important;min-height:0!important;padding:0 3.2vw!important;gap:2.5vw!important;border-bottom-width:.5vw!important}
+.studio-head-reference h1{font-size:6.25vw!important;letter-spacing:-.14vw!important}
+.studio-back{font-size:6.3vw!important;width:5.5vw!important}
+.studio-search-button{width:8vw!important;height:8vw!important;border-width:.38vw!important}
+.studio-search-button svg{width:4.5vw!important;height:4.5vw!important}
+.studio-search{top:11.5vw!important;right:3vw!important;height:5vw!important}
+.studio-home{padding:3.5vw 3.3vw 0!important;gap:2.25vw 2.35vw!important}
+.studio-card{height:21vw!important;min-height:0!important;padding:1.4vw .9vw!important;border-width:.58vw!important;border-radius:4.5vw!important;gap:1vw!important;font-size:3.95vw!important;line-height:1.12!important}
+.studio-card .studio-icon{width:8.8vw!important;height:8.8vw!important;flex:none}
+.studio-card svg{stroke-width:4.8!important}
+.card-audio svg{stroke:url(#audio-gradient)!important;stroke-width:7!important}
+.studio-gallery{padding:4.2vw 3.8vw 4.8vw!important}
+.studio-gallery h2{font-size:5.6vw!important;line-height:1.1!important;margin:0 0 3.6vw!important;padding:0 .4vw 1.2vw!important;border-bottom-width:.5vw!important}
+.studio-gallery-grid{gap:2.25vw 2.35vw!important}
+.studio-gallery-grid .studio-card{height:21vw!important;min-height:0!important}
+@media(max-width:700px){
+ .studio-head-reference{height:10.9vw!important;padding:0 3.2vw!important;gap:2.5vw!important;border-bottom-width:.5vw!important}
+ .studio-head-reference h1{font-size:6.25vw!important;letter-spacing:-.14vw!important}
+ .studio-back{font-size:6.3vw!important;width:5.5vw!important}
+ .studio-search-button{width:8vw!important;height:8vw!important;border-width:.38vw!important}
+ .studio-search-button svg{width:4.5vw!important;height:4.5vw!important}
+ .studio-search{top:11.5vw!important;right:3vw!important;height:5vw!important}
+ .studio-home{padding:3.5vw 3.3vw 0!important;gap:2.25vw 2.35vw!important}
+ .studio-card{height:21vw!important;min-height:0!important;padding:1.4vw .9vw!important;border-width:.58vw!important;border-radius:4.5vw!important;gap:1vw!important;font-size:3.95vw!important;line-height:1.12!important}
+ .studio-card .studio-icon{width:8.8vw!important;height:8.8vw!important}
+ .studio-gallery{padding:4.2vw 3.8vw 4.8vw!important}
+ .studio-gallery h2{font-size:5.6vw!important;margin:0 0 3.6vw!important;padding:0 .4vw 1.2vw!important;border-bottom-width:.5vw!important}
+ .studio-gallery-grid{gap:2.25vw 2.35vw!important}
+ .studio-gallery-grid .studio-card{height:21vw!important;min-height:0!important}
+}
+</style>
+<style id="remove-search-button-border-v1">
+.studio-search-button{
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  outline:0!important;
+}
+</style>
+<style id="search-icon-no-circle-final">
+#studio-search-button.studio-search-button,
+.studio-head-reference #studio-search-button{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  border:0!important;
+  border-color:transparent!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  outline:none!important;
+}
+#studio-search-button.studio-search-button:focus,
+#studio-search-button.studio-search-button:focus-visible,
+#studio-search-button.studio-search-button:active{
+  border:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="creative-studio-main-workspace-reference-v1">
+/* Creative Studio landing page: clean white theme with NextGen logo-gradient accents. */
+html,body{background:#ffffff!important;color:#17324d!important}
+.studio{max-width:1180px!important;margin:5px auto!important;padding:0 12px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:18px;background:#ffffff;box-shadow:0 2px 12px rgba(20,54,86,.07)}
+.reference-project-card,.reference-gallery-section{display:block;flex:none}
+.studio-reference-hidden{display:none!important}
+.studio-home-reference{display:flex!important;flex-direction:column;gap:200px;padding:10px 0 12px!important}
+.reference-intro{margin:0 0 10px!important}
+.reference-project-heading-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.reference-gallery-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;flex:none;padding:7px 13px;border:1px solid rgba(55,215,255,.55);border-radius:10px;background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f);color:#69e8ff;font:700 13px Inter,system-ui,sans-serif;cursor:pointer;box-shadow:0 0 12px rgba(0,194,255,.14)}
+.reference-gallery-button:focus-visible{outline:2px solid #69e8ff;outline-offset:3px}
+.reference-eyebrow{display:inline-block;width:max-content;max-width:100%;padding:4px 10px;border:0;border-radius:8px;background:#d9f1ff;color:#16a34a;font-size:14px;font-weight:800;line-height:1.15;box-shadow:none;letter-spacing:0;text-shadow:none}
+.reference-intro p{margin:7px 0 0!important;color:#60758a!important;font-size:clamp(12px,1.5vw,16px)!important;letter-spacing:.35px}
+.reference-studio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px;row-gap:10px}
+.reference-gallery-section{margin-top:0!important}
+.reference-gallery-title{display:inline-block;width:max-content;max-width:100%;margin:0 0 8px;padding:4px 10px;border:0;border-radius:8px;background:#d9f1ff;color:#16a34a;font-size:14px;font-weight:800;line-height:1.15;letter-spacing:0}
+.reference-studio-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important;color:#17324d;text-align:left;cursor:pointer;font:inherit}
+.reference-studio-card img{display:block;width:100%;height:clamp(110px,28vw,325px);aspect-ratio:16/9;object-fit:cover;border:0!important;border-radius:14px;background:#0b203a}
+.reference-studio-card .ng-text2dance-preview{display:block;width:100%;height:clamp(110px,28vw,325px);aspect-ratio:16/9;object-fit:cover;border:0!important;border-radius:14px;background:#0b203a}
+.reference-card-title{display:block;margin:6px 2px 0;color:#17324d;font-size:clamp(16px,2vw,23px);font-weight:750;line-height:1.18;letter-spacing:-.25px}
+.reference-card-description{display:block;margin:2px 2px 0;color:#60758a;font-size:clamp(11px,1.3vw,14px);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reference-studio-card:focus-visible{outline:2px solid #22d9f5;outline-offset:3px}
+@media(max-width:700px){
+ .studio{margin:5px 12px 12px!important;padding:0 0 12px!important}
+ .studio-home-reference{padding:9px 0 9px!important}
+ .reference-intro{margin-bottom:8px!important}
+ .reference-eyebrow{padding:4px 10px;font-size:14px}
+ .reference-intro p{margin-top:5px!important;font-size:11px!important}
+ .reference-studio-grid{column-gap:12px;row-gap:8px}
+ .studio-home-reference{gap:200px}
+ .reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:14px}
+ .reference-gallery-section{margin-top:0!important}
+ .reference-gallery-title{font-size:14px;padding:4px 10px;margin-bottom:7px}
+ .reference-studio-card{padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important}
+ .reference-studio-card img{height:clamp(88px,calc((100vw - 33px)*.28125),220px);border-radius:11px;aspect-ratio:16/9}
+ .reference-card-title{margin:5px 1px 0;font-size:clamp(14px,4vw,18px);letter-spacing:-.2px}
+ .reference-card-description{margin:2px 1px 0;font-size:11px}
+}
+@media(max-width:360px){
+ .studio{padding-left:8px!important;padding-right:8px!important}
+ .reference-studio-grid{column-gap:12px;row-gap:7px}
+ .reference-studio-card img{height:clamp(82px,calc((100vw - 30px)*.28125),180px);border-radius:8px}
+ .reference-card-title{font-size:13px}
+ .reference-card-description{font-size:10px}
+}
+</style>
+
+<style id="nextgen-create-project-theme-preview-v1">
+/* Preview-only landing-page theme update. Existing cards, images, order, grid and Gallery remain unchanged. */
+html,body{background:#061329!important;color:#f4f8ff!important}
+.studio{background:transparent!important}
+#studio-home .reference-project-card,
+#studio-home .reference-gallery-section{
+  background:linear-gradient(145deg,#0b1d38 0%,#09172e 58%,#101a3b 100%)!important;
+  border:1px solid rgba(66,190,255,.48)!important;
+  box-shadow:0 0 0 1px rgba(0,207,255,.08),0 0 18px rgba(0,139,255,.12),inset 0 0 22px rgba(25,100,190,.08)!important;
+}
+#studio-home .reference-eyebrow,
+#studio-home .reference-gallery-title{
+  background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f)!important;
+  border:1px solid rgba(55,215,255,.55)!important;
+  color:#69e8ff!important;
+  box-shadow:0 0 12px rgba(0,194,255,.14)!important;
+}
+#studio-home .reference-project-heading{
+  margin:8px 0 0!important;
+  color:#fff!important;
+  font-size:clamp(22px,5.3vw,36px)!important;
+  line-height:1.12!important;
+  font-weight:800!important;
+  letter-spacing:-.7px!important;
+  text-shadow:0 0 16px rgba(0,170,255,.18);
+}
+#studio-home .reference-intro p{color:#a9c9e8!important}
+#studio-home .reference-card-title{color:#f4f8ff!important}
+#studio-home .reference-card-description{color:#a9c2df!important}
+#studio-home .reference-studio-card img{box-shadow:0 3px 12px rgba(0,0,0,.25)}
+</style>
+
+<style id="nextgen-card-border-ratio-refinement-v1">
+/* Subtle borders and consistent 16:9 media cards; preserve layout, content and imagery. */
+#studio-home .reference-project-card,
+#studio-home .reference-gallery-section{
+  border:1px solid rgba(150,190,225,.14)!important;
+  box-shadow:0 2px 10px rgba(0,0,0,.10)!important;
+}
+#studio-home .reference-eyebrow,
+#studio-home .reference-gallery-title{
+  border:1px solid rgba(90,205,240,.16)!important;
+  box-shadow:none!important;
+}
+#studio-home .reference-studio-card img{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:16/9!important;
+  object-fit:cover!important;
+  border:1px solid rgba(150,190,225,.12)!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-studio-card img{height:auto!important;aspect-ratio:16/9!important;border-radius:10px!important}
+}
+</style>
+<style id="nextgen-card-outline-light-v1">
+/* Light, understated outline on each creation and gallery card. */
+#studio-home .reference-studio-card{
+  box-sizing:border-box!important;
+  border:1px solid rgba(170,205,235,.18)!important;
+  border-radius:13px!important;
+  overflow:hidden!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+#studio-home .reference-studio-card img{
+  border:0!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-studio-card{border-radius:11px!important}
+  #studio-home .reference-studio-card img{border-radius:8px!important}
+}
+</style>
+
+
+<style id="create-project-close-cross-only-v1">#studio-home .reference-project-close{display:none!important}</style>
+
+<style id="nextgen-main-workplace-outer-border-removal-v1">
+/* Remove only the large outer frame around Main Workplace / Create New Project.
+   Keep individual creation cards, thumbnails, buttons, and their existing outlines unchanged. */
+#studio-home > .reference-project-card{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-final-shared-studio-header-v1">
+.ng-final-shared-header{
+  position:relative;display:block!important;height:auto!important;width:auto;box-sizing:border-box;
+  margin:0 0 18px;padding:12px 14px 15px;
+  border:1px solid rgba(65,170,230,.26);border-radius:18px;
+  background:linear-gradient(145deg,#0b1d38 0%,#07162d 62%,#111a3a 100%);
+  box-shadow:0 5px 18px rgba(0,0,0,.14),inset 0 0 22px rgba(25,100,190,.07);
+}
+.ng-final-shared-header .ng-final-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.ng-final-shared-header .ng-final-wordmark{display:inline-flex;align-items:center;gap:0;min-height:38px;transform:translate(-5px,2px)}
+.ng-final-shared-header .ng-next-word{font-size:28px;line-height:1.15;font-weight:800;color:#fff;display:inline-block}
+.ng-final-shared-header .ng-gen-word{font-size:28px;line-height:1.15;font-weight:800;display:inline-block;background:linear-gradient(100deg,#00eaff,#278cff 48%,#a53cff 78%,#ed36c7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ng-final-shared-header .ng-studio-word{display:inline-block;margin-left:-7px;position:relative;top:.5px;padding:0 5px;border:1px solid rgba(255,255,255,.88);border-radius:6px;background:linear-gradient(180deg,#fff 0%,#edf3ff 100%);box-shadow:0 2px 7px rgba(0,0,0,.22);font-size:14px;line-height:1.15;font-weight:800;color:#241080}
+.ng-final-shared-header .ng-studio-o{font-size:14px;color:#ed174c}
+.ng-final-shared-header .ng-final-close{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;border:1px solid rgba(67,155,230,.28);border-radius:10px;background:#0b1d38;color:#f7fbff;text-decoration:none;font-size:24px;line-height:1}
+.ng-final-shared-header .ng-final-titleline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ng-final-shared-header .ng-final-title{margin:0;flex:1;min-width:0;font-size:clamp(25px,6vw,38px);font-weight:800;letter-spacing:-.8px;line-height:1.12;color:#f7f9ff}
+.ng-final-shared-header .ng-final-action{flex:none;min-height:38px;padding:7px 14px;border:1px solid rgba(55,215,255,.55);border-radius:12px;background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f);color:#69e8ff;font:800 15px Inter,system-ui,sans-serif;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.ng-final-shared-header .ng-final-subtitle{margin:10px 0 0;color:#a9c9e8;font-size:11px;line-height:1.5;text-transform:uppercase;letter-spacing:.45px}
+@media(max-width:420px){.ng-final-shared-header{padding:10px 11px 13px;border-radius:16px}.ng-final-shared-header .ng-final-title{font-size:25px}.ng-final-shared-header .ng-final-action{font-size:13px;padding:6px 11px}}
+</style>
+<style id="nextgen-create-project-hide-duplicate-intro-v1">#studio-home .reference-intro{display:none!important}</style>
+
+<style id="nextgen-create-project-reference-header-match-v2">
+/* Match the approved NextGen Studio feature-page header without changing card layout. */
+.ng-final-shared-header{
+  margin:0 0 18px!important;
+  padding:14px 18px 17px!important;
+  border:1px solid rgba(65,170,230,.26)!important;
+  border-radius:22px!important;
+  background:linear-gradient(145deg,#0b1d38 0%,#07162d 62%,#111a3a 100%)!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.14),inset 0 0 22px rgba(25,100,190,.07)!important;
+}
+.ng-final-shared-header .ng-final-topline{margin-bottom:18px!important;gap:14px!important}
+.ng-final-shared-header .ng-final-close{
+  flex:0 0 52px!important;width:52px!important;height:52px!important;
+  border:2px solid rgba(67,155,230,.32)!important;border-radius:50%!important;
+  background:rgba(11,29,56,.55)!important;font-size:36px!important;
+}
+.ng-final-shared-header .ng-final-title{
+  font-size:clamp(28px,6.3vw,48px)!important;
+  font-weight:800!important;letter-spacing:-.8px!important;
+  background:linear-gradient(100deg,#43e0b9 0%,#45d9bb 42%,#79e6d0 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;
+  color:transparent!important;-webkit-text-fill-color:transparent!important;
+}
+.ng-final-shared-header .ng-final-action{
+  min-height:48px!important;padding:9px 18px!important;
+  border:0!important;border-radius:999px!important;
+  background:linear-gradient(105deg,#08c9ed 0%,#176cf5 48%,#bd20f1 100%)!important;
+  color:#fff!important;font-size:clamp(15px,3.5vw,20px)!important;
+  box-shadow:0 0 18px rgba(0,174,255,.16)!important;
+}
+.ng-final-shared-header .ng-final-subtitle{
+  margin:14px 0 0!important;color:#c2d9ed!important;
+  font-size:clamp(12px,2.8vw,17px)!important;line-height:1.45!important;
+  letter-spacing:.35px!important;
+}
+@media(max-width:420px){
+ .ng-final-shared-header{padding:12px 13px 15px!important;border-radius:18px!important}
+ .ng-final-shared-header .ng-final-topline{margin-bottom:14px!important}
+ .ng-final-shared-header .ng-final-close{flex-basis:46px!important;width:46px!important;height:46px!important;font-size:31px!important}
+ .ng-final-shared-header .ng-final-title{font-size:clamp(25px,6.2vw,30px)!important}
+ .ng-final-shared-header .ng-final-action{min-height:42px!important;padding:7px 13px!important;font-size:14px!important}
+ .ng-final-shared-header .ng-final-subtitle{margin-top:11px!important;font-size:11px!important}
+}
+</style>
+
+<style id="nextgen-create-project-page-outer-border-final-v2">
+/* Remove the outer page/workplace frame only. Preserve header, feature-card,
+   thumbnail, and button borders exactly as designed. */
+.studio{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+#studio-home > .reference-project-card{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="nextgen-create-project-zero-side-margins-v1">
+/* Flush Create New Project page to both viewport edges; retain vertical spacing. */
+html,body{
+  width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.studio{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  box-sizing:border-box!important;
+}
+#studio-home,
+#studio-home.studio-home-reference{
+  margin-left:0!important;
+  margin-right:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+</style>
+
+<style id="nextgen-create-project-header-match-text-video-v1">
+/* Match Create New Project header geometry to the approved Text to Video reference. */
+.ng-final-shared-header{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:0!important;
+  margin:0 0 18px!important;
+  padding:clamp(18px,2.6vw,40px) 3.1% clamp(17px,2.4vw,36px)!important;
+  border:0!important;
+  border-radius:0 0 clamp(18px,3vw,44px) clamp(18px,3vw,44px)!important;
+  background:linear-gradient(145deg,#0b1d38 0%,#07162d 62%,#111a3a 100%)!important;
+  box-shadow:none!important;
+}
+.ng-final-shared-header .ng-final-topline{
+  min-height:clamp(42px,8.2vw,126px)!important;
+  margin:0 0 clamp(16px,3.1vw,48px)!important;
+  gap:12px!important;
+}
+.ng-final-shared-header .ng-final-wordmark{transform:none!important;min-height:0!important}
+.ng-final-shared-header .ng-next-word,
+.ng-final-shared-header .ng-gen-word{
+  font-size:clamp(36px,6.2vw,96px)!important;
+  line-height:1!important;
+}
+.ng-final-shared-header .ng-studio-word,
+.ng-final-shared-header .ng-studio-o{
+  font-size:clamp(18px,3.1vw,48px)!important;
+  line-height:1!important;
+}
+.ng-final-shared-header .ng-studio-word{
+  margin-left:-2.2%!important;
+  padding:0 .35em!important;
+  border-radius:clamp(6px,1vw,14px)!important;
+}
+.ng-final-shared-header .ng-final-close{
+  flex:0 0 clamp(54px,8.2vw,126px)!important;
+  width:clamp(54px,8.2vw,126px)!important;
+  height:clamp(54px,8.2vw,126px)!important;
+  border:2px solid rgba(67,155,230,.28)!important;
+  border-radius:50%!important;
+  background:rgba(8,24,49,.72)!important;
+  font-size:clamp(30px,4.5vw,68px)!important;
+}
+.ng-final-shared-header .ng-final-titleline{
+  gap:14px!important;
+  align-items:center!important;
+}
+.ng-final-shared-header .ng-final-title{
+  font-size:clamp(38px,6.2vw,96px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.035em!important;
+  font-weight:800!important;
+}
+.ng-final-shared-header .ng-final-action{
+  min-height:clamp(48px,6.9vw,106px)!important;
+  padding:0 clamp(16px,3.1vw,48px)!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:linear-gradient(100deg,#05c8ed 0%,#1765f4 52%,#bd20ed 100%)!important;
+  color:#fff!important;
+  font-size:clamp(18px,3.1vw,48px)!important;
+  line-height:1!important;
+}
+.ng-final-shared-header .ng-final-subtitle{
+  margin:clamp(14px,2.4vw,36px) 0 0!important;
+  color:#b8d5ef!important;
+  font-size:clamp(13px,2.65vw,40px)!important;
+  line-height:1.25!important;
+  letter-spacing:.025em!important;
+}
+@media(max-width:520px){
+ .ng-final-shared-header{padding:16px 3.1% 20px!important}
+ .ng-final-shared-header .ng-final-topline{margin-bottom:18px!important}
+ .ng-final-shared-header .ng-final-title{font-size:clamp(30px,6.2vw,38px)!important}
+ .ng-final-shared-header .ng-final-action{min-height:44px!important;padding:0 15px!important;font-size:16px!important}
+ .ng-final-shared-header .ng-final-subtitle{margin-top:13px!important;font-size:clamp(12px,2.65vw,16px)!important}
+}
+</style>
+
+<style id="nextgen-create-project-close-compact-corner-v1">
+/* Compact close control aligned to the top-right corner, matching the reference. */
+.ng-final-shared-header .ng-final-topline{
+  position:relative!important;
+  align-items:flex-start!important;
+}
+.ng-final-shared-header .ng-final-close{
+  flex:0 0 clamp(32px,8.2vw,42px)!important;
+  width:clamp(32px,8.2vw,42px)!important;
+  height:clamp(32px,8.2vw,42px)!important;
+  min-width:0!important;
+  margin:0 0 0 auto!important;
+  padding:0!important;
+  border:1.5px solid rgba(67,155,230,.32)!important;
+  border-radius:50%!important;
+  font-size:clamp(22px,5.4vw,28px)!important;
+  line-height:1!important;
+}
+</style>
+
+<style id="nextgen-create-project-header-sticky-lock-v1">
+/* Keep the approved Create New Project header visible while the page scrolls. */
+.ng-final-shared-header{
+  position:sticky!important;
+  top:0!important;
+  z-index:9999!important;
+  align-self:stretch!important;
+}
+</style>
+
+<style id="nextgen-create-project-final-requested-typography-v1">
+/* Requested typography only for the Create New Project header. Preserve all existing colors, layout, spacing and card design. */
+html body .ng-final-shared-header .ng-final-wordmark,
+html body .ng-final-shared-header .ng-next-word,
+html body .ng-final-shared-header .ng-gen-word{
+  font-size:28px!important;
+  line-height:1.1!important;
+}
+html body .ng-final-shared-header .ng-studio-word,
+html body .ng-final-shared-header .ng-studio-o{
+  font-size:16px!important;
+  line-height:1.1!important;
+}
+html body .ng-final-shared-header .ng-final-title{
+  font-size:18px!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+html body .ng-final-shared-header .ng-final-subtitle{
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+html body .ng-final-shared-header .ng-final-action{
+  font-size:14px!important;
+}
+html body .ng-final-shared-header .ng-final-close{
+  font-size:24px!important;
+  line-height:1!important;
+}
+</style>
+
+
+<style id="nextgen-create-project-header-spec-v1">
+/* Requested Create New Project header specification only. Keep page cards and workspace design unchanged. */
+html,body{
+  margin:0!important;
+}
+html body .studio{
+  margin:0!important;
+}
+html body .ng-final-shared-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:1000!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  box-sizing:border-box!important;
+  border:0!important;
+  border-radius:0!important;
+  background:linear-gradient(110deg,#071a34 0%,#08152d 55%,#17143b 100%)!important;
+  box-shadow:none!important;
+}
+html body .ng-final-shared-header .ng-final-topline,
+html body .ng-final-shared-header .ng-final-titleline,
+html body .ng-final-shared-header .ng-final-subtitle{
+  box-sizing:border-box!important;
+  padding-left:4px!important;
+  padding-right:4px!important;
+}
+html body .ng-final-shared-header .ng-final-topline{
+  margin:0 0 8px!important;
+}
+html body .ng-final-shared-header .ng-final-wordmark,
+html body .ng-final-shared-header .ng-next-word,
+html body .ng-final-shared-header .ng-gen-word{
+  font-size:28px!important;
+  line-height:1.1!important;
+}
+html body .ng-final-shared-header .ng-studio-word,
+html body .ng-final-shared-header .ng-studio-o{
+  font-size:16px!important;
+  line-height:1.1!important;
+}
+html body .ng-final-shared-header .ng-final-title{
+  font-size:18px!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+html body .ng-final-shared-header .ng-final-subtitle{
+  margin:7px 0 8px!important;
+  font-size:12px!important;
+  line-height:1.35!important;
+}
+html body .ng-final-shared-header .ng-final-action{
+  min-height:32px!important;
+  padding:6px 12px!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:linear-gradient(100deg,#00dff2 0%,#1678ff 38%,#7545ff 72%,#e331c8 100%)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  line-height:1.2!important;
+  box-shadow:none!important;
+}
+html body .ng-final-shared-header .ng-final-close{
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 32px!important;
+  width:32px!important;
+  min-width:32px!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  font-size:24px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  box-shadow:none!important;
+}
+@media(max-width:420px){
+  html body .ng-final-shared-header{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  html body .ng-final-shared-header .ng-final-topline,
+  html body .ng-final-shared-header .ng-final-titleline,
+  html body .ng-final-shared-header .ng-final-subtitle{
+    padding-left:4px!important;
+    padding-right:4px!important;
+  }
+  html body .ng-final-shared-header .ng-final-close{
+    flex-basis:32px!important;
+    width:32px!important;
+    min-width:32px!important;
+    height:32px!important;
+    min-height:32px!important;
+    font-size:24px!important;
+  }
+}
+</style>
+
+
+<style id="nextgen-create-project-header-spacing-compact-v1">
+/* Compact header spacing only; retain the specified type sizes and button dimensions. */
+html body .ng-final-shared-header .ng-final-topline{
+  margin-bottom:3px!important;
+  gap:6px!important;
+}
+html body .ng-final-shared-header .ng-final-titleline{
+  gap:6px!important;
+}
+html body .ng-final-shared-header .ng-final-subtitle{
+  margin-top:3px!important;
+  margin-bottom:4px!important;
+}
+@media(max-width:420px){
+  html body .ng-final-shared-header .ng-final-topline,
+  html body .ng-final-shared-header .ng-final-titleline,
+  html body .ng-final-shared-header .ng-final-subtitle{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+}
+</style>
+
+
+<style id="nextgen-create-project-title-fresh-elegant-v1">
+/* Fresh & elegant title color only; preserve header layout and all other styling. */
+.ng-final-shared-header .ng-final-title{
+  color:#a7f3d0!important;
+  -webkit-text-fill-color:#a7f3d0!important;
+  background:none!important;
+  text-shadow:0 0 10px rgba(110,231,183,.14)!important;
+}
+</style>
+
+<style id="nextgen-create-project-mobile-header-fit-v1">
+/* Mobile header fit: correct clipping and compact the marked header area only. */
+@media(max-width:700px){
+  html body .ng-final-shared-header{
+    width:100%!important;max-width:100vw!important;min-width:0!important;
+    box-sizing:border-box!important;overflow:hidden!important;
+    padding:8px 12px 10px!important;margin:0 0 10px!important;
+    border-radius:0 0 12px 12px!important;
+  }
+  html body .ng-final-shared-header *{box-sizing:border-box!important}
+  html body .ng-final-shared-header .ng-final-topline{
+    width:100%!important;min-width:0!important;gap:6px!important;
+    margin:0 0 5px!important;padding:0!important;
+  }
+  html body .ng-final-shared-header .ng-final-wordmark{
+    min-width:0!important;min-height:32px!important;
+    transform:none!important;margin:0!important;
+  }
+  html body .ng-final-shared-header .ng-final-close{
+    flex:0 0 32px!important;width:32px!important;height:32px!important;
+    min-width:32px!important;font-size:24px!important;line-height:1!important;
+  }
+  html body .ng-final-shared-header .ng-final-titleline{
+    width:100%!important;min-width:0!important;gap:8px!important;
+    margin:0!important;padding:0!important;
+  }
+  html body .ng-final-shared-header .ng-final-title{
+    flex:1 1 auto!important;min-width:0!important;font-size:18px!important;
+    line-height:1.2!important;letter-spacing:0!important;white-space:normal!important;
+    color:#a7f3d0!important;-webkit-text-fill-color:#a7f3d0!important;
+  }
+  html body .ng-final-shared-header .ng-final-action{
+    flex:0 0 auto!important;min-height:34px!important;padding:6px 12px!important;
+    border-radius:18px!important;font-size:14px!important;line-height:1.1!important;
+  }
+  html body .ng-final-shared-header .ng-final-subtitle{
+    margin:4px 0 0!important;padding:0!important;font-size:12px!important;
+    line-height:1.25!important;letter-spacing:.25px!important;white-space:normal!important;
+  }
+}
+</style>
+
+<style id="nextgen-create-project-mobile-line-spacing-tight-v1">
+@media(max-width:700px){
+  html body .ng-final-shared-header{padding-top:5px!important;padding-bottom:6px!important}
+  html body .ng-final-shared-header .ng-final-topline{margin-bottom:1px!important}
+  html body .ng-final-shared-header .ng-final-titleline{line-height:1.05!important}
+  html body .ng-final-shared-header .ng-final-title{line-height:1.05!important}
+  html body .ng-final-shared-header .ng-final-subtitle{margin-top:1px!important;line-height:1.05!important}
+}
+</style>
+
+<style id="nextgen-create-project-wordmark-gap-v1">
+@media(max-width:700px){
+  html body .ng-final-shared-header .ng-studio-word{
+    margin-left:4px!important;
+  }
+}
+</style>
+
+<style id="nextgen-create-project-card-border-remove-v1">
+/* Remove only the outer borders around Create New Project feature cards. */
+#studio-home .reference-studio-card{
+  border:0!important;
+}
+</style>
+
+<style id="nextgen-create-project-card-text-spacing-v1">
+/* Slightly increase spacing between feature-card title and description. */
+#studio-home .reference-card-title{
+  margin-top:8px!important;
+  margin-bottom:2px!important;
+}
+#studio-home .reference-card-description{
+  margin-top:4px!important;
+  line-height:1.4!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-card-title{margin-top:7px!important}
+  #studio-home .reference-card-description{margin-top:4px!important;line-height:1.4!important}
+}
+</style>
+
+<style id="nextgen-create-project-card-row-gap-v1">
+/* Increase spacing between the feature cards, not the text inside each card. */
+#studio-home .reference-studio-grid{
+  row-gap:18px!important;
+}
+@media(max-width:700px){
+  #studio-home .reference-studio-grid{row-gap:16px!important}
+}
+</style>
+
+<style id="nextgen-create-project-headline-subtext-gap-reduce-v1">
+/* Tighten only the vertical gap between each card headline and its subtitle. */
+#studio-home .reference-card-title{margin-bottom:0!important}
+#studio-home .reference-card-description{margin-top:1px!important}
+</style>
+
+
+<style id="nextgen-create-project-header-line-spacing-v1">
+/* Tighten vertical spacing between the three header text rows on mobile. */
+@media(max-width:700px){
+  html body .ng-final-shared-header .ng-final-topline{
+    margin-bottom:2px!important;
+  }
+  html body .ng-final-shared-header .ng-final-titleline{
+    line-height:1.05!important;
+  }
+  html body .ng-final-shared-header .ng-final-subtitle{
+    margin-top:2px!important;
+    line-height:1.15!important;
+  }
+}
+</style>
+
+<style id="nextgen-create-project-projects-text-fresh-elegant-v1">
+/* Fresh & elegant Projects label only; retain the button gradient and geometry. */
+.ng-final-shared-header .ng-final-action{
+  color:#e6fff5!important;
+  -webkit-text-fill-color:#e6fff5!important;
+  text-shadow:0 0 7px rgba(230,255,245,.18)!important;
+}
+</style>
+
+<style id="nextgen-create-project-your-projects-gap-zero-v1">
+/* Remove the extra vertical gap before the Your Projects section only. */
+#studio-home.studio-home-reference{
+  gap:0!important;
+  row-gap:0!important;
+}
+#studio-home .reference-gallery-section{
+  margin-top:0!important;
+}
+</style>
+
+<style id="nextgen-create-project-all-projects-label-fresh-v2">
+/* Fresh & elegant label color for both Projects links; preserve their button backgrounds and geometry. */
+.ng-final-shared-header .ng-final-action,
+#open-project-gallery.reference-gallery-button{
+  color:#d9fbff!important;
+  -webkit-text-fill-color:#d9fbff!important;
+  text-shadow:0 0 8px rgba(217,251,255,.22)!important;
+}
+</style>
+
+<style id="nextgen-upscale-card-borderless-v2">
+/* Remove the outline only from the new Upscale card; keep all other card styling intact. */
+#studio-home .ng-upscale-card,
+.studio .ng-upscale-card,
+#studio-home .ng-upscale-card:focus,
+.studio .ng-upscale-card:focus,
+#studio-home .ng-upscale-card:focus-visible,
+.studio .ng-upscale-card:focus-visible{border:0!important;outline:0!important;box-shadow:none!important;}
+</style>
+</head>
+<body>
+<div class="studio">
+<header class="ng-final-shared-header">
+ <div class="ng-final-topline">
+  <div class="ng-final-wordmark" aria-label="NextGen Studio"><span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span></div>
+  <a class="ng-final-close" href="./index.html" aria-label="Back" title="Back">×</a>
+ </div>
+ <div class="ng-final-titleline"><h2 class="ng-final-title">Create New Project</h2><a class="ng-final-action" href="./gallery.html">Projects</a></div>
+ <p class="ng-final-subtitle">AI CREATION • GENERATION • EDITING</p>
+</header>
+<section id="studio-home" class="studio-home studio-home-reference" aria-label="Creative Studio workspace">
+  <div class="reference-project-card">
+    <a class="reference-project-close" href="./index.html" aria-label="Close Create New Project" title="Close">×</a>
+  <div class="reference-intro">
+    <span class="reference-eyebrow">Main Workplace</span>
+    <div class="reference-project-heading-row">
+      <h1 class="reference-project-heading">Create New Project</h1>
+      <a class="reference-gallery-button" id="open-project-gallery" href="./gallery.html" aria-label="Open Projects">Projects</a>
+    </div>
+    <p>AI CREATION • GENERATION • EDITING</p>
+  </div>
+  <div class="reference-studio-grid">
+    <button class="reference-studio-card" data-studio-view="imagine"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&q=88" alt="Image Generate"><span class="reference-card-title">Image Generate</span><span class="reference-card-description">Text-to-Image</span></button>
+    <button class="reference-studio-card" data-studio-view="discover"><img src="https://images.pexels.com/videos/38715346/4k-forest-atomsphere-beautiful-cinematic-38715346.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="AI Video Editor"><span class="reference-card-title">AI Video Editor</span><span class="reference-card-description">Edit videos with AI tools and effects</span></button>
+    <button class="reference-studio-card" data-studio-view="discover"><img src="https://images.pexels.com/videos/5937263/at-the-beach-beach-beach-is-life-beach-island-5937263.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Image to Video"><span class="reference-card-title">Image to Video</span><span class="reference-card-description">Turn still images into animated videos</span></button>
+    <button class="reference-studio-card" data-studio-view="discover"><img src="https://images.pexels.com/videos/35257195/abstract-abstract-animation-abstract-background-animation-35257195.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Text to Video"><span class="reference-card-title">Text to Video</span><span class="reference-card-description">Generate video from a text prompt</span></button>
+    <button class="reference-studio-card" data-studio-view="discover"><img src="https://images.pexels.com/videos/11901730/audi-machine-11901730.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Video Extender"><span class="reference-card-title">Video Extender</span><span class="reference-card-description">Make your video longer with AI</span></button>
+    <button class="reference-studio-card" data-studio-view="tools"><img src="https://images.pexels.com/videos/4134975/pexels-photo-4134975.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Text to Music"><span class="reference-card-title">Text to Music</span><span class="reference-card-description">Create original music from text prompts</span></button>
+    
+    <button class="reference-studio-card" data-studio-view="discover"><img src="https://images.pexels.com/videos/12695730/pexels-photo-12695730.jpeg?auto=compress&dpr=1&h=750&w=1260" alt="Music to Video"><span class="reference-card-title">Music to Video</span><span class="reference-card-description">Create videos that match your music</span></button>
+    <button class="reference-studio-card ng-upscale-card" data-studio-view="tools"><img src="./upscale-4k-8k-thumbnail.jpg" alt="Upscale 4K / 8K"><span class="reference-card-title">Upscale 4K / 8K</span><span class="reference-card-description">Enhance and upscale videos to 4K or 8K with AI</span></button>
+    <button class="reference-studio-card ng-text2dance-card" data-studio-view="discover"><img class="ng-text2dance-preview" src="./text-2-dance-thumbnail.jpg?v=20261123-4" alt="Text 2 Dance video thumbnail" loading="eager"><span class="reference-card-title">Text 2 Dance</span><span class="reference-card-description">Create dance videos from text prompts</span></button>
+    <button class="reference-studio-card" data-studio-view="tools"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&q=88" alt="More Features"><span class="reference-card-title">More Features</span><span class="reference-card-description">Explore AI Tools</span></button>
+  </div>
+</section>
+
+<section class="studio-workspace hidden" id="studio-workspace">
+  <div class="studio-workspace-top"><button type="button" id="studio-home-back" class="secondary">← Creative Studio</button><h2 id="view-title">Create with NextGen AI</h2></div>
+  <p id="view-subtitle" class="studio-workspace-subtitle">Explore image and video creation in one workspace.</p>
+  <nav class="studio-nav hidden" aria-label="Creative Studio navigation">
+  <button class="active" data-view="discover">Discover</button>
+  <button data-view="imagine">Imagine</button>
+  <a class="secondary" href="./gallery.html">Projects</a>
+  <button data-view="history">History</button>
+  <button data-view="tools">Video Tools</button>
+  <button data-view="plans">Plans</button>
+  <button data-view="status">Status</button>
+</nav>
+</section>
+<section id="view-discover" class="view hidden">
+ <div class="studio-grid">
+  <div class="panel">
+   <div class="mode-tabs"><button class="active" data-mode="video">▣ Video</button><button data-mode="image">▧ Image</button></div>
+   
+   <div class="field"><label>REFERENCE IMAGE / VIDEO / AUDIO</label><label class="upload" for="reference-file"><span>＋</span><span><strong>Choose a file</strong><br>Photo, video or audio reference</span></label><input id="reference-file" type="file" accept="image/*,video/*,audio/*"><div id="file-preview" class="file-preview"></div></div>
+   <div class="field"><label>DESCRIBE YOUR CREATION</label><textarea id="main-prompt" maxlength="3000" placeholder="Describe the scene, movement, camera, lighting, style and sound..."></textarea><div style="display:flex;justify-content:space-between;color:#8491ae;font-size:11px"><span>Be specific about subject, motion and camera.</span><span id="prompt-count">0 / 3000</span></div></div>
+   <div class="field"><label>QUICK PROMPT STARTERS</label><div class="tool-grid" id="prompt-starters"><button type="button" class="secondary" data-prompt="cinematic portrait, natural skin texture, soft cinematic lighting, subtle camera movement">Cinematic portrait</button><button type="button" class="secondary" data-prompt="dynamic dance performance, full body visible, smooth coordinated motion, energetic camera">AI Dance</button><button type="button" class="secondary" data-prompt="product showcase, elegant studio lighting, slow orbit camera, premium commercial look">Product showcase</button><button type="button" class="secondary" data-prompt="beautiful landscape, atmospheric light, gentle camera push-in, realistic details">Landscape</button></div></div>
+   <div class="two">
+    <div class="field"><label>QUALITY</label><select><option>Auto</option><option>Fast</option><option>Balanced</option><option>High Quality</option><option>Ultra HD / 4K (if supported)</option></select></div>
+    <div class="field"><label>ASPECT RATIO</label><select><option>9:16 · Vertical</option><option>16:9 · Landscape</option><option>1:1 · Square</option><option>4:5 · Portrait</option></select></div>
+   </div>
+   <div class="two">
+    <div class="field"><label>DURATION</label><select><option>Auto</option><option>5 seconds</option><option>8 seconds</option><option>10 seconds</option><option>15 seconds</option></select></div>
+    
+   </div>
+   <details class="field" style="border:1px solid #303951;border-radius:13px;padding:11px"><summary style="color:#dce4f5;font-size:13px;font-weight:700;cursor:pointer">Advanced generation settings</summary><div class="field"><label>NEGATIVE PROMPT</label><textarea id="negative-prompt" placeholder="Things to avoid (optional)"></textarea></div><div class="two"><div class="field"><label>OUTPUT COUNT</label><select id="output-count"><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div class="field"><label>REFERENCE STRENGTH</label><select><option>Balanced</option><option>Low</option><option>High</option><option>Maximum</option></select></div></div><div class="two"><div class="field"><label>CHARACTER IDENTITY</label><select><option>Preserve when supported</option><option>Standard</option><option>Not applicable</option></select></div><div class="field"><label>AUDIO</label><select><option>Auto if supported</option><option>Generate sound</option><option>Mute</option></select></div></div></details>
+   <div class="field" id="compare-panel" hidden>
+    <label>COMPARE TOOLS · SELECT CREATION TOOLS</label>
+    <div class="tool-grid" id="compare-models">
+      <label class="tool"><input type="checkbox" value="Cinematic Video"> <b>Cinematic Video</b><span>Compare visual style and motion</span></label>
+      <label class="tool"><input type="checkbox" value="Character Animation"> <b>Character Animation</b><span>Compare character movement</span></label>
+      <label class="tool"><input type="checkbox" value="Image to Video"> <b>Image to Video</b><span>Compare image animation results</span></label>
+      <label class="tool"><input type="checkbox" value="Text to Video"> <b>Text to Video</b><span>Compare prompt-based results</span></label>
+    </div>
+    <div id="compare-summary" class="notice">Select at least two models to prepare a comparison. This will not run generation.</div>
+   </div>
+   <div class="field"><label>VIDEO CREDIT ESTIMATE</label><div id="video-credit-estimate" class="notice" aria-live="polite">Unavailable — verified provider rates and the Credit Wallet are not connected. No estimated credits will be invented.</div></div>
+   <div class="field"><label>GENERATION QUEUE</label><div id="generation-summary" class="status-line"><span>Ready to configure</span><strong>Not submitted</strong></div></div>
+   <button class="primary" id="generate-btn">✦ Prepare Generation</button>
+   <div class="notice" id="studio-notice">Prototype only: this screen does not send files to an AI provider or spend credits. Provider APIs, account permissions, pricing and generation jobs must be connected and tested before activation.</div>
+  </div>
+  <aside class="panel">
+   <h2>Available Creative Tools</h2>
+   <div class="model-list">
+    <div class="model"><div><b>Text to Video</b><small>Create a video from a written prompt</small></div><em>Tool</em></div>
+    <div class="model"><div><b>Image to Video</b><small>Animate a reference image</small></div><em>Tool</em></div>
+    <div class="model"><div><b>Character Animation</b><small>Animate a subject while preserving its appearance</small></div><em>Tool</em></div>
+    <div class="model"><div><b>Video Editing</b><small>Extend, transform and enhance clips</small></div><em>Tool</em></div>
+    <div class="model"><div><b>Audio & Music</b><small>Create and work with audio</small></div><em>Tool</em></div>
+   </div>
+   <div class="section"><h2>Creation Modes</h2><div class="tool-grid">
+    <div class="tool"><b>Text to Video</b><span>Generate a clip from a prompt</span></div>
+    <div class="tool"><b>Image to Video</b><span>Animate a reference image</span></div>
+    <div class="tool"><b>Video to Video</b><span>Transform an uploaded clip</span></div>
+    <div class="tool"><b>Character Reference</b><span>Preserve identity with consent</span></div>
+   </div></div>
+  </aside>
+ </div>
+</section>
+<section id="view-imagine" class="view hidden">\n <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
+ <div class="studio-grid">
+  <div class="panel">
+   <h2>AI Image Studio</h2>
+   <div class="field"><label>IMAGE MODEL</label><select><option>Auto Select</option><option>Qwen Image</option><option>Flux</option><option>Nano Banana · reference</option><option>Krea · reference</option></select></div>
+   <div class="field"><label>PROMPT</label><textarea id="image-prompt" maxlength="3000" placeholder="Describe the image you want to create..."></textarea></div>
+   <div class="field"><label>STYLE PRESET</label><select><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option></select></div>
+   <div class="field"><label>REFERENCE IMAGE / EDIT SOURCE</label><label class="upload" for="image-file">＋ <span><strong>Upload image</strong><br>Use as reference or edit source</span></label><input id="image-file" type="file" accept="image/*"></div>
+   <div class="two"><div class="field"><label>ASPECT</label><select id="image-aspect-select"><option>Auto</option><option>1:1</option><option>16:9</option><option>4:3</option><option>9:16</option><option>3:4</option><option>3:2</option><option>2:3</option><option>5:4</option><option>4:5</option><option>21:9</option><option>1:4</option><option>4:1</option><option>1:8</option><option>8:1</option></select></div><div class="field"><label>OUTPUTS</label><select id="image-output-count-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></div></div>
+   <div class="field"><label>IMAGE CREDIT ESTIMATE</label><div id="image-credit-estimate" class="notice" aria-live="polite">Unavailable — verified provider rates and the Credit Wallet are not connected. No estimated credits will be invented.</div></div>
+   <div class="field"><div id="image-generation-summary" class="status-line" aria-live="polite"><span>Ready to configure</span><strong>Not submitted</strong></div></div>
+   <button class="primary" id="image-generate-btn" type="button">Prepare Image Generation</button>
+   <div class="notice" id="image-generation-notice">Prototype only: image generation is blocked until provider connection, verified credit rates and account authorization are active. No credits will be deducted.</div>
+  </div>
+  <aside class="panel"><h2>Image Workspace</h2><div class="tool-grid"><div class="tool"><b>Text to Image</b><span>Create from a written prompt</span></div><div class="tool"><b>Image Edit</b><span>Change selected parts by prompt</span></div><div class="tool"><b>Upscale</b><span>Increase resolution when supported</span></div><div class="tool"><b>Compare</b><span>Compare provider outputs side by side</span></div></div></aside>
+ </div>
+</section>
+<div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
+<div class="ng-image-settings-head"><h3 id="ng-image-settings-title">Image Settings</h3><button type="button" class="ng-image-settings-close" id="ng-image-settings-close" aria-label="Close settings">×</button></div>
+<div class="ng-image-setting-label"><span>Shape</span><span id="ng-image-shape-current">Auto · 1:1</span></div>
+<div class="ng-image-shapes" id="ng-image-shape-options">
+<button class="ng-image-choice" data-shape="Auto" aria-pressed="true">Auto<small>1:1 default</small></button><button class="ng-image-choice" data-shape="16:9" aria-pressed="false">16:9</button><button class="ng-image-choice" data-shape="4:3" aria-pressed="false">4:3</button>
+<button class="ng-image-choice" data-shape="1:1" aria-pressed="false">1:1</button><button class="ng-image-choice" data-shape="3:4" aria-pressed="false">3:4</button><button class="ng-image-choice" data-shape="9:16" aria-pressed="false">9:16</button>
+<button class="ng-image-choice" data-shape="3:2" aria-pressed="false">3:2</button><button class="ng-image-choice" data-shape="2:3" aria-pressed="false">2:3</button><button class="ng-image-choice" data-shape="5:4" aria-pressed="false">5:4</button>
+<button class="ng-image-choice" data-shape="4:5" aria-pressed="false">4:5</button><button class="ng-image-choice" data-shape="21:9" aria-pressed="false">21:9</button><button class="ng-image-choice" data-shape="1:4" aria-pressed="false">1:4</button>
+<button class="ng-image-choice" data-shape="4:1" aria-pressed="false">4:1</button><button class="ng-image-choice" data-shape="1:8" aria-pressed="false">1:8</button><button class="ng-image-choice" data-shape="8:1" aria-pressed="false">8:1</button></div>
+<div class="ng-image-setting-label"><span>Size</span><span>Output resolution</span></div><div class="ng-image-sizes" id="ng-image-size-options"><button class="ng-image-choice" data-size="1K" aria-pressed="true">1K</button><button class="ng-image-choice" data-size="2K" aria-pressed="false">2K</button><button class="ng-image-choice" data-size="4K" aria-pressed="false">4K</button><button class="ng-image-choice" data-size="8K" aria-pressed="false">8K</button></div>
+<div class="ng-image-setting-label"><span>Number of images</span><span>Choose output count</span></div><div class="ng-image-counts" id="ng-image-count-options"><button class="ng-image-choice" data-count="1" aria-pressed="true">×1</button><button class="ng-image-choice" data-count="2" aria-pressed="false">×2</button><button class="ng-image-choice" data-count="3" aria-pressed="false">×3</button><button class="ng-image-choice" data-count="4" aria-pressed="false">×4</button><button class="ng-image-choice" data-count="5" aria-pressed="false">×5</button><button class="ng-image-choice" data-count="6" aria-pressed="false">×6</button><button class="ng-image-choice" data-count="8" aria-pressed="false">×8</button></div>
+<div class="ng-image-credit-note">Credit usage will depend on the selected resolution (1K / 2K / 4K / 8K) and number of images. The exact credit total must be shown for review before generation, and credits must not be deducted until the user confirms. Rates will be configured from verified provider costs.</div>
+<div class="ng-image-settings-actions"><button type="button" class="secondary" id="ng-image-settings-cancel">Cancel</button><button type="button" class="primary" id="ng-image-settings-apply">Apply Settings</button></div></div></div>
+<section id="view-gallery" class="view hidden">
+ <div class="panel"><h2>Projects</h2><p style="color:#9da9c4;font-size:13px;margin:-5px 0 14px">Generated images and videos will appear here after storage and account integration.</p><div class="gallery-grid"><div class="gallery-tile">Your creations<br>will appear here</div><div class="gallery-tile">Image results</div><div class="gallery-tile">Video results</div></div></div>
+</section>
+<section id="view-tools" class="view hidden">
+ <div class="panel"><h2>Video Editing Tools</h2><div class="tool-grid">
+  <div class="tool"><b>Extend Video</b><span>Continue an existing clip with a supported model</span></div>
+  <div class="tool"><b>Join Clips</b><span>Combine selected clips into one video</span></div>
+  <div class="tool"><b>Video Upscale</b><span>Enhance resolution where provider allows</span></div>
+  <div class="tool"><b>Video-to-Video</b><span>Use an uploaded video as transformation input</span></div>
+  <div class="tool"><b>Audio & Sound</b><span>Generate or process sound where supported</span></div>
+  <div class="tool"><b>Download & Export</b><span>Export completed files in available formats</span></div>
+ </div><div class="field"><label>UPLOAD VIDEO FOR EDITING</label><label class="upload" for="edit-video">＋ <span><strong>Select original video</strong><br>MP4, MOV or supported video</span></label><input id="edit-video" type="file" accept="video/*"><div id="edit-preview" class="file-preview"></div></div>
+ <div class="two"><div class="field"><label>EDIT ACTION</label><select><option>Auto detect</option><option>Extend clip</option><option>Restyle video</option><option>Upscale video</option><option>Join clips</option></select></div><div class="field"><label>EXPORT FORMAT</label><select><option>MP4 · Auto</option><option>MP4 · H.264</option><option>WebM</option></select></div></div><div class="notice">Original video import is shown as a design control only. File processing, editing and exports need backend implementation.</div></div>
+</section>
+<section id="view-plans" class="view hidden">
+ <div class="panel"><h2>Plans & Credits</h2><p style="color:#aeb8d0;font-size:13px">Pricing is intentionally not finalized in this Creative Studio prototype. Review the separate reference page for the Motion16-style plan design.</p><p style="margin-top:12px"><a href="./subscription-package.html">Open Plans reference page →</a></p></div>
+</section>
+<section id="view-history" class="view hidden">
+ <div class="panel">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><h2>Generation History</h2><button type="button" class="secondary" id="clear-history">Clear prepared history</button></div>
+  <p style="color:#9da9c4;font-size:13px;margin:0 0 14px">This prototype records only locally prepared prompt settings in this browser. No generated media or provider jobs are stored.</p>
+  <div id="history-list" class="model-list"><div class="notice">No prepared generations yet.</div></div>
+ </div>
+</section>
+<section id="view-status" class="view hidden">
+ <div class="panel"><h2>System & Provider Status</h2><div class="status-line"><span>Creative Studio UI</span><strong>Prototype available</strong></div><div class="status-line"><span>AI Router</span><strong>Integration pending</strong></div><div class="status-line"><span>Image providers</span><strong>Not connected</strong></div><div class="status-line"><span>Video providers</span><strong>Not connected</strong></div><div class="status-line"><span>Gallery storage</span><strong>Not connected</strong></div><div class="status-line"><span>Credit billing</span><strong>Not activated</strong></div></div>
+</section>
+<p class="bottom-note">©2026 NextGen. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
+</div>
+<script>
+(function(){
+ const nav=[...document.querySelectorAll('[data-view]')];
+ const views=['discover','imagine','gallery','history','tools','plans','status'];
+ const home=document.getElementById('studio-home'),workspace=document.getElementById('studio-workspace');
+ const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project history.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
+ function show(key){if(home)home.classList.add('hidden');if(workspace)workspace.classList.remove('hidden');views.forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==key));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===key));document.getElementById('view-title').textContent=titles[key][0];document.getElementById('view-subtitle').textContent=titles[key][1];}
+ nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+
+ document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{show(card.dataset.studioView);if(card.dataset.modeChoice){document.querySelector('[data-mode=video]')?.click();}}));
+ document.getElementById('studio-home-back')?.addEventListener('click',()=>{if(workspace)workspace.classList.add('hidden');if(home)home.classList.remove('hidden');views.forEach(v=>{const section=document.getElementById('view-'+v);if(section)section.classList.add('hidden');});nav.forEach(b=>b.classList.remove('active'));});
+ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('active',x===b));}));
+ function attach(inputId,previewId){const input=document.getElementById(inputId),preview=document.getElementById(previewId);if(!input||!preview)return;input.addEventListener('change',()=>{preview.innerHTML='';const f=input.files&&input.files[0];if(!f)return;const u=URL.createObjectURL(f);const el=document.createElement(f.type.startsWith('video/')?'video':f.type.startsWith('image/')?'img':'div');if(el.tagName==='VIDEO'){el.src=u;el.controls=true;}else if(el.tagName==='IMG'){el.src=u;}else{el.textContent='Audio file selected';}preview.append(el);const label=document.createElement('span');label.textContent=f.name+' · '+Math.round(f.size/1024)+' KB';preview.append(label);});}
+ attach('reference-file','file-preview');attach('edit-video','edit-preview');
+ // Generation is handled by the validation and preparation flow below.
+})();
+</script>
+
+<script id="creative-studio-interactions-v2">
+(function(){
+ const prompt=document.getElementById('main-prompt'),count=document.getElementById('prompt-count');
+ if(prompt&&count){const update=()=>count.textContent=prompt.value.length+' / 3000';prompt.addEventListener('input',update);update();}
+ document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>{if(prompt){prompt.value=b.dataset.prompt;prompt.dispatchEvent(new Event('input'));prompt.focus();}}));
+ const modeButtons=[...document.querySelectorAll('[data-mode]')];
+
+ const summary=document.getElementById('generation-summary');
+ const btn=document.getElementById('generate-btn');
+ if(btn)btn.addEventListener('click',()=>{
+  const p=prompt?prompt.value.trim():'';
+  const file=document.getElementById('reference-file');
+  if(!p){alert('Please add a prompt before preparing your generation.');return;}
+  if(summary){summary.innerHTML='<span>Configuration prepared · '+(file&&file.files[0]?'Reference attached':'No reference file')+'</span><strong>Awaiting provider connection</strong>';}
+  const notice=document.getElementById('studio-notice');
+  if(notice)notice.textContent='Your prompt and settings are ready for review. Generation is not connected yet; no file was uploaded to a provider and no credits were used.';
+  alert('Your generation setup is prepared. AI provider connection is still pending; nothing has been generated or charged.');
+ });
+ const imageBtn=document.getElementById('image-generate-btn');
+ if(imageBtn)imageBtn.addEventListener('click',()=>{
+  const field=document.getElementById('image-prompt');const p=field?field.value.trim():'';
+  const status=document.getElementById('image-generation-summary');const notice=document.getElementById('image-generation-notice');
+  if(!p){if(status)status.innerHTML='<span>Prompt required</span><strong>Not submitted</strong>';if(notice)notice.textContent='Add an image prompt before preparing the request.';return;}
+  if(status)status.innerHTML='<span>Configuration saved for review · '+(document.getElementById('image-file')?.files?.[0]?'Reference selected':'No reference image')+'</span><strong>Provider not connected</strong>';
+  if(notice)notice.textContent='Image settings are ready for review, but generation cannot start until a provider, verified credit quote and Credit Wallet authorization are connected. No file was sent and no credits were used.';
+ });
+ const fileInputs=[...document.querySelectorAll('input[type=file]')];
+ fileInputs.forEach(input=>input.addEventListener('change',()=>{
+  const f=input.files&&input.files[0];if(!f)return;
+  const max=200*1024*1024;
+  if(f.size>max){alert('Please choose a file smaller than 200 MB for this prototype.');input.value='';return;}
+ }));
+})();
+</script>
+
+<script id="creative-studio-compare-history-script-v3">
+(function(){
+
+ const comparePanel=document.getElementById('compare-panel');
+ const compareBoxes=[...document.querySelectorAll('#compare-models input[type=checkbox]')];
+ const compareSummary=document.getElementById('compare-summary');
+
+ // Compare panel visibility is controlled by the visible AI Engine selector in the feature-routing panel.
+ function updateCompare(){const selected=compareBoxes.filter(x=>x.checked).map(x=>x.value);if(compareSummary)compareSummary.textContent=selected.length<2?'Select at least two models to prepare a comparison. No generation will run.':selected.length+' models selected: '+selected.join(' · ')+'. Comparison setup is ready; provider execution is not connected.';}
+ compareBoxes.forEach(x=>x.addEventListener('change',updateCompare));
+ updateCompare();
+ const KEY='nextgen_creative_studio_prepared_history_v1';
+ function readHistory(){try{return JSON.parse(localStorage.getItem(KEY)||'[]').filter(x=>x&&typeof x.prompt==='string').slice(0,30);}catch(e){return [];}}
+ function saveHistory(items){try{localStorage.setItem(KEY,JSON.stringify(items.slice(0,30)));}catch(e){}}
+ function renderHistory(){
+  const host=document.getElementById('history-list');if(!host)return;
+  const items=readHistory();host.innerHTML='';
+  if(!items.length){host.innerHTML='<div class="notice">No prepared generations yet. Prepare a prompt in Discover to see it here.</div>';return;}
+  items.forEach(item=>{
+   const card=document.createElement('article');card.className='history-item';
+   const meta=document.createElement('div');meta.className='history-meta';
+   [item.mode,item.model,item.when].forEach(v=>{const span=document.createElement('span');span.textContent=v||'';meta.append(span);});
+   const p=document.createElement('p');p.textContent=item.prompt;
+   const b=document.createElement('button');b.type='button';b.className='secondary';b.textContent='Load prompt';
+   b.addEventListener('click',()=>{const field=document.getElementById('main-prompt');if(field)field.value=item.prompt;document.querySelector('[data-view=discover]')?.click();});
+   card.append(meta,p,b);host.append(card);
+  });
+ }
+ const generate=document.getElementById('generate-btn');
+ if(generate)generate.addEventListener('click',()=>{
+  const field=document.getElementById('main-prompt');const prompt=field?field.value.trim():'';
+  if(!prompt)return;
+  const selected=compareBoxes.filter(x=>x.checked).map(x=>x.value);
+  const engine=document.querySelector('.ng-engine-mode');
+  const mode=engine?(engine.value==='compare'?'Compare Mode':engine.value==='manual'?'Manual Tool Selection':'Auto Model Selection'):'Auto Model Selection';
+  const manualTool=document.querySelector('.ng-feature-routing:not([hidden]) .ng-manual-tool');
+  const model=mode.includes('Compare')?selected.join(', '):(manualTool?manualTool.value:'Auto Select');
+  const items=readHistory();items.unshift({prompt,mode,model,when:new Date().toLocaleString()});saveHistory(items);renderHistory();
+ });
+ const clear=document.getElementById('clear-history');if(clear)clear.addEventListener('click',()=>{try{localStorage.removeItem(KEY);}catch(e){}renderHistory();});
+ const historyNav=document.querySelector('[data-view=history]');if(historyNav)historyNav.addEventListener('click',renderHistory);
+ renderHistory();
+})();
+</script>
+<script id="create-project-search-v1">
+(function(){
+ const button=document.getElementById('studio-search-button'),search=document.getElementById('studio-search');
+ if(!button||!search)return;
+ button.addEventListener('click',()=>{
+  const open=search.hidden;search.hidden=!open;button.setAttribute('aria-expanded',String(open));
+  if(open)search.focus();else{search.value='';filter('');}
+ });
+ function filter(value){
+  const q=value.trim().toLowerCase();
+  document.querySelectorAll('#studio-home .studio-card,.studio-gallery-grid .studio-card').forEach(card=>{
+   const label=(card.innerText||'').toLowerCase();card.hidden=!!q&&!label.includes(q);
+  });
+ }
+ search.addEventListener('input',()=>filter(search.value));
+})();
+</script>
+<script id="nextgen-image-settings-v2">(function(){
+const overlay=document.getElementById('ng-image-settings-overlay');
+const open=document.getElementById('ng-image-settings-open');
+const close=document.getElementById('ng-image-settings-close');
+const cancel=document.getElementById('ng-image-settings-cancel');
+const apply=document.getElementById('ng-image-settings-apply');
+const summary=document.getElementById('ng-image-settings-summary');
+const shapeText=document.getElementById('ng-image-shape-current');
+const aspectSelect=document.getElementById('image-aspect-select');
+const countSelect=document.getElementById('image-output-count-select');
+const generationSummary=document.getElementById('image-generation-summary');
+if(!overlay||!open||!summary)return;
+let settings={shape:aspectSelect?.value||'Auto',size:'1K',count:countSelect?.value||'1'};
+let draft={...settings};
+function setPressed(group,attr,value){
+ document.querySelectorAll(group+' ['+attr+']').forEach(button=>button.setAttribute('aria-pressed',String(button.getAttribute(attr)===value)));
+}
+function syncControls(){
+ if(aspectSelect){aspectSelect.value=settings.shape;aspectSelect.dispatchEvent(new Event('change',{bubbles:true}));}
+ if(countSelect){countSelect.value=settings.count;countSelect.dispatchEvent(new Event('change',{bubbles:true}));}
+}
+function render(){
+ summary.textContent=settings.shape+' · '+settings.size+' · ×'+settings.count;
+ shapeText.textContent=settings.shape+(settings.shape==='Auto'?' · 1:1':'');
+ setPressed('#ng-image-shape-options','data-shape',settings.shape);
+ setPressed('#ng-image-size-options','data-size',settings.size);
+ setPressed('#ng-image-count-options','data-count',settings.count);
+ syncControls();
+}
+function show(){
+ draft={...settings};
+ setPressed('#ng-image-shape-options','data-shape',draft.shape);
+ setPressed('#ng-image-size-options','data-size',draft.size);
+ setPressed('#ng-image-count-options','data-count',draft.count);
+ overlay.classList.remove('hidden');
+ document.body.style.overflow='hidden';
+ close?.focus();
+}
+function hide(){
+ overlay.classList.add('hidden');
+ document.body.style.overflow='';
+ open.focus();
+}
+open.addEventListener('click',show);
+close?.addEventListener('click',hide);
+cancel?.addEventListener('click',hide);
+overlay.addEventListener('click',event=>{if(event.target===overlay)hide();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!overlay.classList.contains('hidden'))hide();});
+document.querySelectorAll('#ng-image-shape-options [data-shape]').forEach(button=>button.addEventListener('click',()=>{
+ draft.shape=button.dataset.shape;
+ setPressed('#ng-image-shape-options','data-shape',draft.shape);
+ shapeText.textContent=draft.shape+(draft.shape==='Auto'?' · 1:1':'');
+}));
+document.querySelectorAll('#ng-image-size-options [data-size]').forEach(button=>button.addEventListener('click',()=>{
+ draft.size=button.dataset.size;
+ setPressed('#ng-image-size-options','data-size',draft.size);
+}));
+document.querySelectorAll('#ng-image-count-options [data-count]').forEach(button=>button.addEventListener('click',()=>{
+ draft.count=button.dataset.count;
+ setPressed('#ng-image-count-options','data-count',draft.count);
+}));
+apply?.addEventListener('click',()=>{
+ settings={...draft};
+ render();
+ if(generationSummary)generationSummary.innerHTML='<span>Settings applied</span><strong>'+settings.shape+' · '+settings.size+' · ×'+settings.count+'</strong>';
+ hide();
+});
+render();
+})();</script>
+<script id="nextgen-feature-auto-tool-routing-v1">
+(function(){
+ const featureTools={
+  'Image Generate':['Text to Image','Image Editing','Image Enhancement','Background Removal','Image Upscaling'],
+  'Video Generate':['Text to Video','Cinematic Video','Short Video / Reels','Long-form Video','AI Dance Video'],
+  'Image to Video':['Image Animation','Character Motion','Camera Motion','Cinematic Image to Video'],
+  'Text to Video':['Prompt to Video','Story to Video','Scene-by-Scene Video','Cinematic Text to Video'],
+  'Audio / Music Generate':['Text to Music','Song Generation','Instrumental Music','Voice Generation','Sound Effects'],
+  'AI Video Editor':['AI Video Editing','Timeline Editing','Effects & Transitions','Auto Captions'],
+  'Image to Video':['Image Animation','Character Motion','Camera Motion','Cinematic Image to Video'],
+  'Text to Video':['Prompt to Video','Story to Video','Scene-by-Scene Video','Cinematic Text to Video'],
+  'Video Extender':['Video Extension','Continue Scene','Extend Duration'],
+  'Text to Music':['Text to Music','Song Generation','Instrumental Music','Sound Effects'],
+  'Music to Video':['Music Visualization','Audio Reactive Video','Music Video Creation'],
+  'Text to Dance':['Text to Dance','AI Dance Video','Dance Motion Generation'],
+  'Upscale 4K / 8K':['Video Upscaling','4K Enhancement','8K Enhancement'],
+  'More Features':['Video Editing','Video Extension','Video Upscaling','Clip Joining','Subtitle & Caption Tools']
+ };
+ let activeFeature='Video Generate';
+ function setFeature(feature){
+  activeFeature=featureTools[feature]?feature:'Video Generate';
+  document.querySelectorAll('[data-ng-feature-title]').forEach(el=>el.textContent=activeFeature);
+  const select=document.getElementById('ng-manual-tool');
+  if(select){select.innerHTML='';featureTools[activeFeature].forEach(tool=>{const option=document.createElement('option');option.value=tool;option.textContent=tool;select.append(option);});}
+  document.querySelectorAll('[data-ng-feature-context]').forEach(el=>el.textContent='Feature selected: '+activeFeature);
+ }
+ function addPanel(viewId){
+  const view=document.getElementById(viewId);if(!view||view.querySelector('.ng-feature-routing'))return;
+  const panel=document.createElement('div');panel.className='panel ng-feature-routing';panel.style.marginBottom='14px';
+  panel.innerHTML='<h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong data-ng-feature-title style="font-size:15px;color:#fff">Video Generate</strong></div><div class="field"><label>AI ENGINE</label><select class="ng-engine-mode"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Tool Selection</option><option value="compare">Compare Tools</option></select></div><div class="field ng-manual-wrap" hidden><label>CHOOSE TOOL</label><select class="ng-manual-tool"></select></div><small data-ng-feature-context style="color:#9ba8c3">Feature selected: Video Generate. Provider and model details are managed privately by NextGen AI.</small>';
+  view.insertBefore(panel,view.firstChild);
+  const engine=panel.querySelector('.ng-engine-mode'),wrap=panel.querySelector('.ng-manual-wrap'),toolSelect=panel.querySelector('.ng-manual-tool');
+  engine.addEventListener('change',()=>{wrap.hidden=engine.value!=='manual';const compare=document.getElementById('compare-panel');if(compare)compare.hidden=engine.value!=='compare';});
+  panel._setFeature=function(feature){panel.querySelector('[data-ng-feature-title]').textContent=feature;panel.querySelector('[data-ng-feature-context]').textContent='Feature selected: '+feature+'. Provider and model details are managed privately by NextGen AI.';toolSelect.innerHTML='';(featureTools[feature]||featureTools['More Features']).forEach(tool=>{const o=document.createElement('option');o.value=tool;o.textContent=tool;toolSelect.append(o);});};
+  panel._setFeature(activeFeature);
+ }
+ addPanel('view-discover');addPanel('view-imagine');addPanel('view-tools');
+ document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{
+  const label=card.innerText.trim().replace(/\s+/g,' ');
+  const feature=label==='Photos'?'Image Generate':label==='Videos'?'Video Generate':label==='Audio / Music'?'Audio / Music Generate':label==='Text History'?'More Features':label;
+  setFeature(feature);
+  document.querySelectorAll('.ng-feature-routing').forEach(panel=>panel._setFeature&&panel._setFeature(activeFeature));
+ }));
+
+ document.querySelectorAll('#compare-models input').forEach(x=>x.addEventListener('change',()=>{}));
+ setFeature(activeFeature);
+ const homeFeatureParam=new URLSearchParams(window.location.search).get('feature');
+ if(homeFeatureParam!==null){
+  const homeFeatureNames=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text to Dance','Upscale 4K / 8K'];
+  const homeFeatureIndex=Number(homeFeatureParam);
+  if(Number.isInteger(homeFeatureIndex)&&homeFeatureIndex>=0&&homeFeatureIndex<homeFeatureNames.length){
+   const selectedFeature=homeFeatureNames[homeFeatureIndex];
+   setFeature(selectedFeature);
+   document.querySelectorAll('.ng-feature-routing').forEach(panel=>panel._setFeature&&panel._setFeature(activeFeature));
+   const targetView=['imagine','discover','discover','discover','tools','discover','discover','tools'][homeFeatureIndex];
+   document.querySelector('[data-view="'+targetView+'"]')?.click();
+  }
+ }
+})();
+</script>
+<script id="nextgen-create-project-to-ai-studio-v1">
+(function(){
+ document.querySelectorAll('.reference-studio-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+   const title=card.querySelector('.reference-card-title')?.textContent?.trim();
+   if(title) window.location.href='./ai-studio.html?feature='+encodeURIComponent(title);
+  });
+ });
+})();
+</script>
+
+
+<style id="nextgen-studio-master-header-lock-v4">
+/* Master header: identical geometry, typography, colors, spacing and scroll behavior on all Studio pages. */
+.ng-final-shared-header,.studio-reference-header{
+ position:sticky!important;top:0!important;z-index:9999!important;
+ display:block!important;width:100%!important;box-sizing:border-box!important;
+ margin:0 0 18px!important;padding:12px 14px 15px!important;
+ border:0!important;border-radius:0 0 18px 18px!important;
+ background:linear-gradient(145deg,#0b1d38 0%,#07162d 62%,#111a3a 100%)!important;
+ box-shadow:none!important;
+}
+.ng-final-shared-header .ng-final-topline,.studio-reference-header .studio-reference-topline{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:12px!important;margin:0 0 15px!important;
+}
+.ng-final-shared-header .ng-final-wordmark,.studio-reference-header .ng-final-wordmark{
+ display:inline-flex!important;align-items:center!important;gap:0!important;min-height:38px!important;
+ transform:translate(-5px,2px)!important;white-space:nowrap!important;
+}
+.ng-final-shared-header .ng-next-word,.ng-final-shared-header .ng-gen-word,
+.studio-reference-header .ng-next-word,.studio-reference-header .ng-gen-word{
+ display:inline-block!important;font-size:28px!important;line-height:1.15!important;font-weight:800!important;
+}
+.ng-final-shared-header .ng-next-word,.studio-reference-header .ng-next-word{color:#fff!important}
+.ng-final-shared-header .ng-gen-word,.studio-reference-header .ng-gen-word{
+ background:linear-gradient(100deg,#00eaff,#278cff 48%,#a53cff 78%,#ed36c7)!important;
+ -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent!important;
+}
+.ng-final-shared-header .ng-studio-word,.studio-reference-header .ng-studio-word{
+ display:inline-block!important;margin-left:-7px!important;position:relative!important;top:.5px!important;
+ padding:0 5px!important;border:1px solid rgba(255,255,255,.88)!important;border-radius:6px!important;
+ background:linear-gradient(180deg,#fff 0%,#edf3ff 100%)!important;box-shadow:0 2px 7px rgba(0,0,0,.22)!important;
+ font-size:14px!important;line-height:1.15!important;font-weight:800!important;color:#241080!important;-webkit-text-fill-color:#241080!important;
+}
+.ng-final-shared-header .ng-studio-o,.studio-reference-header .ng-studio-o{font-size:14px!important;color:#ed174c!important;-webkit-text-fill-color:#ed174c!important}
+.ng-final-shared-header .ng-final-close,.studio-reference-header .ng-final-close,.studio-reference-header #studio-home-back{
+ display:grid!important;place-items:center!important;flex:0 0 46px!important;width:46px!important;height:46px!important;min-width:46px!important;
+ padding:0!important;border:0!important;border-radius:50%!important;background:transparent!important;
+ color:#f7fbff!important;text-decoration:none!important;font-size:38px!important;font-weight:500!important;line-height:1!important;box-shadow:none!important;
+}
+.ng-final-shared-header .ng-final-titleline,.studio-reference-header .ng-final-titleline{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;
+}
+.ng-final-shared-header .ng-final-title,.studio-reference-header .ng-final-title,.studio-reference-header #view-title{
+ flex:1!important;min-width:0!important;margin:0!important;font-size:clamp(30px,7vw,48px)!important;
+ font-weight:800!important;letter-spacing:-1.1px!important;line-height:1.12!important;color:#f7f9ff!important;
+ background:none!important;-webkit-text-fill-color:#f7f9ff!important;
+}
+.ng-final-shared-header .ng-final-action,.studio-reference-header .ng-final-action,.studio-reference-header #studio-gallery-open{
+ flex:none!important;min-height:44px!important;padding:8px 18px!important;border:0!important;border-radius:999px!important;
+ background:linear-gradient(100deg,#00c9f2 0%,#1678ff 48%,#a51cff 100%)!important;
+ color:#fff!important;font:800 16px Inter,system-ui,sans-serif!important;text-decoration:none!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;box-shadow:none!important;
+}
+.ng-final-shared-header .ng-final-subtitle,.studio-reference-header .ng-final-subtitle,.studio-reference-header .studio-workspace-subtitle{
+ display:block!important;margin:13px 0 0!important;color:#a9c9e8!important;
+ font-size:clamp(13px,3.6vw,17px)!important;line-height:1.5!important;text-transform:uppercase!important;letter-spacing:.45px!important;
+}
+@media(max-width:420px){
+ .ng-final-shared-header,.studio-reference-header{padding:10px 11px 13px!important;border-radius:0 0 16px 16px!important}
+ .ng-final-shared-header .ng-final-topline,.studio-reference-header .studio-reference-topline{margin-bottom:13px!important}
+ .ng-final-shared-header .ng-final-title,.studio-reference-header .ng-final-title,.studio-reference-header #view-title{font-size:clamp(27px,7vw,36px)!important}
+ .ng-final-shared-header .ng-final-action,.studio-reference-header .ng-final-action,.studio-reference-header #studio-gallery-open{min-height:40px!important;padding:7px 13px!important;font-size:14px!important}
+ .ng-final-shared-header .ng-final-subtitle,.studio-reference-header .ng-final-subtitle,.studio-reference-header .studio-workspace-subtitle{font-size:12px!important}
+}
+</style>
+
+<style id="nextgen-create-project-header-fixed-runtime-v2">
+/* True fixed header: keep it attached to the viewport while the document scrolls. */
+.ng-final-shared-header{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  z-index:100000!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+.studio{
+  padding-top:var(--ng-create-header-height,190px)!important;
+}
+</style>
+<script id="nextgen-create-project-header-fixed-runtime-v2-measure">
+(function(){
+  const header=document.querySelector('.ng-final-shared-header');
+  const root=document.documentElement;
+  if(!header) return;
+  const update=()=>{
+    const h=Math.ceil(header.getBoundingClientRect().height);
+    root.style.setProperty('--ng-create-header-height',(h+10)+'px');
+  };
+  update();
+  if('ResizeObserver' in window){
+    const observer=new ResizeObserver(update);
+    observer.observe(header);
+  }
+  window.addEventListener('resize',update,{passive:true});
+  window.addEventListener('orientationchange',()=>setTimeout(update,120),{passive:true});
+  window.addEventListener('load',update,{once:true});
+})();
+</script>
+</body>
+</html>

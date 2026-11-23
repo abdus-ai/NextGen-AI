@@ -1,0 +1,47 @@
+/* NextGen AI hamburger drawer — preserves the locked Dark Navy / Cyan / Blue / Purple brand theme. */
+.ng-home-hamburger{appearance:none;-webkit-appearance:none;cursor:pointer;flex:none;width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0;margin-right:20px;margin-left:0;border:0!important;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:transparent!important;color:#fff;box-shadow:none!important}
+.ng-home-hamburger i{display:block!important;width:20px!important;height:2.5px!important;min-width:0!important;max-width:none!important;background:#fff!important;border-radius:3px!important;box-shadow:none!important}
+.ng-home-hamburger i:nth-child(2){width:14px!important;min-width:14px!important;align-self:center!important}
+.ng-menu-backdrop[hidden]{display:none!important}
+.ng-menu-backdrop{position:fixed;inset:0;z-index:90;background:rgba(1,6,22,.72);backdrop-filter:blur(2px)}
+.ng-menu-drawer{position:fixed;z-index:91;left:0;top:0;bottom:0;width:min(390px,86vw);padding:calc(18px + env(safe-area-inset-top,0px)) 14px calc(16px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,#071631 0%,#06122d 52%,#040d22 100%);border-right:1px solid rgba(31,166,255,.5);border-radius:0 25px 25px 0;box-shadow:12px 0 34px rgba(0,0,0,.48),inset -1px 0 rgba(76,88,255,.16);transform:translateX(-105%);visibility:hidden;transition:transform .22s ease,visibility .22s ease;display:flex;flex-direction:column;gap:10px;overflow:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;color:#edf7ff}
+.ng-menu-drawer.is-open{transform:translateX(0);visibility:visible}
+body.ng-menu-open{overflow:hidden}
+.ng-ai-menu-brand{display:flex;align-items:center;gap:11px;min-height:62px;padding:2px 4px 10px}
+.ng-ai-menu-brand img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 7px rgba(0,196,255,.2))}
+.ng-ai-menu-brand>div{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.ng-ai-menu-brand strong{font-size:21px;font-weight:800;letter-spacing:-.45px;background:linear-gradient(100deg,#19e7ff,#3985ff 52%,#c044f4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ng-ai-menu-brand small{font-size:9px;letter-spacing:.35px;color:#91afd5;white-space:nowrap}
+.ng-menu-close{width:34px;height:34px;border:1px solid #244c7b;border-radius:10px;background:#0c2343;color:#dff6ff;font-size:25px;line-height:1}
+.ng-ai-menu-rule{height:1px;flex:none;background:linear-gradient(90deg,transparent,rgba(48,166,255,.48),rgba(120,67,255,.35),transparent);margin:0 2px 2px}
+.ng-ai-menu-nav{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:5px;padding:1px 0 8px;scrollbar-width:thin;scrollbar-color:#2c6494 transparent}
+.ng-ai-menu-link{min-height:52px;display:flex;align-items:center;gap:13px;padding:0 13px;border:1px solid transparent;border-radius:13px;background:transparent;color:#dceaff;text-decoration:none;font-size:16px;font-weight:550;text-align:left}
+.ng-ai-menu-link.is-active{background:linear-gradient(100deg,rgba(0,199,255,.2),rgba(42,91,255,.2) 58%,rgba(140,55,245,.16));border-color:rgba(46,187,255,.48);box-shadow:inset 3px 0 #16d8ff,0 0 16px rgba(0,139,255,.09);color:#fff}
+.ng-ai-menu-icon{width:27px;flex:0 0 27px;display:grid;place-items:center;color:#49d5ff;font-size:22px;line-height:1}
+.ng-ai-menu-link>i{margin-left:auto;color:#8eb8e7;font-style:normal;font-size:19px}
+.ng-ai-menu-group{display:flex;flex-direction:column}
+.ng-ai-menu-group-trigger{width:100%;cursor:pointer}
+.ng-ai-menu-submenu{margin:0 0 3px 26px;padding:4px 0 4px 17px;border-left:1px solid rgba(60,157,220,.28);display:flex;flex-direction:column;gap:3px}
+.ng-ai-menu-submenu[hidden]{display:none!important}
+.ng-ai-menu-submenu a{min-height:43px;display:flex;align-items:center;gap:12px;padding:0 8px;color:#c8d9f1;text-decoration:none;font-size:14px;border-radius:9px}
+.ng-ai-menu-submenu a:active,.ng-ai-menu-link:active,.ng-ai-profile-popup a:active{background:rgba(17,112,190,.28)}
+.ng-ai-menu-submenu .ng-ai-menu-icon{font-size:18px;width:23px;flex-basis:23px}
+.ng-ai-menu-bottom{flex:none;display:flex;flex-direction:column;gap:11px;padding-top:7px;border-top:1px solid rgba(54,132,194,.25)}
+.ng-ai-upgrade-card{min-height:59px;display:flex;align-items:center;gap:12px;padding:0 14px;border:1px solid rgba(120,83,255,.5);border-radius:15px;background:linear-gradient(110deg,rgba(12,91,153,.34),rgba(52,42,132,.52),rgba(102,38,150,.3));color:#f0f5ff;text-decoration:none;font-size:16px}
+.ng-ai-upgrade-card>span{font-size:25px;color:#ffd45b;text-shadow:0 0 9px rgba(255,196,66,.25)}
+.ng-ai-upgrade-card>i{margin-left:auto;color:#9fcfff;font-style:normal;font-size:25px}
+.ng-ai-profile-wrap{position:relative}
+.ng-ai-profile-trigger{width:100%;min-height:66px;display:flex;align-items:center;gap:11px;padding:8px 7px;border:1px solid transparent;border-radius:14px;background:transparent;color:#f2f7ff;text-align:left}
+.ng-ai-profile-trigger img{width:44px;height:44px;flex:none;border-radius:50%;object-fit:cover;border:2px solid #6b53ed;box-shadow:0 0 10px rgba(57,164,255,.22)}
+.ng-ai-profile-trigger>span{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.ng-ai-profile-trigger strong{font-size:14px}
+.ng-ai-profile-trigger small{font-size:12px;color:#91afd5}
+.ng-ai-profile-trigger>i{font-style:normal;color:#a9c7ed}
+.ng-ai-profile-chevron{width:16px;height:18px;flex:0 0 16px;display:grid;place-items:center;color:#a9c7ed}.ng-ai-profile-chevron svg{width:14px;height:17px;display:block}
+.ng-ai-profile-trigger[aria-expanded=true]{background:rgba(31,76,132,.42);border-color:rgba(56,157,232,.3)}
+.ng-ai-profile-popup{position:absolute;z-index:2;left:0;right:0;bottom:calc(100% + 8px);padding:8px;border:1px solid rgba(86,140,199,.35);border-radius:17px;background:linear-gradient(160deg,#102344,#09162f);box-shadow:0 12px 32px rgba(0,0,0,.48)}
+.ng-ai-profile-popup[hidden]{display:none!important}
+.ng-ai-profile-popup a{min-height:49px;display:flex;align-items:center;gap:13px;padding:0 10px;color:#e5efff;text-decoration:none;font-size:15px;border-radius:9px}
+.ng-ai-profile-popup a:last-child{border-top:1px solid rgba(75,125,180,.25);margin-top:5px;padding-top:5px}
+.ng-ai-profile-popup a span{width:24px;color:#56d5ff;font-size:20px;text-align:center}
+@media(prefers-reduced-motion:reduce){.ng-menu-drawer{transition:none}}
