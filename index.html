@@ -309,7 +309,7 @@ body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-in
 /* Set the three image-category glyphs to the requested 30px visible size. */
 #ngModelPicker .ng-image-category .ng-model-brand.ng-qwen,
 #ngModelPicker .ng-image-category .ng-model-brand.ng-krea,
-#ngModelPicker .ng-image-category .ng-model-brand.ng-gfpgan{
+#ngModelPicker .ng-image-category[data-image-category="GFPGAN"] .ng-model-brand{
   width:30px!important;height:30px!important;min-width:30px!important;max-width:30px!important;
   min-height:30px!important;max-height:30px!important;flex:0 0 30px!important;
   font-size:30px!important;line-height:30px!important;
