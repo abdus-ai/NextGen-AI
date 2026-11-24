@@ -2481,3 +2481,36 @@ body .ng-image-settings-placement>.image-settings-trigger{
  max-width:100%!important;
 }
 </style>
+
+<style id="ng-image-controls-margin-24px-v7">
+/* Exact 24px left and right page margins for Choose Tool, Style Preset,
+   Image Model and Aspect Ratio controls; preserve their existing layout. */
+#view-imagine .ng-image-tool-style-row,
+#view-imagine .ng-image-settings-placement{
+ box-sizing:border-box!important;
+ width:calc(100% - 48px)!important;
+ max-width:none!important;
+ margin-left:24px!important;
+ margin-right:24px!important;
+}
+#view-imagine .ng-image-tool-style-row{
+ padding-left:0!important;
+ padding-right:0!important;
+}
+#view-imagine .ng-image-settings-placement{
+ padding-left:0!important;
+ padding-right:0!important;
+}
+#view-imagine .ng-image-tool-style-row>.field,
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement,
+#view-imagine .ng-image-settings-placement>.image-settings-trigger{
+ min-width:0!important;
+ box-sizing:border-box!important;
+}
+#view-imagine .ng-image-tool-style-row select,
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement>button{
+ width:100%!important;
+ max-width:100%!important;
+ box-sizing:border-box!important;
+}
+</style>
