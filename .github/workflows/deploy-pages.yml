@@ -1,4 +1,5 @@
 name: Deploy NextGen AI to GitHub Pages
+# Fresh push-triggered run keeps each Pages deployment artifact unique.
 
 on:
   push:
