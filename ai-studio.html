@@ -2620,3 +2620,40 @@ body #view-imagine>.ng-image-settings-placement>.image-settings-trigger{
  box-sizing:border-box!important;
 }
 </style>
+
+<style id="ng-image-model-aspect-10px-visible-edges-v11">
+/* Make the full visible control row span the viewport with exactly 10px side margins. */
+#view-imagine>.ng-image-settings-placement{
+ box-sizing:border-box!important;
+ display:grid!important;
+ grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr)!important;
+ width:calc(100% - 20px)!important;
+ max-width:none!important;
+ margin:0 10px 14px!important;
+ padding:0!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-model-placement{
+ grid-column:1!important;
+ grid-row:1 / span 2!important;
+ min-width:0!important;
+ width:100%!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-model-placement>button{
+ width:100%!important;
+ max-width:100%!important;
+ box-sizing:border-box!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-aspect-heading{
+ grid-column:2!important;
+ grid-row:1!important;
+}
+#view-imagine>.ng-image-settings-placement>.image-settings-trigger{
+ grid-column:2!important;
+ grid-row:2!important;
+ width:100%!important;
+ max-width:100%!important;
+ min-width:0!important;
+ justify-self:stretch!important;
+ box-sizing:border-box!important;
+}
+</style>
