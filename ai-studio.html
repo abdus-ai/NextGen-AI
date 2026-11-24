@@ -70,7 +70,7 @@ body{padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(max-width:420px){.tool-grid{grid-template-columns:1fr 1fr}.two{gap:7px}.panel{padding:13px}}
 </style>
 <style id="ng-projects-list-v2">
-/* Projects list inspired by the supplied mobile reference; preserve the NextGen navy theme. */
+/* Projects list inspired by the supplied mobile reference; preserve the NextGen AI navy theme. */
 #view-gallery>.panel{padding:16px 14px 20px!important;background:transparent!important;border:0!important;box-shadow:none!important}
 .ng-projects-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px}
 .ng-projects-heading h2{margin:0 0 4px!important;font-size:22px!important;color:#f6f8ff}
@@ -239,7 +239,7 @@ body{background:#020d20}
 </style>
 
 <style id="creative-studio-main-workspace-reference-v1">
-/* Creative Studio landing page: clean white theme with NextGen logo-gradient accents. */
+/* Creative Studio landing page: clean white theme with NextGen AI logo-gradient accents. */
 html,body{background:#ffffff!important;color:#17324d!important}
 .studio{max-width:1180px!important;margin:5px auto!important;padding:0 12px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 .reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:18px;background:#ffffff;box-shadow:0 2px 12px rgba(20,54,86,.07)}
@@ -528,7 +528,7 @@ html,body{background:#061329!important;color:#f4f8ff!important}
 </style>
 
 <style id="nextgen-ai-studio-brand-theme-text-colors-v1">
-/* Brand color for feature title; NextGen navy/cyan theme for badge and Gallery label. */
+/* Brand color for feature title; NextGen AI navy/cyan theme for badge and Gallery label. */
 #studio-workspace #view-title{
   background:linear-gradient(100deg,#00d9ff 0%,#253dff 55%,#a300ff 100%)!important;
   -webkit-background-clip:text!important;
@@ -541,7 +541,7 @@ html,body{background:#061329!important;color:#f4f8ff!important}
 </style>
 
 <style id="nextgen-exact-logo-palette-v2">
-/* Match the supplied NextGen logo palette: cyan, electric blue, violet and magenta. */
+/* Match the supplied NextGen AI logo palette: cyan, electric blue, violet and magenta. */
 #studio-workspace #view-title{
   background:linear-gradient(105deg,#00eaff 0%,#087cff 38%,#352cff 62%,#ed16e8 100%)!important;
   -webkit-background-clip:text!important;
@@ -639,7 +639,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 </style>
 
 <style id="nextgen-ai-studio-full-brand-design-v1">
-/* Full NextGen brand treatment for every AI Studio workspace page only. */
+/* Full NextGen AI brand treatment for every AI Studio workspace page only. */
 #studio-workspace{
   --ng-cyan:#00eaff;
   --ng-blue:#087cff;
@@ -723,7 +723,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 </style>
 
 <style id="nextgen-ai-studio-title-sharp-gradient-fix-v1">
-/* Final correction: keep the actual headline crisp and in the NextGen logo gradient. */
+/* Final correction: keep the actual headline crisp and in the NextGen AI logo gradient. */
 html body #studio-workspace .studio-reference-header .studio-reference-titleline h2#view-title{
   background:transparent!important;
   background-image:none!important;
@@ -895,7 +895,7 @@ html,body{margin:0!important}
 <section class="studio-workspace" id="studio-workspace">
   <div class="studio-reference-header">
     <div class="studio-reference-topline">
-      <span class="studio-reference-badge">NextGen Studio</span>
+      <span class="studio-reference-badge">NextGen AI Studio</span>
       <button type="button" id="studio-home-back" class="studio-close-button" aria-label="Close AI Studio" title="Close">×</button>
     </div>
     <div class="studio-reference-titleline">
@@ -1001,14 +1001,14 @@ html,body{margin:0!important}
 <section id="view-status" class="view hidden">
  <div class="panel"><h2>System & Provider Status</h2><div class="status-line"><span>Creative Studio UI</span><strong>Prototype available</strong></div><div class="status-line"><span>AI Router</span><strong>Integration pending</strong></div><div class="status-line"><span>Image providers</span><strong>Not connected</strong></div><div class="status-line"><span>Video providers</span><strong>Not connected</strong></div><div class="status-line"><span>Gallery storage</span><strong>Not connected</strong></div><div class="status-line"><span>Credit billing</span><strong>Not activated</strong></div></div>
 </section>
-<p class="bottom-note">©2026 NextGen. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
+<p class="bottom-note">©2026 NextGen AI. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
 </div>
 <script>
 (function(){
  const nav=[...document.querySelectorAll('[data-view]')];
  const views=['discover','imagine','gallery','history','tools','plans','status'];
  const home=document.getElementById('studio-home'),workspace=document.getElementById('studio-workspace');
- const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project files.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
+ const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project files.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen AI pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
  function show(key){if(home)home.classList.add('hidden');if(workspace)workspace.classList.remove('hidden');views.forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==key));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===key));document.querySelector('#view-title .ng-title-gradient').textContent='AI Studio';document.getElementById('view-subtitle').textContent=titles[key][1];}
  nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
 
@@ -1566,7 +1566,7 @@ body .view .panel.ng-feature-routing {
 
 
 <style id="nextgen-studio-badge-no-background-title-white-v1">
-/* Remove the badge background from NextGen Studio and make the feature headline white. */
+/* Remove the badge background from NextGen AI Studio and make the feature headline white. */
 #studio-workspace .studio-reference-badge{
   background:none!important;
   background-image:none!important;
@@ -1587,7 +1587,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 
 
 <style id="nextgen-studio-brand-text-colors-corrected-v2">
-/* NextGen wordmark remains multicolour; Studio is green. Feature headline is solid white. */
+/* NextGen AI wordmark remains multicolour; Studio is green. Feature headline is solid white. */
 #studio-workspace .studio-reference-badge{
   background:none!important;
   background-image:none!important;
@@ -1617,7 +1617,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 }
 </style>
 <script id="nextgen-studio-badge-wordmark-correct-v2">
-(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-nextgen-word">NextGen</span>&nbsp;<span class="ng-studio-word">Studio</span>';}})();
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-nextgen-word">NextGen AI</span>&nbsp;<span class="ng-studio-word">Studio</span>';}})();
 </script>
 
 
@@ -1646,7 +1646,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 
 
 <style id="nextgen-studio-wordmark-text-size-v4">
-/* Increase only the NextGen Studio wordmark text size; preserve its colors and layout. */
+/* Increase only the NextGen AI Studio wordmark text size; preserve its colors and layout. */
 #studio-workspace .studio-reference-badge{
   font-size:22px!important;
   line-height:1.15!important;
@@ -1711,7 +1711,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 
 
 <style id="nextgen-wordmark-position-studio-white-bg-v6">
-/* Nudge only the NextGen word left; give only Studio a white background. */
+/* Nudge only the NextGen AI word left; give only Studio a white background. */
 #studio-workspace .studio-reference-badge .ng-next-word,
 #studio-workspace .studio-reference-badge .ng-gen-word{
   position:relative!important;
@@ -1786,7 +1786,7 @@ html body #studio-workspace .studio-reference-header .studio-reference-titleline
 
 
 <style id="nextgen-studio-wordmark-left-shift-v1">
-/* Shift only the NextGen Studio wordmark slightly to the left. */
+/* Shift only the NextGen AI Studio wordmark slightly to the left. */
 #studio-workspace .studio-reference-badge{
   transform:translateX(-8px)!important;
 }
