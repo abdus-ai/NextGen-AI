@@ -2915,3 +2915,29 @@ body #view-imagine.view>.ng-image-settings-placement>.image-settings-trigger{
  box-sizing:border-box!important;
 }
 </style>
+
+<style id="ng-image-aspect-button-theme-match-v1">
+/* Match Aspect Ratio trigger to the dark image-model input; keep cyan only as an accent. */
+body #view-imagine .ng-image-settings-placement>.image-settings-trigger,
+body #view-imagine button.image-settings-trigger{
+ background:#0b1224!important;
+ background-image:none!important;
+ color:#eef5ff!important;
+ border:1px solid #39435c!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 4px 12px rgba(0,0,0,.16)!important;
+}
+body #view-imagine .ng-image-settings-placement>.image-settings-trigger svg,
+body #view-imagine button.image-settings-trigger svg{
+ color:#dceaff!important;
+ stroke:#dceaff!important;
+}
+body #view-imagine .ng-image-settings-placement>.image-settings-trigger:focus-visible,
+body #view-imagine button.image-settings-trigger:focus-visible{
+ outline:2px solid #12c9f5!important;
+ outline-offset:2px!important;
+}
+body #view-imagine .ng-image-settings-placement>.image-settings-trigger:active,
+body #view-imagine button.image-settings-trigger:active{
+ background:#101b31!important;
+}
+</style>
