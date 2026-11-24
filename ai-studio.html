@@ -969,7 +969,7 @@ html,body{margin:0!important}
  </div>
 </section>
 <div class="ng-image-model-overlay hidden" id="ng-image-model-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-model-title"><div class="ng-image-model-sheet"><div class="ng-image-model-head"><h3 id="ng-image-model-title">Image</h3><button type="button" id="ng-image-model-close" aria-label="Close model selection">×</button></div><div class="ng-image-provider-list" id="ng-image-provider-list">
-<button type="button" data-provider="NextGen AI"><span class="ng-provider-icon ng-nextgen-icon">✦</span><strong>NextGen AI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="OpenAI"><span class="ng-provider-icon">◎</span><strong>OpenAI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Nano Banana"><span class="ng-provider-icon">🍌</span><strong>Nano Banana</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Grok"><span class="ng-provider-icon">◉</span><strong>Grok</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Qwen"><span class="ng-provider-icon ng-qwen-icon">✣</span><strong>Qwen</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Krea"><span class="ng-provider-icon">✿</span><strong>Krea</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="GFPGAN"><span class="ng-provider-icon">✧</span><strong>GFPGAN</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Meta Image"><span class="ng-provider-icon ng-meta-icon">∞</span><strong>Meta Image</strong><span class="ng-provider-chevron">›</span></button>
+<button type="button" data-provider="NextGen AI"><span class="ng-provider-icon ng-nextgen-icon">✦</span><strong>NextGen AI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="OpenAI"><span class="ng-provider-icon ng-openai-icon">◎</span><strong>OpenAI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Nano Banana"><span class="ng-provider-icon">🍌</span><strong>Nano Banana</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Grok"><span class="ng-provider-icon ng-grok-icon">◉</span><strong>Grok</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Qwen"><span class="ng-provider-icon ng-qwen-icon">✣</span><strong>Qwen</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Krea"><span class="ng-provider-icon">✿</span><strong>Krea</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="GFPGAN"><span class="ng-provider-icon">✧</span><strong>GFPGAN</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Meta Image" data-direct-select="true"><span class="ng-provider-icon ng-meta-icon">∞</span><strong>Meta Image</strong><span class="ng-provider-select">Select</span></button><button type="button" data-provider="FLUX.2 Klein" data-direct-select="true"><span class="ng-provider-icon">△</span><strong>FLUX.2 Klein</strong><span class="ng-provider-select">Select</span></button><button type="button" data-provider="Real-ESRGAN Upscaler" data-direct-select="true"><span class="ng-provider-icon">↗</span><strong>Real-ESRGAN Upscaler</strong><span class="ng-provider-select">Select</span></button>
 </div><div class="ng-image-model-sublist" id="ng-image-model-sublist" hidden><button type="button" class="ng-image-model-back" id="ng-image-model-back">‹ All image providers</button><div id="ng-image-model-options"></div></div></div></div>
 <div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
 <div class="ng-image-settings-head"><h3 id="ng-image-settings-title">Image Settings</h3><button type="button" class="ng-image-settings-close" id="ng-image-settings-close" aria-label="Close settings">×</button></div>
@@ -1608,16 +1608,39 @@ body .view .panel.ng-feature-routing {
  const overlay=document.getElementById('ng-image-model-overlay'),open=document.getElementById('ng-image-model-open'),close=document.getElementById('ng-image-model-close');
  const list=document.getElementById('ng-image-provider-list'),sub=document.getElementById('ng-image-model-sublist'),back=document.getElementById('ng-image-model-back'),options=document.getElementById('ng-image-model-options');
  const hiddenModel=document.getElementById('ng-image-model'),value=document.getElementById('ng-image-model-value'),routing=document.getElementById('ng-image-routing'),engine=document.getElementById('ng-image-engine'),tool=document.getElementById('ng-image-tool'),task=document.getElementById('ng-image-task');
- const groups={'NextGen AI':['NextGen AI Auto Router','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],'OpenAI':['GPT Image','GPT Image High Quality'],'Nano Banana':['Nano Banana','Nano Banana 2','Nano Banana Pro'],'Grok':['Grok Image'],'Qwen':['Qwen Image','Qwen Image Edit'],'Krea':['Krea Image','Krea Realistic'],'GFPGAN':['GFPGAN Face Restoration'],'Meta Image':['Meta Image']};
+ const groups={'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],'Nano Banana':['Nano Banana','Nano Banana 2','Nano Banana Pro'],'Grok':['Grok Speed','Grok Image 2.0'],'Qwen':['Qwen Image','Qwen Image Edit'],'Krea':['Krea Image','Krea Realistic'],'GFPGAN':['GFPGAN Face Restoration']};
  function closePicker(){overlay.classList.add('hidden');document.body.style.overflow='';if(open)open.focus()}
  function showProviders(){list.hidden=false;sub.hidden=true;document.getElementById('ng-image-model-title').textContent='Image'}
+ function selectModel(name){
+  value.textContent=name;
+  if(hiddenModel){
+   let option=Array.from(hiddenModel.options).find(item=>item.value===name);
+   if(!option){option=document.createElement('option');option.value=name;option.textContent=name;hiddenModel.append(option)}
+   hiddenModel.value=name;hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));
+  }
+  if(routing&&routing.value==='auto')routing.value='manual';
+  closePicker();
+ }
  function showModels(provider){
   list.hidden=true;sub.hidden=false;document.getElementById('ng-image-model-title').textContent=provider;options.replaceChildren();
-  (groups[provider]||[provider]).forEach(name=>{const row=document.createElement('div');row.className='ng-image-model-choice';const label=document.createElement('strong');label.textContent=name;const button=document.createElement('button');button.type='button';button.textContent=value.textContent===name?'Selected':'Select';button.setAttribute('aria-pressed',String(value.textContent===name));button.addEventListener('click',()=>{value.textContent=name;hiddenModel.value=name;hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));if(routing&&routing.value==='auto')routing.value='manual';closePicker()});row.append(label,button);options.append(row)});
+  (groups[provider]||[provider]).forEach(name=>{
+   const row=document.createElement('div');row.className='ng-image-model-choice';
+   const label=document.createElement('strong');label.textContent=name;
+   const button=document.createElement('button');button.type='button';
+   const selected=value.textContent.trim()===name;
+   button.textContent=selected?'Selected ✓':'Select';button.setAttribute('aria-pressed',String(selected));
+   button.addEventListener('click',()=>selectModel(name));
+   row.append(label,button);options.append(row);
+  });
  }
  if(open)open.addEventListener('click',()=>{showProviders();overlay.classList.remove('hidden');document.body.style.overflow='hidden';if(close)close.focus()});
  if(close)close.addEventListener('click',closePicker);if(back)back.addEventListener('click',showProviders);
- if(list)list.addEventListener('click',e=>{const button=e.target.closest('[data-provider]');if(button)showModels(button.dataset.provider)});
+ if(list)list.addEventListener('click',e=>{
+  const button=e.target.closest('[data-provider]');if(!button)return;
+  const provider=button.dataset.provider;
+  if(button.dataset.directSelect==='true'){selectModel(provider);return}
+  showModels(provider);
+ });
  if(overlay)overlay.addEventListener('click',e=>{if(e.target===overlay)closePicker()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay&&!overlay.classList.contains('hidden'))closePicker()});
  if(engine)engine.addEventListener('change',()=>{if(routing){routing.value=engine.value==='auto'?'auto':'manual';routing.dispatchEvent(new Event('change',{bubbles:true}))}});
@@ -1997,6 +2020,76 @@ html,body{
 <script id="nextgen-ai-studio-brand-correction-v1">
 (()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-ai-word">-AI</span><span class="ng-studio-pill">Studio</span>';}})();
 </script>
+
+
+<style id="ng-image-model-popup-match-recording-v2">
+/* Recreate the reference recording's floating, bottom-anchored provider sheet. */
+.ng-image-model-overlay{
+ position:fixed!important;inset:0!important;z-index:10050!important;
+ display:flex!important;align-items:flex-end!important;justify-content:center!important;
+ padding:12px 18px calc(14px + env(safe-area-inset-bottom))!important;
+ background:rgba(1,7,20,.68)!important;
+ backdrop-filter:blur(3px)!important;-webkit-backdrop-filter:blur(3px)!important;
+}
+.ng-image-model-overlay.hidden{display:none!important}
+.ng-image-model-sheet{
+ width:min(calc(100vw - 36px),760px)!important;
+ max-width:760px!important;
+ max-height:min(78dvh,900px)!important;
+ overflow-y:auto!important;overscroll-behavior:contain!important;
+ border:1px solid rgba(38,207,245,.46)!important;
+ border-radius:28px!important;
+ background:linear-gradient(155deg,#0b2342 0%,#0a1b35 66%,#101b3c 100%)!important;
+ padding:18px 18px 20px!important;
+ box-shadow:0 18px 55px rgba(0,0,0,.48)!important;
+}
+.ng-image-model-head{padding-bottom:12px!important;margin-bottom:8px!important}
+.ng-image-model-head h3{font-size:22px!important;font-weight:750!important;color:#c5edff!important}
+.ng-image-model-head button{font-size:30px!important;color:#d9e8fa!important}
+.ng-image-provider-list{display:grid!important;gap:0!important}
+.ng-image-provider-list button{
+ min-height:56px!important;
+ grid-template-columns:42px minmax(0,1fr) auto!important;
+ gap:10px!important;padding:7px 6px!important;
+ border-radius:12px!important;background:transparent!important;
+ color:#f4f7ff!important;text-align:left!important;
+}
+.ng-image-provider-list button:active,
+.ng-image-provider-list button:hover{background:rgba(61,155,218,.14)!important}
+.ng-image-provider-list strong{font-size:16px!important;font-weight:750!important}
+.ng-provider-icon{width:38px!important;height:38px!important;font-size:29px!important}
+.ng-openai-icon{font-size:31px!important;color:#f5f8ff!important}
+.ng-grok-icon{font-size:30px!important;color:#f5f8ff!important}
+.ng-provider-chevron{font-size:29px!important;color:#a8c8e3!important}
+.ng-provider-select{
+ display:inline-flex!important;align-items:center;justify-content:center;
+ min-width:70px!important;min-height:34px!important;padding:0 13px!important;
+ border:1px solid #14b8ee!important;border-radius:99px!important;
+ background:linear-gradient(110deg,#078bdc,#6843ed)!important;
+ color:white!important;font-size:13px!important;font-weight:750!important;
+}
+.ng-image-model-sublist{padding-bottom:4px}
+.ng-image-model-back{font-size:13px!important}
+.ng-image-model-choice{min-height:58px!important;padding:8px 0!important}
+.ng-image-model-choice strong{font-size:15px!important;line-height:1.25!important}
+.ng-image-model-choice button{
+ min-width:76px!important;min-height:34px!important;
+ padding:7px 13px!important;border-radius:99px!important;
+ background:linear-gradient(110deg,#087bdf,#7043ec)!important;
+ border:1px solid #1b9fdd!important;color:#fff!important;
+}
+.ng-image-model-choice button[aria-pressed=true]{
+ background:#153d57!important;border-color:#35d8ff!important;
+}
+@media(max-width:480px){
+ .ng-image-model-overlay{padding-left:12px!important;padding-right:12px!important}
+ .ng-image-model-sheet{width:calc(100vw - 24px)!important;padding:16px 14px 18px!important}
+ .ng-image-provider-list button{min-height:54px!important;grid-template-columns:38px minmax(0,1fr) auto!important}
+ .ng-provider-icon{width:34px!important;height:34px!important;font-size:27px!important}
+ .ng-image-provider-list strong{font-size:15px!important}
+ .ng-image-model-choice strong{font-size:14px!important}
+}
+</style>
 
 </body>
 </html>
