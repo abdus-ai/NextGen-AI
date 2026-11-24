@@ -947,7 +947,7 @@ html,body{margin:0!important}
  </div>
 </section>
 <section id="view-imagine" class="view hidden">
-<section class="panel ng-image-creation-setup" aria-label="Creation Setup"><h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong style="font-size:15px;color:#fff">Image Generate</strong></div><div class="field"><label for="ng-image-engine">AI ENGINE</label><select id="ng-image-engine"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Model Selection</option></select></div><div class="field"><label for="ng-image-tool">CHOOSE TOOL</label><select id="ng-image-tool"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div><p class="ng-image-setup-note">Feature selected: Image Generate. Provider and model details are managed privately by NextGen AI.</p></section> <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
+<section class="panel ng-image-creation-setup" aria-label="Creation Setup"><h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong style="font-size:15px;color:#fff">Image Generate</strong></div><div class="field"><label for="ng-image-engine">AI ENGINE</label><select id="ng-image-engine"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Model Selection</option></select></div><div class="field"><label for="ng-image-tool">CHOOSE TOOL</label><select id="ng-image-tool"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div><p class="ng-image-setup-note">Feature selected: Image Generate. Provider and model details are managed privately by NextGen AI.</p></section> <div class="ng-image-settings-placement"><button type="button" class="image-settings-trigger" id="ng-image-settings-open" aria-label="Image settings: ×1 Auto" aria-haspopup="dialog" aria-controls="ng-image-settings-overlay"><span id="ng-image-settings-button-label">×1 Auto</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></button><div id="ng-image-settings-summary" class="status-line" aria-live="polite" hidden>Auto · 1K · ×1</div></div>
  <div class="studio-grid">
   <div class="panel">
    <h2>AI Image Studio</h2>
@@ -1214,6 +1214,8 @@ function syncControls(){
 }
 function render(){
  summary.textContent=settings.shape+' · '+settings.size+' · ×'+settings.count;
+ const buttonLabel=document.getElementById('ng-image-settings-button-label');if(buttonLabel)buttonLabel.textContent='×'+settings.count+' '+settings.shape;
+ open.setAttribute('aria-label','Image settings: ×'+settings.count+' '+settings.shape);
  shapeText.textContent=settings.shape+(settings.shape==='Auto'?' · 1:1':'');
  setPressed('#ng-image-shape-options','data-shape',settings.shape);
  setPressed('#ng-image-size-options','data-size',settings.size);
@@ -1642,6 +1644,37 @@ body .view .panel.ng-feature-routing {
  update();
 })();
 </script>
+
+
+<style id="ng-image-settings-button-and-modal-v2">
+#view-imagine .ng-image-settings-placement{display:flex;align-items:center;justify-content:flex-start;margin:0 0 14px;padding:0}
+#view-imagine .ng-image-settings-placement .status-line{display:none!important}
+#view-imagine .image-settings-trigger{appearance:none;-webkit-appearance:none;display:inline-flex!important;align-items:center;justify-content:center;gap:9px;min-height:44px;width:auto!important;min-width:126px;padding:0 15px!important;margin:0!important;border:1px solid rgba(89,143,191,.48);border-radius:999px;background:linear-gradient(145deg,#142b49,#0d1d36);color:#f7fbff!important;font:700 14px Inter,system-ui,sans-serif;box-shadow:0 5px 16px rgba(0,0,0,.18);cursor:pointer}
+#view-imagine .image-settings-trigger svg{width:18px;height:18px;flex:0 0 18px;display:block;stroke:currentColor}
+#view-imagine .image-settings-trigger:active{transform:scale(.98)}
+.ng-image-settings-overlay{position:fixed;inset:0;z-index:10060;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:rgba(2,8,22,.78);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.ng-image-settings-overlay.hidden{display:none!important}
+.ng-image-settings-sheet{width:min(100%,560px);max-height:min(82dvh,760px);overflow:auto;background:#0b1b33;color:#f4f8ff;border:1px solid rgba(68,190,255,.42);border-radius:22px;padding:17px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 18px 60px rgba(0,0,0,.55),0 0 22px rgba(0,174,255,.08);font-family:inherit}
+.ng-image-settings-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid rgba(83,178,225,.25);margin-bottom:15px}
+.ng-image-settings-head h3{font-size:20px;margin:0;font-weight:700;color:#f4f8ff}
+.ng-image-settings-head button{border:0;background:transparent;color:#bfc3cc;font-size:30px;line-height:1;padding:2px 7px;cursor:pointer}
+.ng-image-setting-label{display:flex;align-items:center;justify-content:space-between;color:#f0f0f3;font-size:16px;margin:14px 1px 9px}
+.ng-image-setting-label span+span{color:#8e929d;font-size:13px}
+.ng-image-shapes,.ng-image-sizes,.ng-image-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ng-image-shapes button,.ng-image-sizes button,.ng-image-counts button{min-height:56px;border:1px solid rgba(111,157,196,.3);border-radius:14px;background:linear-gradient(180deg,#102744,#0b203a);color:#d5e6f8;font-size:14px;font-weight:700;padding:8px 5px;cursor:pointer}
+.ng-image-sizes,.ng-image-counts{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ng-image-shapes button[aria-pressed=true],.ng-image-sizes button[aria-pressed=true],.ng-image-counts button[aria-pressed=true]{border-color:#27d7f4;background:linear-gradient(115deg,#087fc4 0%,#245ee7 48%,#743ee8 100%);color:#fff;box-shadow:0 0 0 1px rgba(57,219,255,.48) inset,0 0 12px rgba(0,174,255,.16)}
+.ng-image-shapes small{display:block;color:#c7c1ff;font-size:10px;margin-top:2px}
+.ng-image-shapes:not(.show-all) .ng-image-choice:nth-child(n+7){display:none!important}
+.ng-image-shapes-toggle{display:block;margin:10px auto 16px;border:1px solid rgba(59,160,214,.38);border-radius:99px;background:#102944;color:#cceaff;padding:9px 20px;font:600 13px Inter,system-ui,sans-serif;cursor:pointer}
+.ng-image-credit-note{margin:18px 0 12px;padding:16px;border:1px solid rgba(62,151,207,.34);border-radius:17px;background:#102944;color:#aebbd0;font-size:13px;line-height:1.55}
+.ng-image-credit-top,.ng-image-credit-charge{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ng-image-credit-charge{margin:10px 0 7px;color:#f4f7ff;font-size:14px}
+.ng-image-credit-note small{display:block;color:#91a2bb;font-size:11px;line-height:1.55}
+.ng-image-settings-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.ng-image-settings-actions button{min-height:58px;border-radius:15px;font:700 15px Inter,system-ui,sans-serif;cursor:pointer}
+@media(max-width:480px){.ng-image-settings-sheet{max-height:calc(88dvh - 8px);padding:16px 14px calc(16px + env(safe-area-inset-bottom))}.ng-image-settings-actions button{min-height:54px}}
+</style>
 
 </body>
 </html>
