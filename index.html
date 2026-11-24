@@ -208,6 +208,9 @@ body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-in
 /* Reference-matched charcoal model selector. */
 .ng-model-picker{position:fixed!important;left:max(16px,calc((100vw - 430px)/2 + 16px))!important;right:max(16px,calc((100vw - 430px)/2 + 16px))!important;bottom:calc(155px + env(safe-area-inset-bottom,0px))!important;z-index:10020!important;padding:12px!important;border:1px solid #303030!important;border-radius:27px!important;background:#171717!important;box-shadow:0 10px 34px rgba(0,0,0,.58)!important;color:#f5f5f7!important;overflow:hidden!important}
 .ng-model-picker[hidden],.ng-model-list-view[hidden]{display:none!important}.ng-model-category-view{display:flex;flex-direction:column;gap:8px}.ng-model-category-view[hidden]{display:none!important}
+.ng-model-picker.is-image-sublist{height:min(66dvh,var(--ng-picker-space,610px))!important;min-height:220px!important;max-height:var(--ng-picker-space,610px)!important;overflow:hidden!important;padding:12px!important;}
+.ng-model-picker.is-image-sublist .ng-model-list-view{display:flex!important;height:100%!important;min-height:0!important;max-height:none!important;}
+.ng-model-picker.is-image-sublist .ng-model-scroll{display:block!important;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;}
 .ng-model-category-row{width:100%;min-height:90px;display:flex;align-items:center;gap:17px;padding:14px 15px;border:0;border-radius:21px;background:transparent;color:#f5f5f7;text-align:left;cursor:pointer}.ng-model-category-row:active{background:#292929}.ng-model-category-row:first-child{background:#2b2b2b;box-shadow:inset 4px 0 0 #8061f4}
 .ng-model-category-icon{width:43px;flex:0 0 43px;text-align:center;font-size:31px;color:#f2f2f4}.ng-model-category-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:6px}.ng-model-category-copy strong{font-size:23px;line-height:1.2;font-weight:650}.ng-model-category-copy small{display:flex;align-items:center;gap:10px;color:#a7a7b0;font-size:20px;line-height:1.2}.ng-provider-mini{font-size:24px;line-height:1;font-weight:700}.ng-model-category-chevron{font-size:38px;line-height:1;color:#bcbcc4;font-weight:300}
 .ng-model-list-view{height:min(69dvh,650px);display:flex;flex-direction:column;min-height:300px}.ng-model-list-heading{height:46px;flex:0 0 46px;display:flex;align-items:center;gap:12px;padding:0 5px 8px;color:#bcbcc5;font-size:17px}.ng-model-back{width:28px;height:30px;border:0;background:transparent;color:#bcbcc5;font-size:34px;line-height:1;display:grid;place-items:center;cursor:pointer}
@@ -600,10 +603,10 @@ function initModelPicker(){
   'Krea':['Krea 2 Turbo','Krea 2 Realism HD'],
   'GFPGAN':['GFPGAN Face Restoration','CodeFormer Face Restoration']
  };
- function positionPicker(){const rect=trigger.getBoundingClientRect();const gap=8;const available=Math.max(230,rect.top-gap-12);picker.style.setProperty('bottom','auto','important');picker.style.setProperty('top','auto','important');picker.style.setProperty('--ng-picker-space',available+'px');picker.style.setProperty('bottom',(window.innerHeight-rect.top+gap)+'px','important');}
- function showImageList(){imageSection.hidden=false;videoSection.hidden=true;imageBack.hidden=true;imageHeading.textContent='Image';imageScroll.innerHTML=imageScroll.dataset.categories||imageScroll.innerHTML;positionPicker();}
+ function positionPicker(){const rect=trigger.getBoundingClientRect();const gap=8;const available=Math.max(230,rect.top-gap-12);picker.style.setProperty('bottom','auto','important');picker.style.setProperty('top','auto','important');picker.style.setProperty('--ng-picker-space',available+'px');picker.style.setProperty('bottom',(window.innerHeight-rect.top+gap)+'px','important');if(picker.classList.contains('is-image-sublist'))picker.style.setProperty('height','min(66dvh,'+available+'px)','important');else picker.style.removeProperty('height');}
+ function showImageList(){picker.classList.remove('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;imageBack.hidden=true;imageHeading.textContent='Image';imageScroll.innerHTML=imageScroll.dataset.categories||imageScroll.innerHTML;positionPicker();}
  imageScroll.dataset.categories=imageScroll.innerHTML;
- function showImageGroup(name){
+ function showImageGroup(name){picker.classList.add('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;
   imageHeading.textContent=name;imageBack.hidden=false;
   imageScroll.innerHTML='';
   imageGroups[name].forEach(model=>{
