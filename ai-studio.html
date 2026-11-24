@@ -2704,3 +2704,48 @@ body #view-imagine>.ng-image-settings-placement>.image-settings-trigger{
  box-sizing:border-box!important;
 }
 </style>
+
+<style id="ng-image-model-aspect-hard-fix-10px-v13">
+/* Correct only the IMAGE MODEL + ASPECT RATIO row.
+   Pin the row to a 10px viewport inset and make the right control fill its grid cell. */
+body #view-imagine > div.ng-image-settings-placement{
+ display:grid!important;
+ box-sizing:border-box!important;
+ position:relative!important;
+ left:auto!important;
+ right:auto!important;
+ width:calc(100vw - 20px)!important;
+ max-width:calc(100vw - 20px)!important;
+ margin:0 0 14px 10px!important;
+ padding:0!important;
+ grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr)!important;
+ column-gap:12px!important;
+}
+body #view-imagine > div.ng-image-settings-placement > button.image-settings-trigger{
+ display:flex!important;
+ box-sizing:border-box!important;
+ grid-column:2!important;
+ grid-row:2!important;
+ width:100%!important;
+ min-width:0!important;
+ max-width:none!important;
+ flex:1 1 100%!important;
+ justify-self:stretch!important;
+ align-self:stretch!important;
+ margin:0!important;
+}
+body #view-imagine > div.ng-image-settings-placement > div.ng-image-model-placement{
+ grid-column:1!important;
+ grid-row:1 / span 2!important;
+ width:100%!important;
+ min-width:0!important;
+ margin:0!important;
+ padding:0!important;
+}
+body #view-imagine > div.ng-image-settings-placement > div.ng-image-model-placement > button{
+ display:flex!important;
+ box-sizing:border-box!important;
+ width:100%!important;
+ max-width:none!important;
+}
+</style>
