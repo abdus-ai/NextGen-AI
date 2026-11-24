@@ -214,7 +214,7 @@ body{background:#020d20}
 </style>
 
 <style id="creative-studio-main-workspace-reference-v1">
-/* Creative Studio landing page: clean white theme with NextGen logo-gradient accents. */
+/* Creative Studio landing page: clean white theme with NextGen AI logo-gradient accents. */
 html,body{background:#ffffff!important;color:#17324d!important}
 .studio{max-width:1180px!important;margin:5px auto!important;padding:0 12px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 .reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:18px;background:#ffffff;box-shadow:0 2px 12px rgba(20,54,86,.07)}
@@ -338,7 +338,7 @@ html,body{background:#061329!important;color:#f4f8ff!important}
 }
 </style>
 <style id="ng-projects-reference-layout-v1">
-/* Mobile project list based on the supplied reference; retain NextGen's existing navy/cyan visual identity. */
+/* Mobile project list based on the supplied reference; retain NextGen AI's existing navy/cyan visual identity. */
 .ng-projects-shell{padding:14px 4px 24px}
 .ng-projects-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
 .ng-projects-heading h2{font-size:22px;font-weight:750;color:#f5f7ff;margin:0 0 4px}
@@ -477,7 +477,7 @@ html body #studio-home .ng-project-menu{justify-self:end!important;align-self:ce
 </style>
 
 <style id="ng-project-menu-nextgen-theme-v2">
-/* Match the project action popup to the existing NextGen dark-navy / cyan / purple theme. */
+/* Match the project action popup to the existing NextGen AI dark-navy / cyan / purple theme. */
 html body #studio-home .ng-project-actions{background:linear-gradient(145deg,#101d38 0%,#10172d 58%,#17152f 100%)!important;border:1px solid rgba(53,216,255,.48)!important;border-radius:14px!important;box-shadow:0 0 14px rgba(0,216,255,.16),0 10px 28px rgba(0,0,0,.48)!important;}
 html body #studio-home .ng-project-actions button{background:transparent!important;color:#f5f7ff!important;border-bottom:1px solid rgba(91,133,190,.16)!important;}
 html body #studio-home .ng-project-actions button:last-child{border-bottom:0!important;}
@@ -536,7 +536,7 @@ html body #studio-home .ng-project-actions .ng-menu-icon{color:#48dcff!important
 
 
 <style id="nextgen-gallery-wordmark-gap-v1">
-/* Add a small gap between the NextGen wordmark and the Studio badge only. */
+/* Add a small gap between the NextGen AI wordmark and the Studio badge only. */
 .ng-final-shared-header .ng-studio-word{margin-left:4px!important}
 </style>
 
@@ -709,7 +709,7 @@ html body .ng-final-shared-header h2.ng-final-title{
 <div class="studio">
 <header class="ng-final-shared-header">
  <div class="ng-final-topline">
-  <div class="ng-final-wordmark" aria-label="NextGen Studio"><span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span></div>
+  <div class="ng-final-wordmark" aria-label="NextGen AI Studio"><span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span></div>
   <a class="ng-final-close" href="./create-hub.html" aria-label="Back" title="Back">×</a>
  </div>
  <div class="ng-final-titleline"><h2 class="ng-final-title">Your Projects</h2><a class="ng-final-action" href="./creative-studio.html">＋ Create New Projects</a></div>
@@ -852,14 +852,14 @@ html body .ng-final-shared-header h2.ng-final-title{
 <section id="view-status" class="view hidden">
  <div class="panel"><h2>System & Provider Status</h2><div class="status-line"><span>Creative Studio UI</span><strong>Prototype available</strong></div><div class="status-line"><span>AI Router</span><strong>Integration pending</strong></div><div class="status-line"><span>Image providers</span><strong>Not connected</strong></div><div class="status-line"><span>Video providers</span><strong>Not connected</strong></div><div class="status-line"><span>Gallery storage</span><strong>Not connected</strong></div><div class="status-line"><span>Credit billing</span><strong>Not activated</strong></div></div>
 </section>
-<p class="bottom-note">©2026 NextGen. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
+<p class="bottom-note">©2026 NextGen AI. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
 </div>
 <script>
 (function(){
  const nav=[...document.querySelectorAll('[data-view]')];
  const views=['discover','imagine','gallery','history','tools','plans','status'];
  const home=document.getElementById('studio-home'),workspace=document.getElementById('studio-workspace');
- const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project history.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
+ const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project history.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen AI pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
  function show(key){if(home)home.classList.add('hidden');if(workspace)workspace.classList.remove('hidden');views.forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==key));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===key));document.getElementById('view-title').textContent=titles[key][0];document.getElementById('view-subtitle').textContent=titles[key][1];}
  nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
 
@@ -1206,7 +1206,7 @@ render();
 }
 </style>
 <style id="nextgen-gallery-wordmark-gap-final-v2">
-/* Add a visible 5px gap between the NextGen wordmark and Studio badge. */
+/* Add a visible 5px gap between the NextGen AI wordmark and Studio badge. */
 .ng-final-shared-header .ng-studio-word{margin-left:5px!important}
 </style>
 <style id="nextgen-gallery-header-fixed-v1">
