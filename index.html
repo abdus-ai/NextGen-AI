@@ -657,7 +657,16 @@ function initModelPicker(){
   event.stopPropagation();
   showImageGroup(category.dataset.imageCategory);
  },true);
- imageBack.addEventListener('click',()=>showImageList());
+ imageBack.type='button';
+ imageBack.style.cssText+=';position:relative;z-index:10030;pointer-events:auto;touch-action:manipulation;flex:0 0 34px;min-width:34px;min-height:34px;';
+ picker.addEventListener('click',event=>{
+  const back=event.target.closest('#ngImagePickerBack');
+  if(!back)return;
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  showImageList();
+ },true);
  function showVideoList(){imageSection.hidden=true;videoSection.hidden=false;positionPicker();}
  function setPickerArrow(open){trigger.setAttribute('aria-expanded',String(open));}
  function openPicker(){showImageList();picker.hidden=false;positionPicker();setPickerArrow(true);}
