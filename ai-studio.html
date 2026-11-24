@@ -978,10 +978,10 @@ html,body{margin:0!important}
 <button class="ng-image-choice" data-shape="1:1" aria-pressed="false">1:1</button><button class="ng-image-choice" data-shape="3:4" aria-pressed="false">3:4</button><button class="ng-image-choice" data-shape="9:16" aria-pressed="false">9:16</button>
 <button class="ng-image-choice" data-shape="3:2" aria-pressed="false">3:2</button><button class="ng-image-choice" data-shape="2:3" aria-pressed="false">2:3</button><button class="ng-image-choice" data-shape="5:4" aria-pressed="false">5:4</button>
 <button class="ng-image-choice" data-shape="4:5" aria-pressed="false">4:5</button><button class="ng-image-choice" data-shape="21:9" aria-pressed="false">21:9</button><button class="ng-image-choice" data-shape="1:4" aria-pressed="false">1:4</button>
-<button class="ng-image-choice" data-shape="4:1" aria-pressed="false">4:1</button><button class="ng-image-choice" data-shape="1:8" aria-pressed="false">1:8</button><button class="ng-image-choice" data-shape="8:1" aria-pressed="false">8:1</button></div>
+<button class="ng-image-choice" data-shape="4:1" aria-pressed="false">4:1</button><button class="ng-image-choice" data-shape="1:8" aria-pressed="false">1:8</button><button class="ng-image-choice" data-shape="8:1" aria-pressed="false">8:1</button></div><button type="button" id="ng-image-shapes-toggle" class="ng-image-shapes-toggle" aria-expanded="false">More shapes⌄</button>
 <div class="ng-image-setting-label"><span>Size</span><span>Output resolution</span></div><div class="ng-image-sizes" id="ng-image-size-options"><button class="ng-image-choice" data-size="1K" aria-pressed="true">1K</button><button class="ng-image-choice" data-size="2K" aria-pressed="false">2K</button><button class="ng-image-choice" data-size="4K" aria-pressed="false">4K</button><button class="ng-image-choice" data-size="8K" aria-pressed="false">8K</button></div>
-<div class="ng-image-setting-label"><span>Number of images</span><span>Choose output count</span></div><div class="ng-image-counts" id="ng-image-count-options"><button class="ng-image-choice" data-count="1" aria-pressed="true">×1</button><button class="ng-image-choice" data-count="2" aria-pressed="false">×2</button><button class="ng-image-choice" data-count="3" aria-pressed="false">×3</button><button class="ng-image-choice" data-count="4" aria-pressed="false">×4</button><button class="ng-image-choice" data-count="5" aria-pressed="false">×5</button><button class="ng-image-choice" data-count="6" aria-pressed="false">×6</button><button class="ng-image-choice" data-count="8" aria-pressed="false">×8</button></div>
-<div class="ng-image-credit-note">Credit usage will depend on the selected resolution (1K / 2K / 4K / 8K) and number of images. The exact credit total must be shown for review before generation, and credits must not be deducted until the user confirms. Rates will be configured from verified provider costs.</div>
+<div class="ng-image-setting-label"><span>Number of images</span><span>Up to ×4</span></div><div class="ng-image-counts" id="ng-image-count-options"><button class="ng-image-choice" data-count="1" aria-pressed="true">×1</button><button class="ng-image-choice" data-count="2" aria-pressed="false">×2</button><button class="ng-image-choice" data-count="3" aria-pressed="false">×3</button><button class="ng-image-choice" data-count="4" aria-pressed="false">×4</button></div>
+<div class="ng-image-credit-note" id="ng-image-credit-note"><div class="ng-image-credit-top"><span id="ng-image-total">1 image total</span><span>0 Stars Left</span></div><div class="ng-image-credit-charge"><strong>You’ll be charged</strong><strong id="ng-image-credit-estimate">0.5 Star (estimate)</strong></div><small>Estimate only. Provider pricing and wallet deduction are not connected yet; no Stars are deducted.</small></div>
 <div class="ng-image-settings-actions"><button type="button" class="secondary" id="ng-image-settings-cancel">Cancel</button><button type="button" class="primary" id="ng-image-settings-apply">Apply Settings</button></div></div></div>
 <section id="view-gallery" class="view hidden">
  <div class="panel">
@@ -1619,6 +1619,27 @@ body .view .panel.ng-feature-routing {
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay&&!overlay.classList.contains('hidden'))closePicker()});
  if(engine)engine.addEventListener('change',()=>{if(routing){routing.value=engine.value==='auto'?'auto':'manual';routing.dispatchEvent(new Event('change',{bubbles:true}))}});
  if(tool)tool.addEventListener('change',()=>{if(task){task.value=tool.value;task.dispatchEvent(new Event('change',{bubbles:true}))}});
+})();
+</script>
+
+
+<style id="ng-image-settings-reference-polish-v1">
+.ng-image-shapes:not(.show-all) .ng-image-choice:nth-child(n+7){display:none!important}
+.ng-image-shapes-toggle{display:block;margin:10px auto 16px;border:1px solid rgba(59,160,214,.38);border-radius:99px;background:#102944;color:#cceaff;padding:9px 20px;font:600 13px Inter,system-ui,sans-serif}
+.ng-image-credit-note{margin:18px 0 12px;padding:16px;border:1px solid rgba(62,151,207,.34);border-radius:17px;background:#102944;color:#aebbd0;font-size:13px;line-height:1.55}
+.ng-image-credit-top,.ng-image-credit-charge{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ng-image-credit-charge{margin:10px 0 7px;color:#f4f7ff;font-size:14px}
+.ng-image-credit-note small{display:block;color:#91a2bb;font-size:11px;line-height:1.55}
+</style>
+<script id="ng-image-settings-reference-polish-controller-v1">
+(function(){
+ const grid=document.getElementById('ng-image-shape-options'),toggle=document.getElementById('ng-image-shapes-toggle');
+ const total=document.getElementById('ng-image-total'),charge=document.getElementById('ng-image-credit-estimate');
+ if(!grid||!toggle)return;
+ toggle.addEventListener('click',()=>{const expanded=grid.classList.toggle('show-all');toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Fewer shapes⌃':'More shapes⌄'});
+ function update(){const count=Number(document.querySelector('#ng-image-count-options [aria-pressed="true"]')?.dataset.count||1);if(total)total.textContent=count+' image'+(count===1?'':'s')+' total';if(charge)charge.textContent=(.5*count).toFixed(1)+' Star'+(count===1?'':'s')+' (estimate)'}
+ document.addEventListener('click',e=>{if(e.target.closest('#ng-image-count-options [data-count]'))requestAnimationFrame(update)});
+ update();
 })();
 </script>
 
