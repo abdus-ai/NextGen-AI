@@ -2425,3 +2425,35 @@ html body #studio-workspace.ng-text-to-video-view #view-subtitle.studio-workspac
  #view-imagine .ng-image-settings-placement>.image-settings-trigger{width:90%!important;font-size:11px!important}
 }
 </style>
+
+<style id="ng-image-settings-row-mobile-inset-v5">
+/* Align the model/aspect controls with the inner edges of the prompt card. */
+#view-imagine .ng-image-settings-placement{
+ box-sizing:border-box!important;
+ width:100%!important;
+ padding-left:24px!important;
+ padding-right:24px!important;
+ margin-left:0!important;
+ margin-right:0!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement{
+ min-width:0!important;
+ overflow:visible!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement>label{
+ padding-left:0!important;
+ white-space:nowrap!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement>button{
+ box-sizing:border-box!important;
+}
+#view-imagine .ng-image-settings-placement>.image-settings-trigger{
+ box-sizing:border-box!important;
+}
+@media(max-width:380px){
+ #view-imagine .ng-image-settings-placement{
+  padding-left:16px!important;
+  padding-right:16px!important;
+ }
+}
+</style>
