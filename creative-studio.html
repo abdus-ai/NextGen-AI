@@ -214,7 +214,7 @@ body{background:#020d20}
 </style>
 
 <style id="creative-studio-main-workspace-reference-v1">
-/* Creative Studio landing page: clean white theme with NextGen logo-gradient accents. */
+/* Creative Studio landing page: clean white theme with NextGen AI logo-gradient accents. */
 html,body{background:#ffffff!important;color:#17324d!important}
 .studio{max-width:1180px!important;margin:5px auto!important;padding:0 12px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
 .reference-project-card,.reference-gallery-section{margin:0!important;padding:12px;border:1px solid #d7e3ef;border-radius:18px;background:#ffffff;box-shadow:0 2px 12px rgba(20,54,86,.07)}
@@ -376,7 +376,7 @@ html,body{background:#061329!important;color:#f4f8ff!important}
 <style id="nextgen-create-project-hide-duplicate-intro-v1">#studio-home .reference-intro{display:none!important}</style>
 
 <style id="nextgen-create-project-reference-header-match-v2">
-/* Match the approved NextGen Studio feature-page header without changing card layout. */
+/* Match the approved NextGen AI Studio feature-page header without changing card layout. */
 .ng-final-shared-header{
   margin:0 0 18px!important;
   padding:14px 18px 17px!important;
@@ -904,7 +904,7 @@ html body .ng-final-shared-header .ng-final-subtitle{
 <div class="studio">
 <header class="ng-final-shared-header">
  <div class="ng-final-topline">
-  <div class="ng-final-wordmark" aria-label="NextGen Studio"><span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span></div>
+  <div class="ng-final-wordmark" aria-label="NextGen AI Studio"><span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-studio-word">Studi<span class="ng-studio-o">o</span></span></div>
   <a class="ng-final-close" href="./index.html" aria-label="Back" title="Back">×</a>
  </div>
  <div class="ng-final-titleline"><h2 class="ng-final-title">Create New Project</h2><a class="ng-final-action" href="./gallery.html">Projects</a></div>
@@ -1056,14 +1056,14 @@ html body .ng-final-shared-header .ng-final-subtitle{
 <section id="view-status" class="view hidden">
  <div class="panel"><h2>System & Provider Status</h2><div class="status-line"><span>Creative Studio UI</span><strong>Prototype available</strong></div><div class="status-line"><span>AI Router</span><strong>Integration pending</strong></div><div class="status-line"><span>Image providers</span><strong>Not connected</strong></div><div class="status-line"><span>Video providers</span><strong>Not connected</strong></div><div class="status-line"><span>Gallery storage</span><strong>Not connected</strong></div><div class="status-line"><span>Credit billing</span><strong>Not activated</strong></div></div>
 </section>
-<p class="bottom-note">©2026 NextGen. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
+<p class="bottom-note">©2026 NextGen AI. All Rights Reserved. · Powered by ABDUS SATTAR<br>Design prototype only. No generation, upload processing, payment or publishing is active. Credit estimates remain unavailable until verified provider rates and the Credit Wallet are connected.</p>
 </div>
 <script>
 (function(){
  const nav=[...document.querySelectorAll('[data-view]')];
  const views=['discover','imagine','gallery','history','tools','plans','status'];
  const home=document.getElementById('studio-home'),workspace=document.getElementById('studio-workspace');
- const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project history.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
+ const titles={discover:['Video Generate','Describe your video and prepare the generation settings.'],imagine:['Image Generate','Create and edit images with a dedicated workspace.'],gallery:['Projects','Your saved creations and project history.'],history:['Generation History','Review prompt setups prepared in this browser.'],tools:['More Features','Explore additional creative tools.'],plans:['Plans & Credits','Review the reference plan layout; NextGen AI pricing remains separate.'],status:['System Status','See which creative services are ready and which integrations remain pending.']};
  function show(key){if(home)home.classList.add('hidden');if(workspace)workspace.classList.remove('hidden');views.forEach(v=>document.getElementById('view-'+v).classList.toggle('hidden',v!==key));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===key));document.getElementById('view-title').textContent=titles[key][0];document.getElementById('view-subtitle').textContent=titles[key][1];}
  nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
 
