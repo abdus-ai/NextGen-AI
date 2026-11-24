@@ -2382,3 +2382,46 @@ html body #studio-workspace.ng-text-to-video-view #view-subtitle.studio-workspac
   }
 }
 </style>
+
+<style id="ng-image-model-wider-aspect-compact-v4">
+/* Give IMAGE MODEL a wider left column; keep ASPECT RATIO more compact on the right. */
+#view-imagine .ng-image-settings-placement{
+ grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr)!important;
+ column-gap:12px!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement{
+ grid-column:1!important;
+ grid-row:1 / span 2!important;
+ align-items:stretch!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-model-placement>button{
+ width:100%!important;
+ min-width:0!important;
+ text-align:left!important;
+ justify-content:space-between!important;
+ padding-left:13px!important;
+ padding-right:10px!important;
+ font-size:14px!important;
+ white-space:normal!important;
+}
+#view-imagine .ng-image-settings-placement>.ng-image-aspect-heading{
+ grid-column:2!important;
+ grid-row:1!important;
+ text-align:left!important;
+}
+#view-imagine .ng-image-settings-placement>.image-settings-trigger{
+ grid-column:2!important;
+ grid-row:2!important;
+ width:88%!important;
+ justify-self:start!important;
+ min-width:0!important;
+ padding-left:7px!important;
+ padding-right:7px!important;
+ font-size:12px!important;
+}
+@media(max-width:380px){
+ #view-imagine .ng-image-settings-placement{grid-template-columns:minmax(0,1.5fr) minmax(0,.82fr)!important;column-gap:8px!important}
+ #view-imagine .ng-image-settings-placement>.ng-image-model-placement>button{font-size:12px!important;padding-left:9px!important;padding-right:7px!important}
+ #view-imagine .ng-image-settings-placement>.image-settings-trigger{width:90%!important;font-size:11px!important}
+}
+</style>
