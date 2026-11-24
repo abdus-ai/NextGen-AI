@@ -946,7 +946,8 @@ html,body{margin:0!important}
   </div>
  </div>
 </section>
-<section id="view-imagine" class="view hidden">\n <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
+<section id="view-imagine" class="view hidden">
+ <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
  <div class="studio-grid">
   <div class="panel">
    <h2>AI Image Studio</h2>
@@ -1294,7 +1295,7 @@ render();
   panel._setFeature=function(feature){panel.querySelector('[data-ng-feature-title]').textContent=feature;panel.querySelector('[data-ng-feature-context]').textContent='Feature selected: '+feature+'. Provider and model details are managed privately by NextGen AI.';toolSelect.innerHTML='';(featureTools[feature]||featureTools['More Features']).forEach(tool=>{const o=document.createElement('option');o.value=tool;o.textContent=tool;toolSelect.append(o);});};
   panel._setFeature(activeFeature);
  }
- addPanel('view-discover');addPanel('view-imagine');addPanel('view-tools');
+ addPanel('view-discover');addPanel('view-tools');
  document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{
   const label=card.innerText.trim().replace(/\s+/g,' ');
   const feature=label==='Photos'?'Image Generate':label==='Videos'?'Video Generate':label==='Audio / Music'?'Audio / Music Generate':label==='Text History'?'More Features':label;
