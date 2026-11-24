@@ -639,10 +639,9 @@ function initModelPicker(){
  function closePicker(){picker.hidden=true;setPickerArrow(false);}
  function paint(){$('ngImageModelValue').textContent=selectedModels.Image.name;$('ngVideoModelValue').textContent=selectedModels.Video.name;$('ng-model-selected-label').textContent='NextGen AI';}
  trigger.addEventListener('click',()=>{if(picker.hidden)openPicker();else closePicker();});
- imageScroll.querySelectorAll('[data-image-category]').forEach(category=>{
-  category.addEventListener('click',()=>showImageGroup(category.dataset.imageCategory));
- });
  picker.addEventListener('click',event=>{
+  const category=event.target.closest('[data-image-category]');
+  if(category&&imageScroll.contains(category)){showImageGroup(category.dataset.imageCategory);return;}
   const button=event.target.closest('[data-model-kind][data-model-name]');
   if(button){
    const kind=button.dataset.modelKind;selectedModels[kind]={name:button.dataset.modelName,cost:button.dataset.modelCost||''};
