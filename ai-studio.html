@@ -883,6 +883,13 @@ html,body{margin:0!important}
 }
 </style>
 
+
+<style id="ng-image-workspace-enhancements-v1">
+#view-imagine #ng-image-model:disabled{opacity:.55}
+#view-imagine .ng-image-feature-status{font-size:12px;color:#9fc8e7;line-height:1.5}
+#view-imagine #ng-image-file-preview img{width:100%;max-width:220px;height:auto;max-height:180px;object-fit:contain;border:1px solid rgba(48,155,225,.35);border-radius:12px}
+#view-imagine .tool-grid .tool{min-height:68px}
+</style>
 </head>
 <body>
 <div class="studio">
@@ -943,17 +950,19 @@ html,body{margin:0!important}
  <div class="studio-grid">
   <div class="panel">
    <h2>AI Image Studio</h2>
-   <div class="field"><label>IMAGE MODEL</label><select><option>Auto Select</option><option>Qwen Image</option><option>Flux</option><option>Nano Banana · reference</option><option>Krea · reference</option></select></div>
-   <div class="field"><label>PROMPT</label><textarea id="image-prompt" maxlength="3000" placeholder="Describe the image you want to create..."></textarea></div>
-   <div class="field"><label>STYLE PRESET</label><select><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option></select></div>
-   <div class="field"><label>REFERENCE IMAGE / EDIT SOURCE</label><label class="upload" for="image-file">＋ <span><strong>Upload image</strong><br>Use as reference or edit source</span></label><input id="image-file" type="file" accept="image/*"></div>
-   <div class="two"><div class="field"><label>ASPECT</label><select id="image-aspect-select"><option>Auto</option><option>1:1</option><option>16:9</option><option>4:3</option><option>9:16</option><option>3:4</option><option>3:2</option><option>2:3</option><option>5:4</option><option>4:5</option><option>21:9</option><option>1:4</option><option>4:1</option><option>1:8</option><option>8:1</option></select></div><div class="field"><label>OUTPUTS</label><select id="image-output-count-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></div></div>
+   <div class="field"><label>CREATION MODE</label><select id="ng-image-task"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div>
+   <div class="two"><div class="field"><label>MODEL ROUTING</label><select id="ng-image-routing"><option value="auto">Auto Selection</option><option value="manual">Manual Model Selection</option><option value="compare">Compare Mode</option></select></div><div class="field"><label>IMAGE MODEL</label><select id="ng-image-model"><option>NextGen AI (Auto Router)</option><option>OpenAI</option><option>Nano Banana</option><option>Grok</option><option>Qwen</option><option>Krea</option><option>GFPGAN</option><option>Meta Image</option><option>FLUX.2 Klein</option><option>Real-ESRGAN Upscaler</option></select></div></div>
+   <div class="field"><label>PROMPT</label><textarea id="image-prompt" maxlength="3000" placeholder="Describe the image you want to create or the changes you want..."></textarea></div>
+   <div class="field"><label>NEGATIVE PROMPT (OPTIONAL)</label><textarea id="ng-image-negative-prompt" maxlength="1500" placeholder="Describe what should not appear in the image..."></textarea></div>
+   <div class="field"><label>STYLE PRESET</label><select id="ng-image-style"><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option><option>Digital Art</option><option>Watercolor</option></select></div>
+   <div class="field"><label>REFERENCE IMAGE / EDIT SOURCE</label><label class="upload" for="image-file">＋ <span><strong>Upload image</strong><br>Use as reference, editing or restoration source</span></label><input id="image-file" type="file" accept="image/*"><div id="ng-image-file-preview" class="file-preview"></div></div>
+   <div class="two"><div class="field"><label>ASPECT RATIO</label><select id="image-aspect-select"><option>Auto</option><option>1:1</option><option>16:9</option><option>4:3</option><option>9:16</option><option>3:4</option><option>3:2</option><option>2:3</option><option>5:4</option><option>4:5</option><option>21:9</option><option>1:4</option><option>4:1</option><option>1:8</option><option>8:1</option></select></div><div class="field"><label>OUTPUTS</label><select id="image-output-count-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option></select></div></div>
    <div class="field"><label>IMAGE CREDIT ESTIMATE</label><div id="image-credit-estimate" class="notice" aria-live="polite">Unavailable — verified provider rates and the Credit Wallet are not connected. No estimated credits will be invented.</div></div>
    <div class="field"><div id="image-generation-summary" class="status-line" aria-live="polite"><span>Ready to configure</span><strong>Not submitted</strong></div></div>
    <button class="primary" id="image-generate-btn" type="button">Prepare Image Generation</button>
    <div class="notice" id="image-generation-notice">Prototype only: image generation is blocked until provider connection, verified credit rates and account authorization are active. No credits will be deducted.</div>
   </div>
-  <aside class="panel"><h2>Image Workspace</h2><div class="tool-grid"><div class="tool"><b>Text to Image</b><span>Create from a written prompt</span></div><div class="tool"><b>Image Edit</b><span>Change selected parts by prompt</span></div><div class="tool"><b>Upscale</b><span>Increase resolution when supported</span></div><div class="tool"><b>Compare</b><span>Compare provider outputs side by side</span></div></div></aside>
+  <aside class="panel"><h2>Image Workspace</h2><div class="tool-grid"><div class="tool"><b>Text to Image</b><span>Create from a written prompt</span></div><div class="tool"><b>Image to Image</b><span>Create using a reference image</span></div><div class="tool"><b>Image Editing</b><span>Inpainting, outpainting and object edits</span></div><div class="tool"><b>Background Tools</b><span>Remove or replace backgrounds</span></div><div class="tool"><b>Face Restoration</b><span>Restore facial details while preserving identity</span></div><div class="tool"><b>Image Upscaling</b><span>Enhance resolution where supported</span></div><div class="tool"><b>Prompt Enhancement</b><span>Prepare a clearer prompt before submission</span></div><div class="tool"><b>Compare Mode</b><span>Compare selected provider results</span></div></div><div class="notice" style="margin-top:12px">Auto Selection is the default. Manual Selection and Compare Mode are also available. Provider connections are not active yet.</div></aside>
 
  </div>
 </section>
@@ -1539,6 +1548,19 @@ body .view .panel.ng-feature-routing {
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);
  else apply();
  window.addEventListener('pageshow',apply);
+})();
+</script>
+
+<script id="ng-image-workspace-controls-v1">
+(function(){
+ const root=document.getElementById('view-imagine');if(!root)return;
+ const routing=root.querySelector('#ng-image-routing'),model=root.querySelector('#ng-image-model'),task=root.querySelector('#ng-image-task');
+ function sync(){if(!routing||!model)return;model.disabled=routing.value==='auto';model.setAttribute('aria-label',routing.value==='auto'?'Model selected automatically':'Choose image model');}
+ routing?.addEventListener('change',sync);sync();
+ const file=root.querySelector('#image-file'),preview=root.querySelector('#ng-image-file-preview');let previewUrl='';
+ file?.addEventListener('change',()=>{if(!preview)return;preview.replaceChildren();const f=file.files&&file.files[0];if(!f)return;if(!f.type.startsWith('image/')){preview.textContent='Please choose a valid image file.';return;}if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(f);const img=document.createElement('img');img.src=previewUrl;img.alt='Selected reference image preview';const meta=document.createElement('span');meta.textContent=f.name+' · '+Math.round(f.size/1024)+' KB';preview.append(img,meta);});
+ const btn=root.querySelector('#image-generate-btn'),prompt=root.querySelector('#image-prompt'),summary=root.querySelector('#image-generation-summary'),notice=root.querySelector('#image-generation-notice');
+ btn?.addEventListener('click',()=>{const text=prompt?.value.trim();if(!text){if(summary)summary.innerHTML='<span>Prompt required</span><strong>Not prepared</strong>';prompt?.focus();return;}if(summary)summary.innerHTML='<span>Settings prepared</span><strong>'+((task?.value)||'Text to Image')+'</strong>';if(notice)notice.textContent='Your image settings are prepared locally. Generation is not available until the selected provider API, secure server-side credentials, job processing and verified credit authorization are connected. No request was sent and no credits were charged.';});
 })();
 </script>
 </body>
