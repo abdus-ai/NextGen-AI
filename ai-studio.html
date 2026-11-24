@@ -2457,3 +2457,27 @@ html body #studio-workspace.ng-text-to-video-view #view-subtitle.studio-workspac
  }
 }
 </style>
+
+<style id="ng-image-settings-align-prompt-edges-v6">
+/* Match the complete Image Model / Aspect Ratio row to the Prompt field's left and right edges.
+   The controls are siblings of the view section, so intentionally use a page-level selector. */
+body .ng-image-settings-placement{
+ box-sizing:border-box!important;
+ width:auto!important;
+ max-width:none!important;
+ margin-left:clamp(16px,3.4vw,24px)!important;
+ margin-right:clamp(16px,3.4vw,24px)!important;
+ padding-left:0!important;
+ padding-right:0!important;
+}
+body .ng-image-settings-placement>.ng-image-model-placement,
+body .ng-image-settings-placement>.image-settings-trigger{
+ box-sizing:border-box!important;
+ min-width:0!important;
+}
+body .ng-image-settings-placement>.ng-image-model-placement>button,
+body .ng-image-settings-placement>.image-settings-trigger{
+ box-sizing:border-box!important;
+ max-width:100%!important;
+}
+</style>
