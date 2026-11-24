@@ -420,6 +420,11 @@ body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-in
  box-shadow:inset 3px 0 0 #23d8f2!important;
 }
 .ng-model-option-name{line-height:1.15!important}
+.ng-image-model-choice{width:100%;min-height:58px;display:flex;align-items:center;gap:12px;padding:7px 10px;border-bottom:1px solid rgba(116,174,210,.16);border-radius:12px;color:#f1f7ff}
+.ng-image-model-choice.is-selected{background:linear-gradient(105deg,rgba(12,112,165,.34),rgba(43,42,93,.72))}
+.ng-image-model-choice .ng-model-option-name{flex:1;white-space:normal;overflow:visible;text-overflow:clip}
+.ng-model-select-button{flex:0 0 auto;min-width:72px;min-height:36px;padding:7px 13px;border:1px solid rgba(46,207,244,.7);border-radius:999px;background:linear-gradient(110deg,#087fc4,#315ee8 65%,#743ee8);color:#fff;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.ng-model-select-button:active{transform:scale(.97);filter:brightness(1.15)}
 .ng-model-cost{line-height:1.15!important}
 .ng-model-more{
  position:relative!important;
@@ -606,14 +611,24 @@ function initModelPicker(){
  function positionPicker(){const rect=trigger.getBoundingClientRect();const gap=8;const available=Math.max(230,rect.top-gap-12);picker.style.setProperty('bottom','auto','important');picker.style.setProperty('top','auto','important');picker.style.setProperty('--ng-picker-space',available+'px');picker.style.setProperty('bottom',(window.innerHeight-rect.top+gap)+'px','important');if(picker.classList.contains('is-image-sublist'))picker.style.setProperty('height','min(66dvh,'+available+'px)','important');else picker.style.removeProperty('height');}
  function showImageList(){picker.classList.remove('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;imageBack.hidden=true;imageHeading.textContent='Image';imageScroll.innerHTML=imageScroll.dataset.categories||imageScroll.innerHTML;positionPicker();}
  imageScroll.dataset.categories=imageScroll.innerHTML;
- function showImageGroup(name){picker.classList.add('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;
+ function showImageGroup(name){
+  const models=imageGroups[name];
+  if(!Array.isArray(models)||!models.length)return;
+  picker.classList.add('is-image-sublist');
+  imageSection.hidden=false;videoSection.hidden=true;
   imageHeading.textContent=name;imageBack.hidden=false;
-  imageScroll.innerHTML='';
-  imageGroups[name].forEach(model=>{
-   const b=document.createElement('button');b.type='button';b.className='ng-model-option';b.dataset.modelKind='Image';b.dataset.modelName=model;b.dataset.modelCost='';
-   const icon=document.createElement('span');icon.className='ng-model-brand';icon.textContent='✦';
+  imageScroll.replaceChildren();
+  models.forEach(model=>{
+   const row=document.createElement('div');row.className='ng-image-model-choice';
    const label=document.createElement('span');label.className='ng-model-option-name';label.textContent=model;
-   b.append(icon,label);imageScroll.appendChild(b);
+   const select=document.createElement('button');select.type='button';select.className='ng-model-select-button';
+   select.textContent='Select';select.setAttribute('aria-label','Select '+model);
+   select.addEventListener('click',()=>{
+    selectedModels.Image={name:model,cost:''};
+    row.classList.add('is-selected');
+    paint();closePicker();
+   });
+   row.append(label,select);imageScroll.appendChild(row);
   });
   positionPicker();
  }
@@ -624,9 +639,10 @@ function initModelPicker(){
  function closePicker(){picker.hidden=true;setPickerArrow(false);}
  function paint(){$('ngImageModelValue').textContent=selectedModels.Image.name;$('ngVideoModelValue').textContent=selectedModels.Video.name;$('ng-model-selected-label').textContent='NextGen AI';}
  trigger.addEventListener('click',()=>{if(picker.hidden)openPicker();else closePicker();});
+ imageScroll.querySelectorAll('[data-image-category]').forEach(category=>{
+  category.addEventListener('click',()=>showImageGroup(category.dataset.imageCategory));
+ });
  picker.addEventListener('click',event=>{
-  const category=event.target.closest('[data-image-category]');
-  if(category){showImageGroup(category.dataset.imageCategory);return;}
   const button=event.target.closest('[data-model-kind][data-model-name]');
   if(button){
    const kind=button.dataset.modelKind;selectedModels[kind]={name:button.dataset.modelName,cost:button.dataset.modelCost||''};
