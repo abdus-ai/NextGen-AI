@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NextGen AI – Creative Studio</title>
+<title>NextGen-AI Studio</title>
 <link rel="stylesheet" href="./nextgen-shared.css?v=header-stable-20261103-v1">
 <style>
 :root{color-scheme:dark;--studio-bg:#080b18;--studio-panel:#141827;--studio-panel2:#1b2032;--studio-line:#303951;--studio-purple:#8668ff;--studio-cyan:#35d8ff}
@@ -911,7 +911,7 @@ html,body{margin:0!important}
     </div>
     <p id="view-subtitle" class="studio-workspace-subtitle">Explore image and video creation in one workspace.</p>
   </div>
-  <nav class="studio-nav hidden" aria-label="Creative Studio navigation">
+  <nav class="studio-nav hidden" aria-label="NextGen-AI Studio navigation">
   <button class="active" data-view="discover">Discover</button>
   <button data-view="imagine">Imagine</button>
   <a class="secondary" href="./gallery.html">Projects</a>
@@ -1896,6 +1896,107 @@ body .view .panel.ng-feature-routing {
  box-sizing:border-box!important;
 }
 </style>
+
+
+<style id="nextgen-ai-studio-theme-lineheight-brand-correction-v1">
+/* Unified NextGen-AI Studio theme and tighter typography/vertical rhythm. */
+html,body{
+ background:#071326!important;
+ color:#edf7ff!important;
+ line-height:1.28!important;
+}
+#studio-workspace{
+ background:
+  radial-gradient(ellipse at 8% 0%,rgba(0,210,255,.12),transparent 36%),
+  radial-gradient(ellipse at 95% 12%,rgba(190,35,235,.10),transparent 34%),
+  linear-gradient(160deg,#071326 0%,#080d20 54%,#100d27 100%)!important;
+ color:#edf7ff!important;
+}
+#studio-workspace .studio-reference-header{
+ background:linear-gradient(145deg,rgba(8,28,54,.96),rgba(13,19,48,.96))!important;
+}
+#studio-workspace .studio-workspace-subtitle,
+#view-imagine .ng-image-setup-note,
+#studio-workspace .field,
+#studio-workspace .panel,
+#studio-workspace .tool,
+#studio-workspace .model,
+#studio-workspace .notice,
+#studio-workspace .status-line{
+ line-height:1.28!important;
+}
+#studio-workspace h1,
+#studio-workspace h2,
+#studio-workspace h3,
+#view-imagine .panel h2{
+ line-height:1.16!important;
+}
+#studio-workspace p,
+#view-imagine .ng-image-setup-note{
+ margin-top:4px!important;
+ margin-bottom:4px!important;
+}
+#studio-workspace .field{
+ gap:4px!important;
+ margin-top:7px!important;
+ margin-bottom:7px!important;
+}
+#studio-workspace .field label{
+ line-height:1.12!important;
+}
+#studio-workspace .field textarea,
+#studio-workspace .field input,
+#studio-workspace .field select{
+ line-height:1.24!important;
+}
+#studio-workspace .panel h2{margin-bottom:8px!important}
+#studio-workspace .section{margin-top:10px!important}
+#studio-workspace .notice{padding-top:8px!important;padding-bottom:8px!important}
+#studio-workspace .model-list{gap:5px!important}
+#studio-workspace .model{padding-top:8px!important;padding-bottom:8px!important}
+#studio-workspace .tool span{line-height:1.22!important}
+#studio-workspace .studio-reference-badge{
+ display:flex!important;
+ align-items:center!important;
+ flex-wrap:nowrap!important;
+ gap:0!important;
+ font-size:22px!important;
+ line-height:1.05!important;
+ white-space:nowrap!important;
+}
+#studio-workspace .studio-reference-badge .ng-next-word,
+#studio-workspace .studio-reference-badge .ng-gen-word,
+#studio-workspace .studio-reference-badge .ng-ai-word{
+ display:inline-block!important;
+ font-size:1em!important;
+ font-weight:900!important;
+ line-height:1.05!important;
+ background:linear-gradient(105deg,#00eaff 0%,#087cff 42%,#352cff 72%,#ed16e8 100%)!important;
+ -webkit-background-clip:text!important;
+ background-clip:text!important;
+ color:transparent!important;
+ -webkit-text-fill-color:transparent!important;
+}
+#studio-workspace .studio-reference-badge .ng-studio-pill{
+ display:inline-block!important;
+ margin-left:7px!important;
+ padding:2px 7px 3px!important;
+ border-radius:7px!important;
+ background:#f7f8ff!important;
+ color:#25117c!important;
+ -webkit-text-fill-color:#25117c!important;
+ font-size:.62em!important;
+ font-weight:900!important;
+ line-height:1.05!important;
+ vertical-align:middle!important;
+}
+@media(max-width:420px){
+ #studio-workspace .studio-reference-badge{font-size:22px!important}
+}
+</style>
+<script id="nextgen-ai-studio-brand-correction-v1">
+(()=>{const badge=document.querySelector('#studio-workspace .studio-reference-badge');if(badge){badge.innerHTML='<span class="ng-next-word">Next</span><span class="ng-gen-word">Gen</span><span class="ng-ai-word">-AI</span><span class="ng-studio-pill">Studio</span>';}})();
+</script>
 
 </body>
 </html>
