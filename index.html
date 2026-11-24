@@ -621,15 +621,26 @@ function initModelPicker(){
   imageHeading.textContent=name;imageBack.hidden=false;
   imageScroll.replaceChildren();
   models.forEach(model=>{
-   const row=document.createElement('div');row.className='ng-image-model-choice';
+   const row=document.createElement('div');row.className='ng-image-model-choice';row.dataset.imageModel=model;
    const label=document.createElement('span');label.className='ng-model-option-name';label.textContent=model;
    const select=document.createElement('button');select.type='button';select.className='ng-model-select-button';
    select.textContent='Select';select.setAttribute('aria-label','Select '+model);
+   if(selectedModels.Image.name===model){
+    row.classList.add('is-selected');select.textContent='Selected';
+    const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);
+   }
    select.addEventListener('click',event=>{
     event.preventDefault();event.stopPropagation();
     selectedModels.Image={name:model,cost:''};
-    imageScroll.querySelectorAll('.ng-image-model-choice.is-selected').forEach(item=>item.classList.remove('is-selected'));
-    imageScroll.querySelectorAll('[data-model-kind="Image"][data-model-name]').forEach(item=>{item.classList.remove('is-selected');const mark=item.querySelector('.ng-model-check');if(mark)mark.remove();});
+    picker.querySelectorAll('.ng-image-model-choice').forEach(item=>{
+     item.classList.remove('is-selected');
+     const mark=item.querySelector('.ng-model-selected-check');if(mark)mark.remove();
+     const button=item.querySelector('.ng-model-select-button');if(button){button.textContent='Select';button.setAttribute('aria-label','Select '+item.dataset.imageModel);}
+    });
+    picker.querySelectorAll('[data-model-kind="Image"][data-model-name]').forEach(item=>{
+     item.classList.remove('is-selected');
+     const mark=item.querySelector('.ng-model-check');if(mark)mark.remove();
+    });
     row.classList.add('is-selected');
     const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);
     select.textContent='Selected';
@@ -658,7 +669,11 @@ function initModelPicker(){
   if(button){
    const kind=button.dataset.modelKind;selectedModels[kind]={name:button.dataset.modelName,cost:button.dataset.modelCost||''};
    if(kind==='Image'){
-    imageScroll.querySelectorAll('.ng-image-model-choice.is-selected').forEach(item=>item.classList.remove('is-selected'));
+    picker.querySelectorAll('.ng-image-model-choice').forEach(item=>{
+     item.classList.remove('is-selected');
+     const mark=item.querySelector('.ng-model-selected-check');if(mark)mark.remove();
+     const select=item.querySelector('.ng-model-select-button');if(select){select.textContent='Select';select.setAttribute('aria-label','Select '+item.dataset.imageModel);}
+    });
    }
    picker.querySelectorAll('[data-model-kind="'+kind+'"][data-model-name]').forEach(row=>{row.classList.toggle('is-selected',row===button);const check=row.querySelector('.ng-model-check');if(check)check.remove();if(row===button){const mark=document.createElement('span');mark.className='ng-model-check';mark.textContent='✓';row.appendChild(mark);}});
    paint();closePicker();
