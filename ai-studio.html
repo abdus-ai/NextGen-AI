@@ -2657,3 +2657,50 @@ body #view-imagine>.ng-image-settings-placement>.image-settings-trigger{
  box-sizing:border-box!important;
 }
 </style>
+
+<style id="ng-image-controls-viewport-10px-v12">
+/* Final override: calculate both rows against the viewport, not their padded parent.
+   This guarantees a visible 10px left and right edge inset on mobile. */
+#view-imagine .ng-image-tool-style-row,
+#view-imagine>.ng-image-settings-placement{
+ box-sizing:border-box!important;
+ width:calc(100vw - 20px)!important;
+ max-width:calc(100vw - 20px)!important;
+ margin-left:calc((100% - (100vw - 20px))/2)!important;
+ margin-right:0!important;
+ padding-left:0!important;
+ padding-right:0!important;
+}
+#view-imagine>.ng-image-settings-placement{
+ display:grid!important;
+ grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr)!important;
+ column-gap:12px!important;
+ align-items:end!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-model-placement{
+ grid-column:1!important;
+ grid-row:1 / span 2!important;
+ width:100%!important;
+ min-width:0!important;
+ margin:0!important;
+ padding:0!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-model-placement>button{
+ width:100%!important;
+ max-width:100%!important;
+ box-sizing:border-box!important;
+}
+#view-imagine>.ng-image-settings-placement>.ng-image-aspect-heading{
+ grid-column:2!important;
+ grid-row:1!important;
+}
+#view-imagine>.ng-image-settings-placement>.image-settings-trigger{
+ grid-column:2!important;
+ grid-row:2!important;
+ width:100%!important;
+ min-width:0!important;
+ max-width:100%!important;
+ justify-self:stretch!important;
+ box-sizing:border-box!important;
+}
+</style>
