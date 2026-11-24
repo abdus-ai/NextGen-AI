@@ -305,6 +305,15 @@ body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-in
 .ng-model-trigger .ng-model-trigger-chevron{position:absolute!important;right:3px!important;top:50%!important;transform:translateY(-50%)!important;display:block!important;width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;flex:0 0 20px!important;margin:0!important;stroke-width:2!important}
 .ng-model-trigger[aria-expanded="true"] .ng-model-trigger-chevron{transform:translateY(-50%) rotate(180deg)!important}
 
+
+/* Set the three image-category glyphs to the requested 30px visible size. */
+#ngModelPicker .ng-image-category .ng-model-brand.ng-qwen,
+#ngModelPicker .ng-image-category .ng-model-brand.ng-krea,
+#ngModelPicker .ng-image-category .ng-model-brand.ng-gfpgan{
+  width:30px!important;height:30px!important;min-width:30px!important;max-width:30px!important;
+  min-height:30px!important;max-height:30px!important;flex:0 0 30px!important;
+  font-size:30px!important;line-height:30px!important;
+}
 </style>
 <style id="ng-image-settings-style">
 .image-settings-trigger{white-space:nowrap;cursor:pointer;font:inherit;display:flex;align-items:center;justify-content:center;gap:3px;width:auto!important;min-width:132px;padding:0 14px;flex:0 0 auto;color:#fff!important}.image-settings-trigger svg{display:block!important;visibility:visible!important;flex:none;width:18px;height:18px;opacity:1;stroke:#fff!important}
@@ -852,15 +861,3 @@ initModelPicker();selectFeature(0,false);resetAutoplay();
 </script>
 </body>
 </html>
-
-/* Unified 25px image-model logo box */
-#ngImageModelPicker [data-image-category] .ng-model-brand,
-#ngImageModelPicker [data-model-kind="Image"] .ng-model-brand{
- width:25px!important;height:25px!important;min-width:25px!important;max-width:25px!important;
- min-height:25px!important;max-height:25px!important;flex:0 0 25px!important;
- box-sizing:border-box!important;display:flex!important;align-items:center!important;
- justify-content:center!important;object-fit:contain!important;object-position:center!important;
- font-size:25px!important;line-height:25px!important;padding:0!important;margin:0!important;
-}
-#ngImageModelPicker [data-image-category] img.ng-model-brand,
-#ngImageModelPicker [data-model-kind="Image"] img.ng-model-brand{display:block!important}
