@@ -954,15 +954,7 @@ html,body{margin:0!important}
    <div class="notice" id="image-generation-notice">Prototype only: image generation is blocked until provider connection, verified credit rates and account authorization are active. No credits will be deducted.</div>
   </div>
   <aside class="panel"><h2>Image Workspace</h2><div class="tool-grid"><div class="tool"><b>Text to Image</b><span>Create from a written prompt</span></div><div class="tool"><b>Image Edit</b><span>Change selected parts by prompt</span></div><div class="tool"><b>Upscale</b><span>Increase resolution when supported</span></div><div class="tool"><b>Compare</b><span>Compare provider outputs side by side</span></div></div></aside>
-  <aside class="panel" id="ng-image-quality-panel">
-   <h2>Image Quality Enhancement</h2>
-   <p style="color:#9da9c4;font-size:13px;margin:-4px 0 12px">Choose an enhancement engine for sharper details and cleaner output. Provider connection is required before processing.</p>
-   <div class="field"><label for="ng-image-upscale-engine">UPSCALE ENGINE</label><select id="ng-image-upscale-engine"><option value="auto">Auto Select (Recommended)</option><option value="realesrgan">Real-ESRGAN · Open Source</option><option value="topaz">Topaz Gigapixel · Optional Paid</option></select></div>
-   <div class="field"><label for="ng-image-face-engine">FACE RESTORATION</label><select id="ng-image-face-engine"><option value="off">Off · Preserve original face (Recommended)</option><option value="gfpgan">GFPGAN · Face restoration</option><option value="codeformer">CodeFormer · Adjustable restoration</option></select></div>
-   <div class="field"><label for="ng-image-quality-output">ENHANCEMENT OUTPUT</label><select id="ng-image-quality-output"><option>Auto · Keep source dimensions if already high quality</option><option>2K · Where supported</option><option>4K · Where supported</option><option>8K · Where supported</option></select></div>
-   <label style="display:flex;align-items:flex-start;gap:9px;color:#dce4f5;font-size:13px;line-height:1.4"><input id="ng-image-preserve-identity" type="checkbox" checked style="margin-top:2px;accent-color:#36b9ff"> Preserve reference identity and facial features; avoid face reshaping or beautification</label>
-   <div class="notice" style="margin-top:12px">Planned integration: these are engine choices only. No image is uploaded to an external service and no enhancement runs until provider integration is implemented and tested. Face restoration remains optional because it can change facial details.</div>
-  </aside>
+
  </div>
 </section>
 <div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
