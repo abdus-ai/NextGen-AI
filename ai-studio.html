@@ -2790,3 +2790,27 @@ body #view-imagine > div.ng-image-settings-placement > div.ng-image-model-placem
  max-width:100%!important;
 }
 </style>
+
+<style id="ng-image-model-aspect-exact-12px-v13">
+/* Only the IMAGE MODEL + ASPECT RATIO row: 12px inset from the image view edges. */
+body #view-imagine.view>.ng-image-settings-placement{
+ box-sizing:border-box!important;
+ width:calc(100% - 24px)!important;
+ max-width:calc(100% - 24px)!important;
+ margin:0 12px 14px!important;
+ position:relative!important;
+ left:auto!important;
+ right:auto!important;
+}
+body #view-imagine.view>.ng-image-settings-placement>.ng-image-model-placement,
+body #view-imagine.view>.ng-image-settings-placement>.image-settings-trigger{
+ min-width:0!important;
+ box-sizing:border-box!important;
+}
+body #view-imagine.view>.ng-image-settings-placement>.ng-image-model-placement>button,
+body #view-imagine.view>.ng-image-settings-placement>.image-settings-trigger{
+ width:100%!important;
+ max-width:100%!important;
+ box-sizing:border-box!important;
+}
+</style>
