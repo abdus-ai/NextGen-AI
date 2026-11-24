@@ -947,12 +947,12 @@ html,body{margin:0!important}
  </div>
 </section>
 <section id="view-imagine" class="view hidden">
- <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
+<section class="panel ng-image-creation-setup" aria-label="Creation Setup"><h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong style="font-size:15px;color:#fff">Image Generate</strong></div><div class="field"><label for="ng-image-engine">AI ENGINE</label><select id="ng-image-engine"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Model Selection</option></select></div><div class="field"><label for="ng-image-tool">CHOOSE TOOL</label><select id="ng-image-tool"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div><p class="ng-image-setup-note">Feature selected: Image Generate. Provider and model details are managed privately by NextGen AI.</p></section> <div class="panel" style="margin-bottom:14px"><div class="field" style="margin:0"><label>IMAGE SETTINGS</label><button type="button" class="secondary" id="ng-image-settings-open">⚙ Shape, Resolution & Image Count</button><div id="ng-image-settings-summary" class="status-line" aria-live="polite">Auto · 1K · ×1</div></div></div>
  <div class="studio-grid">
   <div class="panel">
    <h2>AI Image Studio</h2>
-   <div class="field"><label>CREATION MODE</label><select id="ng-image-task"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div>
-   <div class="two"><div class="field"><label>MODEL ROUTING</label><select id="ng-image-routing"><option value="auto">Auto Selection</option><option value="manual">Manual Model Selection</option><option value="compare">Compare Mode</option></select></div><div class="field"><label>IMAGE MODEL</label><select id="ng-image-model"><option>NextGen AI (Auto Router)</option><option>OpenAI</option><option>Nano Banana</option><option>Grok</option><option>Qwen</option><option>Krea</option><option>GFPGAN</option><option>Meta Image</option><option>FLUX.2 Klein</option><option>Real-ESRGAN Upscaler</option></select></div></div>
+    <div class="field" hidden><label>CREATION MODE</label><select id="ng-image-task"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div>
+    <div class="two"><div class="field"><label>MODEL ROUTING</label><select id="ng-image-routing"><option value="auto">Auto Selection</option><option value="manual">Manual Model Selection</option><option value="compare">Compare Mode</option></select></div><div class="field"><label>IMAGE MODEL</label><button type="button" class="secondary" id="ng-image-model-open" aria-haspopup="dialog" aria-controls="ng-image-model-overlay" style="width:100%;min-height:44px;text-align:left;display:flex;align-items:center;justify-content:space-between"><span id="ng-image-model-value">NextGen AI (Auto Router)</span><span aria-hidden="true">⌄</span></button><select id="ng-image-model" hidden aria-hidden="true"><option>NextGen AI (Auto Router)</option><option>OpenAI</option><option>Nano Banana</option><option>Grok</option><option>Qwen</option><option>Krea</option><option>GFPGAN</option><option>Meta Image</option><option>FLUX.2 Klein</option><option>Real-ESRGAN Upscaler</option></select></div></div>
    <div class="field"><label>PROMPT</label><textarea id="image-prompt" maxlength="3000" placeholder="Describe the image you want to create or the changes you want..."></textarea></div>
    <div class="field"><label>NEGATIVE PROMPT (OPTIONAL)</label><textarea id="ng-image-negative-prompt" maxlength="1500" placeholder="Describe what should not appear in the image..."></textarea></div>
    <div class="field"><label>STYLE PRESET</label><select id="ng-image-style"><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option><option>Digital Art</option><option>Watercolor</option></select></div>
@@ -967,6 +967,9 @@ html,body{margin:0!important}
 
  </div>
 </section>
+<div class="ng-image-model-overlay hidden" id="ng-image-model-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-model-title"><div class="ng-image-model-sheet"><div class="ng-image-model-head"><h3 id="ng-image-model-title">Image</h3><button type="button" id="ng-image-model-close" aria-label="Close model selection">×</button></div><div class="ng-image-provider-list" id="ng-image-provider-list">
+<button type="button" data-provider="NextGen AI"><span class="ng-provider-icon ng-nextgen-icon">✦</span><strong>NextGen AI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="OpenAI"><span class="ng-provider-icon">◎</span><strong>OpenAI</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Nano Banana"><span class="ng-provider-icon">🍌</span><strong>Nano Banana</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Grok"><span class="ng-provider-icon">◉</span><strong>Grok</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Qwen"><span class="ng-provider-icon ng-qwen-icon">✣</span><strong>Qwen</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Krea"><span class="ng-provider-icon">✿</span><strong>Krea</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="GFPGAN"><span class="ng-provider-icon">✧</span><strong>GFPGAN</strong><span class="ng-provider-chevron">›</span></button><button type="button" data-provider="Meta Image"><span class="ng-provider-icon ng-meta-icon">∞</span><strong>Meta Image</strong><span class="ng-provider-chevron">›</span></button>
+</div><div class="ng-image-model-sublist" id="ng-image-model-sublist" hidden><button type="button" class="ng-image-model-back" id="ng-image-model-back">‹ All image providers</button><div id="ng-image-model-options"></div></div></div></div>
 <div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
 <div class="ng-image-settings-head"><h3 id="ng-image-settings-title">Image Settings</h3><button type="button" class="ng-image-settings-close" id="ng-image-settings-close" aria-label="Close settings">×</button></div>
 <div class="ng-image-setting-label"><span>Shape</span><span id="ng-image-shape-current">Auto · 1:1</span></div>
@@ -1564,6 +1567,60 @@ body .view .panel.ng-feature-routing {
  btn?.addEventListener('click',()=>{const text=prompt?.value.trim();if(!text){if(summary)summary.innerHTML='<span>Prompt required</span><strong>Not prepared</strong>';prompt?.focus();return;}if(summary)summary.innerHTML='<span>Settings prepared</span><strong>'+((task?.value)||'Text to Image')+'</strong>';if(notice)notice.textContent='Your image settings are prepared locally. Generation is not available until the selected provider API, secure server-side credentials, job processing and verified credit authorization are connected. No request was sent and no credits were charged.';});
 })();
 </script>
+
+<style id="ng-image-generate-reference-layout-v1">
+#view-imagine{display:block!important;padding:0 0 24px!important}
+#view-imagine>.ng-image-creation-setup{margin:0 0 14px!important;padding:18px 16px!important;border:1px solid rgba(73,183,230,.18)!important;border-radius:22px!important;background:linear-gradient(145deg,#151b2e,#10182b)!important}
+#view-imagine>.ng-image-creation-setup h2{font-size:20px!important;margin:0 0 16px!important}
+#view-imagine .ng-image-setup-note{font-size:12px;line-height:1.55;color:#a8b5ce;margin:8px 0 0}
+#view-imagine>.studio-grid{display:block!important}
+#view-imagine>.studio-grid>.panel{width:100%;max-width:none}
+#view-imagine #ng-image-task[hidden],#view-imagine #ng-image-model[hidden]{display:none!important}
+#view-imagine #ng-image-model-open{border-radius:13px;background:#0b1120;color:#f5f7ff;border:1px solid #39435c;padding:11px 14px;font:inherit}
+.ng-image-model-overlay{position:fixed;inset:0;z-index:10050;display:grid;place-items:center;padding:18px;background:rgba(1,7,20,.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.ng-image-model-overlay.hidden{display:none!important}
+.ng-image-model-sheet{width:min(100%,430px);max-height:min(86dvh,760px);overflow:auto;border:1px solid rgba(38,207,245,.38);border-radius:28px;background:linear-gradient(155deg,#0b2342,#0a1b35 65%,#101b3c);padding:20px 18px 22px;box-shadow:0 18px 55px rgba(0,0,0,.42)}
+.ng-image-model-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid rgba(125,168,207,.2);margin-bottom:10px}
+.ng-image-model-head h3{font-size:22px;margin:0;color:#eaf6ff}
+.ng-image-model-head button{width:34px;height:34px;border:0;background:transparent;color:#d9e8fa;font-size:30px}
+.ng-image-provider-list{display:grid;gap:2px}
+.ng-image-provider-list button{min-height:76px;display:grid;grid-template-columns:48px 1fr 22px;align-items:center;gap:10px;text-align:left;border:0;border-radius:13px;background:transparent;color:#f4f7ff;padding:8px 6px;font:inherit}
+.ng-image-provider-list button:active,.ng-image-provider-list button:hover{background:rgba(61,155,218,.13)}
+.ng-image-provider-list strong{font-size:17px;font-weight:750}
+.ng-provider-icon{width:42px;height:42px;display:grid;place-items:center;font-size:32px;font-weight:800;color:#f6f8ff}
+.ng-nextgen-icon{border-radius:50%;background:linear-gradient(135deg,#00dff5,#1679ff 55%,#913cff);font-size:25px}
+.ng-qwen-icon{color:#9b6bff}.ng-meta-icon{color:#168dff;font-size:45px}
+.ng-provider-chevron{font-size:30px;color:#a8c8e3;text-align:right}
+.ng-image-model-sublist[hidden]{display:none!important}
+.ng-image-model-back{border:1px solid rgba(83,172,220,.35);background:#112a48;color:#dff4ff;border-radius:99px;padding:9px 14px;margin:4px 0 12px}
+.ng-image-model-choice{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:54px;padding:7px 0;border-bottom:1px solid rgba(135,171,204,.15);color:#f5f8ff}
+.ng-image-model-choice button{border:1px solid #1b9fdd;border-radius:99px;padding:8px 14px;background:linear-gradient(110deg,#087bdf,#7043ec);color:#fff;font-weight:700}
+.ng-image-model-choice button[aria-pressed=true]{background:#153d57;border-color:#35d8ff}
+@media(max-width:480px){.ng-image-model-sheet{padding:18px 16px}.ng-image-provider-list button{min-height:70px}.ng-image-provider-list strong{font-size:16px}}
+</style>
+<script id="ng-image-generate-reference-controller-v1">
+(function(){
+ const root=document.getElementById('view-imagine');if(!root)return;
+ const overlay=document.getElementById('ng-image-model-overlay'),open=document.getElementById('ng-image-model-open'),close=document.getElementById('ng-image-model-close');
+ const list=document.getElementById('ng-image-provider-list'),sub=document.getElementById('ng-image-model-sublist'),back=document.getElementById('ng-image-model-back'),options=document.getElementById('ng-image-model-options');
+ const hiddenModel=document.getElementById('ng-image-model'),value=document.getElementById('ng-image-model-value'),routing=document.getElementById('ng-image-routing'),engine=document.getElementById('ng-image-engine'),tool=document.getElementById('ng-image-tool'),task=document.getElementById('ng-image-task');
+ const groups={'NextGen AI':['NextGen AI Auto Router','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],'OpenAI':['GPT Image','GPT Image High Quality'],'Nano Banana':['Nano Banana','Nano Banana 2','Nano Banana Pro'],'Grok':['Grok Image'],'Qwen':['Qwen Image','Qwen Image Edit'],'Krea':['Krea Image','Krea Realistic'],'GFPGAN':['GFPGAN Face Restoration'],'Meta Image':['Meta Image']};
+ function closePicker(){overlay.classList.add('hidden');document.body.style.overflow='';if(open)open.focus()}
+ function showProviders(){list.hidden=false;sub.hidden=true;document.getElementById('ng-image-model-title').textContent='Image'}
+ function showModels(provider){
+  list.hidden=true;sub.hidden=false;document.getElementById('ng-image-model-title').textContent=provider;options.replaceChildren();
+  (groups[provider]||[provider]).forEach(name=>{const row=document.createElement('div');row.className='ng-image-model-choice';const label=document.createElement('strong');label.textContent=name;const button=document.createElement('button');button.type='button';button.textContent=value.textContent===name?'Selected':'Select';button.setAttribute('aria-pressed',String(value.textContent===name));button.addEventListener('click',()=>{value.textContent=name;hiddenModel.value=name;hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));if(routing&&routing.value==='auto')routing.value='manual';closePicker()});row.append(label,button);options.append(row)});
+ }
+ if(open)open.addEventListener('click',()=>{showProviders();overlay.classList.remove('hidden');document.body.style.overflow='hidden';if(close)close.focus()});
+ if(close)close.addEventListener('click',closePicker);if(back)back.addEventListener('click',showProviders);
+ if(list)list.addEventListener('click',e=>{const button=e.target.closest('[data-provider]');if(button)showModels(button.dataset.provider)});
+ if(overlay)overlay.addEventListener('click',e=>{if(e.target===overlay)closePicker()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay&&!overlay.classList.contains('hidden'))closePicker()});
+ if(engine)engine.addEventListener('change',()=>{if(routing){routing.value=engine.value==='auto'?'auto':'manual';routing.dispatchEvent(new Event('change',{bubbles:true}))}});
+ if(tool)tool.addEventListener('change',()=>{if(task){task.value=tool.value;task.dispatchEvent(new Event('change',{bubbles:true}))}});
+})();
+</script>
+
 </body>
 </html>
 
