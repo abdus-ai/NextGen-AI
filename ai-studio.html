@@ -2776,6 +2776,142 @@ html,body{
 #ngModelPicker .ng-image-model-choice .ng-model-selected-check{order:3!important;margin-left:8px!important;flex:0 0 auto!important;color:#a78bfa!important;font-size:26px!important;font-weight:800!important;line-height:1!important}
 #ngModelPicker .ng-model-option.is-selected .ng-model-check{order:4!important;margin-left:8px!important;flex:0 0 auto!important;color:#a78bfa!important;font-size:24px!important;font-weight:800!important}
 </style>
+<style id="nextgen-home-tryit-creation-pages-image-design-v1">
+/* Apply the approved Image Generate visual language to Home → Try it destination pages only.
+   Home preview, feature list, composer, Image Generate view and shared master header remain untouched. */
+#studio-workspace .studio-reference-header{
+  margin-bottom:14px!important;
+}
+#studio-workspace .studio-reference-header .studio-workspace-subtitle,
+#studio-workspace .studio-reference-header #view-subtitle{
+  color:#b7c9e2!important;
+  font-size:13px!important;
+  line-height:1.45!important;
+}
+body .studio section.view:not(#view-imagine) .studio-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:14px!important;
+  align-items:start!important;
+}
+body .studio section.view:not(#view-imagine) .studio-grid>.panel,
+body .studio section.view:not(#view-imagine)>.panel,
+body .studio section.view:not(#view-imagine) .panel{
+  min-width:0!important;
+  margin:0 0 14px!important;
+  padding:18px 16px!important;
+  border:1px solid rgba(73,183,230,.18)!important;
+  border-radius:22px!important;
+  background:linear-gradient(145deg,#151b2e,#10182b)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.16),inset 0 0 20px rgba(25,100,190,.06)!important;
+  color:#f5f7ff!important;
+}
+body .studio section.view:not(#view-imagine) .panel h2{
+  color:#f5f7ff!important;
+  font-size:18px!important;
+  font-weight:750!important;
+  margin:0 0 14px!important;
+}
+body .studio section.view:not(#view-imagine) .field{
+  min-width:0!important;
+  gap:7px!important;
+  margin:13px 0!important;
+}
+body .studio section.view:not(#view-imagine) .field>label,
+body .studio section.view:not(#view-imagine) .field>label:not(.upload){
+  color:#aeb9d0!important;
+  font-size:12px!important;
+  font-weight:750!important;
+  letter-spacing:.15px!important;
+}
+body .studio section.view:not(#view-imagine) .field input:not([type=file]),
+body .studio section.view:not(#view-imagine) .field textarea,
+body .studio section.view:not(#view-imagine) .field select{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:48px!important;
+  border:1px solid #39435c!important;
+  border-radius:13px!important;
+  background:#0b1120!important;
+  color:#f5f7ff!important;
+  padding:11px 13px!important;
+  font:500 15px/1.4 Inter,system-ui,sans-serif!important;
+}
+body .studio section.view:not(#view-imagine) .field textarea{
+  min-height:112px!important;
+  resize:vertical!important;
+}
+body .studio section.view:not(#view-imagine) .upload{
+  min-height:76px!important;
+  border:1px dashed rgba(72,190,240,.55)!important;
+  border-radius:14px!important;
+  background:#0c1830!important;
+  color:#c8d9ef!important;
+}
+body .studio section.view:not(#view-imagine) .upload strong{color:#fff!important}
+body .studio section.view:not(#view-imagine) .mode-tabs{
+  gap:9px!important;
+  margin:0 0 16px!important;
+}
+body .studio section.view:not(#view-imagine) .mode-tabs button{
+  min-height:44px!important;
+  border:1px solid #39435c!important;
+  border-radius:13px!important;
+  background:#0b1120!important;
+  color:#cbd7ea!important;
+}
+body .studio section.view:not(#view-imagine) .mode-tabs button.active{
+  border-color:#24cfee!important;
+  background:linear-gradient(105deg,#073b62,#172b66 58%,#40205f)!important;
+  color:#fff!important;
+}
+body .studio section.view:not(#view-imagine) .tool-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+}
+body .studio section.view:not(#view-imagine) .tool{
+  min-width:0!important;
+  padding:12px!important;
+  border:1px solid rgba(73,183,230,.22)!important;
+  border-radius:14px!important;
+  background:#0b172d!important;
+  color:#f4f8ff!important;
+}
+body .studio section.view:not(#view-imagine) .tool b{color:#f4f8ff!important}
+body .studio section.view:not(#view-imagine) .tool span,
+body .studio section.view:not(#view-imagine) .field small{color:#a9bfd9!important}
+body .studio section.view:not(#view-imagine) .notice{
+  border:1px solid rgba(50,177,235,.25)!important;
+  border-radius:14px!important;
+  background:linear-gradient(145deg,#102746,#111c38)!important;
+  color:#c8d8ec!important;
+}
+body .studio section.view:not(#view-imagine) .status-line{
+  color:#b7c9e2!important;
+  border-color:rgba(73,183,230,.2)!important;
+}
+body .studio section.view:not(#view-imagine) .status-line strong{color:#f4f8ff!important}
+body .studio section.view:not(#view-imagine) .primary{
+  min-height:48px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:linear-gradient(100deg,#00c9ef,#276bff 55%,#a32df1)!important;
+  color:#fff!important;
+  font-weight:800!important;
+  box-shadow:0 5px 18px rgba(0,151,255,.2)!important;
+}
+@media(max-width:700px){
+ body .studio section.view:not(#view-imagine) .studio-grid{grid-template-columns:minmax(0,1fr)!important}
+ body .studio section.view:not(#view-imagine) .studio-grid>.panel,
+ body .studio section.view:not(#view-imagine)>.panel,
+ body .studio section.view:not(#view-imagine) .panel{
+  padding:16px 14px!important;
+  border-radius:20px!important;
+ }
+ body .studio section.view:not(#view-imagine) .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+</style>
 </body>
 </html>
 
