@@ -1610,30 +1610,46 @@ body .view .panel.ng-feature-routing {
  const hiddenModel=document.getElementById('ng-image-model'),value=document.getElementById('ng-image-model-value'),routing=document.getElementById('ng-image-routing'),engine=document.getElementById('ng-image-engine'),tool=document.getElementById('ng-image-tool'),task=document.getElementById('ng-image-task');
  const groups={'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],'Nano Banana':['Nano Banana','Nano Banana 2','Nano Banana Pro'],'Grok':['Grok Speed','Grok Image 2.0'],'Qwen':['Qwen Image','Qwen Image Edit'],'Krea':['Krea Image','Krea Realistic'],'GFPGAN':['GFPGAN Face Restoration']};
  function closePicker(){overlay.classList.add('hidden');document.body.style.overflow='';if(open)open.focus()}
- function showProviders(){list.hidden=false;sub.hidden=true;back.hidden=true;document.getElementById('ng-image-model-title').textContent='Image';list.querySelectorAll('[data-provider]').forEach(item=>item.removeAttribute('aria-expanded'));}
+ function showProviders(){
+  list.hidden=false;sub.hidden=true;back.hidden=true;
+  document.getElementById('ng-image-model-title').textContent='Image';
+  list.querySelectorAll('[data-provider]').forEach(item=>item.removeAttribute('aria-expanded'));
+ }
  function selectModel(name){
-  value.textContent=name;
+  if(!name)return;
   if(hiddenModel){
    let option=Array.from(hiddenModel.options).find(item=>item.value===name);
-   if(!option){option=document.createElement('option');option.value=name;option.textContent=name;hiddenModel.append(option)}
-   hiddenModel.value=name;hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));
+   if(!option){
+    option=document.createElement('option');
+    option.value=name;option.textContent=name;
+    hiddenModel.appendChild(option);
+   }
+   hiddenModel.value=name;
+   hiddenModel.dispatchEvent(new Event('input',{bubbles:true}));
+   hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));
+   if(hiddenModel.value!==name)return;
   }
-  if(routing&&routing.value==='auto')routing.value='manual';
+  if(value)value.textContent=name;
+  if(open)open.setAttribute('data-selected-model',name);
   closePicker();
  }
  function showModels(provider){
-  list.hidden=false;sub.hidden=false;back.hidden=false;
-  document.getElementById('ng-image-model-title').textContent='Image';
-  document.getElementById('ng-image-model-inline-title').textContent=provider+' · Models & Plans';
-  list.querySelectorAll('[data-provider]').forEach(item=>{item.setAttribute('aria-expanded',String(item.dataset.provider===provider));});
+  list.hidden=true;
+  sub.hidden=false;
+  back.hidden=false;
+  document.getElementById('ng-image-model-title').textContent=provider;
   options.replaceChildren();
   (groups[provider]||[provider]).forEach(name=>{
    const row=document.createElement('div');row.className='ng-image-model-choice';
    const label=document.createElement('strong');label.textContent=name;
    const button=document.createElement('button');button.type='button';
-   const selected=value.textContent.trim()===name;
-   button.textContent=selected?'Selected ✓':'Select';button.setAttribute('aria-pressed',String(selected));
-   button.addEventListener('click',()=>selectModel(name));
+   const selected=(hiddenModel&&hiddenModel.value===name)||value.textContent.trim()===name;
+   button.textContent=selected?'Selected ✓':'Select';
+   button.setAttribute('aria-pressed',String(selected));
+   button.addEventListener('click',event=>{
+    event.preventDefault();event.stopPropagation();
+    selectModel(name);
+   });
    row.append(label,button);options.append(row);
   });
  }
@@ -2169,6 +2185,47 @@ html,body{
  .ng-image-model-overlay .ng-image-provider-list{max-height:42dvh!important}
  .ng-image-model-inline-title{font-size:13px!important}
  .ng-image-model-overlay .ng-image-model-choice{min-height:50px!important}
+}
+</style>
+
+
+<style id="ng-image-model-separate-screen-select-fix-v5">
+/* Match the reference recording: provider list and model list are separate views in one popup. */
+#ng-image-provider-list[hidden]{display:none!important}
+#ng-image-model-sublist[hidden]{display:none!important}
+#ng-image-provider-list:not([hidden]){display:grid!important}
+#ng-image-model-sublist:not([hidden]){display:block!important}
+#ng-image-model-sublist{
+ max-height:calc(90dvh - 86px)!important;
+ overflow-y:auto!important;overscroll-behavior:contain!important;
+}
+#ng-image-model-sublist #ng-image-model-options{
+ display:flex!important;flex-direction:column!important;gap:0!important;
+}
+#ng-image-model-sublist .ng-image-model-choice{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:12px!important;min-height:58px!important;padding:9px 2px!important;
+ border-bottom:1px solid rgba(117,157,195,.18)!important;
+}
+#ng-image-model-sublist .ng-image-model-choice strong{
+ flex:1!important;min-width:0!important;color:#f1f6ff!important;
+}
+#ng-image-model-sublist .ng-image-model-choice button{
+ pointer-events:auto!important;position:relative!important;z-index:2!important;
+ flex:0 0 auto!important;min-width:76px!important;min-height:36px!important;
+ border-radius:99px!important;cursor:pointer!important;touch-action:manipulation!important;
+}
+#ng-image-model-overlay .ng-image-model-head #ng-image-model-back:not([hidden]){
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 38px!important;width:38px!important;height:38px!important;
+ border:1px solid rgba(83,172,220,.42)!important;border-radius:50%!important;
+ background:#112a48!important;color:#dff4ff!important;font-size:26px!important;
+}
+#ng-image-model-overlay .ng-image-model-head #ng-image-model-back[hidden]{display:none!important}
+#ng-image-model-overlay .ng-image-model-sheet{max-height:90dvh!important}
+@media(max-width:480px){
+ #ng-image-model-sublist{max-height:calc(90dvh - 78px)!important}
+ #ng-image-model-sublist .ng-image-model-choice{min-height:54px!important}
 }
 </style>
 
