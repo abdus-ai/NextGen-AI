@@ -1068,7 +1068,7 @@ html body .ng-final-shared-header .ng-final-subtitle{
  nav.forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
 
   // Project feature cards open the same destination as Home → Try it.
-  document.querySelectorAll('.reference-studio-card').forEach(card=>card.addEventListener('click',()=>{
+  // Project card navigation is handled in capture phase by nextgen-project-card-unified-route-v2.
     const feature=card.querySelector('.reference-card-title')?.textContent?.trim();
     if(feature)window.location.href='./ai-studio.html?feature='+encodeURIComponent(feature);
   }));
@@ -1282,7 +1282,7 @@ render();
   panel._setFeature(activeFeature);
  }
  addPanel('view-discover');addPanel('view-imagine');addPanel('view-tools');
- document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',()=>{
+ document.querySelectorAll('[data-studio-view]').forEach(card=>card.addEventListener('click',(event)=>{if(card.classList.contains('reference-studio-card'))return;
   const label=card.innerText.trim().replace(/\s+/g,' ');
   const feature=label==='Photos'?'Image Generate':label==='Videos'?'Video Generate':label==='Audio / Music'?'Audio / Music Generate':label==='Text History'?'More Features':label;
   setFeature(feature);
@@ -1407,6 +1407,23 @@ render();
   window.addEventListener('resize',update,{passive:true});
   window.addEventListener('orientationchange',()=>setTimeout(update,120),{passive:true});
   window.addEventListener('load',update,{once:true});
+})();
+</script>
+<script id="nextgen-project-card-unified-route-v2">
+(function(){
+ function routeProjectCard(event){
+  const card=event.target.closest('#studio-home .reference-studio-card');
+  if(!card)return;
+  const title=card.querySelector('.reference-card-title')?.textContent?.trim();
+  if(!title)return;
+  event.preventDefault();
+  event.stopPropagation();
+  if(event.stopImmediatePropagation)event.stopImmediatePropagation();
+  const target=new URL('./ai-studio.html',window.location.href);
+  target.searchParams.set('feature',title);
+  window.location.assign(target.href);
+ }
+ document.addEventListener('click',routeProjectCard,true);
 })();
 </script>
 </body>
