@@ -3028,7 +3028,7 @@ body .studio section.view:not(#view-imagine) .primary{
  [cfg.tool,'Auto Selection','Manual Selection','Compare Mode'].forEach(x=>{const o=document.createElement('option');o.textContent=x;tool.appendChild(o);});
  const modelOpen=document.getElementById('ng-shared-model-open'),modelModal=document.getElementById('ng-shared-model-modal'),modelList=document.getElementById('ng-shared-model-list');
  const modelValue=document.getElementById('ng-shared-model-value'),modelTitle=document.getElementById('ng-shared-modal-title');
- let selected='NextGen AI (Auto Router)';
+ let selected=cfg.models[0]||'Auto Router';modelValue.textContent=selected;
  function renderModels(){
   modelTitle.textContent='Choose AI Model';
   modelList.replaceChildren();
