@@ -1628,6 +1628,7 @@ body .view .panel.ng-feature-routing {
  const picker=$('ngModelPicker'),trigger=$('ng-image-model-open');
  if(!picker||!trigger||picker.dataset.ready==='true')return;
  picker.dataset.ready='true';
+  if(picker.parentElement!==document.body)document.body.appendChild(picker);
  const imageSection=$('ngImageModelOptions'),videoSection=$('ngVideoModelOptions');
  const imageScroll=$('ngImagePickerScroll'),imageHeading=$('ngImagePickerHeading'),imageBack=$('ngImagePickerBack');
  const imageGroups={
@@ -1646,8 +1647,8 @@ body .view .panel.ng-feature-routing {
   picker.style.setProperty('left','12px','important');
   picker.style.setProperty('right','12px','important');
   picker.style.setProperty('width','auto','important');
-  picker.style.setProperty('top','auto','important');
-  picker.style.setProperty('bottom','calc(10dvh + env(safe-area-inset-bottom,0px))','important');
+  picker.style.setProperty('top','10dvh','important');
+  picker.style.setProperty('bottom','10dvh','important');
   picker.style.setProperty('height','80dvh','important');
   picker.style.setProperty('min-height','80dvh','important');
   picker.style.setProperty('max-height','80dvh','important');
@@ -1682,7 +1683,7 @@ body .view .panel.ng-feature-routing {
    const old=item.querySelector('.ng-model-check');if(old)old.remove();
    if(active){const check=document.createElement('span');check.className='ng-model-check';check.textContent='✓';item.appendChild(check);}
   });
-  paint();closePicker();
+  paint();
  }
  function showImageGroup(name){
   const models=imageGroups[name];if(!Array.isArray(models)||!models.length)return;
@@ -1697,9 +1698,10 @@ body .view .panel.ng-feature-routing {
    select.textContent=selectedModels.Image.name===model?'Selected':'Select';
    select.setAttribute('aria-label','Select '+model);
    select.setAttribute('aria-pressed',String(selectedModels.Image.name===model));
-   if(selectedModels.Image.name===model){row.classList.add('is-selected');const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);}
    select.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();selectImageModel(model);});
    row.append(label,select);imageScroll.appendChild(row);
+   if(selectedModels.Image.name===model){row.classList.add('is-selected');const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);}
+   select.addEventListener
   });
   positionPicker();
  }
@@ -2759,44 +2761,20 @@ html,body{
  #view-imagine #ngModelPicker{height:74dvh!important;min-height:74dvh!important;max-height:74dvh!important}
 }
 </style>
-<style id="ng-image-model-picker-final-80vh">
-/* Match the original working picker: large, fixed mobile sheet at 80% display height. */
-#view-imagine #ngModelPicker{
- position:fixed!important;left:12px!important;right:12px!important;width:auto!important;
- top:auto!important;bottom:calc(10dvh + env(safe-area-inset-bottom,0px))!important;
- height:80dvh!important;min-height:80dvh!important;max-height:80dvh!important;
- box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
- overflow:hidden!important;padding:14px!important;border-radius:24px!important;
- z-index:10080!important;background:linear-gradient(155deg,#0b2342,#0a1b35 65%,#101b3c)!important;
- border:1px solid rgba(38,207,245,.5)!important;
- box-shadow:0 18px 55px rgba(0,0,0,.58),0 0 24px rgba(0,174,255,.16)!important;
-}
-#view-imagine #ngModelPicker[hidden]{display:none!important}
-#view-imagine #ngModelPicker #ngImageModelOptions[hidden],
-#view-imagine #ngModelPicker #ngVideoModelOptions[hidden]{display:none!important}
-#view-imagine #ngModelPicker #ngImageModelOptions,
-#view-imagine #ngModelPicker #ngVideoModelOptions{
- display:flex!important;flex:1 1 auto!important;flex-direction:column!important;
- width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
-}
-#view-imagine #ngModelPicker .ng-model-scroll{
- display:block!important;flex:1 1 auto!important;min-height:0!important;max-height:none!important;
- overflow-y:auto!important;overscroll-behavior:contain!important;
- -webkit-overflow-scrolling:touch!important;padding:4px 2px 18px!important;
-}
-#view-imagine #ngModelPicker .ng-model-list-heading{
- flex:0 0 48px!important;height:48px!important;font-size:18px!important;
-}
-#view-imagine #ngModelPicker .ng-model-option{min-height:64px!important;padding:10px 12px!important}
-#view-imagine #ngModelPicker .ng-image-model-choice{min-height:66px!important;padding:9px 10px!important}
-#view-imagine #ngModelPicker .ng-model-select-button{min-width:88px!important;min-height:42px!important;font-size:14px!important}
-#view-imagine #ngModelPicker .ng-model-select-button[aria-pressed="true"]{
- background:#123f5d!important;border-color:#39dcff!important;
-}
-#view-imagine #ngModelPicker .ng-image-model-choice.is-selected{
- background:linear-gradient(105deg,rgba(12,112,165,.42),rgba(43,42,93,.78))!important;
- box-shadow:inset 4px 0 0 #20d9f3!important;
-}
+<style id="ng-image-model-picker-position-select-v4">
+#ngModelPicker{position:fixed!important;left:12px!important;right:12px!important;width:auto!important;top:10dvh!important;bottom:10dvh!important;height:80dvh!important;min-height:80dvh!important;max-height:80dvh!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;padding:14px!important;border-radius:24px!important;z-index:2147483000!important;background:linear-gradient(155deg,#0b2342,#0a1b35 65%,#101b3c)!important;border:1px solid rgba(38,207,245,.5)!important;box-shadow:0 18px 55px rgba(0,0,0,.58),0 0 24px rgba(0,174,255,.16)!important}
+#ngModelPicker[hidden]{display:none!important}
+#ngModelPicker #ngImageModelOptions[hidden],#ngModelPicker #ngVideoModelOptions[hidden]{display:none!important}
+#ngModelPicker #ngImageModelOptions,#ngModelPicker #ngVideoModelOptions{display:flex!important;flex:1 1 auto!important;flex-direction:column!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important}
+#ngModelPicker .ng-model-scroll{display:block!important;flex:1 1 auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overscroll-behavior:contain!important;-webkit-overflow-scrolling:touch!important;padding:4px 2px 18px!important}
+#ngModelPicker .ng-model-list-heading{flex:0 0 48px!important;height:48px!important;font-size:18px!important}
+#ngModelPicker .ng-model-option{min-height:64px!important;padding:10px 12px!important}
+#ngModelPicker .ng-image-model-choice{min-height:66px!important;padding:9px 10px!important}
+#ngModelPicker .ng-model-select-button{flex:0 0 auto!important;min-width:88px!important;min-height:42px!important;font-size:14px!important}
+#ngModelPicker .ng-model-select-button[aria-pressed="true"]{background:#153d57!important;border-color:#35d8ff!important}
+#ngModelPicker .ng-image-model-choice.is-selected{background:linear-gradient(105deg,rgba(12,112,165,.42),rgba(43,42,93,.78))!important;box-shadow:inset 4px 0 0 #20d9f3!important}
+#ngModelPicker .ng-image-model-choice .ng-model-selected-check{order:3!important;margin-left:8px!important;flex:0 0 auto!important;color:#a78bfa!important;font-size:26px!important;font-weight:800!important;line-height:1!important}
+#ngModelPicker .ng-model-option.is-selected .ng-model-check{order:4!important;margin-left:8px!important;flex:0 0 auto!important;color:#a78bfa!important;font-size:24px!important;font-weight:800!important}
 </style>
 </body>
 </html>
