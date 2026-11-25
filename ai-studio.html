@@ -1333,6 +1333,18 @@ render();
   const panel=document.createElement('div');panel.className='panel ng-feature-routing';panel.style.marginBottom='14px';
   panel.innerHTML='<h2>Creation Setup</h2><div class="field"><label>SELECTED FEATURE</label><strong data-ng-feature-title style="font-size:15px;color:#fff">Video Generate</strong></div><div class="field"><label>AI ENGINE</label><select class="ng-engine-mode"><option value="auto" selected>NextGen AI Auto (Recommended)</option><option value="manual">Manual Tool Selection</option></select></div><div class="field ng-manual-wrap" hidden><label>CHOOSE TOOL</label><select class="ng-manual-tool"></select></div><small data-ng-feature-context style="color:#9ba8c3">Feature selected: Video Generate. Provider and model details are managed privately by NextGen AI.</small>';
   view.insertBefore(panel,view.firstChild);
+  // Hide legacy controls replaced by the shared Creation Controls panel.
+  const duplicateLabels=cfg.view==='view-discover'
+   ? ['QUALITY','ASPECT RATIO / OUTPUT SHAPE']
+   : cfg.view==='view-tools'
+    ? ['EDIT ACTION','EXPORT FORMAT']
+    : [];
+  view.querySelectorAll('label').forEach(label=>{
+   const title=label.textContent.replace(/\\s+/g,' ').trim().toUpperCase();
+   if(!duplicateLabels.includes(title))return;
+   const field=label.closest('.field');
+   if(field)field.hidden=true;
+  });
   const engine=panel.querySelector('.ng-engine-mode'),wrap=panel.querySelector('.ng-manual-wrap'),toolSelect=panel.querySelector('.ng-manual-tool');
   engine.addEventListener('change',()=>{wrap.hidden=engine.value!=='manual';});
   panel._setFeature=function(feature){panel.querySelector('[data-ng-feature-title]').textContent=feature;panel.querySelector('[data-ng-feature-context]').textContent='Feature selected: '+feature+'. Provider and model details are managed privately by NextGen AI.';toolSelect.innerHTML='';(featureTools[feature]||featureTools['More Features']).forEach(tool=>{const o=document.createElement('option');o.value=tool;o.textContent=tool;toolSelect.append(o);});};
