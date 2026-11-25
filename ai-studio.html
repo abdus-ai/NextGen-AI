@@ -1624,94 +1624,101 @@ body .view .panel.ng-feature-routing {
 <script id="ng-image-generate-reference-controller-v1">
 (function(){
  const root=document.getElementById('view-imagine');if(!root)return;
- const $=id=>document.getElementById(id),picker=$('ngModelPicker'),trigger=$('ng-image-model-open');
- if(picker&&trigger&&picker.dataset.ready!=='true'){
-  picker.dataset.ready='true';
-  const imageSection=$('ngImageModelOptions'),videoSection=$('ngVideoModelOptions');
-  const scroll=$('ngImagePickerScroll'),heading=$('ngImagePickerHeading'),back=$('ngImagePickerBack');
-  const groups={
-   'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],
-   'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],
-   'Nano Banana':['Nano Banana','Nano Banana 2 Lite','Nano Banana 2','Nano Banana Pro'],
-   'Grok':['Grok Speed','Grok Image 2.0'],
-   'Qwen':['Qwen Image HD','Qwen Image Edit 2511'],
-   'Krea':['Krea 2 Turbo','Krea 2 Realism HD'],
-   'GFPGAN':['GFPGAN Face Restoration','CodeFormer Face Restoration']
-  };
-  let selectedModel='NextGen AI (Auto Router)';
-  function positionPicker(){
-   const rect=trigger.getBoundingClientRect();
-   const bottomGap=Math.max(8,window.innerHeight-rect.top+8);
-   picker.style.setProperty('left','12px','important');
-   picker.style.setProperty('right','12px','important');
-   picker.style.setProperty('width','auto','important');
-   picker.style.setProperty('top','auto','important');
-   picker.style.setProperty('bottom',bottomGap+'px','important');
-   picker.style.setProperty('height','min(78dvh,720px)','important');
-   picker.style.setProperty('max-height','min(78dvh,720px)','important');
-   picker.style.setProperty('--ng-picker-space','min(78dvh,720px)');
-  }
-  function showImageList(){
-   picker.classList.remove('is-image-sublist');
-   imageSection.hidden=false;videoSection.hidden=true;
-   heading.textContent='Choose Image Provider';back.hidden=true;
-   scroll.innerHTML=scroll.dataset.categories;scroll.scrollTop=0;
-   positionPicker();
-  }
-  scroll.dataset.categories=scroll.innerHTML;
-  function selectModel(model,button){
-   selectedModel=model;
-   const label=$('ng-model-selected-label');
-   if(label)label.textContent=model;
-   const hiddenModel=$('ng-image-model');
-   if(hiddenModel){hiddenModel.value=model;hiddenModel.dispatchEvent(new Event('input',{bubbles:true}));hiddenModel.dispatchEvent(new Event('change',{bubbles:true}));}
-   picker.querySelectorAll('.ng-image-model-choice').forEach(row=>{
-    const active=row.dataset.imageModel===model;
-    row.classList.toggle('is-selected',active);
-    const b=row.querySelector('.ng-model-select-button');
-    if(b){b.textContent=active?'Selected':'Select';b.setAttribute('aria-pressed',String(active));}
-    let check=row.querySelector('.ng-model-selected-check');
-    if(active&&!check){check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);}
-    if(!active&&check)check.remove();
-   });
-   if(button&&button.matches('[data-model-kind="Image"][data-model-name]')){
-    picker.querySelectorAll('[data-model-kind="Image"][data-model-name]').forEach(b=>b.classList.toggle('is-selected',b===button));
-   }
-   closePicker();
-  }
-  function showGroup(name){
-   const models=groups[name];if(!models)return;
-   picker.classList.add('is-image-sublist');
-   imageSection.hidden=false;videoSection.hidden=true;
-   heading.textContent=name;back.hidden=false;scroll.replaceChildren();
-   models.forEach(model=>{
-    const row=document.createElement('div');row.className='ng-image-model-choice';row.dataset.imageModel=model;
-    const nameEl=document.createElement('span');nameEl.className='ng-model-option-name';nameEl.textContent=model;
-    const btn=document.createElement('button');btn.type='button';btn.className='ng-model-select-button';
-    btn.textContent=selectedModel===model?'Selected':'Select';btn.setAttribute('aria-pressed',String(selectedModel===model));
-    if(selectedModel===model){row.classList.add('is-selected');const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);}
-    btn.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();selectModel(model,btn);});
-    row.append(nameEl,btn);scroll.appendChild(row);
-   });
-   positionPicker();scroll.scrollTop=0;
-  }
-  scroll.addEventListener('click',event=>{
-   const category=event.target.closest('[data-image-category]');
-   if(category&&scroll.contains(category)){event.preventDefault();event.stopPropagation();showGroup(category.dataset.imageCategory);}
-  },true);
-  back.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();showImageList();});
-  function closePicker(){picker.hidden=true;trigger.setAttribute('aria-expanded','false');}
-  function openPicker(){showImageList();picker.hidden=false;positionPicker();trigger.setAttribute('aria-expanded','true');}
-  trigger.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(picker.hidden)openPicker();else closePicker();});
-  picker.addEventListener('click',event=>{
-   const option=event.target.closest('[data-model-kind="Image"][data-model-name]');
-   if(option)selectModel(option.dataset.modelName,option);
-  });
-  document.addEventListener('click',event=>{if(!picker.hidden&&!picker.contains(event.target)&&!trigger.contains(event.target))closePicker();});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!picker.hidden)closePicker();});
-  window.addEventListener('resize',()=>{if(!picker.hidden)positionPicker();},{passive:true});
-  window.addEventListener('scroll',()=>{if(!picker.hidden)positionPicker();},{passive:true,capture:true});
+ const $=id=>document.getElementById(id);
+ const picker=$('ngModelPicker'),trigger=$('ng-image-model-open');
+ if(!picker||!trigger||picker.dataset.ready==='true')return;
+ picker.dataset.ready='true';
+ const imageSection=$('ngImageModelOptions'),videoSection=$('ngVideoModelOptions');
+ const imageScroll=$('ngImagePickerScroll'),imageHeading=$('ngImagePickerHeading'),imageBack=$('ngImagePickerBack');
+ const imageGroups={
+  'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],
+  'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],
+  'Nano Banana':['Nano Banana','Nano Banana 2 Lite','Nano Banana 2','Nano Banana Pro'],
+  'Grok':['Grok Speed','Grok Image 2.0'],
+  'Qwen':['Qwen Image HD','Qwen Image Edit 2511'],
+  'Krea':['Krea 2 Turbo','Krea 2 Realism HD'],
+  'GFPGAN':['GFPGAN Face Restoration','CodeFormer Face Restoration']
+ };
+ let selectedModels={Image:{name:'NextGen AI (Auto Router)',cost:''},Video:{name:'Omni Flash',cost:'Plus or 0.6★'}};
+ function setArrow(open){trigger.setAttribute('aria-expanded',String(open));}
+ function positionPicker(){
+  picker.style.setProperty('position','fixed','important');
+  picker.style.setProperty('left','12px','important');
+  picker.style.setProperty('right','12px','important');
+  picker.style.setProperty('width','auto','important');
+  picker.style.setProperty('top','auto','important');
+  picker.style.setProperty('bottom','calc(10dvh + env(safe-area-inset-bottom,0px))','important');
+  picker.style.setProperty('height','80dvh','important');
+  picker.style.setProperty('min-height','80dvh','important');
+  picker.style.setProperty('max-height','80dvh','important');
  }
+ function paint(){
+  const label=$('ng-model-selected-label');
+  if(label)label.textContent='NextGen AI';
+ }
+ function closePicker(){picker.hidden=true;setArrow(false);}
+ function showImageList(){
+  picker.classList.remove('is-image-sublist');
+  imageSection.hidden=false;videoSection.hidden=true;
+  imageBack.hidden=true;imageHeading.textContent='Image';
+  imageScroll.innerHTML=imageScroll.dataset.categories||imageScroll.innerHTML;
+  imageScroll.scrollTop=0;positionPicker();
+ }
+ imageScroll.dataset.categories=imageScroll.innerHTML;
+ function selectImageModel(model){
+  selectedModels.Image={name:model,cost:''};
+  picker.querySelectorAll('.ng-image-model-choice').forEach(item=>{
+   const active=item.dataset.imageModel===model;
+   item.classList.toggle('is-selected',active);
+   const mark=item.querySelector('.ng-model-selected-check');
+   if(mark)mark.remove();
+   const button=item.querySelector('.ng-model-select-button');
+   if(button){button.textContent=active?'Selected':'Select';button.setAttribute('aria-label',(active?'Selected ':'Select ')+item.dataset.imageModel);button.setAttribute('aria-pressed',String(active));}
+   if(active){const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';item.appendChild(check);}
+  });
+  picker.querySelectorAll('[data-model-kind="Image"][data-model-name]').forEach(item=>{
+   const active=item.dataset.modelName===model;
+   item.classList.toggle('is-selected',active);
+   const old=item.querySelector('.ng-model-check');if(old)old.remove();
+   if(active){const check=document.createElement('span');check.className='ng-model-check';check.textContent='✓';item.appendChild(check);}
+  });
+  paint();closePicker();
+ }
+ function showImageGroup(name){
+  const models=imageGroups[name];if(!Array.isArray(models)||!models.length)return;
+  picker.classList.add('is-image-sublist');
+  imageSection.hidden=false;videoSection.hidden=true;
+  imageHeading.textContent=name;imageBack.hidden=false;
+  imageScroll.replaceChildren();
+  models.forEach(model=>{
+   const row=document.createElement('div');row.className='ng-image-model-choice';row.dataset.imageModel=model;
+   const label=document.createElement('span');label.className='ng-model-option-name';label.textContent=model;
+   const select=document.createElement('button');select.type='button';select.className='ng-model-select-button';
+   select.textContent=selectedModels.Image.name===model?'Selected':'Select';
+   select.setAttribute('aria-label','Select '+model);
+   select.setAttribute('aria-pressed',String(selectedModels.Image.name===model));
+   if(selectedModels.Image.name===model){row.classList.add('is-selected');const check=document.createElement('span');check.className='ng-model-selected-check';check.textContent='✓';row.appendChild(check);}
+   select.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();selectImageModel(model);});
+   row.append(label,select);imageScroll.appendChild(row);
+  });
+  positionPicker();
+ }
+ imageScroll.addEventListener('click',event=>{
+  const category=event.target.closest('button[data-image-category]');
+  if(!category||!imageScroll.contains(category))return;
+  event.preventDefault();event.stopPropagation();showImageGroup(category.dataset.imageCategory);
+ },true);
+ imageBack.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();showImageList();},true);
+ function openPicker(){showImageList();picker.hidden=false;positionPicker();setArrow(true);}
+ trigger.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();if(picker.hidden)openPicker();else closePicker();});
+ picker.addEventListener('click',event=>{
+  const button=event.target.closest('[data-model-kind="Image"][data-model-name]');
+  if(button){event.preventDefault();event.stopPropagation();selectImageModel(button.dataset.modelName);}
+ });
+ document.addEventListener('click',event=>{if(!picker.hidden&&!picker.contains(event.target)&&!trigger.contains(event.target))closePicker();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!picker.hidden)closePicker();});
+ window.addEventListener('resize',()=>{if(!picker.hidden)positionPicker();},{passive:true});
+ paint();
  const routing=root.querySelector('#ng-image-routing'),engine=root.querySelector('#ng-image-engine'),tool=root.querySelector('#ng-image-tool'),task=root.querySelector('#ng-image-task');
  if(engine)engine.addEventListener('change',()=>{if(routing){routing.value=engine.value==='auto'?'auto':'manual';routing.dispatchEvent(new Event('change',{bubbles:true}))}});
  if(tool)tool.addEventListener('change',()=>{if(task){task.value=tool.value;task.dispatchEvent(new Event('change',{bubbles:true}))}});
@@ -2750,6 +2757,45 @@ html,body{
 }
 @media(max-height:650px){
  #view-imagine #ngModelPicker{height:74dvh!important;min-height:74dvh!important;max-height:74dvh!important}
+}
+</style>
+<style id="ng-image-model-picker-final-80vh">
+/* Match the original working picker: large, fixed mobile sheet at 80% display height. */
+#view-imagine #ngModelPicker{
+ position:fixed!important;left:12px!important;right:12px!important;width:auto!important;
+ top:auto!important;bottom:calc(10dvh + env(safe-area-inset-bottom,0px))!important;
+ height:80dvh!important;min-height:80dvh!important;max-height:80dvh!important;
+ box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+ overflow:hidden!important;padding:14px!important;border-radius:24px!important;
+ z-index:10080!important;background:linear-gradient(155deg,#0b2342,#0a1b35 65%,#101b3c)!important;
+ border:1px solid rgba(38,207,245,.5)!important;
+ box-shadow:0 18px 55px rgba(0,0,0,.58),0 0 24px rgba(0,174,255,.16)!important;
+}
+#view-imagine #ngModelPicker[hidden]{display:none!important}
+#view-imagine #ngModelPicker #ngImageModelOptions[hidden],
+#view-imagine #ngModelPicker #ngVideoModelOptions[hidden]{display:none!important}
+#view-imagine #ngModelPicker #ngImageModelOptions,
+#view-imagine #ngModelPicker #ngVideoModelOptions{
+ display:flex!important;flex:1 1 auto!important;flex-direction:column!important;
+ width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
+}
+#view-imagine #ngModelPicker .ng-model-scroll{
+ display:block!important;flex:1 1 auto!important;min-height:0!important;max-height:none!important;
+ overflow-y:auto!important;overscroll-behavior:contain!important;
+ -webkit-overflow-scrolling:touch!important;padding:4px 2px 18px!important;
+}
+#view-imagine #ngModelPicker .ng-model-list-heading{
+ flex:0 0 48px!important;height:48px!important;font-size:18px!important;
+}
+#view-imagine #ngModelPicker .ng-model-option{min-height:64px!important;padding:10px 12px!important}
+#view-imagine #ngModelPicker .ng-image-model-choice{min-height:66px!important;padding:9px 10px!important}
+#view-imagine #ngModelPicker .ng-model-select-button{min-width:88px!important;min-height:42px!important;font-size:14px!important}
+#view-imagine #ngModelPicker .ng-model-select-button[aria-pressed="true"]{
+ background:#123f5d!important;border-color:#39dcff!important;
+}
+#view-imagine #ngModelPicker .ng-image-model-choice.is-selected{
+ background:linear-gradient(105deg,rgba(12,112,165,.42),rgba(43,42,93,.78))!important;
+ box-shadow:inset 4px 0 0 #20d9f3!important;
 }
 </style>
 </body>
