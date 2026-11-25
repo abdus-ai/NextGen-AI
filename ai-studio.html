@@ -2912,6 +2912,55 @@ body .studio section.view:not(#view-imagine) .primary{
  body .studio section.view:not(#view-imagine) .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 </style>
+<script id="nextgen-unified-feature-destination-v2">
+(function(){
+ const raw=new URLSearchParams(window.location.search).get('feature');
+ if(raw===null)return;
+ const numeric=['AI Video Editor','Image to Video','Text to Video','Video Extender','Text to Music','Music to Video','Text 2 Dance','Upscale 4K / 8K'];
+ const feature=/^\d+$/.test(raw)?(numeric[Number(raw)]||raw):raw;
+ const target={
+  'Image Generate':'view-imagine',
+  'AI Video Editor':'view-tools',
+  'Image to Video':'view-discover',
+  'Text to Video':'view-discover',
+  'Video Extender':'view-discover',
+  'Text to Music':'view-tools',
+  'Music to Video':'view-discover',
+  'Text to Dance':'view-discover',
+  'Text 2 Dance':'view-discover',
+  'Upscale 4K / 8K':'view-tools',
+  'More Features':'view-tools'
+ }[feature];
+ if(!target)return;
+ function apply(){
+  const workspace=document.getElementById('studio-workspace');
+  if(workspace)workspace.classList.remove('hidden');
+  const home=document.getElementById('studio-home');
+  if(home)home.classList.add('hidden');
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('hidden',v.id!==target));
+  document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===target.replace('view-','')));
+  const title=document.querySelector('#view-title .ng-title-gradient')||document.getElementById('view-title');
+  if(title)title.textContent=feature;
+  const desc={
+   'Image Generate':'Create images from a text prompt.',
+   'AI Video Editor':'Edit videos with AI tools and effects.',
+   'Image to Video':'Turn still images into animated videos.',
+   'Text to Video':'Generate videos from a text prompt.',
+   'Video Extender':'Make your video longer with AI.',
+   'Text to Music':'Create original music from a text prompt.',
+   'Music to Video':'Create videos that match your music.',
+   'Text to Dance':'Generate dance videos from text prompts.',
+   'Text 2 Dance':'Generate dance videos from text prompts.',
+   'Upscale 4K / 8K':'Enhance video quality up to 4K or 8K.',
+   'More Features':'Explore additional creative tools.'
+  };
+  const subtitle=document.getElementById('view-subtitle');
+  if(subtitle&&desc[feature])subtitle.textContent=desc[feature];
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});
+ else apply();
+})();
+</script>
 </body>
 </html>
 
