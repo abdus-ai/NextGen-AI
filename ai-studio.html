@@ -948,7 +948,7 @@ html,body{margin:0!important}
 </section>
 <section id="view-imagine" class="view hidden">
 <section class="panel ng-image-creation-setup" aria-label="Creation Setup"><div class="ng-image-tool-style-row"><div class="field"><label for="ng-image-tool">CHOOSE TOOL</label><select id="ng-image-tool"><option>Text to Image</option><option>Image to Image</option><option>Image Editing</option><option>Background Removal</option><option>Background Replacement</option><option>Object Removal / Replacement</option><option>Image Expansion</option><option>Face Restoration</option><option>Image Upscaling</option></select></div><div class="field"><label>STYLE PRESET</label><select id="ng-image-style"><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Illustration</option><option>Anime</option><option>3D Render</option><option>Product Photography</option><option>Digital Art</option><option>Watercolor</option></select></div></div><p class="ng-image-setup-note">Feature selected: Image Generate. Provider and model details are managed privately by NextGen AI.</p></section> <div class="ng-image-settings-placement"><label class="ng-image-aspect-heading" for="ng-image-settings-open">ASPECT RATIO</label><button type="button" class="image-settings-trigger" id="ng-image-settings-open" aria-label="Image settings: ×1 Auto" aria-haspopup="dialog" aria-controls="ng-image-settings-overlay"><span id="ng-image-settings-button-label">×1 Auto</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></button><div id="ng-image-settings-summary" class="status-line" aria-live="polite" hidden>Auto · 1K · ×1</div>
-<div class="ng-image-model-placement"><label for="ng-image-model-open">IMAGE MODEL</label><button type="button" class="secondary" id="ng-image-model-open"><span>NextGen AI (Auto Router)</span><span aria-hidden="true">⌄</span></button></div></div>
+<div class="ng-image-model-placement"><label for="ng-image-model-open">IMAGE MODEL</label>    <button class="pl p2 ng-model-trigger" id="ng-image-model-open" type="button" aria-label="Open AI model selection" aria-haspopup="dialog" aria-expanded="false"><span class="ng-selected-model"><svg class="ng-nextgen-logo" viewBox="0 0 100 100" role="img" aria-label="NextGen AI logo"><defs><linearGradient id="ngLogoGradient" x1="8%" y1="5%" x2="90%" y2="95%"><stop offset="0" stop-color="#00e7ff"/><stop offset=".48" stop-color="#1454ff"/><stop offset="1" stop-color="#f000e8"/></linearGradient></defs><circle cx="50" cy="50" r="49" fill="url(#ngLogoGradient)"/><path d="M50 12 C53 37 63 47 88 50 C63 53 53 63 50 88 C47 63 37 53 12 50 C37 47 47 37 50 12Z" fill="#fff"/><path d="M72 22 C73.5 31 77 34.5 86 36 C77 37.5 73.5 41 72 50 C70.5 41 67 37.5 58 36 C67 34.5 70.5 31 72 22Z" fill="#fff"/></svg><span id="ng-model-selected-label">NextGen AI</span></span><svg class="ng-model-trigger-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button></div></div>
  <div class="studio-grid">
   <div class="panel">
    
@@ -984,6 +984,12 @@ html,body{margin:0!important}
    <button class="ng-model-option" type="button" data-model-kind="Image" data-model-name="Real-ESRGAN Upscaler" data-model-cost=""><span class="ng-model-brand">↗</span><span class="ng-model-option-name">Real-ESRGAN Upscaler</span><span class="ng-model-select-pill">Select</span></button>
   </div>
  </section>
+ <section class="ng-model-list-view" id="ngVideoModelOptions" hidden aria-label="Video models">
+  <div class="ng-model-list-heading"><button type="button" class="ng-model-back" data-model-back>‹</button><strong>Video</strong></div>
+  
+  <div class="ng-model-scroll"><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Grok" data-model-cost="Plus"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok</span><span class="ng-model-cost">Plus</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Grok Lite" data-model-cost="Free daily"><span class="ng-model-brand ng-grok">◉</span><span class="ng-model-option-name">Grok Lite</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option is-selected" type="button" data-model-kind="Video" data-model-name="Omni Flash" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Omni Flash</span><span class="ng-model-cost">Plus or 0.6★</span><span class="ng-model-check">✓</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="MiniMax HD" data-model-cost="Pro or 5★"><span class="ng-model-brand ng-minimax">∿</span><span class="ng-model-option-name">MiniMax HD</span><span class="ng-model-cost">Pro or 5★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Meta Video" data-model-cost="Free daily"><span class="ng-model-brand ng-meta">∞</span><span class="ng-model-option-name">Meta Video</span><span class="ng-model-cost free">Free daily</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3 <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3.1" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3.1 <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button><button class="ng-model-option" type="button" data-model-kind="Video" data-model-name="Veo 3 Fast" data-model-cost="Plus or 0.6★"><span class="ng-model-brand ng-google">G</span><span class="ng-model-option-name">Veo 3 Fast <small>Leaving Nov 25</small></span><span class="ng-model-cost">Plus or 0.6★</span></button></div><button type="button" class="ng-model-more" data-model-more><span>More Below</span><span class="ng-model-more-arrow" aria-hidden="true">⌄</span></button>
+ </section>
+</div>
 <div class="ng-image-settings-overlay hidden" id="ng-image-settings-overlay" role="dialog" aria-modal="true" aria-labelledby="ng-image-settings-title"><div class="ng-image-settings-sheet">
 <div class="ng-image-settings-head"><h3 id="ng-image-settings-title">Image Settings</h3><button type="button" class="ng-image-settings-close" id="ng-image-settings-close" aria-label="Close settings">×</button></div>
 <div class="ng-image-setting-label"><span>Shape</span><span id="ng-image-shape-current">Auto · 1:1</span></div>
@@ -1618,82 +1624,25 @@ body .view .panel.ng-feature-routing {
 <script id="ng-image-generate-reference-controller-v1">
 (function(){
  const root=document.getElementById('view-imagine');if(!root)return;
- const $=id=>document.getElementById(id);
- const picker=$('ngModelPicker'),trigger=$('ng-image-model-open');
+ const $=id=>document.getElementById(id),picker=$('ngModelPicker'),trigger=$('ng-image-model-open');
  if(picker&&trigger&&picker.dataset.ready!=='true'){
   picker.dataset.ready='true';
-  const imageSection=$('ngImageModelOptions'),imageScroll=$('ngImagePickerScroll'),imageHeading=$('ngImagePickerHeading'),imageBack=$('ngImagePickerBack');
-  const imageGroups={
-   'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],
-   'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],
-   'Nano Banana':['Nano Banana','Nano Banana 2 Lite','Nano Banana 2','Nano Banana Pro'],
-   'Grok':['Grok Speed','Grok Image 2.0'],
-   'Qwen':['Qwen Image HD','Qwen Image Edit 2511'],
-   'Krea':['Krea 2 Turbo','Krea 2 Realism HD'],
-   'GFPGAN':['GFPGAN Face Restoration','CodeFormer Face Restoration']
-  };
-  let selectedImageModel='NextGen AI (Auto Router)';
-  function positionPicker(){
-   const rect=trigger.getBoundingClientRect(),gap=8,available=Math.max(230,rect.top-gap-12);
-   picker.style.setProperty('bottom','auto','important');picker.style.setProperty('top','auto','important');
-   picker.style.setProperty('--ng-picker-space',available+'px');
-   picker.style.setProperty('bottom',(window.innerHeight-rect.top+gap)+'px','important');
-   if(picker.classList.contains('is-image-sublist'))picker.style.setProperty('height','min(66dvh,'+available+'px)','important');
-   else picker.style.removeProperty('height');
-  }
-  function showImageList(){
-   picker.classList.remove('is-image-sublist');imageSection.hidden=false;imageHeading.textContent='Image';imageBack.hidden=true;
-   imageScroll.innerHTML=imageScroll.dataset.categories||imageScroll.innerHTML;imageScroll.scrollTop=0;imageSection.scrollTop=0;positionPicker();
-  }
+  const imageSection=$('ngImageModelOptions'),videoSection=$('ngVideoModelOptions'),imageScroll=$('ngImagePickerScroll'),heading=$('ngImagePickerHeading'),back=$('ngImagePickerBack');
+  const groups={'NextGen AI':['NextGen AI free','NextGen AI Plus','NextGen AI Pro','NextGen AI Ultra'],'OpenAI':['GPT Image 2','GPT Image 2.5 Flare','GPT Image 2.5 Sunburst','GPT Image 2.6 Flare','GPT Image 2.6 Sunburst'],'Nano Banana':['Nano Banana','Nano Banana 2 Lite','Nano Banana 2','Nano Banana Pro'],'Grok':['Grok Speed','Grok Image 2.0'],'Qwen':['Qwen Image HD','Qwen Image Edit 2511'],'Krea':['Krea 2 Turbo','Krea 2 Realism HD'],'GFPGAN':['GFPGAN Face Restoration','CodeFormer Face Restoration']};
+  let selected='NextGen AI (Auto Router)';
+  function position(){const r=trigger.getBoundingClientRect(),space=Math.max(280,r.top-20);picker.style.setProperty('--ng-picker-space',space+'px');picker.style.setProperty('bottom',(innerHeight-r.top+8)+'px','important');picker.style.setProperty('top','auto','important');picker.style.setProperty('max-height',space+'px','important');}
+  function list(){picker.classList.remove('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;heading.textContent='Image';back.hidden=true;imageScroll.innerHTML=imageScroll.dataset.categories;imageScroll.scrollTop=0;position();}
   imageScroll.dataset.categories=imageScroll.innerHTML;
-  function showImageGroup(name){
-   const models=imageGroups[name];if(!Array.isArray(models)||!models.length)return;
-   picker.classList.add('is-image-sublist');imageSection.hidden=false;imageHeading.textContent=name;imageBack.hidden=false;
-   imageScroll.replaceChildren();
-   models.forEach(model=>{
-    const row=document.createElement('div');row.className='ng-image-model-choice';row.dataset.imageModel=model;
-    const label=document.createElement('span');label.className='ng-model-option-name';label.textContent=model;
-    const select=document.createElement('button');select.type='button';select.className='ng-model-select-button';
-    select.textContent=selectedImageModel===model?'Selected':'Select';
-    if(selectedImageModel===model)row.classList.add('is-selected');
-    select.setAttribute('aria-label','Select '+model);
-    select.addEventListener('click',event=>{
-     event.preventDefault();event.stopPropagation();selectedImageModel=model;
-     picker.querySelectorAll('.ng-image-model-choice').forEach(item=>{
-      item.classList.remove('is-selected');const button=item.querySelector('.ng-model-select-button');
-      if(button){button.textContent='Select';button.setAttribute('aria-label','Select '+item.dataset.imageModel);}
-     });
-     row.classList.add('is-selected');select.textContent='Selected';
-     const label=$('ng-image-model-value');if(label)label.textContent=model;
-     closePicker();
-    });
-    row.append(label,select);imageScroll.appendChild(row);
-   });
-   positionPicker();
-  }
-  imageScroll.addEventListener('click',event=>{
-   const category=event.target.closest('button[data-image-category]');
-   if(!category||!imageScroll.contains(category))return;
-   event.preventDefault();event.stopPropagation();showImageGroup(category.dataset.imageCategory);
-  },true);
-  imageBack.type='button';
-  imageBack.style.cssText+=';position:relative;z-index:10030;pointer-events:auto;touch-action:manipulation;flex:0 0 34px;min-width:34px;min-height:34px;';
-  picker.addEventListener('click',event=>{
-   const back=event.target.closest('#ngImagePickerBack');if(!back)return;
-   event.preventDefault();event.stopPropagation();event.stopImmediatePropagation();showImageList();
-  },true);
-  function openPicker(){showImageList();picker.hidden=false;positionPicker();trigger.setAttribute('aria-expanded','true');}
-  function closePicker(){picker.hidden=true;trigger.setAttribute('aria-expanded','false');}
-  trigger.addEventListener('click',()=>{if(picker.hidden)openPicker();else closePicker();});
-  picker.addEventListener('click',event=>{
-   const button=event.target.closest('[data-model-kind="Image"][data-model-name]');
-   if(!button)return;selectedImageModel=button.dataset.modelName;
-   const label=$('ng-image-model-value');if(label)label.textContent=selectedImageModel;closePicker();
-  });
-  document.addEventListener('click',event=>{if(!picker.hidden&&!picker.contains(event.target)&&!trigger.contains(event.target))closePicker();});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!picker.hidden)closePicker();});
-  window.addEventListener('resize',()=>{if(!picker.hidden)positionPicker();},{passive:true});
-  window.addEventListener('scroll',()=>{if(!picker.hidden)positionPicker();},{passive:true,capture:true});
+  function group(name){picker.classList.add('is-image-sublist');imageSection.hidden=false;videoSection.hidden=true;heading.textContent=name;back.hidden=false;imageScroll.replaceChildren();(groups[name]||[]).forEach(model=>{const row=document.createElement('div');row.className='ng-image-model-choice';row.dataset.imageModel=model;const nameEl=document.createElement('span');nameEl.className='ng-model-option-name';nameEl.textContent=model;const btn=document.createElement('button');btn.type='button';btn.className='ng-model-select-button';btn.textContent=selected===model?'Selected':'Select';btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();selected=model;imageScroll.querySelectorAll('.ng-model-select-button').forEach(b=>b.textContent='Select');btn.textContent='Selected';const value=$('ng-image-model-value');if(value)value.textContent=model;close();});row.append(nameEl,btn);imageScroll.appendChild(row);});position();}
+  imageScroll.addEventListener('click',e=>{const b=e.target.closest('[data-image-category]');if(b){e.preventDefault();e.stopPropagation();group(b.dataset.imageCategory);}},true);
+  back.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();list();});
+  function close(){picker.hidden=true;trigger.setAttribute('aria-expanded','false');}
+  function open(){list();picker.hidden=false;position();trigger.setAttribute('aria-expanded','true');}
+  trigger.addEventListener('click',()=>picker.hidden?open():close());
+  picker.addEventListener('click',e=>{const b=e.target.closest('[data-model-kind="Image"][data-model-name]');if(b){selected=b.dataset.modelName;const v=$('ng-image-model-value');if(v)v.textContent=selected;close();}});
+  document.addEventListener('click',e=>{if(!picker.hidden&&!picker.contains(e.target)&&!trigger.contains(e.target))close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!picker.hidden)close();});
+  window.addEventListener('resize',()=>{if(!picker.hidden)position();},{passive:true});window.addEventListener('scroll',()=>{if(!picker.hidden)position();},{passive:true,capture:true});
  }
  const routing=root.querySelector('#ng-image-routing'),engine=root.querySelector('#ng-image-engine'),tool=root.querySelector('#ng-image-tool'),task=root.querySelector('#ng-image-task');
  if(engine)engine.addEventListener('change',()=>{if(routing){routing.value=engine.value==='auto'?'auto':'manual';routing.dispatchEvent(new Event('change',{bubbles:true}))}});
@@ -1702,7 +1651,178 @@ body .view .panel.ng-feature-routing {
 </script>
 
 
-<style id="ng-model-picker-copied-from-main">.ng-model-trigger{display:flex!important;align-items:center!important;justify-content:center!important;cursor:default!important;color:#eef8ff!important;background:linear-gradient(135deg,#0d2744,#102c4a)!important;border:1px solid rgba(79,181,235,.38)!important;border-radius:22px!important;padding:0 12px!important}
+<style>
+:root{color-scheme:dark;box-sizing:border-box;--bg:#07162d;--ink:#fff;--bd:rgba(124,151,183,.58);padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%;overflow-y:auto;overscroll-behavior-y:auto;background:var(--bg)}body{height:calc(100dvh + 2px);min-height:calc(100dvh + 2px);overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:auto;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",Roboto,system-ui,sans-serif}
+.app{position:sticky;top:0;max-width:430px;height:100dvh;margin:0 auto;padding-bottom:calc(150px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow:hidden}
+svg{display:block}
+header{height:45px;min-height:45px;display:flex;align-items:center;padding:0 10px 0 16px}
+.burger{width:56px;height:56px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin-right:12px;transform:none;border:2px solid #168cff;border-radius:50%;background:linear-gradient(145deg,#0b2348,#07162d);box-shadow:0 0 0 2px rgba(0,213,255,.12),0 0 14px rgba(0,132,255,.32);cursor:pointer}
+.burger i{display:block;width:29px;height:3px;background:#fff;border-radius:3px;box-shadow:0 0 6px rgba(67,211,255,.55)}
+.burger i:nth-child(2){width:19px;align-self:center}
+.brand-title{height:33px;width:205px;max-width:calc(100vw - 190px);display:flex;align-items:center;margin-top:2px;transform:translate(-6px,-1px);font-size:20px;line-height:1;font-weight:800;letter-spacing:-.45px;white-space:nowrap;text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-shadow:none}.brand-title span{display:inline-block;background:linear-gradient(110deg,#00f5ff 0%,#00c8ff 18%,#087bff 38%,#263cff 55%,#7428f5 74%,#e51bdc 91%,#ff43cf 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision;text-shadow:none;filter:none}
+.hr{margin-left:auto;display:flex;gap:12px}
+.ci{width:31px;height:31px;border-radius:50%;display:grid;place-items:center}
+.sr{border:1px solid #3a4a6a;background:#0b1531}
+.pf{padding:2px;background:linear-gradient(135deg,#22e5ff,#c026ff)}
+.pf div{width:100%;height:100%;border-radius:50%;background:#0b1531;display:grid;place-items:center}
+.hero{position:relative;margin:0 13px;height:204px;border-radius:17px;overflow:hidden;border:1px solid #3a4a7a;background-size:100% 100%;background-position:center}
+.hero>img.ph{position:absolute;left:0;top:0;width:100%;height:113px;object-fit:cover}
+.hero>video.motion16-demo-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#08152b;cursor:pointer}.hero>img.ph{display:block!important;z-index:0}.hero>img.ph[style*="display: none"]{display:none!important}.hero>video[hidden]{display:none!important}.hero>.ov{z-index:2}
+.cur{position:absolute;left:202px;top:178px}
+.ov{position:absolute;left:16px;right:16px;top:113px;bottom:6px;border-radius:17px;border-top:1px solid #7a5cf0;background:rgba(12,14,36,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ov .l{position:absolute;left:8px;top:6px;display:flex;align-items:center;gap:3px;font-size:9px;font-weight:500;color:#e8ecf8}
+.ov .r{position:absolute;right:8px;top:7px;font-size:9.3px;font-weight:500;color:#9d8cff}
+.ov .th{position:absolute;left:8px;top:26px;width:48px;height:48px;border-radius:9px;border:1.5px solid #8e7bff;object-fit:cover}
+.ov .tx{position:absolute;left:64px;top:30px;font-size:13.5px;font-weight:600;line-height:20px}
+.ov .tx u{display:inline-block;width:2px;height:15px;background:#8e7bff;vertical-align:-2px;margin-left:1px;text-decoration:none}
+.ov .go{position:absolute;right:8px;top:34px;width:32px;height:32px;border-radius:50%;background:#6a5af0;display:grid;place-items:center}
+.sub{display:flex;align-items:center;margin:6px 12px 0 13px;gap:0}
+.sub p{flex:1;min-width:0;font-size:13.5px;line-height:18.6px;color:#e6ebf8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-right:6px}
+.try{flex:none;height:35px;width:81px;border-radius:18px;background:linear-gradient(110deg,#00D9F5 0%,#087BFF 34%,#633BFF 68%,#D52BFF 100%);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:5px;box-shadow:0 2px 8px rgba(0,190,255,.16)}
+.mute{flex:none;width:38px;height:38px;margin-left:10px;border-radius:50%;border:1px solid #3a4a6a;display:grid;place-items:center}
+.list{margin-top:14px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:8px}.list>*{flex-shrink:0}
+.card{margin:0 12px 2px;height:51px;display:flex;align-items:center;padding-left:7px;border:1px solid #384a63;border-radius:11px;background:linear-gradient(180deg,#0c2039,#0a1d36);position:relative}
+.card::after{content:"";position:absolute;left:9px;bottom:3px;width:24px;height:2px;border-radius:2px;background:#fff}
+.it{height:53px;display:flex;align-items:center;padding-left:18.6px;position:relative}
+.it::after{content:"";position:absolute;left:98px;right:0;bottom:2px;height:1px;background:rgba(148,174,204,.16)}
+.card img,.it img{width:66px;height:37.6px;object-fit:cover;border-radius:8px;flex:none;margin-right:13px}
+.thumb{width:66px;height:37.6px;border-radius:8px;flex:none;margin-right:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#142b50,#21164b);font-size:24px;border:1px solid #435a87}.thumb-photo{width:66px;height:37.6px;object-fit:cover;border-radius:8px;flex:none;margin-right:13px;border:1px solid rgba(124,151,183,.5)}
+.card img{width:65px;height:35.5px}
+.card>div{margin-top:-3px}
+.card b,.it b{display:block;font-size:14px;font-weight:700;line-height:18px}
+.card span,.it span{display:block;font-size:11.6px;line-height:17px;color:#d9e2f5;margin-top:1px}
+.comp{position:fixed;left:10px;right:10px;max-width:410px;margin:0 auto;bottom:calc(21px + env(safe-area-inset-bottom,0px));height:120px;border:1px solid rgba(143,171,202,.24);border-radius:19px;overflow:hidden;background:#0d2039;box-shadow:none;transition:height .22s ease,border-color .22s ease,transform .22s ease}
+.comp .ph{position:absolute;left:18px;top:11px;font-size:15px;line-height:21px;color:#aab4d0}
+.comp .expand{position:absolute;right:8px;top:7px;z-index:80;width:37px;height:37px;border:0;border-radius:50%;background:#303b52;border:1px solid rgba(190,210,235,.16);display:grid;place-items:center;color:#fff;cursor:pointer;pointer-events:auto}.comp.expanded{height:190px}.comp.expanded .tb{position:absolute;left:0;right:0;top:83px!important;bottom:0;background:transparent;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px;transition:top .22s ease}.comp.expanded .up{top:57px!important;right:8px!important;height:29px!important;width:108px!important;font-size:14px!important;border-radius:15px!important;}.comp.expanded .rf{top:12px!important;right:48px!important;width:24px!important;height:24px!important;z-index:9!important;}
+.comp .rf{position:absolute;right:130px;top:52px}
+.comp .up{position:absolute;right:16px;top:46px;height:23px;width:96px;border:1px solid #3a4a6a;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:13px;font-weight:500}
+.tb{position:absolute;left:0;right:0;top:75px;bottom:0;background:transparent;display:flex;align-items:center;gap:7px;padding:0 7px 0 6px;transition:top .22s ease}
+.pl{height:31px;border:1px solid var(--bd);border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;background:#10223c}
+.p1{width:31px;flex:none;border-radius:50%}
+.p2{flex:1;justify-content:space-between;padding:0 12px 0 10px;min-width:0}
+.p3{width:90px;flex:none;gap:6px;font-size:13px}
+.snd{width:32px;height:32px;flex:none;border-radius:50%;background:linear-gradient(135deg,#d03cf0 10%,#8a5cf0 50%,#22c0e8);display:grid;place-items:center}
+
+/* NextGen AI floating Assistant + Create Project actions */
+.ng-fab-stack{position:fixed;right:max(14px,calc((100vw - 430px)/2 + 14px));bottom:calc(230px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ng-fab{width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.22);box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;text-decoration:none;color:#fff}
+.ng-fab-assistant{width:44px;height:44px;flex:none;border-radius:50%;background:linear-gradient(135deg,#00d9f5 0%,#087bff 36%,#673bff 68%,#e020d5 100%);border:0;box-shadow:0 3px 12px rgba(0,174,255,.18);overflow:hidden}
+.ng-fab-assistant .ng-mark{width:44px;height:44px;object-fit:contain;display:block;border:0;border-radius:50%;background:transparent}
+.ng-fab-assistant .ng-mark-fallback{width:44px;height:44px;display:block}
+.ng-fab-assistant .ng-mark-fallback[hidden]{display:none}
+.ng-fab-project{border-radius:14px;background:linear-gradient(135deg,#00c9e8 0%,#1677f5 52%,#7545e8 100%);border-color:rgba(255,255,255,.18)}
+.ng-fab:active{transform:scale(.96)}
+.ng-project-overlay{position:fixed;inset:0;z-index:60;background:rgba(2,8,22,.72);backdrop-filter:blur(5px);display:grid;place-items:center;padding:18px}
+.ng-project-overlay[hidden]{display:none!important}
+.ng-project-dialog{width:min(100%,430px);max-height:min(88dvh,720px);overflow:auto;border:1px solid rgba(126,163,199,.38);border-radius:20px;background:#0d2039;color:#f4f8ff;box-shadow:0 18px 60px rgba(0,0,0,.45);padding:20px}
+.ng-project-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.ng-project-head h2{font-size:20px;line-height:1.2;color:#f4f8ff}
+.ng-project-close{width:34px;height:34px;border:1px solid rgba(143,171,202,.25);border-radius:50%;background:#172c49;color:#fff;font-size:21px}
+.ng-project-field{display:grid;gap:6px;margin:12px 0}
+.ng-project-field label{font-size:12px;color:#b8cbe0;font-weight:600}
+.ng-project-field input,.ng-project-field select,.ng-project-field textarea{width:100%;min-height:43px;border:1px solid rgba(143,171,202,.34);border-radius:11px;background:#091a30;color:#fff;padding:10px 12px;font:14px Inter,system-ui,sans-serif;outline:none}
+.ng-project-field textarea{min-height:78px;resize:vertical}
+.ng-project-field input:focus,.ng-project-field select:focus,.ng-project-field textarea:focus{border-color:#55b8d8;box-shadow:0 0 0 2px rgba(85,184,216,.12)}
+.ng-project-save{width:100%;min-height:45px;margin-top:8px;border:0;border-radius:12px;background:linear-gradient(100deg,#19b9c8,#3978df 58%,#9658d7);color:white;font-weight:750}
+.ng-project-note{margin-top:10px;color:#92a9c1;font-size:10px;line-height:1.45}
+.ng-project-status{min-height:18px;margin-top:8px;color:#72e2b3;font-size:12px}
+.ng-project-recent{margin-top:17px;border-top:1px solid rgba(143,171,202,.17);padding-top:12px}
+.ng-project-recent h3{font-size:12px;color:#dce8f6;margin-bottom:8px}
+.ng-project-item{padding:8px 10px;margin-top:6px;border-radius:9px;background:#102844;font-size:12px}
+.ng-project-item small{display:block;color:#91a9c2;font-size:10px;margin-top:2px}
+@media(min-width:700px){.ng-fab-stack{right:max(22px,calc((100vw - 430px)/2 + 18px));bottom:calc(230px + env(safe-area-inset-bottom,0px))}}
+
+
+/* Motion 16 reference interaction system — NextGen AI navy / cyan / blue / purple skin */
+.hero{height:204px;background:#081b33;transition:background .3s ease}
+.hero>img.ph{width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:opacity .35s ease;}
+.ov{z-index:2;top:auto;bottom:6px;height:86px;border:1px solid rgba(107,177,255,.48);border-top:1px solid rgba(34,218,250,.7);background:transparent;}
+.ov[hidden]{display:none!important}
+.ov .l{font-size:10px;gap:6px}.mini-play{width:13px;height:13px;border:1px solid #38d8ff;border-radius:50%;font-size:7px;display:grid;place-items:center;color:#fff}
+.ov .r{font-size:9px;color:#9c91ff}.ov .th{width:48px;height:48px;border-color:#46cfff}.ov .tx{right:48px;font-size:12px;line-height:16px;top:31px;max-height:38px;overflow:hidden}.typing-caret{display:inline-block;width:2px;height:13px;background:#33d9f7;margin-left:2px;vertical-align:-2px;animation:motion16Blink .8s steps(2,start) infinite}
+@keyframes motion16Blink{to{visibility:hidden}}
+.ov .go{background:linear-gradient(135deg,#00cfee,#246fff 55%,#a23cff);}
+.sub .try{border:0;cursor:pointer;background:linear-gradient(110deg,#00d9f5 0%,#087bff 34%,#633bff 68%,#d52bff 100%);box-shadow:0 2px 10px rgba(0,190,255,.18);}
+.sub .mute{background:rgba(9,23,48,.65);cursor:pointer}
+.it{width:100%;border:1px solid transparent;border-radius:10px;background:transparent;color:inherit;text-align:left;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;padding-right:8px}
+.it.is-active{background:linear-gradient(90deg,rgba(16,61,94,.78),rgba(22,31,72,.5));border-color:rgba(47,192,245,.36);box-shadow:inset 3px 0 0 #1ecdf3}
+.it:active{transform:scale(.99)}.it .feature-model{display:block;font-size:9px;line-height:12px;color:#7edcf5;margin-top:1px;letter-spacing:.1px}.it:not(.is-active) .feature-model{color:#91a8c6;opacity:.72}
+.comp{border-color:rgba(143,171,202,.26);box-shadow:0 0 0 1px rgba(57,123,190,.04);}
+.comp .ph{width:calc(100% - 68px);height:48px;resize:none;overflow:auto;border:0;outline:0;background:transparent;font:14px/21px Inter,system-ui,sans-serif;padding:0;color:#f4f8ff;z-index:2}
+.comp .ph::placeholder{color:#aab4d0;opacity:1}
+.comp.expanded{height:190px}.comp.expanded .ph{height:92px}.comp.expanded .tb{top:137px}.comp.expanded .up{top:112px}.comp.expanded .rf{top:119px}
+.comp .rf{position:absolute;right:118px;top:52px;width:22px;height:22px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer}
+.comp .up{cursor:pointer;color:#fff;background:rgba(13,32,57,.75)}
+.comp .tb{z-index:3}.comp .pl{color:#fff;min-width:0}.comp button,.comp select{cursor:pointer}
+/* Zero inner spacing between the ×1 Auto label and its pill border. */
+.comp .p3,.comp .image-settings-trigger{margin:0!important;padding:0!important;box-sizing:border-box!important;text-indent:0!important;}.comp .p2{font:700 12px Inter,system-ui,sans-serif;color:#fff;appearance:none;-webkit-appearance:none;padding:0 9px;background:#10223c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpath d='m5 9 7 7 7-7'/%3E%3C/svg%3E") no-repeat right 9px center;padding-right:27px}.comp .p2 option,.comp .p3 option{background:#0d2039;color:#fff}
+.comp .p3{appearance:none;-webkit-appearance:none;padding:0 7px;background:#10223c;color:#fff;font:700 12px Inter,system-ui,sans-serif;text-align:center}
+.motion16-mic{width:25px;height:32px;flex:none;border:0;background:transparent;display:grid;place-items:center}.motion16-attachment{position:absolute;left:18px;top:40px;max-width:210px;z-index:4;padding:4px 8px;border:1px solid rgba(74,196,239,.4);border-radius:8px;background:#102a46;color:#dff7ff;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.comp.expanded .motion16-attachment{top:92px}
+.motion16-notice{position:absolute;left:12px;right:12px;bottom:calc(100% + 8px);padding:8px 11px;border-radius:10px;background:#102a46;border:1px solid rgba(68,190,237,.4);color:#e8f8ff;font-size:11px;display:none;box-shadow:0 8px 22px rgba(0,0,0,.25)}.motion16-notice.show{display:block}
+.snd{border:0;cursor:pointer}.snd:active,.motion16-mic:active,.pl:active{transform:scale(.96)}
+@media(prefers-reduced-motion:reduce){.typing-caret{animation:none}.hero>img.ph,.it{transition:none}}
+/* NextGen AI compact composer bar: bottom-anchored single-row controls, prompt tap expands upward. */
+.comp:not(.expanded){height:46px!important;bottom:calc(21px + env(safe-area-inset-bottom,0px));}
+.comp:not(.expanded) .ph{top:10px!important;left:204px!important;width:calc(100% - 294px)!important;height:24px!important;min-height:24px!important;max-height:24px!important;padding:3px 3px!important;overflow:hidden!important;white-space:nowrap!important;resize:none!important;font-size:9px!important;line-height:16px!important;z-index:5!important;}
+.comp:not(.expanded) .expand{top:7px!important;right:7px!important;width:30px!important;height:30px!important;}
+.comp:not(.expanded) .tb{position:absolute!important;left:5px!important;right:42px!important;top:5px!important;bottom:auto!important;width:auto!important;height:36px!important;padding:0!important;gap:5px!important;z-index:6!important;display:flex!important;align-items:center!important;overflow:visible!important;}
+.comp:not(.expanded) .p1{width:32px!important;height:32px!important;flex:0 0 32px!important;font-size:20px!important;}
+.comp:not(.expanded) .p2{width:clamp(104px,34vw,132px)!important;min-width:0!important;max-width:132px!important;height:32px!important;flex:1 1 112px!important;font-size:12px!important;padding-left:8px!important;padding-right:20px!important;}.comp:not(.expanded) .image-settings-trigger{display:flex!important;visibility:visible!important;opacity:1!important;width:112px!important;min-width:112px!important;max-width:112px!important;height:32px!important;flex:0 0 112px!important;padding:0 7px!important;gap:3px!important;font-size:12px!important;}.comp:not(.expanded) .image-settings-trigger svg{display:block!important;visibility:visible!important;width:18px!important;height:18px!important;flex:0 0 18px!important;stroke:#fff!important;opacity:1!important;}
+.comp:not(.expanded) .p3,.comp:not(.expanded) .motion16-mic,.comp:not(.expanded) .snd,.comp:not(.expanded) .up,.comp:not(.expanded) .motion16-attachment{display:none!important;}
+.comp:not(.expanded) .rf{display:grid!important;position:absolute!important;right:48px!important;top:21px!important;width:20px!important;height:22px!important;z-index:7!important;}
+.comp:not(.expanded) .expand{z-index:8!important;}
+/* Final composer sizing and alignment: keep both modes bottom anchored. */
+.comp.expanded{height:140px!important;bottom:calc(9px + env(safe-area-inset-bottom,0px));}
+.comp.expanded .ph{top:16px!important;height:56px!important;min-height:56px!important;max-height:56px!important;font-size:15px!important;line-height:18px!important;}
+.comp.expanded .up{top:60px!important;right:4px!important;width:112px!important;height:29px!important;font-size:14px!important;white-space:nowrap!important;}
+.comp.expanded .rf{top:63px!important;right:124px!important;width:24px!important;height:24px!important;}
+/* Expanded composer refinement: lower prompt, slightly larger controls and clearer text. */
+.comp.expanded .ph{top:16px!important;left:18px!important;transform:none!important;margin:0!important;padding-top:0!important;font-size:15px!important;line-height:18px!important;}
+.comp.expanded .tb{gap:8px!important;}
+.comp.expanded .p1{width:38px!important;height:38px!important;flex:0 0 38px!important;}
+.comp.expanded .p2{height:38px!important;font-size:13px!important;padding-left:11px!important;padding-right:28px!important;}
+.comp.expanded .p3{height:38px!important;font-size:13px!important;}
+.comp.expanded .motion16-mic{width:29px!important;height:38px!important;}
+.comp.expanded .expand{width:40px!important;height:40px!important;}
+.comp.expanded .rf{width:26px!important;height:26px!important;}
+.comp.expanded .up{font-size:15px!important;}
+
+.comp:not(.expanded) .rf{top:12px!important;right:48px!important;width:20px!important;height:22px!important;}
+.comp:not(.expanded) .ph{font-size:12px!important;line-height:18px!important;}
+.comp:not(.expanded) .p2{font-size:11px!important;}
+.comp{transition:height .26s cubic-bezier(.2,.75,.25,1),bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+@media(max-width:380px){.comp:not(.expanded) .tb{width:170px!important}.comp:not(.expanded) .p2{width:132px!important;max-width:132px!important;flex-basis:132px!important}.comp:not(.expanded) .ph{left:182px!important;width:calc(100% - 270px)!important;}}
+
+/* Final alignment: undo sits on the same row immediately left of Upgrade. */
+.comp.expanded .rf{top:60px!important;right:124px!important;width:26px!important;height:26px!important;z-index:9!important;}
+
+/* Separate, independently clickable composer arrows: upper collapses, lower expands. */
+.comp .expand{overflow:hidden;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:stretch!important;padding:0!important;}
+.comp.expanded .expand{flex-direction:column-reverse!important;}
+.comp .expand .composer-arrow{flex:1 1 100%!important;width:100%;height:100%;min-height:0;margin:0;padding:0;border:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation;}
+.comp .expand .composer-arrow:active{background:rgba(255,255,255,.12);}
+.comp .expand .composer-arrow{display:none!important;}
+.comp.expanded .expand .composer-collapse{display:flex!important;}
+.comp.expanded .expand .composer-expand{display:none!important;}
+.comp:not(.expanded) .expand .composer-collapse{display:none!important;}
+.comp:not(.expanded) .expand .composer-expand{display:flex!important;}
+
+
+
+
+/* When composer collapses to the bottom bar, let the feature list fill the space down to it. */
+.app:has(+ .comp:not(.expanded)){padding-bottom:calc(67px + env(safe-area-inset-bottom,0px))!important;}
+/* Dock the two floating actions immediately above the composer in both states. */
+body:has(.comp.expanded) .ng-fab-stack{bottom:calc(161px + env(safe-area-inset-bottom,0px))!important;transition:bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+body:has(.comp:not(.expanded)) .ng-fab-stack{bottom:calc(79px + env(safe-area-inset-bottom,0px))!important;transition:bottom .26s cubic-bezier(.2,.75,.25,1)!important;}
+/* Keep composer typography consistent in compact and expanded modes. */
+.comp .ph{font-size:15px!important;line-height:18px!important;}
+.comp .p2,.comp .p3{font-size:13px!important;}
+.comp .up{font-size:15px!important;}
+
+.ng-model-trigger{display:flex!important;align-items:center!important;justify-content:center!important;cursor:default!important;color:#eef8ff!important;background:linear-gradient(135deg,#0d2744,#102c4a)!important;border:1px solid rgba(79,181,235,.38)!important;border-radius:22px!important;padding:0 12px!important}
 
 .ng-model-trigger{cursor:pointer!important;touch-action:manipulation!important;gap:8px!important}
 .ng-model-picker{position:fixed;left:max(16px,calc((100vw - 430px)/2 + 18px));right:max(16px,calc((100vw - 430px)/2 + 18px));bottom:calc(155px + env(safe-area-inset-bottom,0px));z-index:10020;padding:12px;border:1px solid rgba(68,190,255,.32);border-radius:20px;background:#0b1b33;box-shadow:0 12px 36px rgba(0,0,0,.48),0 0 18px rgba(0,174,255,.08);color:#f7faff}
@@ -1906,6 +2026,61 @@ body .view .panel.ng-feature-routing {
  gap:13px!important;
  border:1px solid rgba(77,160,207,.18)!important;
  border-radius:16px!important;
+}
+.ng-model-category-row:first-child{
+ background:linear-gradient(110deg,rgba(12,112,165,.38),rgba(21,47,83,.72))!important;
+ box-shadow:inset 3px 0 0 #21d8f3!important;
+}
+.ng-model-category-copy{gap:3px!important}
+.ng-model-category-copy strong{line-height:1.1!important}
+.ng-model-category-copy small{line-height:1.1!important}
+.ng-model-list-view{min-height:200px!important}
+.ng-model-list-heading{
+ height:38px!important;flex-basis:38px!important;
+ padding:0 4px 4px!important;
+ color:#b9eaff!important;
+}
+.ng-model-option{
+ min-height:54px!important;
+ padding:6px 10px!important;
+ gap:9px!important;
+ border-radius:11px!important;
+}
+.ng-model-option.is-selected{
+ background:linear-gradient(105deg,rgba(12,112,165,.34),rgba(43,42,93,.72))!important;
+ box-shadow:inset 3px 0 0 #23d8f2!important;
+}
+.ng-model-option-name{line-height:1.15!important}
+.ng-image-model-choice{width:100%;min-height:58px;display:flex;align-items:center;gap:12px;padding:7px 10px;border-bottom:1px solid rgba(116,174,210,.16);border-radius:12px;color:#f1f7ff}
+.ng-image-model-choice.is-selected{background:linear-gradient(105deg,rgba(12,112,165,.42),rgba(43,42,93,.78))!important;box-shadow:inset 4px 0 0 #20d9f3,0 0 13px rgba(0,183,255,.12)}
+.ng-image-model-choice .ng-model-option-name{flex:1;white-space:normal;overflow:visible;text-overflow:clip}
+.ng-image-model-choice .ng-model-selected-check{flex:0 0 auto;color:#a78bfa;font-size:30px;font-weight:800;line-height:1}
+.ng-model-select-button{flex:0 0 auto;min-width:72px;min-height:36px;padding:7px 13px;border:1px solid rgba(46,207,244,.7);border-radius:999px;background:linear-gradient(110deg,#087fc4,#315ee8 65%,#743ee8);color:#fff;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.ng-model-select-button:active{transform:scale(.97);filter:brightness(1.15)}
+.ng-model-cost{line-height:1.15!important}
+.ng-model-more{
+ position:relative!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ background:linear-gradient(110deg,#073b62 0%,#086da5 42%,#245ee7 76%,#6045c9 100%)!important;
+ border:1px solid rgba(48,216,255,.72)!important;
+ color:#f4fbff!important;
+ box-shadow:0 3px 14px rgba(0,174,255,.22),inset 0 1px 0 rgba(255,255,255,.14)!important;
+}
+.ng-model-more:active{
+ background:linear-gradient(110deg,#07517d 0%,#087db8 45%,#326df0 78%,#7658df 100%)!important;
+}
+.ng-model-more-arrow{
+ position:absolute!important;
+ right:18px!important;
+ top:50%!important;
+ transform:translateY(-58%)!important;
+ font-size:25px!important;
+ line-height:1!important;
+ font-weight:500!important;
+ color:#f4fbff!important;
+}
 </style>
 <style id="ng-image-settings-reference-polish-v1">
 .ng-image-shapes:not(.show-all) .ng-image-choice:nth-child(n+7){display:none!important}
