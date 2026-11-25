@@ -3038,50 +3038,49 @@ body .studio section.view:not(#view-imagine) .primary{
 .ng-shared-modal-actions #ng-shared-settings-apply{background:linear-gradient(100deg,#00c9ef,#276bff 55%,#a32df1);border:0}
 @media(max-width:560px){.ng-shared-tool-grid{grid-template-columns:1fr 1fr}.ng-shared-creation-controls{padding:16px 14px!important}}
 </style>
-<script id="ng-shared-creation-controls-controller-v1">
+<script id="ng-shared-creation-controls-controller-v2">
 (function(){
  const params=new URLSearchParams(location.search),feature=params.get('feature');
  if(!feature||feature==='Image Generate')return;
  const config={
-  'AI Video Editor':{view:'view-tools',tool:'Video Editing',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1','4:3'],sizes:['Standard','HD','Full HD','4K']},
-  'Image to Video':{view:'view-discover',tool:'Image to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
-  'Text to Video':{view:'view-discover',tool:'Text to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
-  'Video Extender':{view:'view-discover',tool:'Video Extender',models:['Auto Router','Grok','Omni Flash','MiniMax HD'],ratios:['Auto','16:9','9:16'],sizes:['Standard','HD','Full HD','4K']},
-  'Text to Music':{view:'view-tools',tool:'Text to Music',models:['Auto Router','Music Generation Model'],ratios:['Audio'],sizes:['Standard','High Quality']},
-  'Music to Video':{view:'view-discover',tool:'Music to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
-  'Text 2 Dance':{view:'view-discover',tool:'Text 2 Dance',models:['Auto Router','Dance Video Model'],ratios:['Auto','9:16','16:9','1:1'],sizes:['Standard','HD','Full HD']},
-  'Upscale 4K / 8K':{view:'view-tools',tool:'Video Upscaling',models:['Auto Router','Real-ESRGAN Upscaler'],ratios:['Original','16:9','9:16','1:1'],sizes:['2K','4K','8K']}
+  'AI Video Editor':{view:'view-tools',kind:'video',tool:'Video Editing',prompt:'Describe the edits, transitions, effects or improvements you want...',upload:'Upload video / edit source',accept:'video/*',models:['NextGen AI (Auto Router)','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Original','16:9','9:16','1:1','4:3'],sizes:['Auto','HD','Full HD','4K'],workspace:'Video Editing Workspace'},
+  'Image to Video':{view:'view-discover',kind:'video',tool:'Image to Video',prompt:'Describe how you want the image to move and come to life...',upload:'Upload reference image',accept:'image/*',models:['NextGen AI (Auto Router)','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K'],workspace:'Image to Video Workspace'},
+  'Text to Video':{view:'view-discover',kind:'video',tool:'Text to Video',prompt:'Describe the video scene, subject, motion, camera and lighting...',upload:'Upload reference (optional)',accept:'image/*,video/*',models:['NextGen AI (Auto Router)','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K'],workspace:'Video Creation Workspace'},
+  'Video Extender':{view:'view-discover',kind:'video',tool:'Video Extender',prompt:'Describe how the original video should continue...',upload:'Upload original video',accept:'video/*',models:['NextGen AI (Auto Router)','Grok','Omni Flash','MiniMax HD'],ratios:['Original','16:9','9:16'],sizes:['Standard','HD','Full HD','4K'],workspace:'Video Extension Workspace'},
+  'Text to Music':{view:'view-tools',kind:'audio',tool:'Text to Music',prompt:'Describe the music, genre, mood, instruments, tempo and vocals...',upload:'Upload audio reference (optional)',accept:'audio/*',models:['NextGen AI (Auto Router)','Music Generation Model'],ratios:['Audio'],sizes:['Standard','High Quality','Studio Quality'],workspace:'Music Creation Workspace'},
+  'Music to Video':{view:'view-discover',kind:'video',tool:'Music to Video',prompt:'Describe the visuals and scenes that should match your music...',upload:'Upload music / audio',accept:'audio/*',models:['NextGen AI (Auto Router)','Grok','Omni Flash','MiniMax HD'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K'],workspace:'Music Video Workspace'},
+  'Text 2 Dance':{view:'view-discover',kind:'video',tool:'Text 2 Dance',prompt:'Describe the dance style, movement, energy and performer...',upload:'Upload reference image / video (optional)',accept:'image/*,video/*',models:['NextGen AI (Auto Router)','Dance Video Model'],ratios:['9:16','16:9','1:1'],sizes:['Standard','HD','Full HD'],workspace:'Dance Creation Workspace'},
+  'Upscale 4K / 8K':{view:'view-tools',kind:'image',tool:'Upscale 4K / 8K',prompt:'Optional instructions for enhancement (preserve original details and identity)...',upload:'Upload original image / video',accept:'image/*,video/*',models:['NextGen AI (Auto Router)','Real-ESRGAN Upscaler'],ratios:['Original','Auto'],sizes:['2K','4K','8K'],workspace:'Upscale Workspace'}
  };
  const cfg=config[feature];if(!cfg)return;
- const panel=document.getElementById('ng-shared-creation-controls-v1');if(!panel)return;
- const view=document.getElementById(cfg.view);if(!view)return;
- view.insertBefore(panel,view.firstChild);panel.hidden=false;
- const tool=document.getElementById('ng-shared-tool');tool.innerHTML='';
- [cfg.tool,'Auto Selection','Manual Selection','Compare Mode'].forEach(x=>{const o=document.createElement('option');o.textContent=x;tool.appendChild(o);});
- const modelOpen=document.getElementById('ng-shared-model-open'),modelModal=document.getElementById('ng-shared-model-modal'),modelList=document.getElementById('ng-shared-model-list');
- const modelValue=document.getElementById('ng-shared-model-value'),modelTitle=document.getElementById('ng-shared-modal-title');
- let selected=cfg.models[0]||'Auto Router';modelValue.textContent=selected;
- function renderModels(){
-  modelTitle.textContent='Choose AI Model';
-  modelList.replaceChildren();
-  cfg.models.forEach(name=>{
-   const row=document.createElement('div');row.className='ng-shared-model-row'+(selected===name?' is-selected':'');
-   const label=document.createElement('span');label.textContent=name;
-   const button=document.createElement('button');button.type='button';button.textContent=selected===name?'Selected':'Select';
-   const tick=document.createElement('span');tick.className='ng-shared-tick';tick.textContent=selected===name?'✓':'';
-   button.addEventListener('click',()=>{selected=name;modelValue.textContent=name;renderModels();});
-   row.append(label,button,tick);modelList.appendChild(row);
-  });
- }
+ const view=document.getElementById(cfg.view),panel=document.getElementById('ng-shared-creation-controls-v1');if(!view||!panel)return;
+ // Replace the previous feature page entirely. Image Generate remains untouched.
+ view.replaceChildren();
+ const heading=document.createElement('div');heading.className='studio-grid';
+ const main=document.createElement('div');main.className='panel';
+ const workspace=document.createElement('aside');workspace.className='panel';
+ main.innerHTML='<div class="field"><label>PROMPT</label><textarea id="ng-feature-prompt" maxlength="3000"></textarea></div><div class="field"><label>NEGATIVE PROMPT (OPTIONAL)</label><textarea id="ng-feature-negative" maxlength="1500" placeholder="Describe what should be avoided..."></textarea></div><div class="field"><label>'+cfg.upload+'</label><label class="upload" for="ng-feature-file">＋ <span><strong>Select file</strong><br>Choose a source file from your device</span></label><input id="ng-feature-file" type="file" accept="'+cfg.accept+'"><div id="ng-feature-preview" class="file-preview"></div></div><div class="field"><label>'+cfg.kind.toUpperCase()+' CREDIT ESTIMATE</label><div class="notice">Unavailable — verified provider rates and the Credit Wallet are not connected. No credits will be deducted.</div></div><div class="field"><div class="status-line"><span>Ready to configure</span><strong id="ng-feature-status">Not submitted</strong></div></div><button class="primary" type="button" id="ng-feature-prepare">Prepare '+(cfg.kind==='audio'?'Music':cfg.kind==='image'?'Upscale':'Video')+'</button><div class="notice">Prototype only: provider connection and processing are not active. No credits will be deducted.</div>';
+ main.querySelector('#ng-feature-prompt').placeholder=cfg.prompt;
+ workspace.innerHTML='<h2>'+cfg.workspace+'</h2><div class="tool-grid"><div class="tool"><b>Auto Selection</b><span>NextGen AI chooses a suitable model</span></div><div class="tool"><b>Manual Selection</b><span>Choose a model from the model selector</span></div><div class="tool"><b>Output Settings</b><span>Set aspect ratio and output quality</span></div><div class="tool"><b>Preview & Export</b><span>Review output when processing is connected</span></div></div><div class="notice" style="margin-top:12px">Provider integrations are not active yet. Your selected settings are for configuration preview only.</div>';
+ heading.append(main,workspace);view.appendChild(panel);view.appendChild(heading);
+ const tool=document.getElementById('ng-shared-tool');tool.replaceChildren();
+ [cfg.tool,'Auto Selection','Manual Selection','Compare Mode'].forEach(v=>{const o=document.createElement('option');o.textContent=v;tool.appendChild(o);});
+ document.getElementById('ng-shared-style').innerHTML='<option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Creative</option><option>Professional</option><option>Artistic</option>';
+ const modelOpen=document.getElementById('ng-shared-model-open'),modelModal=document.getElementById('ng-shared-model-modal'),modelList=document.getElementById('ng-shared-model-list'),modelValue=document.getElementById('ng-shared-model-value');
+ let selected=cfg.models[0];modelValue.textContent=selected;
+ function renderModels(){modelList.replaceChildren();cfg.models.forEach(name=>{const row=document.createElement('div');row.className='ng-shared-model-row'+(selected===name?' is-selected':'');const label=document.createElement('span');label.textContent=name;const b=document.createElement('button');b.type='button';b.textContent=selected===name?'Selected':'Select';const tick=document.createElement('span');tick.className='ng-shared-tick';tick.textContent=selected===name?'✓':'';b.addEventListener('click',()=>{selected=name;modelValue.textContent=name;renderModels();});row.append(label,b,tick);modelList.appendChild(row);});}
  renderModels();modelOpen.addEventListener('click',()=>{modelModal.hidden=false;renderModels();});
- const sizeOpen=document.getElementById('ng-shared-size-open'),sizeModal=document.getElementById('ng-shared-size-modal');
+ const sizeOpen=document.getElementById('ng-shared-size-open'),sizeModal=document.getElementById('ng-shared-size-modal'),ratioBox=document.getElementById('ng-shared-ratios'),sizeBox=document.getElementById('ng-shared-sizes');
  let ratio=cfg.ratios[0],size=cfg.sizes[0];
- const ratioBox=document.getElementById('ng-shared-ratios'),sizeBox=document.getElementById('ng-shared-sizes');
- function choices(box,values,current,onPick){box.replaceChildren();values.forEach(value=>{const b=document.createElement('button');b.type='button';b.textContent=value;b.setAttribute('aria-pressed',String(value===current));b.addEventListener('click',()=>{onPick(value);choices(box,values,value,onPick);});box.appendChild(b);});}
+ function choices(box,values,current,select){box.replaceChildren();values.forEach(v=>{const b=document.createElement('button');b.type='button';b.textContent=v;b.setAttribute('aria-pressed',String(v===current));b.addEventListener('click',()=>{select(v);choices(box,values,v,select);});box.appendChild(b);});}
  sizeOpen.addEventListener('click',()=>{choices(ratioBox,cfg.ratios,ratio,v=>ratio=v);choices(sizeBox,cfg.sizes,size,v=>size=v);sizeModal.hidden=false;});
  document.getElementById('ng-shared-settings-apply').addEventListener('click',()=>{document.getElementById('ng-shared-size-value').textContent=ratio+' · '+size;sizeModal.hidden=true;});
  panel.querySelectorAll('[data-shared-close]').forEach(b=>b.addEventListener('click',()=>{modelModal.hidden=true;sizeModal.hidden=true;}));
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){modelModal.hidden=true;sizeModal.hidden=true;}});
+ document.getElementById('ng-feature-file').addEventListener('change',e=>{const box=document.getElementById('ng-feature-preview');box.textContent=e.target.files[0]?e.target.files[0].name:'';});
+ document.getElementById('ng-feature-prepare').addEventListener('click',()=>{document.getElementById('ng-feature-status').textContent='Prepared · Not submitted';});
+ document.getElementById('view-title').querySelector('.ng-title-gradient').textContent=feature;
+ document.getElementById('view-subtitle').textContent='Configure your '+feature+' creation in one workspace.';
 })();
 </script>
 </body>
