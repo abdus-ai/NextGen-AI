@@ -1003,6 +1003,24 @@ html,body{margin:0!important}
 <div class="ng-image-setting-label"><span>Number of images</span><span>Up to ×4</span></div><div class="ng-image-counts" id="ng-image-count-options"><button class="ng-image-choice" data-count="1" aria-pressed="true">×1</button><button class="ng-image-choice" data-count="2" aria-pressed="false">×2 ✦</button><button class="ng-image-choice" data-count="3" aria-pressed="false">×3 ✦</button><button class="ng-image-choice" data-count="4" aria-pressed="false">×4 ✦</button></div>
 <div class="ng-image-credit-note" id="ng-image-credit-note"><div class="ng-image-credit-top"><span id="ng-image-total">1 image total</span><span>0 Stars Left</span></div><div class="ng-image-credit-charge"><strong>You’ll be charged</strong><strong id="ng-image-credit-estimate">0.5 Star (estimate)</strong></div><small>Estimate only. Provider pricing and wallet deduction are not connected yet; no Stars are deducted.</small></div>
 <div class="ng-image-settings-actions"><button type="button" class="secondary" id="ng-image-settings-cancel">Cancel</button><button type="button" class="primary" id="ng-image-settings-apply">Apply Settings</button></div></div></div>
+<section id="ng-shared-creation-controls-v1" class="panel ng-shared-creation-controls" hidden aria-label="Creation settings">
+ <div class="ng-shared-tool-grid">
+  <div class="field"><label id="ng-shared-tool-label">CHOOSE TOOL</label><select id="ng-shared-tool"><option>Auto</option><option>Manual</option></select></div>
+  <div class="field"><label>STYLE PRESET</label><select id="ng-shared-style"><option>Auto</option><option>Photorealistic</option><option>Cinematic</option><option>Creative</option><option>Professional</option></select></div>
+ </div>
+ <div class="ng-shared-model-area"><label id="ng-shared-model-label">AI MODEL</label><button type="button" id="ng-shared-model-open" class="ng-shared-trigger"><span id="ng-shared-model-value">NextGen AI (Auto Router)</span><span>⌄</span></button></div>
+ <div class="ng-shared-model-area"><label>SIZE / OUTPUT SETTINGS</label><button type="button" id="ng-shared-size-open" class="ng-shared-trigger"><span id="ng-shared-size-value">Standard · Auto</span><span>⚙</span></button></div>
+ <div class="ng-shared-modal" id="ng-shared-model-modal" hidden role="dialog" aria-modal="true" aria-label="Select AI model">
+  <div class="ng-shared-modal-head"><strong id="ng-shared-modal-title">Choose Provider</strong><button type="button" data-shared-close>×</button></div>
+  <div id="ng-shared-model-list" class="ng-shared-modal-list"></div>
+ </div>
+ <div class="ng-shared-modal" id="ng-shared-size-modal" hidden role="dialog" aria-modal="true" aria-label="Output settings">
+  <div class="ng-shared-modal-head"><strong>Output Settings</strong><button type="button" data-shared-close>×</button></div>
+  <label>Aspect Ratio</label><div class="ng-shared-options" id="ng-shared-ratios"></div>
+  <label>Resolution / Quality</label><div class="ng-shared-options" id="ng-shared-sizes"></div>
+  <div class="ng-shared-modal-actions"><button type="button" data-shared-close>Cancel</button><button type="button" id="ng-shared-settings-apply">Apply Settings</button></div>
+ </div>
+</section>
 <section id="view-gallery" class="view hidden">
  <div class="panel">
   <div class="ng-projects-heading"><div><h2>Projects</h2><p>All your saved creations in one place.</p></div><span class="ng-project-count" id="ng-project-count">0 Projects</span></div>
@@ -2959,6 +2977,79 @@ body .studio section.view:not(#view-imagine) .primary{
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});
  else apply();
+})();
+</script>
+<style id="ng-shared-creation-controls-style-v1">
+.ng-shared-creation-controls{position:relative;margin:0 0 14px!important;padding:18px 16px!important;border:1px solid rgba(73,183,230,.22)!important;border-radius:22px!important;background:linear-gradient(145deg,#151b2e,#10182b)!important;color:#f5f7ff!important}
+.ng-shared-creation-controls[hidden]{display:none!important}
+.ng-shared-tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ng-shared-creation-controls .field{min-width:0;display:flex;flex-direction:column;gap:7px;margin:0 0 14px}
+.ng-shared-creation-controls label{display:block;color:#aeb9d0;font-size:12px;font-weight:750;letter-spacing:.2px;margin:0 0 7px}
+.ng-shared-creation-controls select,.ng-shared-trigger{width:100%;min-width:0;min-height:48px;box-sizing:border-box;border:1px solid #39435c;border-radius:13px;background:#0b1120;color:#f5f7ff;padding:11px 13px;font:500 15px/1.35 Inter,system-ui,sans-serif}
+.ng-shared-trigger{display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px}
+.ng-shared-trigger span:first-child{overflow-wrap:anywhere}
+.ng-shared-model-area{margin-top:12px}
+.ng-shared-modal{position:fixed;z-index:2147483001;left:12px;right:12px;top:10dvh;bottom:10dvh;height:80dvh;box-sizing:border-box;overflow:auto;padding:16px;border:1px solid rgba(38,207,245,.5);border-radius:24px;background:linear-gradient(155deg,#0b2342,#0a1b35 65%,#101b3c);box-shadow:0 18px 55px rgba(0,0,0,.58);color:#f5f7ff}
+.ng-shared-modal[hidden]{display:none!important}
+.ng-shared-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;font-size:18px}
+.ng-shared-modal-head button{width:40px;height:40px;border:1px solid #39435c;border-radius:50%;background:#101d35;color:#fff;font-size:25px}
+.ng-shared-modal-list{display:grid;gap:9px}
+.ng-shared-model-row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:56px;padding:10px 12px;border:1px solid rgba(73,183,230,.22);border-radius:13px;background:#0b172d;color:#f5f7ff}
+.ng-shared-model-row button,.ng-shared-modal-actions button{min-width:82px;min-height:40px;border:1px solid #39516d;border-radius:999px;background:#102d49;color:#fff;font-weight:750}
+.ng-shared-model-row.is-selected{border-color:#25d8f5;background:#123653}
+.ng-shared-model-row .ng-shared-tick{color:#a78bfa;font-size:23px;font-weight:900}
+.ng-shared-modal>label{display:block;margin:16px 0 9px;color:#aeb9d0;font-size:12px;font-weight:750}
+.ng-shared-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ng-shared-options button{min-height:48px;border:1px solid rgba(111,157,196,.3);border-radius:13px;background:linear-gradient(180deg,#102744,#0b203a);color:#d5e6f8;font-size:14px;font-weight:700}
+.ng-shared-options button[aria-pressed="true"]{border-color:#27d7f4;background:linear-gradient(115deg,#087fc4,#245ee7 55%,#743ee8);color:#fff}
+.ng-shared-modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.ng-shared-modal-actions #ng-shared-settings-apply{background:linear-gradient(100deg,#00c9ef,#276bff 55%,#a32df1);border:0}
+@media(max-width:560px){.ng-shared-tool-grid{grid-template-columns:1fr 1fr}.ng-shared-creation-controls{padding:16px 14px!important}}
+</style>
+<script id="ng-shared-creation-controls-controller-v1">
+(function(){
+ const params=new URLSearchParams(location.search),feature=params.get('feature');
+ if(!feature||feature==='Image Generate')return;
+ const config={
+  'AI Video Editor':{view:'view-tools',tool:'Video Editing',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1','4:3'],sizes:['Standard','HD','Full HD','4K']},
+  'Image to Video':{view:'view-discover',tool:'Image to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
+  'Text to Video':{view:'view-discover',tool:'Text to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD','Veo 3.1'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
+  'Video Extender':{view:'view-discover',tool:'Video Extender',models:['Auto Router','Grok','Omni Flash','MiniMax HD'],ratios:['Auto','16:9','9:16'],sizes:['Standard','HD','Full HD','4K']},
+  'Text to Music':{view:'view-tools',tool:'Text to Music',models:['Auto Router','Music Generation Model'],ratios:['Audio'],sizes:['Standard','High Quality']},
+  'Music to Video':{view:'view-discover',tool:'Music to Video',models:['Auto Router','Grok','Omni Flash','MiniMax HD'],ratios:['Auto','16:9','9:16','1:1'],sizes:['Standard','HD','Full HD','4K']},
+  'Text 2 Dance':{view:'view-discover',tool:'Text 2 Dance',models:['Auto Router','Dance Video Model'],ratios:['Auto','9:16','16:9','1:1'],sizes:['Standard','HD','Full HD']},
+  'Upscale 4K / 8K':{view:'view-tools',tool:'Video Upscaling',models:['Auto Router','Real-ESRGAN Upscaler'],ratios:['Original','16:9','9:16','1:1'],sizes:['2K','4K','8K']}
+ };
+ const cfg=config[feature];if(!cfg)return;
+ const panel=document.getElementById('ng-shared-creation-controls-v1');if(!panel)return;
+ const view=document.getElementById(cfg.view);if(!view)return;
+ view.insertBefore(panel,view.firstChild);panel.hidden=false;
+ const tool=document.getElementById('ng-shared-tool');tool.innerHTML='';
+ [cfg.tool,'Auto Selection','Manual Selection','Compare Mode'].forEach(x=>{const o=document.createElement('option');o.textContent=x;tool.appendChild(o);});
+ const modelOpen=document.getElementById('ng-shared-model-open'),modelModal=document.getElementById('ng-shared-model-modal'),modelList=document.getElementById('ng-shared-model-list');
+ const modelValue=document.getElementById('ng-shared-model-value'),modelTitle=document.getElementById('ng-shared-modal-title');
+ let selected='NextGen AI (Auto Router)';
+ function renderModels(){
+  modelTitle.textContent='Choose AI Model';
+  modelList.replaceChildren();
+  cfg.models.forEach(name=>{
+   const row=document.createElement('div');row.className='ng-shared-model-row'+(selected===name?' is-selected':'');
+   const label=document.createElement('span');label.textContent=name;
+   const button=document.createElement('button');button.type='button';button.textContent=selected===name?'Selected':'Select';
+   const tick=document.createElement('span');tick.className='ng-shared-tick';tick.textContent=selected===name?'✓':'';
+   button.addEventListener('click',()=>{selected=name;modelValue.textContent=name;renderModels();});
+   row.append(label,button,tick);modelList.appendChild(row);
+  });
+ }
+ renderModels();modelOpen.addEventListener('click',()=>{modelModal.hidden=false;renderModels();});
+ const sizeOpen=document.getElementById('ng-shared-size-open'),sizeModal=document.getElementById('ng-shared-size-modal');
+ let ratio=cfg.ratios[0],size=cfg.sizes[0];
+ const ratioBox=document.getElementById('ng-shared-ratios'),sizeBox=document.getElementById('ng-shared-sizes');
+ function choices(box,values,current,onPick){box.replaceChildren();values.forEach(value=>{const b=document.createElement('button');b.type='button';b.textContent=value;b.setAttribute('aria-pressed',String(value===current));b.addEventListener('click',()=>{onPick(value);choices(box,values,value,onPick);});box.appendChild(b);});}
+ sizeOpen.addEventListener('click',()=>{choices(ratioBox,cfg.ratios,ratio,v=>ratio=v);choices(sizeBox,cfg.sizes,size,v=>size=v);sizeModal.hidden=false;});
+ document.getElementById('ng-shared-settings-apply').addEventListener('click',()=>{document.getElementById('ng-shared-size-value').textContent=ratio+' · '+size;sizeModal.hidden=true;});
+ panel.querySelectorAll('[data-shared-close]').forEach(b=>b.addEventListener('click',()=>{modelModal.hidden=true;sizeModal.hidden=true;}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){modelModal.hidden=true;sizeModal.hidden=true;}});
 })();
 </script>
 </body>
